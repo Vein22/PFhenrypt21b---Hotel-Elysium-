@@ -2,7 +2,7 @@ const HeroSection = () => {
   return (
     <section
       className="bg-cover bg-center h-screen flex items-center justify-center text-center"
-      style={{ backgroundImage: "url(/fondo.webp)" }}
+      style={{ backgroundImage: "url(/fondo3.png)" }}
     >
       <div className="bg-black bg-opacity-50 p-8 rounded-lg">
         <h1

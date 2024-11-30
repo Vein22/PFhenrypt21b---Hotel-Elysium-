@@ -7,10 +7,10 @@ const FeatureSection = () => {
         
         <div>
           <Image 
-            src="/habittacion.png" 
+            src="/habitacion.png" 
             alt="Habitación de lujo" 
             className="rounded-lg shadow-lg shadow-amber-600" 
-            width={500} 
+            width={600} 
             height={300} 
           />
         </div>
