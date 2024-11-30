@@ -3,7 +3,7 @@ import {config as dotenvConfig} from "dotenv";
 import { ConfigService } from '@nestjs/config';
 
 
-dotenvConfig({path: ".env.development.local"})
+dotenvConfig({path: ".env"})
         
 export const CloudinaryConfig = {
     provide: "cloudinary",
