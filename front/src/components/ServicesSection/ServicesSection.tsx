@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type Service = {
   name: string;
   icon: string; 
@@ -21,11 +23,12 @@ const ServicesSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 gap-8">
           {services.map((service) => (
             <div key={service.name} className="flex flex-col items-center">
-
-              <img
+              <Image
                 src={service.icon}
                 alt={service.name}
-                className="w-12 h-12 mb-4"
+                width={48} 
+                height={48}
+                className="mb-4"
               />
               <h3 className="text-xl font-semibold">{service.name}</h3>
             </div>
