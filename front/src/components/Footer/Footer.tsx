@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-8">
+    <footer className="bg-gray-950 text-white py-8">
       <div className="container mx-auto text-center">
 
         <div className="flex justify-between mb-8">
