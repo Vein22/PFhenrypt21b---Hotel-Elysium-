@@ -1,8 +1,8 @@
-import { Controller, Param, UploadedFile, Body} from '@nestjs/common';
+import { Controller, Param, UploadedFile, Body, UsePipes} from '@nestjs/common';
 import { Post, UseInterceptors, Get, Put, } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ImageValidatorPipe } from 'src/pipes/imageValidatorPipe';
 import { FilesService } from './files.service';
-
 
 @Controller('files')
 export class FilesController {
@@ -12,6 +12,7 @@ export class FilesController {
 
 
   @Post('uploadImage')
+  @UsePipes(ImageValidatorPipe)
   @UseInterceptors(FileInterceptor('image'))
   async uploadImage(@UploadedFile() file: Express.Multer.File) {
     const result = await this.filesService.uploadImage(file)
@@ -33,12 +34,9 @@ export class FilesController {
 @Put('replaceImage')
 @UseInterceptors(FileInterceptor('image'))
 async replaceImage(
-  @UploadedFile() file: Express.Multer.File,
+  @UploadedFile(new ImageValidatorPipe()) file: Express.Multer.File,
   @Body('public_id') public_id: string,
 ) {
-  if (!file) {
-    throw new Error('No se proporcionó ninguna imagen');
-  }
   if (!public_id) {
     throw new Error('El public_id es obligatorio');
   }
