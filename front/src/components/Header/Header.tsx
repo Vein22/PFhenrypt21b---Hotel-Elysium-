@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="bg-gray-950 text-white shadow-md shadow-amber-600">
+    <header className=" absolute w-full bg-gray-950 text-white shadow-md shadow-amber-600">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
 
 
