@@ -4,12 +4,6 @@ import HomeContainer from "@/components/HomeContainer/Home";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
-<<<<<<< HEAD
-=======
-import {Poppins} from 'next/font/google' 
-
-const poppins = Poppins ({subsets:['latin'], weight:['300','400','700','900']}) 
->>>>>>> development
 
 export const metadata: Metadata = {
   title: "Hotel y Resort de Lujo",
@@ -22,7 +16,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-<<<<<<< HEAD
     <html lang="en">
       <body>
        
@@ -30,11 +23,6 @@ export default function RootLayout({
        
         <Header/>
 
-=======
-    <html lang="en" className={poppins.className}>
-      <body 
-      >
->>>>>>> development
         {children}
 
         <Footer/>
