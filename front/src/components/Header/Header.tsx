@@ -12,7 +12,7 @@ const Header = () => {
 
         <nav className="flex-grow">
           <div className="flex justify-center space-x-6">
-            <Link href="#home" className="hover:text-amber-600">
+            <Link href="/" className="hover:text-amber-600">
               Home
             </Link>
             <Link href="#rooms" className="hover:text-amber-600">
@@ -21,7 +21,7 @@ const Header = () => {
             <Link href="#services" className="hover:text-amber-600">
               Servicios
             </Link>
-            <Link href="#contact" className="hover:text-amber-600">
+            <Link href="contact" className="hover:text-amber-600">
               Contacto
             </Link>
           </div>
