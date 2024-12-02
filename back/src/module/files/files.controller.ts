@@ -31,8 +31,8 @@ export class FilesController {
   }
 
   
-  @ApiBody(updateMetadataSchema)
   @Put('updateImageMetaData')
+  @ApiBody(updateMetadataSchema)
   async updateImageMetaData(@Body() body: { public_id: string; metadata: Record<string, string> }) {
     const updatedImage = await this.filesService.updateImageMetadata(body.public_id, body.metadata);
     return updatedImage;
