@@ -4,7 +4,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { ImageValidatorPipe } from 'src/pipes/imageValidatorPipe';
 import { FilesService } from './files.service';
-import { replaceImageSchema, updateMetadataSchema } from './files.swagger.schemas';
+import { postImagesSchema, replaceImageSchema, updateMetadataSchema } from './files.swagger.schemas';
 
 @Controller('files')
 export class FilesController {
@@ -17,18 +17,7 @@ export class FilesController {
   @UsePipes(ImageValidatorPipe)
   @UseInterceptors(FileInterceptor('image'))
   @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    description: 'Subir una imagen a Cloudinary. Solo se permiten imágenes JPEG, PNG, JPG y WEBP con un tamaño máximo de 2 MB.',
-    schema: {
-      type: 'object',
-      properties: {
-        image: {
-          type: 'string',
-          format: 'binary', 
-        },
-      },
-    },
-  })
+  @ApiBody(postImagesSchema)
   async uploadImage(@UploadedFile() file: Express.Multer.File) {
     const result = await this.filesService.uploadImage(file)
     return { url: result.secure_url, public_id: result.public_id };

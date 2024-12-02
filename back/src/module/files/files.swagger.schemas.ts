@@ -27,6 +27,7 @@ import { ApiBodyOptions } from "@nestjs/swagger"
   },
 }
 
+
 export const replaceImageSchema: ApiBodyOptions = {
          description: 'Reemplaza una imagen existente en Cloudinary. Solo se permiten imágenes JPEG, PNG, JPG y WEBP con un tamaño máximo de 2 MB.',
          schema: {
@@ -40,4 +41,18 @@ export const replaceImageSchema: ApiBodyOptions = {
              },
            },
          },
+}
+
+
+export const postImagesSchema: ApiBodyOptions = {
+    description: 'Subir una imagen a Cloudinary. Solo se permiten imágenes JPEG, PNG, JPG y WEBP con un tamaño máximo de 2 MB.',
+    schema: {
+      type: 'object',
+      properties: {
+        image: {
+          type: 'string',
+          format: 'binary', 
+        },
+      },
+    }
 }
