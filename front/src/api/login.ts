@@ -1,4 +1,5 @@
 import { IloginProps } from "@/interfaces/TypesLogin"
+import Swal from 'sweetalert2';
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
 
@@ -16,13 +17,20 @@ export async function login(userData : IloginProps) {
     })
 
     if (ResLogin.ok) {
-       return await ResLogin.json()
+      const data = await ResLogin.json()
+       return {success: true, data}
     } else {
-      throw Error ("Failed to Login")
+      const errorData = await ResLogin.json()
+       return {success: false, errorData}
     }
 
    } catch (error) {
-    return {message: 'no hay conexion al servidor', error }   
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'No hay conexión al servidor.',
+  });
+    return {success: false, message: 'no hay conexion al servidor', error }   
     }
   };
 

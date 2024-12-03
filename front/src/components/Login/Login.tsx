@@ -4,6 +4,7 @@
 import styles from  './Login.module.css'
 import Image from 'next/image';
 import { MdAttachEmail } from "react-icons/md";
+import Swal from 'sweetalert2';
 
 
 import { login } from '@/api/login';
@@ -40,11 +41,17 @@ SetdataUser ({
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 event.preventDefault ();
 
-const Validaterrors = validateFields (dataHarcor)
+const Validaterrors = validateFields (dataUser)
 
 if (Object.keys(Validaterrors).length > 0) {
   SetErrors(Validaterrors)
-alert ('hay un error')
+// alert ('hay un error')
+
+Swal.fire({
+  icon: 'error',
+  title: 'Error',
+  text: 'Hay un error en los campos ingresados.',
+});
 } else {
 
   try {
@@ -55,11 +62,18 @@ alert ('hay un error')
       localStorage.setItem ('user', JSON.stringify(user));
     router.push ('/');
     } else {
-      alert ('Tus credenciales no son correctas')
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Tus credenciales no son correctas.',
+      });
     }
   } catch (error) {
-    console.error ('error al iniciar sesion')
-    SetErrors({ password: "error al conectar al servidor" })
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'error al iniciar sesion.',
+    });
   }
 
   // AQUI ES DONDE GUARDO LOS NUEVOS DATOS DEL USUARIO EN EL NAVEGADOR PARA QUE SEA PERSISTENTE
