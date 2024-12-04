@@ -1,6 +1,6 @@
 
 //Tipos de valores para el formulario
-export type valuesTypesRegister = {
+export interface valuesTypesRegister  {
     name: string;
     email: string;
     password: string;
