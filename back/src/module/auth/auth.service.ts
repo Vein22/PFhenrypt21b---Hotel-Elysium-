@@ -21,7 +21,8 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
-    private dataSource: DataSource,
+    private readonly credentialsRepository: Repository<Credentials>,
+    private readonly userTypeRepository: Repository<UserType>,
   ) {}
 
   /*async signIn(userLogin: LoginUserDto) {
@@ -49,62 +50,52 @@ export class AuthService {
     return { success: 'Inicio de sesión exitoso', token, user: userFound };
   }*/
 
-  async createUser(createUserDto: CreateUserDto) {
-    // Start a transaction
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-
-    try {
-      // Check if email already exists
-      const existingCredentials = await queryRunner.manager
-        .getRepository(Credentials)
-        .findOne({ where: { email: createUserDto.email } });
-
+    async createUser(createUserDto: CreateUserDto) {
+      const existingCredentials = await this.credentialsRepository.findOne({
+          where: { email: createUserDto.email },
+      });
+  
       if (existingCredentials) {
-        throw new ConflictException('El correo electrónico ya está registrado');
+          throw new ConflictException('El correo electrónico ya está registrado');
       }
-
-      const userType = await queryRunner.manager
-        .getRepository(UserType)
-        .findOne({ where: { id: createUserDto.userTypeId } });
-
+  
+      const userType = await this.userTypeRepository.findOne({
+          where: { id: createUserDto.userTypeId },
+      });
+  
       if (!userType) {
-        throw new ConflictException('Tipo de usuario no encontrado');
+          throw new ConflictException('Tipo de usuario no encontrado');
       }
-
-      const user = new User();
-      user.name = createUserDto.name;
-      user.phone = createUserDto.phone;
-      user.userType = userType;
-      user.registrationDate = new Date().toISOString().split('T')[0];
-
-      const savedUser = await queryRunner.manager.save(user);
-
+  
+      const user = this.userRepository.create({
+          name: createUserDto.name,
+          phone: createUserDto.phone,
+          userType,
+          registrationDate: new Date().toISOString().split('T')[0], 
+      });
+  
+      const savedUser = await this.userRepository.save(user);
+  
       const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-
-      const credentials = new Credentials();
-      credentials.user = savedUser;
-      credentials.email = createUserDto.email;
-      credentials.password = hashedPassword;
-
-      await queryRunner.manager.save(credentials);
-
-      await queryRunner.commitTransaction();
-
+  
+      const credentials = this.credentialsRepository.create({
+          user: { id: savedUser.id },  
+          email: createUserDto.email,
+          password: hashedPassword,
+      });
+  
+      await this.credentialsRepository.save(credentials);
+  
       return {
-        id: savedUser.id,
-        name: savedUser.name,
-        phone: savedUser.phone,
-        email: credentials.email,
-        userType: savedUser.userType.name,
-        registrationDate: savedUser.registrationDate,
+          id: savedUser.id,
+          name: savedUser.name,
+          phone: savedUser.phone,
+          email: credentials.email,
+          userType: savedUser.userType.name,
+          registrationDate: savedUser.registrationDate,
       };
-    } catch (error) {
-      await queryRunner.rollbackTransaction();
-      throw error;
-    } finally {
-      await queryRunner.release();
-    }
   }
+  
+  
+  
 }
