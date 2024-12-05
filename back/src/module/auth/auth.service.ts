@@ -7,12 +7,10 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 
 
-import { DataSource } from 'typeorm';
 import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/CreateUserDto';
 import { Credentials } from 'src/entities/Credentials.entity';
 import { UserType } from 'src/entities/UserType.entity';
-
 
 
 @Injectable()
