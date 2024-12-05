@@ -26,4 +26,7 @@ export class Reservation {
 
   @Column('decimal')
   total: number;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 }

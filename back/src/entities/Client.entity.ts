@@ -23,4 +23,7 @@ export class Client {
 
   @Column()
   country: string;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 }

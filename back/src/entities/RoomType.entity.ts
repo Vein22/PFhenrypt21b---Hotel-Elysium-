@@ -16,4 +16,7 @@ export class RoomType {
 
   @Column()
   description: string;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 }

@@ -26,4 +26,7 @@ export class Invoice {
 
   @Column()
   status: string;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 }

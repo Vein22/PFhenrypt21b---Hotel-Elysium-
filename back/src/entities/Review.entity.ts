@@ -23,4 +23,7 @@ export class Review {
 
   @Column('date')
   date: string;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 }

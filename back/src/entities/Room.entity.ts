@@ -18,4 +18,7 @@ export class Room {
 
   @Column()
   location: string;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 }

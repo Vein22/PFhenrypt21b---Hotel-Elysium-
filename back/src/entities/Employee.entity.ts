@@ -29,4 +29,7 @@ export class Employee {
 
   @Column('date')
   hireDate: string;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 }

@@ -18,4 +18,7 @@ export class Inventory {
 
   @Column()
   status: string;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 }

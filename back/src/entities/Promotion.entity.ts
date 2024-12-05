@@ -19,4 +19,7 @@ export class Promotion {
 
   @Column('date')
   endDate: string;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 }
