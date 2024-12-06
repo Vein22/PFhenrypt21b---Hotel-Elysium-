@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Reservation } from './Reservation.entity';
 
@@ -13,7 +19,7 @@ export class CheckIn {
    */
   @ApiProperty({
     example: 'd2715a1d-32b5-4120-b0d9-9f908e13b508',
-    description: 'Referencia a la reserva asociada al check-in.'
+    description: 'Referencia a la reserva asociada al check-in.',
   })
   @ManyToOne(() => Reservation)
   @JoinColumn({ name: 'reservation_id' })
@@ -25,9 +31,9 @@ export class CheckIn {
    */
   @ApiProperty({
     example: '2024-12-05T10:30:00',
-    description: 'Fecha y hora del check-in realizado.'
+    description: 'Fecha y hora del check-in realizado.',
   })
-  @Column('datetime')
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   timestamp: Date;
 
   /**
@@ -36,7 +42,7 @@ export class CheckIn {
    */
   @ApiProperty({
     example: 'Cliente llegó tarde debido a un retraso en su vuelo.',
-    description: 'Notas adicionales relacionadas con el check-in.'
+    description: 'Notas adicionales relacionadas con el check-in.',
   })
   @Column()
   notes: string;
