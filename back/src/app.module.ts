@@ -10,6 +10,7 @@ import { FilesModule } from './module/files/files.module';
   imports: [
     AuthModule,
     FilesModule,
+    
     JwtModule.register({
       global: true,
       signOptions: { expiresIn: '1d' },
