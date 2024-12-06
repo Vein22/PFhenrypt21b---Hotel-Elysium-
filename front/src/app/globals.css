@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -21,4 +24,36 @@ body {
   /* font-family: Arial, Helvetica, sans-serif; */
 }
 
+h1 {
+  font-size: xx-large;
+  font-weight: 600;
+  color: rgb(84, 84, 94);
+}
+
+h2 {
+  font-size: x-large;
+  font-weight: 600;
+  color: rgb(84, 84, 94);
+}
+
+h3 {
+  font-size: large;
+  font-weight: 400;
+  color: rgb(84, 84, 94);
+}
+
+button {
+    background-color: #b69663; 
+    color: white    ;    
+    padding: 10px 20px;    
+    border-radius: 5px;    
+    cursor: pointer;        
+    font-size: 15px;       
+    margin-top: 35px;
+    transition: background-color 0.3s; 
+  }
+
+  button:hover {
+    background-color: #d9af71; 
+  }
 
