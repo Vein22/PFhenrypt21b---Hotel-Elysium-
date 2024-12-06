@@ -3,6 +3,9 @@
 import { useFormRegister } from "@/hooks/useFormRegister";
 import { velidateFormRegister } from "@/helpers/validateRegister";
 import { fetchRegister } from "@/api/register";
+import Image from "next/image";
+import registerImg from '../../../public/register_prueba.png';
+import Style from './register.module.css';
 
 const initialForm = {
     name: '',
@@ -26,73 +29,62 @@ export const RegisterComponent = () => {
         handleSubmit
     } = useFormRegister(initialForm, velidateFormRegister, fetchRegister)
     return (
-        <form onSubmit={handleSubmit} className="bg-slate-50">
-            
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
-            <h1 className="text-gray-50">Compoenente para el registro</h1>
+        <form onSubmit={handleSubmit} className={Style.container}>
+            {/*Imagen estática para el componente Register*/}
+            <div className={Style.imgContainer}>
+                <Image src={registerImg} alt="Usuario" width={500} height={500}/>
+            </div>
 
 
             {/*Formulario de registro*/}
-            <div>
-            <h1 className="text-gray-50">Registrarse</h1>
-{/*Nombre*/}
-            <div>
-                <input type="text" name="name" id="name_id" onChange={handleChange} onBlur={handleBlur} value={form.name}/>
-                <label htmlFor="name_id">Nombre Completo</label>
-                {errors.name && <p className="text-red-500 text-xs mt-2">{errors.name}</p>}
+            <div className={Style.formContainer}>
+            <h1>Registrarse</h1>
+                {errors.name && <p className="text-red-500 text-xs m-2">{errors.name}</p>}
+{/*Nombre*/} 
+            <div className={Style.inputLabelGroup}>
+                <input type="text" name="name" id="name_id" onChange={handleChange} onBlur={handleBlur} value={form.name} className={Style.inputForm} placeholder=" " autoComplete="off"/>
+                <label htmlFor="name_id" className={Style.labelForm}>Nombre Completo</label>
             </div>
 {/*Email*/}
-            <div>
-                <input type="text" name="email" id="email_id" onChange={handleChange} onBlur={handleBlur} value={form.email}/>
-                <label htmlFor="email_id">Correo Electronico</label>
+            {errors.email && <p className="text-red-500 text-xs m-2">{errors.email}</p>}
+            <div className={Style.inputLabelGroup}>
+                <input type="text" name="email" id="email_id" onChange={handleChange} onBlur={handleBlur} value={form.email} className={Style.inputForm} placeholder=" "/>
+                <label htmlFor="email_id" className={Style.labelForm}>Correo Electronico</label>
             </div>
-            {errors.email && <p className="text-red-500 text-xs mt-2">{errors.email}</p>}
 {/*Contraseña*/}
-            <div>
-                <input type="password" name="password" id="password_id" onChange={handleChange} onBlur={handleBlur} value={form.password}/>
-                <label htmlFor="password_id">Contraseña</label>
+            {errors.password && <p className="text-red-500 text-xs m-2">{errors.password}</p>}
+            <div className={Style.inputLabelGroup}>
+                <input type="password" name="password" id="password_id" onChange={handleChange} onBlur={handleBlur} value={form.password} className={Style.inputForm} placeholder=" "/>
+                <label htmlFor="password_id" className={Style.labelForm}>Contraseña</label>
             </div>
-            {errors.password && <p className="text-red-500 text-xs mt-2">{errors.password}</p>}
 {/*Confirmar contraseña*/}
-            <div>
-                <input type="password" name="confirm_password" id="confirm_password_id" onChange={handleChange} onBlur={handleBlur} value={form.confirm_password}/>
-                <label htmlFor="confirm_password_id">Confirmar Contraseña</label>
+            {errors.confirm_password && <p className="text-red-500 text-xs m-2">{errors.confirm_password}</p>}
+            <div className={Style.inputLabelGroup}>
+                <input type="password" name="confirm_password" id="confirm_password_id" onChange={handleChange} onBlur={handleBlur} value={form.confirm_password} className={Style.inputForm} placeholder=" "/>
+                <label htmlFor="confirm_password_id" className={Style.labelForm}>Confirmar Contraseña</label>
             </div>
-            {errors.confirm_password && <p className="text-red-500 text-xs mt-2">{errors.confirm_password}</p>}
 {/*Teléfono*/}
-            <div>
-                <input type="text" name="phone" id="phone_id" onChange={handleChange} onBlur={handleBlur} value={form.phone}/>
-                <label htmlFor="phone_id">Teléfono</label>
+            {errors.phone && <p className="text-red-500 text-xs m-2">{errors.phone}</p>}
+            <div className={Style.inputLabelGroup}>
+                <input type="text" name="phone" id="phone_id" onChange={handleChange} onBlur={handleBlur} value={form.phone} className={Style.inputForm} placeholder=" "/>
+                <label htmlFor="phone_id" className={Style.labelForm}>Teléfono</label>
             </div>
-            {errors.phone && <p className="text-red-500 text-xs mt-2">{errors.phone}</p>}
 {/*Dni*/}
-            <div>
-                <input type="text" name="Dni" id="Dni_id" onChange={handleChange} onBlur={handleBlur} value={form.Dni}/>
-                <label htmlFor="Dni_id">Dni</label>
+            {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
+            <div className={Style.inputLabelGroup}>
+                <input type="text" name="Dni" id="Dni_id" onChange={handleChange} onBlur={handleBlur} value={form.Dni} className={Style.inputForm} placeholder=" "/>
+                <label htmlFor="Dni_id" className={Style.labelForm}>Dni</label>
             </div>
-            {errors.Dni && <p className="text-red-500 text-xs mt-2">{errors.Dni}</p>}
 {/*Dirección*/}
-            <div>
-                <input type="text" name="address" id="address_id" onChange={handleChange} onBlur={handleBlur} value={form.address}/>
-                <label htmlFor="address_id">Dirección</label>
+            {errors.address && <p className="text-red-500 text-xs m-2">{errors.address}</p>}
+            <div className={Style.inputLabelGroup}>
+                <input type="text" name="address" id="address_id" onChange={handleChange} onBlur={handleBlur} value={form.address} className={Style.inputForm} placeholder=" "/>
+                <label htmlFor="address_id" className={Style.labelForm}>Dirección</label>
             </div>
-            {errors.address && <p className="text-red-500 text-xs mt-2">{errors.address}</p>}
 
-            <p>¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a></p>
+            <p className={Style.tienesCuenta}>¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a></p>
 
-            <button type="submit">REGISTRARSE</button>
+            <button type="submit" className={Style.submit}>REGISTRARSE</button>
             </div>
         </form>
     )
