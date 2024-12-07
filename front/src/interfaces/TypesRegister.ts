@@ -9,3 +9,18 @@ export interface valuesTypesRegister  {
     Dni: string;
     address: string;
 };
+
+export interface valuesTypesRegisterPrueba  {
+    name: string;
+    phone: string;
+    email: string;
+    password: string;
+    Dni: string;
+    confirm_password: string;
+};
+
+/*name
+phone
+email
+password
+dni*/
