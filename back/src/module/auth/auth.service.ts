@@ -8,8 +8,6 @@ import { JwtService } from '@nestjs/jwt';
 
 import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/CreateUserDto';
-import { Credentials } from 'src/entities/Credentials.entity';
-import { UserType } from 'src/entities/UserType.entity';
 
 @Injectable()
 export class AuthService {
@@ -17,14 +15,10 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
-    @InjectRepository(Credentials)
-    private readonly credentialsRepository: Repository<Credentials>,
-    @InjectRepository(UserType)
-    private readonly userTypeRepository: Repository<UserType>,
   ) {}
 
   async signIn(userLogin: LoginUserDto) {
-    const userFound = await this.credentialsRepository.findOne({
+    const userFound = await this.userRepository.findOne({
       where: { email: userLogin.email },
     });
     if (!userFound) {
@@ -49,47 +43,31 @@ export class AuthService {
   }
 
   async createUser(createUserDto: CreateUserDto) {
-    const existingCredentials = await this.credentialsRepository.findOne({
+    const existingUser = await this.userRepository.findOne({
       where: { email: createUserDto.email },
     });
 
-    if (existingCredentials) {
+    if (existingUser) {
       throw new ConflictException('El correo electrónico ya está registrado');
     }
 
-    const userType = await this.userTypeRepository.findOne({
-      where: { id: createUserDto.userTypeId },
-    });
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
 
-    if (!userType) {
-      throw new ConflictException('Tipo de usuario no encontrado');
-    }
-
-    const user = this.userRepository.create({
+    const newUser = this.userRepository.create({
       name: createUserDto.name,
       phone: createUserDto.phone,
-      userType,
+      email: createUserDto.email,
+      password: hashedPassword,
       registrationDate: new Date().toISOString().split('T')[0],
     });
 
-    const savedUser = await this.userRepository.save(user);
-
-    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-
-    const credentials = this.credentialsRepository.create({
-      user: { id: savedUser.id },
-      email: createUserDto.email,
-      password: hashedPassword,
-    });
-
-    await this.credentialsRepository.save(credentials);
+    const savedUser = await this.userRepository.save(newUser);
 
     return {
       id: savedUser.id,
       name: savedUser.name,
       phone: savedUser.phone,
-      email: credentials.email,
-      userType: savedUser.userType.name,
+      email: savedUser.email,
       registrationDate: savedUser.registrationDate,
     };
   }
