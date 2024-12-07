@@ -1,8 +1,8 @@
-import { valuesTypesRegister } from "@/interfaces/TypesRegister";
+import { valuesTypesRegisterPrueba } from "@/interfaces/TypesRegister";
 
 
-export const velidateFormRegister = (form: valuesTypesRegister) => {
-    const errors: Partial<valuesTypesRegister> = {};
+export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
+    const errors: Partial<valuesTypesRegisterPrueba> = {};
     
     const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -29,7 +29,7 @@ export const velidateFormRegister = (form: valuesTypesRegister) => {
         errors.password = 'La contraseña debe cumplir con los requisitos: al menos 7 caracteres, una letra mayúscula y un número.'
     };
 
-    if(!form.confirm_password.trim()) {
+   if(!form.confirm_password.trim()) {
         errors.confirm_password = 'Debe de confirmar tu contraseña';
     } else if(form.password !== form.confirm_password) {
         errors.confirm_password = 'Las contraseñas no coinciden';
@@ -47,11 +47,11 @@ export const velidateFormRegister = (form: valuesTypesRegister) => {
         errors.Dni = 'El DNI debe tener entre 7 y 12 caracteres alfanuméricos.';
     };
 
-    if(!form.address.trim()) {
-        errors.address = 'La dirección es obligatoria';
-    } else if(!regexAddress.test(form.address.trim())) {
-        errors.address = 'Por favor, ingresa una dirección válida.';
-    };
+    //if(!form.address.trim()) {
+      //  errors.address = 'La dirección es obligatoria';
+    //} else if(!regexAddress.test(form.address.trim())) {
+      //  errors.address = 'Por favor, ingresa una dirección válida.';
+    //};
 
     return errors;
 };

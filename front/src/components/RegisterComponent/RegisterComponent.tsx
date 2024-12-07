@@ -9,12 +9,11 @@ import Style from './register.module.css';
 
 const initialForm = {
     name: '',
+    phone: '',
     email: '',
     password: '',
-    confirm_password: '',
-    phone: '',
     Dni: '',
-    address: ''
+    confirm_password: ''
 };
 
 export const RegisterComponent = () => {
@@ -76,11 +75,11 @@ export const RegisterComponent = () => {
                 <label htmlFor="Dni_id" className={Style.labelForm}>Dni</label>
             </div>
 {/*Dirección*/}
-            {errors.address && <p className="text-red-500 text-xs m-2">{errors.address}</p>}
+            {/*{errors.address && <p className="text-red-500 text-xs m-2">{errors.address}</p>}
             <div className={Style.inputLabelGroup}>
                 <input type="text" name="address" id="address_id" onChange={handleChange} onBlur={handleBlur} value={form.address} className={Style.inputForm} placeholder=" "/>
                 <label htmlFor="address_id" className={Style.labelForm}>Dirección</label>
-            </div>
+            </div>*/}
 
             <p className={Style.tienesCuenta}>¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a></p>
 

@@ -1,13 +1,13 @@
-import { valuesTypesRegister } from "../interfaces/TypesRegister";
+import { valuesTypesRegisterPrueba } from "../interfaces/TypesRegister";
 import { useState } from "react";
 
 
 
-type typeFormVR = (form: valuesTypesRegister) => Partial<valuesTypesRegister>
+type typeFormVR = (form: valuesTypesRegisterPrueba) => Partial<valuesTypesRegisterPrueba>
 
-export const useFormRegister = (initialForm: valuesTypesRegister, validateForm: typeFormVR, dataForm) => {
+export const useFormRegister = (initialForm: valuesTypesRegisterPrueba, validateForm: typeFormVR, dataForm) => {
 const [form, setForm] = useState(initialForm);
-    const [errors, setErrors] = useState<Partial<valuesTypesRegister>>({});
+    const [errors, setErrors] = useState<Partial<valuesTypesRegisterPrueba>>({});
     const [loading, setLoading] = useState(false);
     const [isSuccessResponse, setIsSuccessResponse] = useState(false);
     const [isErrorResponse, setIsErrorResponse] = useState(false);
@@ -32,11 +32,13 @@ const [form, setForm] = useState(initialForm);
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        setErrors(validateForm(form));
+        const formErrors = validateForm(form);
 
-        if(Object.keys(errors).length === 0) {
+        if(Object.keys(formErrors).length === 0) {
+            const { confirm_password, ...newData } = form;
+
             try {
-            const result = dataForm(form);
+            const result = await dataForm(newData);
 
             if(result) {
                 console.log('Datos enviados');
@@ -49,6 +51,7 @@ const [form, setForm] = useState(initialForm);
                 console.error('Error al registrar:', error);
             }
         }  else {
+            setErrors(formErrors); 
             console.log('Hay errores en el formulario');
         };
 
