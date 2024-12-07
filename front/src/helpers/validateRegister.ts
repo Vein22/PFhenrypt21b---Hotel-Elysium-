@@ -41,11 +41,11 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
         errors.phone = 'El número de teléfono debe tener entre 7 y 15 dígitos, y puede incluir un signo de más (+) al principio.';
     };
 
-    if(!form.Dni.trim()) {
+    /*if(!form.Dni.trim()) {
         errors.Dni = 'El Dni es obligatorio';
     } else if(!regexDni.test(form.Dni.trim())) {
         errors.Dni = 'El DNI debe tener entre 7 y 12 caracteres alfanuméricos.';
-    };
+    };*/
 
     //if(!form.address.trim()) {
       //  errors.address = 'La dirección es obligatoria';

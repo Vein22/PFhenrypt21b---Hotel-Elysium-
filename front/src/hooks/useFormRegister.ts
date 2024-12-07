@@ -48,7 +48,7 @@ const [form, setForm] = useState(initialForm);
                 setIsErrorResponse(true);
             }
             } catch (error) {
-                console.error('Error al registrar:', error);
+                console.log('Error al registrar:', error);
             }
         }  else {
             setErrors(formErrors); 

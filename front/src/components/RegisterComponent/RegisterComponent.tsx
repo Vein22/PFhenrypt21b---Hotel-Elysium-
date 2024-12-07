@@ -12,7 +12,7 @@ const initialForm = {
     phone: '',
     email: '',
     password: '',
-    Dni: '',
+   // Dni: '',
     confirm_password: ''
 };
 
@@ -69,11 +69,11 @@ export const RegisterComponent = () => {
                 <label htmlFor="phone_id" className={Style.labelForm}>Teléfono</label>
             </div>
 {/*Dni*/}
-            {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
+           {/* {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
             <div className={Style.inputLabelGroup}>
                 <input type="text" name="Dni" id="Dni_id" onChange={handleChange} onBlur={handleBlur} value={form.Dni} className={Style.inputForm} placeholder=" "/>
                 <label htmlFor="Dni_id" className={Style.labelForm}>Dni</label>
-            </div>
+            </div>*/}
 {/*Dirección*/}
             {/*{errors.address && <p className="text-red-500 text-xs m-2">{errors.address}</p>}
             <div className={Style.inputLabelGroup}>
