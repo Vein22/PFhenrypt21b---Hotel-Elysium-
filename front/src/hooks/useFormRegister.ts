@@ -2,6 +2,7 @@ import { valuesTypesRegisterPrueba } from "../interfaces/TypesRegister";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { velidateFormRegister } from "@/helpers/validateRegister";
 
 type typeFormVR = (
   form: valuesTypesRegisterPrueba
@@ -28,9 +29,18 @@ export const useFormRegister = (
   };
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleChange(e);
-    setErrors(validateForm(form));
+    const { name, value } = e.target as { name: keyof valuesTypesRegisterPrueba; value: string };
+  
+    // Validar solo el campo que perdió el foco
+    const fieldError = velidateFormRegister({ ...form, [name]: value });
+  
+    // Actualizar solo el campo correspondiente en el estado de errores
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: fieldError[name],
+    }));
   };
+  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,7 +67,7 @@ export const useFormRegister = (
           setIsErrorResponse(true);
         }
       } catch (error) {
-        console.error("Error al registrar:", error);
+        console.log("Error al registrar:", error);
       }
     } else {
       setErrors(formErrors);
