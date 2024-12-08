@@ -6,6 +6,7 @@ import { fetchRegister } from "@/api/register";
 import Image from "next/image";
 import registerImg from "../../../public/register_prueba.png";
 import Style from "./register.module.css";
+import Loading from "../Loading/Loading";
 
 const initialForm = {
   name: "",
@@ -17,7 +18,7 @@ const initialForm = {
 };
 
 export const RegisterComponent = () => {
-  const { form, errors, handleChange, handleBlur, handleSubmit } =
+  const { form, errors, loading, handleChange, handleBlur, handleSubmit } =
     useFormRegister(initialForm, velidateFormRegister, fetchRegister);
 
   return (
@@ -70,9 +71,9 @@ export const RegisterComponent = () => {
         <p className={Style.tienesCuenta}>
           ¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a>
         </p>
-
-        <button type="submit" className={Style.submit}>
-          REGISTRARSE
+        <button type="submit"
+        className={Style.submit}>
+          {loading ? <Loading /> : 'REGISTRATE'}
         </button>
       </div>
     </form>

@@ -49,13 +49,15 @@ export const useFormRegister = (
 
     if (Object.keys(formErrors).length === 0) {
       const { confirm_password, ...newData } = form;
+      setLoading(true)
 
       try {
         const result = await dataForm(newData);
 
         if (result) {
-          console.log("Datos enviados");
+          console.log("Usuario registrado exitosamente: ", result);
           setIsErrorResponse(false);
+
           setIsSuccessResponse(true);
           router.push("/login");
           Swal.fire({
@@ -63,6 +65,7 @@ export const useFormRegister = (
             title: "Registrado",
             icon: "success",
           });
+          setLoading(false)
         } else {
           setIsErrorResponse(true)
           Swal.fire({
@@ -90,6 +93,7 @@ export const useFormRegister = (
     errors,
     isSuccessResponse,
     isErrorResponse,
+    loading,
     handleChange,
     handleBlur,
     handleSubmit,
