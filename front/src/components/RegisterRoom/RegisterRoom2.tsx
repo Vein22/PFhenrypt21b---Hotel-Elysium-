@@ -124,9 +124,8 @@ const RegisterForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-2 gap-3 m-16 min-h-70vh justify-center"
+      className="grid grid-cols-2 gap-3 m-16 justify-center"
     >
-      {/* Panel izquierdo */}
       <div className="bg-gray-300 p-4 flex flex-col gap-4">
         <FileUploader
           onFileUpload={(fileUrl) => setFormData((prev) => ({ ...prev, image: fileUrl }))}
@@ -160,7 +159,6 @@ const RegisterForm = () => {
         </div>
       </div>
 
-      {/* Panel derecho */}
       <div className="bg-white p-8 flex flex-col gap-4">
         <h1>Gestión de alojamientos</h1>
         <label>Título</label>
@@ -169,7 +167,7 @@ const RegisterForm = () => {
           placeholder="Nombre de la habitación"
           value={formData.title}
           onChange={handleChange}
-          className="border border-gray-400 rounded p-2"
+          className="border border-gray-400 rounded p-1.5 m-0"
         />
         <p className={`text-red-500 text-xs mt-0 ${errors.title ? '' : 'invisible'}`} style={{ minHeight: '0.5rem' }}>
           {errors.title}
@@ -180,7 +178,7 @@ const RegisterForm = () => {
           placeholder="Tamaño de la habitación en m2"
           value={formData.size}
           onChange={handleChange}
-          className="border border-gray-400 rounded p-2"
+          className="border border-gray-400 rounded p-1.5 m-0"
         />
         <p className={`text-red-500 text-xs mt-0 ${errors.size ? '' : 'invisible'}`} style={{ minHeight: '0.5rem' }}>
           {errors.size}
@@ -200,7 +198,7 @@ const RegisterForm = () => {
           placeholder="Rating del 0 al 5"
           value={formData.rating}
           onChange={handleChange}
-          className="border border-gray-400 rounded p-2"
+          className="border border-gray-400 rounded p-1.5 m-0"
         />
         <p className={`text-red-500 text-xs mt-0 ${errors.rating ? '' : 'invisible'}`} style={{ minHeight: '0.5rem'}}>
           {errors.rating}
@@ -211,14 +209,14 @@ const RegisterForm = () => {
           placeholder="Precio por noche"
           value={formData.price}
           onChange={handleChange}
-          className="border border-gray-400 rounded p-2"
+          className="border border-gray-400 rounded p-1.5 m-0"
         />
         <p className={`text-red-500 text-xs mt-0 ${errors.price ? '' : 'invisible'}`} style={{ minHeight: '0.5rem' }}>
           {errors.price}
         </p>
         <button
           type="submit"
-          className="px-4 py-2 rounded mx-auto"
+          className=".button"
         >
           Registrar
         </button>
