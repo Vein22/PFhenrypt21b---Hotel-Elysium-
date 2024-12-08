@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -20,7 +21,6 @@ const Footer = () => {
             </div>
           </div>
 
-
           <div className="flex items-center">
             <Image
               src="/phone.svg"
@@ -34,7 +34,6 @@ const Footer = () => {
               <p className="text-sm">555-555-5555</p>
             </div>
           </div>
-
 
           <div className="flex items-center">
             <Image
@@ -51,53 +50,58 @@ const Footer = () => {
           </div>
         </div>
 
-
         <div className="w-1/4 h-1 bg-amber-600 mb-2 mx-auto"></div>
-
 
         <div className="mt-8">
           <p className="text-xl font-semibold mb-2">Síguenos en Nuestras Redes</p>
 
-          <div className="w-1/4 h-1 bg-amber-600 mb-6 mx-auto"></div>
-
           <div className="flex justify-center space-x-8">
             <div className="flex flex-col items-center">
-              <div className="mb-2 hover:scale-110 transition-transform duration-200">
-                <Image
-                  src="/facebook.svg"
-                  alt="Facebook"
-                  width={40}
-                  height={40}
-                  className="hover:fill-amber-600"
-                />
-              </div>
-              <a href="#" className="hover:text-amber-600">Facebook</a>
+              <Link href="https://www.facebook.com">
+                <div className="flex flex-col items-center">
+                  <div className="hover:scale-110 transition-transform duration-200">
+                    <Image
+                      src="/facebook.svg"
+                      alt="Facebook"
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                  <span className="mt-1 hover:text-amber-600">Facebook</span>
+                </div>
+              </Link>
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="mb-2 hover:scale-110 transition-transform duration-200">
-                <Image
-                  src="/twitter.svg"
-                  alt="Twitter"
-                  width={40}
-                  height={40}
-                  className="hover:fill-amber-600"
-                />
-              </div>
-              <a href="#" className="hover:text-amber-600">X</a>
+              <Link href="https://www.twitter.com">
+                <div className="flex flex-col items-center">
+                  <div className="hover:scale-110 transition-transform duration-200">
+                    <Image
+                      src="/twitter.svg"
+                      alt="Twitter"
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                  <span className="mt-1 hover:text-amber-600">X</span>
+                </div>
+              </Link>
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="mb-2 hover:scale-110 transition-transform duration-200">
-                <Image
-                  src="/linkedin.svg"
-                  alt="LinkedIn"
-                  width={40}
-                  height={40}
-                  className="hover:fill-amber-600"
-                />
-              </div>
-              <a href="#" className="hover:text-amber-600">LinkedIn</a>
+              <Link href="https://www.linkedin.com">
+                <div className="flex flex-col items-center">
+                  <div className="hover:scale-110 transition-transform duration-200">
+                    <Image
+                      src="/linkedin.svg"
+                      alt="LinkedIn"
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                  <span className="mt-1 hover:text-amber-600">LinkedIn</span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
