@@ -50,11 +50,11 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
   }
 
   // Validar el DNI
-  if (!form.Dni) {
+ /* if (!form.Dni) {
     errors.Dni = "El DNI es requerido";
   } else if(!regexDni.test(form.Dni.trim())) {
     errors.Dni = 'El DNI debe tener entre 7 y 12 caracteres alfanuméricos.';
-};
+  };*/
 
   return errors;
 };

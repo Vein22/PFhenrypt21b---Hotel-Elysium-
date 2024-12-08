@@ -64,14 +64,24 @@ export const useFormRegister = (
             icon: "success",
           });
         } else {
-          setIsErrorResponse(true);
+          setIsErrorResponse(true)
+          Swal.fire({
+            text: "Ha ocurrido un error al registrarse.",
+            title: "Error",
+            icon: "error",
+          });
         }
       } catch (error) {
         console.log("Error al registrar:", error);
+        Swal.fire({
+          text: "Ha ocurrido un error al registrarse.",
+          title: "Error",
+          icon: "error",
+        });
       }
     } else {
       setErrors(formErrors);
-      console.log("Hay errores en el formulario");
+      console.log("Hay errores en el formulario", formErrors);
     }
   };
 
