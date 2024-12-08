@@ -1,5 +1,7 @@
-import { valuesTypesRegisterPrueba } from "@/interfaces/TypesRegister";
-
+import {
+  valuesTypesRegisterPrueba,
+  valuesTypesRegister,
+} from "@/interfaces/TypesRegister";
 
 export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
     const errors: Partial<valuesTypesRegisterPrueba> = {};
@@ -46,12 +48,6 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
     } else if(!regexDni.test(form.Dni.trim())) {
         errors.Dni = 'El DNI debe tener entre 7 y 12 caracteres alfanuméricos.';
     };*/
-
-    //if(!form.address.trim()) {
-      //  errors.address = 'La dirección es obligatoria';
-    //} else if(!regexAddress.test(form.address.trim())) {
-      //  errors.address = 'Por favor, ingresa una dirección válida.';
-    //};
 
     return errors;
 };

@@ -1,39 +1,31 @@
-'use client'
+"use client";
 
 import { useFormRegister } from "@/hooks/useFormRegister";
 import { velidateFormRegister } from "@/helpers/validateRegister";
 import { fetchRegister } from "@/api/register";
 import Image from "next/image";
-import registerImg from '../../../public/register_prueba.png';
-import Style from './register.module.css';
+import registerImg from "../../../public/register_prueba.png";
+import Style from "./register.module.css";
 
 const initialForm = {
-    name: '',
-    phone: '',
-    email: '',
-    password: '',
-   // Dni: '',
-    confirm_password: ''
+  name: "",
+  email: "",
+  password: "",
+  confirm_password: "",
+  phone: "",
+  Dni: "",
 };
 
 export const RegisterComponent = () => {
+  const { form, errors, handleChange, handleBlur, handleSubmit } =
+    useFormRegister(initialForm, velidateFormRegister, fetchRegister);
 
-    const {
-        form,
-        errors,
-        isSuccessResponse,
-        isErrorResponse,
-        handleChange,
-        handleBlur,
-        handleSubmit
-    } = useFormRegister(initialForm, velidateFormRegister, fetchRegister)
-    return (
-        <form onSubmit={handleSubmit} className={Style.container}>
-            {/*Imagen estática para el componente Register*/}
-            <div className={Style.imgContainer}>
-                <Image src={registerImg} alt="Usuario" width={500} height={500}/>
-            </div>
-
+  return (
+    <form onSubmit={handleSubmit} className={Style.container}>
+      {/*Imagen estática para el componente Register*/}
+      <div className={Style.imgContainer}>
+        <Image src={registerImg} alt="Usuario" width={500} height={500} />
+      </div>
 
             {/*Formulario de registro*/}
             <div className={Style.formContainer}>
@@ -74,19 +66,17 @@ export const RegisterComponent = () => {
                 <input type="text" name="Dni" id="Dni_id" onChange={handleChange} onBlur={handleBlur} value={form.Dni} className={Style.inputForm} placeholder=" "/>
                 <label htmlFor="Dni_id" className={Style.labelForm}>Dni</label>
             </div>*/}
-{/*Dirección*/}
-            {/*{errors.address && <p className="text-red-500 text-xs m-2">{errors.address}</p>}
-            <div className={Style.inputLabelGroup}>
-                <input type="text" name="address" id="address_id" onChange={handleChange} onBlur={handleBlur} value={form.address} className={Style.inputForm} placeholder=" "/>
-                <label htmlFor="address_id" className={Style.labelForm}>Dirección</label>
-            </div>*/}
 
-            <p className={Style.tienesCuenta}>¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a></p>
+        <p className={Style.tienesCuenta}>
+          ¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a>
+        </p>
 
-            <button type="submit" className={Style.submit}>REGISTRARSE</button>
-            </div>
-        </form>
-    )
-}
+        <button type="submit" className={Style.submit}>
+          REGISTRARSE
+        </button>
+      </div>
+    </form>
+  );
+};
 
 export default RegisterComponent;
