@@ -5,11 +5,13 @@ import typeormConfig from './config/data-source';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { FilesModule } from './module/files/files.module';
+import { RoomsModule } from './module/create-room/rooms.module';
 
 @Module({
   imports: [
     AuthModule,
     FilesModule,
+    RoomsModule,
     
     JwtModule.register({
       global: true,
