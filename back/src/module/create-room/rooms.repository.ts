@@ -14,22 +14,11 @@ export class RoomsRepository {
         private readonly filesService: FilesService
     ){}
 
-    async createRoom(createRoomDto: CreateRoomDto, image: Express.Multer.File): Promise<Room> {
-        let imageUrl: string;
-    
-        if (image) {
-          imageUrl = await this.filesService.uploadImage(image);
-        } else {
-          imageUrl = 'default-image-url'; 
-        }
-    
-        const room = this.roomRepository.create({
-          ...createRoomDto,
-          image: imageUrl,
-        });
-    
-        return await this.roomRepository.save(room);
-      }
+   
+  async createRoom(createRoomDto: Partial<Room>): Promise<Room> {
+    const room = this.roomRepository.create(createRoomDto);
+    return await this.roomRepository.save(room);
+  }
     
 
     async getAllRooms(page: number, limit: number): Promise<Room[]> {
