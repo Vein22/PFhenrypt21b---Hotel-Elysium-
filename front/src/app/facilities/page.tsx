@@ -1,7 +1,7 @@
-export {default} from './Hotels';
+export {default} from './Facilities';
 
 export const metadata = {
-    title: 'Hoteles',
+    title: 'Instalaciones',
     description: 'Componente del servidor para hoteles.',
   }
   
