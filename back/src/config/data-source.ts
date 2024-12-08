@@ -1,8 +1,8 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { registerAs } from '@nestjs/config';
-import { config as configDotenv } from 'dotenv';
+import { config as dotenvConfig } from 'dotenv';
 
-configDotenv({ path: '.env' });
+dotenvConfig({ path: '.env' });
 
 const config = {
   type: 'postgres',
@@ -11,9 +11,9 @@ const config = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  migrations: [__dirname + '/../migrations/**/*.{js,ts}'],
-   synchronize:false,
+  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+  migrations: [__dirname + '/../migrations/*{.ts,.js}'],
+  synchronize: true,
   logging: false,
     //  dropSchema: true,
   // ssl: true,
