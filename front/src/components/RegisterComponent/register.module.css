@@ -88,3 +88,7 @@
     font-family: serif;
     font-weight: bold;
 }
+
+.botonDesabilitado {
+    background-color: #535353;
+}

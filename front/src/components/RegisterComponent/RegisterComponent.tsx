@@ -13,7 +13,7 @@ const initialForm = {
   password: "",
   confirm_password: "",
   phone: "",
-//  Dni: "",
+//  Dni: "", desabilitado por el momento
 };
 
 export const RegisterComponent = () => {
