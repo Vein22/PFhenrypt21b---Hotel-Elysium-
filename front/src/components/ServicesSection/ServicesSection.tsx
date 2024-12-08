@@ -70,8 +70,10 @@ const ServicesSection = () => {
     onMouseEnter={() => handleMouseEnter(service.name)}
     onMouseLeave={handleMouseLeave}
   >
-    {/* Icono del servicio */}
-    <div className="relative z-0"> {/* Asignamos un z-index bajo */}
+
+
+
+    <div className="relative z-0"> 
       <Image
         src={service.icon}
         alt={service.name}
@@ -80,9 +82,10 @@ const ServicesSection = () => {
         className="mb-4"
       />
     </div>
-    <h3 className="text-lg font-semibold z-0">{service.name}</h3> {/* Asignamos un z-index bajo */}
+    <h3 className="text-lg font-semibold z-0">{service.name}</h3> 
 
-    {/* Fotos emergentes */}
+
+
     {visibleService === service.name && (
       <div
         className={`absolute top-full mt-4 bg-black p-4 rounded-lg shadow-lg ${
@@ -95,7 +98,7 @@ const ServicesSection = () => {
         style={{
           boxShadow: '0 4px 15px rgba(251, 191, 36, 0.8)',
           maxWidth: 'calc(100vw - 48px)',
-          zIndex: 99999, // Aseguramos un z-index extremadamente alto para las fotos
+          zIndex: 99999, 
         }}
       >
         <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row gap-4 z-99999">
