@@ -13,7 +13,7 @@ const initialForm = {
   password: "",
   confirm_password: "",
   phone: "",
-  Dni: "",
+//  Dni: "",
 };
 
 export const RegisterComponent = () => {
@@ -40,7 +40,7 @@ export const RegisterComponent = () => {
             {errors.email && <p className="text-red-500 text-xs m-2">{errors.email}</p>}
             <div className={Style.inputLabelGroup}>
                 <input type="text" name="email" id="email_id" onChange={handleChange} onBlur={handleBlur} value={form.email} className={Style.inputForm} placeholder=" "/>
-                <label htmlFor="email_id" className={Style.labelForm}>Correo Electronico</label>
+                <label htmlFor="email_id" className={Style.labelForm}>Correo Electrónico</label>
             </div>
 {/*Contraseña*/}
             {errors.password && <p className="text-red-500 text-xs m-2">{errors.password}</p>}
@@ -61,10 +61,10 @@ export const RegisterComponent = () => {
                 <label htmlFor="phone_id" className={Style.labelForm}>Teléfono</label>
             </div>
 {/*Dni*/}
-           {/* {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
+{          /* {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
             <div className={Style.inputLabelGroup}>
                 <input type="text" name="Dni" id="Dni_id" onChange={handleChange} onBlur={handleBlur} value={form.Dni} className={Style.inputForm} placeholder=" "/>
-                <label htmlFor="Dni_id" className={Style.labelForm}>Dni</label>
+                <label htmlFor="Dni_id" className={Style.labelForm}>DNI</label>
             </div>*/}
 
         <p className={Style.tienesCuenta}>
