@@ -49,12 +49,6 @@ const GuestsInput: React.FC<GuestsInputProps> = ({ maxGuests = 8, onGuestsChange
         min={0}
         placeholder={`Máx ${maxGuests}`}
       />
-      <button className="rounded p-2" onClick={decrementGuests}>
-        -
-      </button>
-      <button className="rounded p-2" onClick={incrementGuests}>
-        +
-      </button>
     </div>
   );
 };

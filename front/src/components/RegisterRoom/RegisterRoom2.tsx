@@ -134,7 +134,7 @@ const RegisterForm = () => {
         <p className={`text-red-500 text-xs mt-0 ${errors.image ? '' : 'invisible'}`} style={{ minHeight: '0.5rem' }}>
           {errors.image}
         </p>
-        <div className="flex flex-col justify-center gap-4 h-1/3">
+        <div className="flex flex-col justify-center gap-4 h-1/2">
         <label>Categoría</label>
         <input
           name="roomType"
