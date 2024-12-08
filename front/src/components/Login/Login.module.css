@@ -58,14 +58,23 @@
     /* display: flex;
    flex-direction: column;
    color: black;  */
+
    display: flex;
    flex-direction: column;
    align-items: center;
    padding: 100px;
+   background-color: rgb(255, 255, 255);
+   /* border-radius: 10px;  */
+
    /* border: 1px  rgb(59, 55, 55); */
     /* border: rgb(172, 169, 169) 1px solid;  */
-    border-radius: 10px; 
+
    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+
+
+
+
+  
   
   }
   
