@@ -26,7 +26,6 @@ const RegisterRoom = () => {
     const file = e.target.files[0];
     setImage(file);
 
-    // Generar vista previa de la imagen seleccionada
     const preview = URL.createObjectURL(file);
     setPreviewUrl(preview);
   };
@@ -39,9 +38,10 @@ const RegisterRoom = () => {
 
     const formData = new FormData();
     formData.append("photo", image);
+    console.log(formData);
 
     try {
-      const response = await fetch("http://localhost:3000/upload", {
+      const response = await fetch("http://localhost:4000/rooms/registerRoom", {
         method: "POST",
         body: formData,
       });

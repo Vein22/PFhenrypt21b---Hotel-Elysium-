@@ -16,11 +16,11 @@ import { CreateUserDto } from './dto/CreateUserDto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @ApiTags('Auth')
-  /*@Post('signin')
+  @Post('signin')
   @HttpCode(HttpStatus.OK)
   signIn(@Body() userLogin: LoginUserDto) {
     return this.authService.signIn(userLogin);
-  }*/
+  }
 
   @Post('register')
   @HttpCode(HttpStatus.CREATED)

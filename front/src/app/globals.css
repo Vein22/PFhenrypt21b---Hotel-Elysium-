@@ -64,7 +64,19 @@ button {
     transition: background-color 0.3s; 
   }
 
-  button:hover {
+  .button {
+    margin: 1.3rem;
+    padding: .5rem 1rem;
+    border-radius: .2rem;
+    font-family: serif;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background-color: #b69663;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .button:hover {
     background-color: #d9af71; 
   }
 

@@ -15,7 +15,7 @@ const Header = () => {
             <Link href="/" className="hover:text-amber-600">
               Home
             </Link>
-            <Link href="#rooms" className="hover:text-amber-600">
+            <Link href="rooms" className="hover:text-amber-600">
               Habitaciones
             </Link>
             <Link href="#services" className="hover:text-amber-600">

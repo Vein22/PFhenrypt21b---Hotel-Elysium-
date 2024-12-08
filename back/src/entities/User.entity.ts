@@ -1,6 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { UserType } from './UserType.entity';
 
 @Entity('user')
 export class User {
@@ -8,24 +13,12 @@ export class User {
   id: string;
 
   /**
-   * Tipo de usuario asociado.
-   * @example 'admin'
-   */
-  @ApiProperty({
-    example: 'admin',
-    description: 'Tipo de usuario asociado.'
-  })
-  @ManyToOne(() => UserType)
-  @JoinColumn({ name: 'user_type_id' })
-  userType: UserType;
-
-  /**
    * Nombre del usuario.
    * @example 'John Doe'
    */
   @ApiProperty({
     example: 'John Doe',
-    description: 'Nombre del usuario.'
+    description: 'Nombre del usuario.',
   })
   @Column()
   name: string;
@@ -36,7 +29,7 @@ export class User {
    */
   @ApiProperty({
     example: '+1234567890',
-    description: 'Número de teléfono del usuario.'
+    description: 'Número de teléfono del usuario.',
   })
   @Column()
   phone: string;
@@ -47,8 +40,30 @@ export class User {
    */
   @ApiProperty({
     example: '2024-12-05',
-    description: 'Fecha de registro del usuario.'
+    description: 'Fecha de registro del usuario.',
   })
   @Column('date')
   registrationDate: string;
+
+  /**
+   * Correo electrónico asociado a las credenciales.
+   * @example 'user@example.com'
+   */
+  @ApiProperty({
+    example: 'user@example.com',
+    description: 'Correo electrónico asociado a las credenciales.',
+  })
+  @Column()
+  email: string;
+
+  /**
+   * Contraseña asociada a las credenciales.
+   * @example 'StrongPassword123'
+   */
+  @ApiProperty({
+    example: 'StrongPassword123',
+    description: 'Contraseña asociada a las credenciales.',
+  })
+  @Column()
+  password: string;
 }

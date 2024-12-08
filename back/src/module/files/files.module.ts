@@ -10,5 +10,6 @@ import { FilesService } from './files.service';
   imports: [ConfigModule],
   providers: [FilesService, CloudinaryConfig, ImageValidatorPipe],
   controllers: [FilesController],
+  exports: [FilesService]
 })
 export class FilesModule {}

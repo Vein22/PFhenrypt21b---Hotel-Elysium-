@@ -1,6 +1,6 @@
 export interface Room {
     id: number,
-    roomtype: string, //Ejemplo: "Habitación de lujo"
+    roomType: string, //Ejemplo: "Habitación de lujo"
     title: string, //Ejemplo: "Habitación familiar deluxe"
     size: string, //Ejemplo: "150 m2"
     beds: number, //Ejemplo: "2 camas King Size"

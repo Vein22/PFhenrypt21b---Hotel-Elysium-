@@ -1,17 +1,18 @@
 import { Room } from "@/interfaces";
 
 export const mockRooms: Room[] = [
-    {
-      id: 0,
-      category: "Habitación de lujo",
-      title: "Habitación familiar deluxe",
-      size: "150 m²",
-      beds: 2,
-      rating: 5,
-      image: "https://www.athinasuites.com/images/deluxe-suite/deluxe-suite-left.jpg",
-      price: 300
-    },
-    {
+  {
+    id: 0,
+    title: "Habitación familiar deluxe",
+    size: "150 m²",
+    beds: 2,
+    rating: 5,
+    image: "",
+    price: 300,
+    roomType: "Habitación de lujo",
+    description: "Habitación de lujo",
+  }]
+/*     {
       id: 1,
       category: "Suite Presidencial",
       title: "Suite con vista al mar",
@@ -51,5 +52,4 @@ export const mockRooms: Room[] = [
       image: "https://www.athinasuites.com/images/deluxe-suite/deluxe-suite-left.jpg",
       price: 350
     }
-  ];
-  
+  ]; */
