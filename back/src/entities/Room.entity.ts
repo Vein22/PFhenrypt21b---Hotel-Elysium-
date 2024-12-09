@@ -29,12 +29,13 @@ export class Room {
   @Column({ unique: true })
   title: string;
 
+
   /**
    * Tamaño de la habitación.
-   * @example "50m²"
+   * @example "50m2"
    */
   @ApiProperty({
-    example: '50m²',
+    example: '50m2',
     description: 'Tamaño de la habitación.',
   })
   @Column({ type: 'character varying', length: 10, default: '0m' })
@@ -62,7 +63,6 @@ export class Room {
   @Column({ type: 'float', default: 0 })
   rating: number;
 
-
   
   /**
 
@@ -75,20 +75,6 @@ export class Room {
   })
   @Column({ nullable: true })
   image: string;
-
-
-
-   /**
-   * Calificación promedio de la habitación.
-   * @example 4.5
-   */
-   @ApiProperty({
-    example: 4.5,
-    description: 'Calificación promedio de la habitación.',
-  })
-  @Column({ type: 'float' })
-  rating: number;
-
 
   
   /**
@@ -103,6 +89,7 @@ export class Room {
   @Column({ type: 'float', nullable: false })
   price: number;
 
+
   /**
    * Descripción detallada de la habitación.
    * @example "Habitación espaciosa con vistas al mar y todas las comodidades modernas."
@@ -115,6 +102,7 @@ export class Room {
   @Column({ type: 'text', nullable: false })
   description: string;
 
+
   /**
    * Tipo de habitación asociada.
    * @example 'd230c7d9-b983-4e78-b846-944dbe62d7b1'
@@ -126,6 +114,7 @@ export class Room {
   @Column({ type: 'varchar', length: 255 })
 
   roomType: string;
+
 
   /**
    * Estado de eliminación lógica de la habitación.
