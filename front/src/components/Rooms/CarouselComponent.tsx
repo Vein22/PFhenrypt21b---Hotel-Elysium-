@@ -34,13 +34,13 @@ const SwiperComponent = () => {
         className={styles.swiperButtonPrev}
         onClick={() => swiperRef.current?.swiper.slidePrev()}
       >
-        &lt;
+        &#x276E;
       </button>
       <button
         className={styles.swiperButtonNext}
         onClick={() => swiperRef.current?.swiper.slideNext()}
       >
-        &gt;
+        &#x276F;
       </button>
       </Swiper>
     </div>
@@ -48,6 +48,7 @@ const SwiperComponent = () => {
 };
 
 export default SwiperComponent;
+
 
 
 
