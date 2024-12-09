@@ -24,7 +24,7 @@ export class User {
    * @example '+1234567890'
    */
   @ApiProperty({
-    example: '+1234567890',
+    example: '+12345678',
     description: 'Número de teléfono del usuario.',
   })
   @Column()
