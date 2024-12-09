@@ -65,7 +65,7 @@ const Header = () => {
         <div className="flex space-x-4">
 
 
-{ userSession?.token ? (
+{ userSession?.token? (
 
   <>
     <p>{`Usuario: ${userSession?.userData.name}`}</p>
@@ -75,7 +75,7 @@ const Header = () => {
     localStorage.removeItem("userSesion");
     setUserSession(undefined);
 
-    localStorage.removeItem("cart");
+    // localStorage.removeItem("cart");
     setUserSession(undefined);
     router.push ('/');
   }}
