@@ -1,12 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className=" fixed top-0 w-full bg-black text-white shadow-md shadow-amber-600">
+
+    <header className="absolute w-full bg-black text-white shadow-md shadow-amber-600">
+
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        <div className="text-2xl font-bold">
-          <Link href="/" className="text-white hover:text-amber-600">
-            Hotel
+        <div className="flex items-center">
+          <Link href="/">
+            <Image
+              src="/HE.png"
+              alt="Elysim"
+              width={120}
+              height={50}
+              className="hover:scale-105 transition-transform duration-200"
+            />
           </Link>
         </div>
 
@@ -28,7 +37,6 @@ const Header = () => {
         </nav>
 
         <div className="flex space-x-4">
-
           <Link href="/login">
             <button className="bg-amber-600 text-white border border-amber-800 rounded-lg py-2 px-4 hover:bg-opacity-90">
               Iniciar Sesión
@@ -40,7 +48,6 @@ const Header = () => {
               Registrarse
             </button>
           </Link>
-          
         </div>
       </div>
     </header>

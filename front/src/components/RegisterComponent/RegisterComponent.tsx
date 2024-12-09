@@ -1,38 +1,35 @@
-'use client'
+
+"use client";
+
 
 import { useFormRegister } from "@/hooks/useFormRegister";
 import { velidateFormRegister } from "@/helpers/validateRegister";
 import { fetchRegister } from "@/api/register";
 import Image from "next/image";
-import registerImg from '../../../public/register_prueba.png';
-import Style from './register.module.css';
+
+import registerImg from "../../../public/register_prueba.png";
+import Style from "./register.module.css";
+import Loading from "../Loading/Loading";
 
 const initialForm = {
-    name: '',
-    phone: '',
-    email: '',
-    password: '',
-    Dni: '',
-    confirm_password: ''
+  name: "",
+  email: "",
+  password: "",
+  confirm_password: "",
+  phone: "",
+//  Dni: "", desabilitado por el momento
 };
 
 export const RegisterComponent = () => {
+  const { form, errors, loading, handleChange, handleBlur, handleSubmit } =
+    useFormRegister(initialForm, velidateFormRegister, fetchRegister);
 
-    const {
-        form,
-        errors,
-        isSuccessResponse,
-        isErrorResponse,
-        handleChange,
-        handleBlur,
-        handleSubmit
-    } = useFormRegister(initialForm, velidateFormRegister, fetchRegister)
-    return (
-        <form onSubmit={handleSubmit} className={Style.container}>
-            {/*Imagen estática para el componente Register*/}
-            <div className={Style.imgContainer}>
-                <Image src={registerImg} alt="Usuario" width={500} height={500}/>
-            </div>
+  return (
+    <form onSubmit={handleSubmit} className={Style.container}>
+      {/*Imagen estática para el componente Register*/}
+      <div className={Style.imgContainer}>
+        <Image src={registerImg} alt="Usuario" width={500} height={500} />
+      </div>
 
 
             {/*Formulario de registro*/}
@@ -48,7 +45,9 @@ export const RegisterComponent = () => {
             {errors.email && <p className="text-red-500 text-xs m-2">{errors.email}</p>}
             <div className={Style.inputLabelGroup}>
                 <input type="text" name="email" id="email_id" onChange={handleChange} onBlur={handleBlur} value={form.email} className={Style.inputForm} placeholder=" "/>
-                <label htmlFor="email_id" className={Style.labelForm}>Correo Electronico</label>
+
+                <label htmlFor="email_id" className={Style.labelForm}>Correo Electrónico</label>
+
             </div>
 {/*Contraseña*/}
             {errors.password && <p className="text-red-500 text-xs m-2">{errors.password}</p>}
@@ -69,24 +68,24 @@ export const RegisterComponent = () => {
                 <label htmlFor="phone_id" className={Style.labelForm}>Teléfono</label>
             </div>
 {/*Dni*/}
-            {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
+
+{          /* {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
             <div className={Style.inputLabelGroup}>
                 <input type="text" name="Dni" id="Dni_id" onChange={handleChange} onBlur={handleBlur} value={form.Dni} className={Style.inputForm} placeholder=" "/>
-                <label htmlFor="Dni_id" className={Style.labelForm}>Dni</label>
-            </div>
-{/*Dirección*/}
-            {/*{errors.address && <p className="text-red-500 text-xs m-2">{errors.address}</p>}
-            <div className={Style.inputLabelGroup}>
-                <input type="text" name="address" id="address_id" onChange={handleChange} onBlur={handleBlur} value={form.address} className={Style.inputForm} placeholder=" "/>
-                <label htmlFor="address_id" className={Style.labelForm}>Dirección</label>
+                <label htmlFor="Dni_id" className={Style.labelForm}>DNI</label>
             </div>*/}
 
-            <p className={Style.tienesCuenta}>¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a></p>
-
-            <button type="button" className={Style.submit}>REGISTRARSE</button>
-            </div>
-        </form>
-    )
-}
+        <p className={Style.tienesCuenta}>
+          ¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a>
+        </p>
+        <button type="submit"
+        className={Style.submit}>
+          {loading ? <Loading /> : 'REGISTRATE'}
+        </button>
+      </div>
+    </form>
+  );
+};
 
 export default RegisterComponent;
+

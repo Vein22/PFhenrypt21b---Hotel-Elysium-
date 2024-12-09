@@ -4,9 +4,11 @@ import RegisterComponent from "@/components/RegisterComponent/RegisterComponent"
 export const Register = () => {
 
     return (
-        <div className="min-h-[75vh] mt-[100px]">
+
+        <section>
         <RegisterComponent />
-        </div>
+        </section>
+
     )
 }
 

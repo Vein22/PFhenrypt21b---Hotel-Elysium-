@@ -5,6 +5,9 @@ import { CreateRoomDto } from './dto/create-room.dto';
 import { Room } from 'src/entities/Room.entity';
 import { ApiBody, ApiConsumes, ApiTags, ApiResponse } from '@nestjs/swagger';
 
+import { ImageValidatorPipe } from 'src/pipes/imageValidatorPipe';
+
+
 @Controller('rooms')
 export class RoomsController {
   constructor(private readonly roomsService: RoomsService) {}
@@ -13,18 +16,13 @@ export class RoomsController {
 
   @Post('registerRoom')
   @HttpCode(HttpStatus.CREATED)
-  @UseInterceptors(FileInterceptor('image'))
-  @ApiConsumes('multipart/form-data')
+
   @ApiBody({ type: CreateRoomDto })
   @ApiResponse({ status: 201, description: 'Room created successfully.' })
   @ApiResponse({ status: 400, description: 'Invalid input.' })
-  async createRoom(
-    @Body() createRoomDto: CreateRoomDto,
-    @UploadedFile() image: Express.Multer.File) {
-      if (!image) {
-        throw new BadRequestException('Image file is required');
-      }
-    return this.roomsService.createRoom(createRoomDto, image);
+  async createRoom(@Body() createRoomDto: CreateRoomDto) {
+    return this.roomsService.createRoom(createRoomDto);
+
   }
 
 

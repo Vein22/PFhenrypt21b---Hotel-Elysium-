@@ -71,3 +71,10 @@ h3 {
     background-color: #d9af71; 
   }
 
+
+
+  /* Estilo CSS adicional */
+.highest-zindex {
+  z-index: 99999 !important;
+  position: relative;
+}

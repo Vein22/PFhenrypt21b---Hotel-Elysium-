@@ -1,4 +1,6 @@
-import { IsString, IsNumber, IsNotEmpty, IsPositive } from 'class-validator';
+
+import { IsString, IsNumber, IsNotEmpty, IsPositive, Matches, Min, Max, IsUrl } from 'class-validator';
+
 import { Transform } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -19,10 +21,12 @@ export class CreateRoomDto {
 
    /**
    * Tamaño de la habitación.
-   * @example "50m²"
+
+   * @example "50m2"
    */
    @ApiProperty({
-    example: '50m²',
+    example: '50m2',
+
     description: 'Tamaño de la habitación.',
   })
   @IsString()
@@ -42,6 +46,10 @@ export class CreateRoomDto {
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
+
+  @Min(1)
+  @Max(4)
+
   beds: number;
 
 
@@ -57,17 +65,25 @@ export class CreateRoomDto {
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
+
+  @Min(0)
+  @Max(5)
   rating: number;
 
-/**
-   * Imagen representativa de la habitación (archivo).
-   * @example "file.jpg"
+
+  /**
+   * URL de la imagen representativa de la habitación.
+   * @example "https://example.com/room.jpg"
    */
-   @ApiProperty({
-    type: 'string',
-    format: 'binary',
-    description: 'Imagen representativa de la habitación (archivo).',
-  })  image: any;
+  @ApiProperty({
+    example: 'https://example.com/room.jpg',
+    description: 'URL de la imagen representativa de la habitación.',
+  })
+  @IsString()
+  @IsNotEmpty()
+  @IsUrl({}, { message: 'La imagen debe ser una URL válida.' })
+  image: string;
+
 
 
   /**
