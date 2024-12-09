@@ -9,9 +9,6 @@ import { useLoggin } from "@/context/logginContext";
 const Header = () => {
   const { userData, setUserData } = useLoggin();
 
-  console.log(localStorage);
-  console.log(userData);
-
   const router = useRouter();
   const path = usePathname();
 
