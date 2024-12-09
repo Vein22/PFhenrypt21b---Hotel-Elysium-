@@ -27,9 +27,9 @@ const ContactForm = () => {
           </div>
         </div>
 
-        {/* Formulario de consulta */}
+
         <div className="flex-1 max-w-md bg-black text-white p-8 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4 text-center">CONSULTANOS</h2> {/* Centrado del texto */}
+          <h2 className="text-2xl font-bold mb-4 text-center">CONSULTANOS</h2> 
           <form className="space-y-4">
             <input
               type="text"
@@ -63,3 +63,4 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+
