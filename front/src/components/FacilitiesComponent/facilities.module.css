@@ -1,7 +1,10 @@
 
 .container {
     min-height: 100vh;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
+  /* z-index: 0; */
+  padding-top: 20px;
+  
 }
 
 .portadaContainer {
