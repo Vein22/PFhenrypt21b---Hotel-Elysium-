@@ -70,4 +70,16 @@ export class CreateUserDto {
   @MinLength(8)
   @MaxLength(15)
   password: string;
+
+  /**
+   * DNI asociado a las credenciales.
+   * @example '12345678A'
+   */
+  @ApiProperty({
+    example: '12345678A',
+    description: 'DNI asociado a las credenciales.',
+  })
+  @IsString()
+  @IsNotEmpty()
+  dni: string;
 }
