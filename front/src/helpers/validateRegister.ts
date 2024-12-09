@@ -1,3 +1,4 @@
+
 import {
   valuesTypesRegisterPrueba,
   valuesTypesRegister,
@@ -58,3 +59,4 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
 
   return errors;
 };
+

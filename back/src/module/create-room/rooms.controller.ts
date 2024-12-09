@@ -4,7 +4,9 @@ import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { Room } from 'src/entities/Room.entity';
 import { ApiBody, ApiConsumes, ApiTags, ApiResponse } from '@nestjs/swagger';
+
 import { ImageValidatorPipe } from 'src/pipes/imageValidatorPipe';
+
 
 @Controller('rooms')
 export class RoomsController {
@@ -14,11 +16,13 @@ export class RoomsController {
 
   @Post('registerRoom')
   @HttpCode(HttpStatus.CREATED)
+
   @ApiBody({ type: CreateRoomDto })
   @ApiResponse({ status: 201, description: 'Room created successfully.' })
   @ApiResponse({ status: 400, description: 'Invalid input.' })
   async createRoom(@Body() createRoomDto: CreateRoomDto) {
     return this.roomsService.createRoom(createRoomDto);
+
   }
 
 

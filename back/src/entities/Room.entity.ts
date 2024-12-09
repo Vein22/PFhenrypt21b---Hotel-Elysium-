@@ -3,16 +3,19 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'rooms' })
 export class Room {
+
   /**
    * Identificador único de la habitación.
    * @example "f34b2e7c-3ed5-4f91-9342-bf6c537dfb47"
    */
   @ApiProperty({
+
     example: 'f34b2e7c-3ed5-4f91-9342-bf6c537dfb47',
     description: 'Identificador único de la habitación.',
   })
   @PrimaryGeneratedColumn('uuid')
   id: string;
+  
 
   /**
    * Título o nombre de la habitación.
@@ -22,6 +25,7 @@ export class Room {
     example: 'Habitación Deluxe',
     description: 'Título o nombre de la habitación.',
   })
+
   @Column({ unique: true })
   title: string;
 
@@ -58,7 +62,10 @@ export class Room {
   @Column({ type: 'float', default: 0 })
   rating: number;
 
+
+  
   /**
+
    * URL de la imagen representativa de la habitación.
    * @example "https://example.com/room.jpg"
    */
@@ -69,7 +76,23 @@ export class Room {
   @Column({ nullable: true })
   image: string;
 
+
+
+   /**
+   * Calificación promedio de la habitación.
+   * @example 4.5
+   */
+   @ApiProperty({
+    example: 4.5,
+    description: 'Calificación promedio de la habitación.',
+  })
+  @Column({ type: 'float' })
+  rating: number;
+
+
+  
   /**
+
    * Precio de la habitación por noche.
    * @example 200.50
    */
@@ -101,6 +124,7 @@ export class Room {
     description: 'Tipo de habitación asociada.',
   })
   @Column({ type: 'varchar', length: 255 })
+
   roomType: string;
 
   /**
@@ -109,7 +133,9 @@ export class Room {
    */
   @ApiProperty({
     example: false,
+
     description: 'Indica si la habitación está eliminada de forma lógica.',
+
   })
   @Column({ default: false })
   isDeleted: boolean;

@@ -1,9 +1,12 @@
+
 "use client";
+
 
 import { useFormRegister } from "@/hooks/useFormRegister";
 import { velidateFormRegister } from "@/helpers/validateRegister";
 import { fetchRegister } from "@/api/register";
 import Image from "next/image";
+
 import registerImg from "../../../public/register_prueba.png";
 import Style from "./register.module.css";
 import Loading from "../Loading/Loading";
@@ -28,6 +31,7 @@ export const RegisterComponent = () => {
         <Image src={registerImg} alt="Usuario" width={500} height={500} />
       </div>
 
+
             {/*Formulario de registro*/}
             <div className={Style.formContainer}>
             <h1>Registrarse</h1>
@@ -41,7 +45,9 @@ export const RegisterComponent = () => {
             {errors.email && <p className="text-red-500 text-xs m-2">{errors.email}</p>}
             <div className={Style.inputLabelGroup}>
                 <input type="text" name="email" id="email_id" onChange={handleChange} onBlur={handleBlur} value={form.email} className={Style.inputForm} placeholder=" "/>
+
                 <label htmlFor="email_id" className={Style.labelForm}>Correo Electrónico</label>
+
             </div>
 {/*Contraseña*/}
             {errors.password && <p className="text-red-500 text-xs m-2">{errors.password}</p>}
@@ -62,6 +68,7 @@ export const RegisterComponent = () => {
                 <label htmlFor="phone_id" className={Style.labelForm}>Teléfono</label>
             </div>
 {/*Dni*/}
+
 {          /* {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
             <div className={Style.inputLabelGroup}>
                 <input type="text" name="Dni" id="Dni_id" onChange={handleChange} onBlur={handleBlur} value={form.Dni} className={Style.inputForm} placeholder=" "/>
@@ -81,3 +88,4 @@ export const RegisterComponent = () => {
 };
 
 export default RegisterComponent;
+
