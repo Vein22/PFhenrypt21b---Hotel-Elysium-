@@ -58,8 +58,11 @@ Swal.fire({
     const response = await login (dataUser);
     if (response.success) {
       const {token, user} = response.data;
-      localStorage.setItem ('token', token);
-      localStorage.setItem ('user', JSON.stringify(user));
+      // localStorage.setItem ('token', token);
+      // localStorage.setItem ('user', JSON.stringify(user));
+      // AQUI ES DONDE GUARDO LOS NUEVOS DATOS DEL USUARIO EN EL NAVEGADOR PARA QUE SEA PERSISTENTE
+   localStorage.setItem ('userSesion', JSON.stringify ({token: token, userData:user}))
+
     router.push ('/');
     } else {
       Swal.fire({
@@ -76,9 +79,7 @@ Swal.fire({
     });
   }
 
-  // AQUI ES DONDE GUARDO LOS NUEVOS DATOS DEL USUARIO EN EL NAVEGADOR PARA QUE SEA PERSISTENTE
-  // localStorage.setItem ('userSesion', JSON.stringify ({token: token, userData:clearUser}))
-}
+  }
 }
 
 // VERIFICO SI EXISTE ALGUN ERROR EN LA VALIDACION DE LOS INPUTS
@@ -90,17 +91,6 @@ Swal.fire({
 
 return (
 
-  // <div className={styles.divprincipal}>
-  
-  // <div className= {styles.divregister}>
-  // <Image
-      //   src="/login.jpg" // Ruta de la imagen en la carpeta public
-      //   alt="Login"
-      //   width={500} // Ancho de la imagen
-      //   height={500} // Altura de la imagen
-      //   className= {styles.imgform}
-      // />
-  // </div>
 
   <form onSubmit={handleSubmit} className= {styles.container}>
 
