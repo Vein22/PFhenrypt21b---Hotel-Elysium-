@@ -1,5 +1,6 @@
 import { valuesTypesRegisterPrueba } from "../interfaces/TypesRegister";
 import { useState } from "react";
+
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { velidateFormRegister } from "@/helpers/validateRegister";

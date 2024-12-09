@@ -58,8 +58,11 @@ Swal.fire({
     const response = await login (dataUser);
     if (response.success) {
       const {token, user} = response.data;
-      localStorage.setItem ('token', token);
-      localStorage.setItem ('user', JSON.stringify(user));
+      // localStorage.setItem ('token', token);
+      // localStorage.setItem ('user', JSON.stringify(user));
+      // AQUI ES DONDE GUARDO LOS NUEVOS DATOS DEL USUARIO EN EL NAVEGADOR PARA QUE SEA PERSISTENTE
+   localStorage.setItem ('userSesion', JSON.stringify ({token: token, userData:user}))
+
     router.push ('/');
     } else {
       Swal.fire({
@@ -76,9 +79,7 @@ Swal.fire({
     });
   }
 
-  // AQUI ES DONDE GUARDO LOS NUEVOS DATOS DEL USUARIO EN EL NAVEGADOR PARA QUE SEA PERSISTENTE
-  // localStorage.setItem ('userSesion', JSON.stringify ({token: token, userData:clearUser}))
-}
+  }
 }
 
 // VERIFICO SI EXISTE ALGUN ERROR EN LA VALIDACION DE LOS INPUTS
@@ -90,23 +91,23 @@ Swal.fire({
 
 return (
 
-  <div className={styles.divprincipal}>
-  
-  <div className= {styles.divregister}>
+
+  <form onSubmit={handleSubmit} className= {styles.container}>
+
+<div className= {styles.imgContainer}>
   <Image
         src="/login.jpg" // Ruta de la imagen en la carpeta public
         alt="Login"
         width={500} // Ancho de la imagen
         height={500} // Altura de la imagen
-        className= {styles.imgform}
+        // className= {styles.imgform}
       />
   </div>
-
-  <form onSubmit={handleSubmit} className= {styles.form}>
-            <h1 className={styles.h1title}>Iniciar Sesión</h1>
-      <div>
-        <label htmlFor="email">Correo Electrónico</label>
-        <div>
+       
+      <div className={styles.formContainer}> {/*este encierra los inputs*/}
+            <h1>Iniciar Sesión</h1>
+      
+          <div className={styles.inputLabelGroup}>
       <input
         type="text"
         name='email'
@@ -115,18 +116,18 @@ return (
         aria-label='correo electronico'
         value={dataUser.email}
         onChange={handleChange}
-        placeholder="email"
-        className={styles.input}
+        placeholder=""
+        className={styles.inputForm}
       />
-              {errors.email && (
+        <label htmlFor="email" className={styles.labelForm}>Correo Electrónico</label>  
+      </div>
+      {errors.email && (
           <div className="text-red-500 text-xs mt-2">{errors.email}</div>
         )}
-      </div>
-      </div>
 
-      <div>
-      <label htmlFor="email">Contrasena</label>
-      <div>
+
+<div className={styles.inputLabelGroup}>
+ 
       <input
         type="password"
         name='password'
@@ -135,21 +136,21 @@ return (
         aria-label='ingrese contraseña'
         value={dataUser.password}
         onChange={handleChange}
-        placeholder="Contraseña"
-        className={styles.input}
+        placeholder=""
+        className={styles.inputForm}
       />
-              {errors.password && (
+           <label htmlFor="password_id" className={styles.labelForm}>Contrasena</label>
+      </div>
+      {errors.password && (
           <div className="text-red-500 text-xs mt-2">{errors.password}</div>
         )}
-      </div>
-      </div>
 
       <div>
-        <button className= {styles.boton}>INGRESAR</button>
+        <button className= {styles.submit}>INGRESAR</button>
       </div>
-
+      </div>
   </form>
-  </div>
+  // </div>
 
 )
 };

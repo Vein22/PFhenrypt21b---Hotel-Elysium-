@@ -1,3 +1,4 @@
+
 export interface valuesTypesRegister {
   name: string;
   email: string;
@@ -15,3 +16,4 @@ export interface valuesTypesRegisterPrueba {
   phone?: string;
   dni?: string;
 }
+

@@ -1,9 +1,12 @@
+
 "use client";
+
 
 import { useFormRegister } from "@/hooks/useFormRegister";
 import { velidateFormRegister } from "@/helpers/validateRegister";
 import { fetchRegister } from "@/api/register";
 import Image from "next/image";
+
 import registerImg from "../../../public/register_prueba.png";
 import Style from "./register.module.css";
 import Loading from "../Loading/Loading";
@@ -157,3 +160,4 @@ const RegisterComponent = () => {
 };
 
 export default RegisterComponent;
+
