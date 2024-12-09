@@ -28,7 +28,9 @@ const Header = () => {
           }, [path === '/'])
 
   return (
+
     <header className="absolute w-full bg-black text-white shadow-md shadow-amber-600">
+
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         <div className="flex items-center">
 

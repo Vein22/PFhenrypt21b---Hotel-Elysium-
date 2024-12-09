@@ -1,4 +1,6 @@
+
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'users' })
@@ -60,4 +62,15 @@ export class User {
   })
   @Column()
   password: string;
+
+  /**
+   * DNI asociado a las credenciales.
+   * @example '12345678A'
+   */
+  @ApiProperty({
+    example: '12345678A',
+    description: 'DNI asociado a las credenciales.',
+  })
+  @Column()
+  dni: string;
 }

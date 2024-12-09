@@ -19,11 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+
         <Header />
 
         {children}
         <Chatbot />
         <Footer />
+
       </body>
     </html>
   );
