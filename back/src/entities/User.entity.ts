@@ -66,4 +66,15 @@ export class User {
   })
   @Column()
   password: string;
+
+  /**
+   * Indica si el usuario tiene privilegios de administrador.
+   * @example false
+   */
+  @ApiProperty({
+    example: false,
+    description: 'Indica si el usuario tiene privilegios de administrador.',
+  })
+  @Column({ default: false })
+  isAdmin: boolean;
 }

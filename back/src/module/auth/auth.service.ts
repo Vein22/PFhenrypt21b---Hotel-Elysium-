@@ -59,6 +59,7 @@ export class AuthService {
       email: createUserDto.email,
       password: hashedPassword,
       registrationDate: new Date().toISOString().split('T')[0],
+      isAdmin: false,
     });
 
     const savedUser = await this.userRepository.save(newUser);
@@ -69,6 +70,7 @@ export class AuthService {
       phone: savedUser.phone,
       email: savedUser.email,
       registrationDate: savedUser.registrationDate,
+      isAdmin: savedUser.isAdmin,
     };
   }
 }
