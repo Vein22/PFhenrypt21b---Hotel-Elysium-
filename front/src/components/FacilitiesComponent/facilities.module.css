@@ -2,6 +2,8 @@
 .container {
     min-height: 100vh;
     background-color: aliceblue;
+    padding-top: .1rem;
+  
 }
 
 .portadaContainer {

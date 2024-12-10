@@ -1,10 +1,11 @@
+
 export interface valuesTypesRegister {
   name: string;
   email: string;
   password: string;
   confirm_password: string;
   phone: string;
-  //Dni: string;
+  dni: string;
 }
 
 export interface valuesTypesRegisterPrueba {
@@ -13,5 +14,5 @@ export interface valuesTypesRegisterPrueba {
   password?: string;
   confirm_password?: string;
   phone?: string;
-  Dni?: string;
+  dni?: string;
 }

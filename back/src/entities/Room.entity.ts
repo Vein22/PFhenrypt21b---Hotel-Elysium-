@@ -3,16 +3,19 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'rooms' })
 export class Room {
+
   /**
    * Identificador único de la habitación.
    * @example "f34b2e7c-3ed5-4f91-9342-bf6c537dfb47"
    */
   @ApiProperty({
+
     example: 'f34b2e7c-3ed5-4f91-9342-bf6c537dfb47',
     description: 'Identificador único de la habitación.',
   })
   @PrimaryGeneratedColumn('uuid')
   id: string;
+  
 
   /**
    * Título o nombre de la habitación.
@@ -22,15 +25,17 @@ export class Room {
     example: 'Habitación Deluxe',
     description: 'Título o nombre de la habitación.',
   })
+
   @Column({ unique: true })
   title: string;
 
+
   /**
    * Tamaño de la habitación.
-   * @example "50m²"
+   * @example "50m2"
    */
   @ApiProperty({
-    example: '50m²',
+    example: '50m2',
     description: 'Tamaño de la habitación.',
   })
   @Column({ type: 'character varying', length: 10, default: '0m' })
@@ -58,7 +63,9 @@ export class Room {
   @Column({ type: 'float', default: 0 })
   rating: number;
 
+  
   /**
+
    * URL de la imagen representativa de la habitación.
    * @example "https://example.com/room.jpg"
    */
@@ -69,7 +76,9 @@ export class Room {
   @Column({ nullable: true })
   image: string;
 
+  
   /**
+
    * Precio de la habitación por noche.
    * @example 200.50
    */
@@ -79,6 +88,7 @@ export class Room {
   })
   @Column({ type: 'float', nullable: false })
   price: number;
+
 
   /**
    * Descripción detallada de la habitación.
@@ -92,6 +102,7 @@ export class Room {
   @Column({ type: 'text', nullable: false })
   description: string;
 
+
   /**
    * Tipo de habitación asociada.
    * @example 'd230c7d9-b983-4e78-b846-944dbe62d7b1'
@@ -101,7 +112,9 @@ export class Room {
     description: 'Tipo de habitación asociada.',
   })
   @Column({ type: 'varchar', length: 255 })
+
   roomType: string;
+
 
   /**
    * Estado de eliminación lógica de la habitación.
@@ -109,7 +122,9 @@ export class Room {
    */
   @ApiProperty({
     example: false,
+
     description: 'Indica si la habitación está eliminada de forma lógica.',
+
   })
   @Column({ default: false })
   isDeleted: boolean;
