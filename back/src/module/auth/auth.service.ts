@@ -44,7 +44,7 @@ export class AuthService {
 
   async createUser(createUserDto: CreateUserDto) {
     const existingUser = await this.userRepository.findOne({
-      where: { email: createUserDto.email },
+      where: [{ email: createUserDto.email }, { dni: createUserDto.dni }],
     });
 
     if (existingUser) {
@@ -69,6 +69,7 @@ export class AuthService {
       name: savedUser.name,
       phone: savedUser.phone,
       email: savedUser.email,
+      dni: createUserDto.dni,
       registrationDate: savedUser.registrationDate,
       isAdmin: savedUser.isAdmin,
     };

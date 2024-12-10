@@ -72,4 +72,18 @@ export class CreateUserDto {
   @MinLength(8)
   @MaxLength(15)
   password: string;
+
+   /**
+   * Documento Nacional de Identidad (DNI).
+   * @example '12345678A'
+   */
+   @ApiProperty({
+    example: '12345678A',
+    description: 'Documento Nacional de Identidad (DNI).',
+  })
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(8)
+  @MaxLength(12)
+  dni: string;
 }

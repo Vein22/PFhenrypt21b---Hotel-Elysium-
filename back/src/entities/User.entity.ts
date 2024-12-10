@@ -77,4 +77,15 @@ export class User {
   })
   @Column({ default: false })
   isAdmin: boolean;
+
+  /**
+   * Documento Nacional de Identidad (DNI).
+   * @example '12345678A'
+   */
+  @ApiProperty({
+    example: '12345678A',
+    description: 'Documento Nacional de Identidad (DNI).',
+  })
+  @Column({ unique: true, nullable: false })
+  dni: string;
 }
