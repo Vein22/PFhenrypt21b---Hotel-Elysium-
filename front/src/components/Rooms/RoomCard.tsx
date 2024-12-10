@@ -1,37 +1,38 @@
 import React from "react";
-import styles from "./RoomCard.module.css";
-import { Image } from "@nextui-org/react";
 import { FaStar } from "react-icons/fa";
 import { Room } from "@/interfaces";
 
 const RoomCard: React.FC<Room> = ({ roomType, title, size, beds, rating = 0, image, price }) => {
   return (
-    <div className={styles.card}>
-      <div className={styles.imageContainer}>
-        <Image
+    <div className="w-80 h-96 bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+      <div className="relative h-1/2">
+        <img
           src={image}
           alt={title}
-          className={styles.image} 
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="w-full h-full object-cover"
         />
-      </div>
-      <div className={styles.info}>
-        <h2>{roomType}</h2>
-        <h1>{title}</h1>
-        <p>{size}</p>
-      </div>
-      <div className={styles.separator} />
-      <div className={styles.footer}>
-        <div className={styles.left}>
-          <p>{beds} camas</p>
+        <div className="absolute top-2 right-2 bg-tertiary text-white text-sm font-semibold py-1 px-2 rounded-lg shadow-md">
+          ${price} / noche
         </div>
-        <div className={styles.right}>
-          {Array.from({ length: 5 }, (_, i) => (
-            <FaStar 
-              key={i} 
-              className={i < rating ? styles.star : styles.starEmpty} 
-            />
-          ))}
+      </div>
+      <div className="flex-grow p-4 flex flex-col justify-between">
+
+        <div>
+          <h2 className="text-text text-sm uppercase tracking-wide">{roomType}</h2>
+          <h1 className="text-gray-900 font-bold text-lg mt-1 truncate">{title}</h1>
+          <p className="text-text text-sm mt-2">{size}</p>
+        </div>
+
+        <div className="mt-4 border-t pt-4 flex items-center justify-between">
+          <p className="text-text text-sm">{beds} camas</p>
+          <div className="flex items-center">
+            {Array.from({ length: 5 }, (_, i) => (
+              <FaStar
+                key={i}
+                className={`text-lg ${i < rating ? "text-yellow-500" : "text-gray-300"}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -39,4 +40,7 @@ const RoomCard: React.FC<Room> = ({ roomType, title, size, beds, rating = 0, ima
 };
 
 export default RoomCard;
+
+
+
 
