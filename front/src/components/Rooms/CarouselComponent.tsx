@@ -7,6 +7,7 @@ import RoomCard from "./RoomCard";
 import { getRooms } from "@/api/getRooms";
 import { Room } from "@/interfaces/index";
 import styles from "./CarouselComponent.module.css"; 
+import Link from "next/link";
 
 const SwiperComponent = () => {
   const [rooms, setRooms] = useState<Room[]>([]);
@@ -72,6 +73,9 @@ const SwiperComponent = () => {
         >
           &#x276F;
         </button>
+      </div>
+      <div>
+        <button className={styles.navigationButton}><Link href="roomsManagement">Crear habitaciones</Link></button>
       </div>
     </div>
   );
