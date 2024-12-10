@@ -14,7 +14,7 @@ const initialForm = {
   password: "",
   confirm_password: "",
   phone: "",
-//  Dni: "", desabilitado por el momento
+  Dni: "",
 };
 
 export const RegisterComponent = () => {
@@ -62,18 +62,33 @@ export const RegisterComponent = () => {
                 <label htmlFor="phone_id" className={Style.labelForm}>Teléfono</label>
             </div>
 {/*Dni*/}
-{          /* {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
+          {errors.Dni && <p className="text-red-500 text-xs m-2">{errors.Dni}</p>}
             <div className={Style.inputLabelGroup}>
                 <input type="text" name="Dni" id="Dni_id" onChange={handleChange} onBlur={handleBlur} value={form.Dni} className={Style.inputForm} placeholder=" "/>
                 <label htmlFor="Dni_id" className={Style.labelForm}>DNI</label>
-            </div>*/}
+            </div>
 
         <p className={Style.tienesCuenta}>
           ¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a>
         </p>
         <button type="submit"
-        className={Style.submit}>
+         className={`${
+          Object.values(form).every(value => value.trim() !== "")
+            ? Style.submit
+            : Style.submitDisabled
+        }`}
+        disabled={
+          !form.name || 
+          !form.email || 
+          !form.password || 
+          !form.confirm_password || 
+          !form.phone ||
+          !form.Dni
+        }
+        >
+
           {loading ? <Loading /> : 'REGISTRATE'}
+
         </button>
       </div>
     </form>

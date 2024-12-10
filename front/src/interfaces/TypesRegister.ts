@@ -13,5 +13,5 @@ export interface valuesTypesRegisterPrueba {
   password?: string;
   confirm_password?: string;
   phone?: string;
-  //Dni?: string;
+  Dni?: string;
 }
