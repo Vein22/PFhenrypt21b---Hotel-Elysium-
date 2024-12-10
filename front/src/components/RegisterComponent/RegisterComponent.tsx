@@ -30,7 +30,6 @@ const RegisterComponent = () => {
       <div className={Style.imgContainer}>
         <Image src={registerImg} alt="Usuario" width={500} height={500} />
       </div>
-
       {/*Formulario de registro*/}
       <div className={Style.formContainer}>
         <h1>Registrarse</h1>
@@ -151,6 +150,7 @@ const RegisterComponent = () => {
         <p className={Style.tienesCuenta}>
           ¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a>
         </p>
+
         <button type="submit" className={Style.submit}>
           {loading ? <Loading /> : "REGISTRATE"}
         </button>
