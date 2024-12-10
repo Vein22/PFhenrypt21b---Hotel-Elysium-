@@ -1,60 +1,80 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import RoomCard from "./RoomCard";
-import { mockRooms } from "@/app/mocks/rooms";
-import styles from "./CarouselComponent.module.css";
+import { getRooms } from "@/api/getRooms";
+import { Room } from "@/interfaces/index";
+import styles from "./CarouselComponent.module.css"; 
 
 const SwiperComponent = () => {
+  const [rooms, setRooms] = useState<Room[]>([]);
   const swiperRef = useRef<any>(null);
-  return (
-    <div className={styles.swiperContainer}>
-      <Swiper
-      ref={swiperRef}
-        modules={[Navigation]}
-        slidesPerView={3}
-        navigation={{
-          nextEl: `.${styles.swiperButtonNext}`,
-          prevEl: `.${styles.swiperButtonPrev}`,
-        }}
-        loop={true}
-      >
-        {mockRooms.map((room) => (
-          <SwiperSlide key={room.id} className={styles.swiperSlide}>
-            <RoomCard {...room} />
-          </SwiperSlide>
-        ))}
 
-        {/* Botones personalizados */}
-        {/* <button className={`${styles.swiperButtonNext}`}>→</button>
-        <button className={`${styles.swiperButtonPrev}`}>←</button> */}
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const fetchedRooms = await getRooms();
+        console.log("Fetched rooms for swiper:", fetchedRooms);
+        setRooms(fetchedRooms);
+      } catch (error) {
+        console.error("Error fetching rooms:", error);
+      }
+    };
+
+    fetchRooms();
+  }, []);
+
+  return (
+    <div className={styles.container}>
+
+      <div className={styles.buttonContainer}>
         <button
-        className={styles.swiperButtonPrev}
-        onClick={() => swiperRef.current?.swiper.slidePrev()}
-      >
-        &#x276E;
-      </button>
-      <button
-        className={styles.swiperButtonNext}
-        onClick={() => swiperRef.current?.swiper.slideNext()}
-      >
-        &#x276F;
-      </button>
-      </Swiper>
+          className={`${styles.navigationButton} ${styles.prevButton}`}
+          onClick={() => swiperRef.current?.swiper.slidePrev()}
+        >
+          &#x276E;
+        </button>
+      </div>
+
+
+      <div className={styles.swiperContainer}>
+        {rooms.length > 0 ? (
+          <Swiper
+            ref={swiperRef}
+            modules={[Navigation]}
+            slidesPerView={rooms.length < 3 ? rooms.length : 3}
+            navigation={{
+              nextEl: `.${styles.nextButton}`,
+              prevEl: `.${styles.prevButton}`,
+            }}
+            loop={rooms.length > 3}
+          >
+            {rooms.map((room) => (
+              <SwiperSlide key={room.id} className={styles.swiperSlide}>
+                <RoomCard {...room} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <p className={styles.noRoomsMessage}>
+            No hay habitaciones disponibles
+          </p>
+        )}
+      </div>
+
+
+      <div className={styles.buttonContainer}>
+        <button
+          className={`${styles.navigationButton} ${styles.nextButton}`}
+          onClick={() => swiperRef.current?.swiper.slideNext()}
+        >
+          &#x276F;
+        </button>
+      </div>
     </div>
   );
 };
 
 export default SwiperComponent;
-
-
-
-
-
-
-
-
-
-

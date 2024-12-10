@@ -7,9 +7,9 @@ export const validateTitle = (title: string): string => {
 };
 
 export const validateDescription = (description: string): string => {
-    return validator.isLength(description, { min: 10, max: 250 })
+    return validator.isLength(description, { min: 10, max: 500 })
         ? ""
-        : "La descripción debe tener entre 10 y 250 caracteres.";
+        : "La descripción debe tener entre 10 y 500 caracteres.";
 };
 
 export const validateSize = (size: string): string => {

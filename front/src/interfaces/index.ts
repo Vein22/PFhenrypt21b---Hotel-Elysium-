@@ -1,5 +1,5 @@
 export interface Room {
-    id: number,
+    id: string,
     roomType: string, //Ejemplo: "Habitación de lujo"
     title: string, //Ejemplo: "Habitación familiar deluxe"
     size: string, //Ejemplo: "150 m2"
@@ -8,4 +8,5 @@ export interface Room {
     image: string,
     price: number,
     description: string,
+    isDeleted: boolean,
 }
