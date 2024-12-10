@@ -84,4 +84,5 @@ export class User {
   })
   @Column({ unique: true, nullable: false })
   dni: string;
+  
 }

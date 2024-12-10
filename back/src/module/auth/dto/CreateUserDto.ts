@@ -87,3 +87,4 @@ export class CreateUserDto {
   @MaxLength(12)
   dni: string;
 }
+
