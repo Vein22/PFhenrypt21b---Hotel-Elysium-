@@ -23,7 +23,9 @@ export const fetchRegister = async (form: valuesTypesRegister) => {
         };
 
     } catch (error) {
-        console.error('Error al registrar usuario:', error);
+
+        console.log('Error al registrar usuario:', error);
+
         throw error;
     };
 

@@ -5,6 +5,9 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+
+    margin-top: 3rem;
+
 }
 
 .imgContainer {
@@ -70,13 +73,37 @@
 }
 
 .submit {
+
+    position: relative;
+
     margin: 1.3rem;
     padding: .5rem 1rem;
     border-radius: .2rem;
     font-family: serif;
     font-weight: bold;
-    color: rgb(255, 255, 255);
+
+    color: rgb(252, 247, 247);
     background-color: #b69663;
+    width: 40%;
+    height: 2.7rem;
+}
+.submitDisabled {
+    position: relative;
+    margin: 1.3rem;
+    padding: .5rem 1rem;
+    border-radius: .2rem;
+    font-family: serif;
+    font-weight: bold;
+    color: rgb(252, 247, 247);
+    background-color: #7d6641bc;
+    width: 40%;
+    height: 2.7rem;
+}
+
+.submit:hover {
+    color: #535353;
+    transition: .5s;
+
 }
 
 
@@ -86,4 +113,10 @@
     color: #535353;
     font-family: serif;
     font-weight: bold;
+
+}
+
+.submitDisabled {
+    background-color: #535353;
+    color: #afafaf;
 }

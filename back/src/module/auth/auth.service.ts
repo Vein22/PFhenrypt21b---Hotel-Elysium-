@@ -58,6 +58,7 @@ export class AuthService {
       phone: createUserDto.phone,
       email: createUserDto.email,
       password: hashedPassword,
+      dni: createUserDto.dni,
       registrationDate: new Date().toISOString().split('T')[0],
       isAdmin: false,
     });

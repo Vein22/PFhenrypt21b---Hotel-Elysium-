@@ -3,7 +3,10 @@ import "./globals.css";
 import HomeContainer from "@/components/HomeContainer/Home";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-
+import Chatbot from "@/components/chatbot/chatbot";
+import ShowComponent from "@/components/ShowComponent/ShowComponent";
+import { LogginProvider } from "@/context/logginContext";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Hotel y Resort de Lujo",
@@ -18,16 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-       
-       
-       
-        <Header/>
-
-        {children}
-
-        <Footer/>
-
-
+          <Providers>
+          <LogginProvider>
+            <Header />
+            {children}
+            <Chatbot />
+            <Footer />
+            </LogginProvider>
+            </Providers>
       </body>
     </html>
   );

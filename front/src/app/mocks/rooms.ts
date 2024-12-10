@@ -2,54 +2,64 @@ import { Room } from "@/interfaces";
 
 export const mockRooms: Room[] = [
     {
-      id: 0,
-      category: "Habitación de lujo",
-      title: "Habitación familiar deluxe",
-      size: "150 m²",
+      id: "ab8467a6-69d4-4080-9af6-7b8e2708721c",
+      title: "Luxury Room 101",
+      size: "150 m2",
       beds: 2,
       rating: 5,
-      image: "https://www.athinasuites.com/images/deluxe-suite/deluxe-suite-left.jpg",
-      price: 300
+      image: "https://res.cloudinary.com/dkcaaane6/image/upload/v1733764289/lr81b05m8fvvq2wch9fy.jpg",
+      price: 700,
+      description: "Descubre el lujo en una habitación diseñada para tu confort. Con cama king-size y sábanas de algodón egipcio, disfruta de vistas panorámicas desde amplias ventanas. El baño privado incluye ducha tipo lluvia, bañera independiente y amenities premium. Relájate en la zona de estar o trabaja en un elegante escritorio. Tecnología avanzada, minibar gourmet y servicio 24/7 completan una experiencia inolvidable en un ambiente sofisticado y acogedor.",
+      roomType: "Habitación de lujo",
+      isDeleted: false
     },
     {
-      id: 1,
-      category: "Suite Presidencial",
-      title: "Suite con vista al mar",
-      size: "200 m²",
-      beds: 1,
-      rating: 5,
-      image: "https://www.athinasuites.com/images/deluxe-suite/deluxe-suite-left.jpg",
-      price: 450
-    },
-    {
-      id: 2,
-      category: "Habitación estándar",
-      title: "Confort y estilo",
-      size: "100 m²",
-      beds: 1,
-      rating: 4,
-      image: "https://www.athinasuites.com/images/deluxe-suite/deluxe-suite-left.jpg",
-      price: 120
-    },
-    {
-      id: 3,
-      category: "Suite Junior",
-      title: "Ideal para parejas",
-      size: "130 m²",
-      beds: 1,
-      rating: 4.5,
-      image: "https://www.athinasuites.com/images/deluxe-suite/deluxe-suite-left.jpg",
-      price: 220
-    },
-    {
-      id: 4,
-      category: "Habitación Premium",
-      title: "Elegancia y comodidad",
-      size: "180 m²",
+      id: "ab8467a6-69d4-4080-9af6-7b8e2708721c",
+      title: "Luxury Room 101",
+      size: "150 m2",
       beds: 2,
-      rating: 4.8,
-      image: "https://www.athinasuites.com/images/deluxe-suite/deluxe-suite-left.jpg",
-      price: 350
+      rating: 5,
+      image: "https://res.cloudinary.com/dkcaaane6/image/upload/v1733764289/lr81b05m8fvvq2wch9fy.jpg",
+      price: 700,
+      description: "Descubre el lujo en una habitación diseñada para tu confort. Con cama king-size y sábanas de algodón egipcio, disfruta de vistas panorámicas desde amplias ventanas. El baño privado incluye ducha tipo lluvia, bañera independiente y amenities premium. Relájate en la zona de estar o trabaja en un elegante escritorio. Tecnología avanzada, minibar gourmet y servicio 24/7 completan una experiencia inolvidable en un ambiente sofisticado y acogedor.",
+      roomType: "Habitación de lujo",
+      isDeleted: false
+    },
+    {
+      id: "ab8467a6-69d4-4080-9af6-7b8e2708721c",
+      title: "Luxury Room 101",
+      size: "150 m2",
+      beds: 2,
+      rating: 5,
+      image: "https://res.cloudinary.com/dkcaaane6/image/upload/v1733764289/lr81b05m8fvvq2wch9fy.jpg",
+      price: 700,
+      description: "Descubre el lujo en una habitación diseñada para tu confort. Con cama king-size y sábanas de algodón egipcio, disfruta de vistas panorámicas desde amplias ventanas. El baño privado incluye ducha tipo lluvia, bañera independiente y amenities premium. Relájate en la zona de estar o trabaja en un elegante escritorio. Tecnología avanzada, minibar gourmet y servicio 24/7 completan una experiencia inolvidable en un ambiente sofisticado y acogedor.",
+      roomType: "Habitación de lujo",
+      isDeleted: false
+    },
+    {
+      id: "ab8467a6-69d4-4080-9af6-7b8e2708721c",
+      title: "Luxury Room 101",
+      size: "150 m2",
+      beds: 2,
+      rating: 5,
+      image: "https://res.cloudinary.com/dkcaaane6/image/upload/v1733764289/lr81b05m8fvvq2wch9fy.jpg",
+      price: 700,
+      description: "Descubre el lujo en una habitación diseñada para tu confort. Con cama king-size y sábanas de algodón egipcio, disfruta de vistas panorámicas desde amplias ventanas. El baño privado incluye ducha tipo lluvia, bañera independiente y amenities premium. Relájate en la zona de estar o trabaja en un elegante escritorio. Tecnología avanzada, minibar gourmet y servicio 24/7 completan una experiencia inolvidable en un ambiente sofisticado y acogedor.",
+      roomType: "Habitación de lujo",
+      isDeleted: false
+    },
+    {
+      id: "ab8467a6-69d4-4080-9af6-7b8e2708721c",
+      title: "Luxury Room 101",
+      size: "150 m2",
+      beds: 2,
+      rating: 5,
+      image: "https://res.cloudinary.com/dkcaaane6/image/upload/v1733764289/lr81b05m8fvvq2wch9fy.jpg",
+      price: 700,
+      description: "Descubre el lujo en una habitación diseñada para tu confort. Con cama king-size y sábanas de algodón egipcio, disfruta de vistas panorámicas desde amplias ventanas. El baño privado incluye ducha tipo lluvia, bañera independiente y amenities premium. Relájate en la zona de estar o trabaja en un elegante escritorio. Tecnología avanzada, minibar gourmet y servicio 24/7 completan una experiencia inolvidable en un ambiente sofisticado y acogedor.",
+      roomType: "Habitación de lujo",
+      isDeleted: false
     }
   ];
   

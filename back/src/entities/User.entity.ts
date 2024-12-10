@@ -1,13 +1,9 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  JoinColumn,
-} from 'typeorm';
+
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+
 import { ApiProperty } from '@nestjs/swagger';
 
-@Entity('user')
+@Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -28,7 +24,7 @@ export class User {
    * @example '+1234567890'
    */
   @ApiProperty({
-    example: '+1234567890',
+    example: '+12345678',
     description: 'Número de teléfono del usuario.',
   })
   @Column()
