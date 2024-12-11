@@ -28,8 +28,9 @@ const SwiperComponent = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
 
+    <div className={styles.container}>
+  
       <div className={styles.buttonContainer}>
         <button
           className={`${styles.navigationButton} ${styles.prevButton}`}
@@ -75,8 +76,8 @@ const SwiperComponent = () => {
         </button>
       </div>
       <div>
-        <button className={styles.navigationButton}><Link href="roomsManagement">Crear habitaciones</Link></button>
-      </div>
+    <button className="px-5 bg-tertiary rounded-md mt-12 font-bold text-white" ><Link href="roomsManagement">REGISTRAR HABITACION</Link></button>
+  </div>
     </div>
   );
 };
