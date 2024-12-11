@@ -30,7 +30,6 @@ const RegisterComponent = () => {
       <div className={Style.imgContainer}>
         <Image src={registerImg} alt="Usuario" width={500} height={500} />
       </div>
-
       {/*Formulario de registro*/}
       <div className={Style.formContainer}>
         <h1>Registrarse</h1>
@@ -151,7 +150,22 @@ const RegisterComponent = () => {
         <p className={Style.tienesCuenta}>
           ¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a>
         </p>
-        <button type="submit" className={Style.submit}>
+
+        <button type="submit" 
+        className={`${
+        Object.values(form).every(value => value.trim() !== "")
+        ? Style.submit
+        : Style.submitDisabled
+        }`}
+        disabled={
+          !form.name || 
+          !form.email || 
+          !form.password || 
+          !form.confirm_password || 
+          !form.phone || 
+          !form.dni
+        }
+        >
           {loading ? <Loading /> : "REGISTRATE"}
         </button>
       </div>

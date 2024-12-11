@@ -16,4 +16,3 @@ export interface valuesTypesRegisterPrueba {
   phone?: string;
   dni?: string;
 }
-

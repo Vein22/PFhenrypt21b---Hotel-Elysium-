@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { userSession } from "@/interfaces/Types.session";
 import CardUser from "./CardUser";
 import { useLoggin } from "@/context/logginContext";
+import Switcher from "../Switcher";
 const Header = () => {
   const { userData, setUserData } = useLoggin();
 
@@ -57,6 +58,9 @@ const Header = () => {
             <Link href="contact" className="hover:text-amber-600">
               Contacto
             </Link>
+            <div>
+              <Switcher/>
+            </div>
           </div>
         </nav>
 

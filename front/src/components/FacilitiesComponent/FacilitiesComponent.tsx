@@ -11,12 +11,12 @@ export const FacilitiesComponent = () => {
         <div className={Style.portadaContainer}>
             <p>HOTEL Y RESORT DE LUJO</p>
             <h1>INSTALACIONES</h1>
-            <h2>Disfruta de unas inatalaciones completas y de mejor calidad</h2>
+            <h2>Disfruta de unas instalaciones completas y de mejor calidad</h2>
         </div>
 
         <article className={Style.article0Container}>
             <h2>INSTALACIONES</h2>
-            <h1>DISFRUTA DE LAS MÁS COMPLETAS Y MEJORES ISTALACIONES DE CALIDAD</h1>
+            <h1>DISFRUTA DE LAS MÁS COMPLETAS Y MEJORES INSTALACIONES DE CALIDAD</h1>
         </article>
         <hr className={Style.hr}/>
 {/*Gimnasio de entrenamiento*/}
@@ -24,7 +24,7 @@ export const FacilitiesComponent = () => {
             <Image src={gimnasioImg} width={810} height={755} alt='Gimnasio'/>
             <p>01</p>
             <div className={Style.containerGim}>
-                <p className={Style.aptttud}>APTTTUD</p>
+                <p className={Style.aptttud}>Bienestar físico</p>
                 <h1>Gimnasio de entrenamiento</h1>
                 <p className={Style.descriptionGim}>Disfruta de un gimnasio completamente 
                     equipado con máquinas de última generación y áreas
@@ -37,7 +37,7 @@ export const FacilitiesComponent = () => {
         {/*Piscina con varios niveles*/}
         <article className={Style.gimnasioContainer}>
             <div className={Style.containerGim}>
-                <p className={Style.aptttud}>APTTTUD</p>
+                <p className={Style.aptttud}>Relajación y diversión</p>
                 <h1>Piscina con varios niveles</h1>
                 <p className={Style.descriptionGim}>Relájate en nuestra piscina de diseño único, 
                     con áreas para adultos y niños. Rodeada de vistas espectaculares y cómodas tumbonas, 
@@ -53,7 +53,7 @@ export const FacilitiesComponent = () => {
             <Image src={restauranteImg} width={810} height={755} alt='Gimnasio'/>
             <p>03</p>
             <div className={Style.containerGim}>
-                <p className={Style.aptttud}>APTTTUD</p>
+                <p className={Style.aptttud}>Gastronomía exclusiva</p>
                 <h1>Restaurante</h1>
                 <p className={Style.descriptionGim}>Déjate sorprender por una experiencia culinaria inolvidable. 
                     Nuestro restaurante combina sabores locales e internacionales,
@@ -65,7 +65,7 @@ export const FacilitiesComponent = () => {
         {/*SPA y sala de estar*/}
         <article className={Style.gimnasioContainer}>
             <div className={Style.containerGim}>
-                <p className={Style.aptttud}>APTTTUD</p>
+                <p className={Style.aptttud}>Bienestar y lujo</p>
                 <h1>SPA y sala de estar</h1>
                 <p className={Style.descriptionGim}>Sumérgete en un oasis de relajación en nuestro SPA. 
                     Disfruta de masajes, tratamientos exclusivos y áreas de descanso diseñadas
