@@ -149,7 +149,7 @@ type Service = {
   name: string;
   icon: string;
   photos: string[];
-  route: string; // Ruta para navegación
+  route: string; 
 };
 
 const ServicesSection = () => {
@@ -240,7 +240,7 @@ const ServicesSection = () => {
             : "left-1/2 transform -translate-x-1/2"
         }`}
         style={{
-          boxShadow: "0 4px 15px rgba(251, 191, 36, 0.8)",
+          boxShadow: "0 4px 15px rgb(182, 150, 99)",
           maxWidth: "calc(100vw - 48px)",
           zIndex: 99999,
         }}
@@ -249,7 +249,7 @@ const ServicesSection = () => {
           {service.photos.map((photo, photoIndex) => (
             <div
               key={photoIndex}
-              className="w-[180px] h-[180px] flex-shrink-0 overflow-hidden border-2 border-amber-600 rounded-lg"
+              className="w-[180px] h-[180px] flex-shrink-0 overflow-hidden border-2 border-marronclaro rounded-lg"
               style={{ zIndex: 99999 }}
             >
               <Image

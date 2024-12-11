@@ -34,24 +34,24 @@ const ContactForm = () => {
             <input
               type="text"
               placeholder="Nombre Completo"
-              className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+              className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-marronclaro focus:outline-none"
               required
             />
             <input
               type="email"
               placeholder="Correo electrónico"
-              className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+              className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-marronclaro focus:outline-none"
               required
             />
             <textarea
               placeholder="Escribir mensaje"
               rows={5}
-              className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+              className="w-full p-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:ring-2 focus:ring-marronclaro focus:outline-none"
               required
             ></textarea>
             <button
               type="submit"
-              className="w-full bg-yellow-500 text-black font-semibold p-3 rounded-lg hover:bg-yellow-600 transition duration-300"
+              className="w-full bg-marronclaro text-white font-semibold p-3 rounded-lg hover:bg-marronclaro transition duration-300"
             >
               ENVIAR MENSAJE
             </button>

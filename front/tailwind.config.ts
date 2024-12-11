@@ -12,6 +12,9 @@ export default {
     extend: {
       colors: {
         tertiary: "#b69663",
+        marron:"#856e4c",
+        marronclaro: "#b69663",
+        marronfuerte:"#4b3b2c",
       },
     },
   },

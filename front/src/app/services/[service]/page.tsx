@@ -88,7 +88,7 @@ const ServicePage = async ({ params }: { params: { service: string } }) => {
 
 
 
-        <h2 className="text-6xl font-extrabold mb-12 text-center bg-gradient-to-r from-amber-500 to-amber-700 text-transparent bg-clip-text">
+        <h2 className="text-6xl font-extrabold mb-12 text-center bg-gradient-to-r from-marron to-marronfuerte text-transparent bg-clip-text">
           {serviceDataItem.referencia}
         </h2>
 
@@ -115,7 +115,7 @@ const ServicePage = async ({ params }: { params: { service: string } }) => {
 
 
 
-              <div className="p-4 bg-white text-black rounded-lg shadow-lg border-4 border-amber-500 order-1 lg:order-2">
+              <div className="p-4 bg-white text-black rounded-lg shadow-lg border-4 border-marronclaro order-1 lg:order-2">
                 <p className="text-lg">{serviceDataItem.comments[index].comment}</p>
               </div>
 
@@ -123,7 +123,7 @@ const ServicePage = async ({ params }: { params: { service: string } }) => {
 
 
               <div
-                className="rounded-lg shadow-lg border-4 border-amber-500 order-2 lg:order-1"
+                className="rounded-lg shadow-lg border-4 border-marronclaro order-2 lg:order-1"
                 style={{ width: "400px", height: "400px" }}
               >
                 <Image

@@ -20,13 +20,13 @@ const HeroSection = () => {
 
         <p
           className="text-2xl text-white mb-6 font-bold"
-          style={{ textShadow: "2px 2px 4px rgba(217, 119, 6, 1)" }}
+          style={{ textShadow: "2px 2px 4px rgb(182, 150, 99)" }}
         >
           Hotel y Resort de Lujo
         </p>
 
         <motion.button
-          className="bg-amber-600 text-white border border-amber-800 rounded-lg py-2 px-4 hover:bg-amber-700 transition-all"
+          className="bg-marron text-white border border-marronfuerte rounded-lg py-2 px-4 hover:bg-opacity-70 transition-all"
           whileHover={{ scale: 1.05 }}
           onClick={() => setShowMessage(!showMessage)}
         >
@@ -35,7 +35,7 @@ const HeroSection = () => {
 
         {showMessage && (
           <motion.div
-            className="mt-6 p-4 text-xl bg-white text-black rounded-lg shadow-lg border-4 border-amber-500"
+            className="mt-6 p-4 text-xl bg-white text-black rounded-lg shadow-lg border-4 border-marronclaro"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
