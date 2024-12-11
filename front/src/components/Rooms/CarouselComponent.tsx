@@ -75,9 +75,6 @@ const SwiperComponent = () => {
           &#x276F;
         </button>
       </div>
-      <div>
-    <button className="px-5 bg-tertiary rounded-md mt-12 font-bold text-white" ><Link href="roomsManagement">REGISTRAR HABITACION</Link></button>
-  </div>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/CreateUserDto';
+import { NotificationsService } from '../notifications/notifications.service';
 
 @Injectable()
 export class AuthService {
@@ -15,6 +16,7 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
+    private readonly notificationService: NotificationsService
   ) {}
 
   async signIn(userLogin: LoginUserDto) {
@@ -44,7 +46,7 @@ export class AuthService {
 
   async createUser(createUserDto: CreateUserDto) {
     const existingUser = await this.userRepository.findOne({
-      where: { email: createUserDto.email },
+      where: [{ email: createUserDto.email }, { dni: createUserDto.dni }],
     });
 
     if (existingUser) {
@@ -60,16 +62,26 @@ export class AuthService {
       password: hashedPassword,
       dni: createUserDto.dni,
       registrationDate: new Date().toISOString().split('T')[0],
+      isAdmin: false,
     });
 
     const savedUser = await this.userRepository.save(newUser);
+
+    try {
+      await this.notificationService.sendWelcomeEmail(savedUser.email, savedUser.name);
+    } catch (error) {
+      console.error('Error enviando el correo de bienvenida:', error);
+    }
 
     return {
       id: savedUser.id,
       name: savedUser.name,
       phone: savedUser.phone,
       email: savedUser.email,
+      dni: createUserDto.dni,
       registrationDate: savedUser.registrationDate,
+      isAdmin: savedUser.isAdmin,
     };
   }
+  
 }

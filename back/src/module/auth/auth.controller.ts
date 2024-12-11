@@ -7,6 +7,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from './dto/login-auth.dto';
@@ -41,4 +42,5 @@ export class AuthController {
   async registerUser(@Body() createUserDto: CreateUserDto) {
     return this.authService.createUser(createUserDto);
   }
+  
 }
