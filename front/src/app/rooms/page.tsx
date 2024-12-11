@@ -46,6 +46,7 @@ const Page = () => {
   };
 
   return (
+
     <div className="min-h-[75vh] pt-20 px-16">
       <div className="flex flex-col gap-6 mb-6">
         <div className="text-center pt-10">

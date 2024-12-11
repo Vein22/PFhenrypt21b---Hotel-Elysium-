@@ -22,8 +22,6 @@ export interface LogginContextProps {
 export const LogginContext = createContext<LogginContextProps>({
   userData: null,
   setUserData: () => {},
-  
-
 });
 
 export interface LogginProviderProps {
@@ -66,8 +64,6 @@ export const LogginProvider: React.FC<LogginProviderProps> = ({ children }) => {
       value={{
         userData,
         setUserData,
-
-
       }}
     >
       {children}
