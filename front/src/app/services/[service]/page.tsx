@@ -72,8 +72,8 @@ const serviceData: Record<string, ServiceProps> = {
 
 
 /// Mortal 
-const ServicePage = async ({ params }: { params: { service: string } }) => {
-  const { service } = await params;
+const ServicePage = ({ params }: { params: { service: string } }) => {
+  const { service } = params;
 
   const serviceDataItem = serviceData[service];
 
@@ -84,10 +84,6 @@ const ServicePage = async ({ params }: { params: { service: string } }) => {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto">
-
-
-
-
         <h2 className="text-6xl font-extrabold mb-12 text-center bg-gradient-to-r text-titulo bg-clip-text">
           {serviceDataItem.referencia}
         </h2>
@@ -100,10 +96,11 @@ const ServicePage = async ({ params }: { params: { service: string } }) => {
                 index % 2 === 0 ? "lg:flex-row-reverse" : ""
               } items-center gap-8 relative`}
             >
-
-
-
-              <div className={`absolute ${index % 2 === 0 ? "left-20 top-1 bottom-4" : "right-10 top-1 bottom-4"} z-1`}>
+              <div
+                className={`absolute ${
+                  index % 2 === 0 ? "left-20 top-1 bottom-4" : "right-10 top-1 bottom-4"
+                } z-1`}
+              >
                 <Image
                   src={serviceDataItem.comments[index].photo}
                   alt={`Persona ${index + 1} Apuntando al Comentario`}
@@ -112,15 +109,9 @@ const ServicePage = async ({ params }: { params: { service: string } }) => {
                 />
               </div>
 
-
-
-
               <div className="p-4 bg-white text-black rounded-lg shadow-lg border-4 border-marronclaro order-1 lg:order-2">
                 <p className="text-lg">{serviceDataItem.comments[index].comment}</p>
               </div>
-
-
-
 
               <div
                 className="rounded-lg shadow-lg border-4 border-marronclaro order-2 lg:order-1"
