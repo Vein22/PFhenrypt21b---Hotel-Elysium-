@@ -1,7 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsBoolean,
   IsEmail,
   IsNotEmpty,
+  IsOptional,
   IsString,
   IsStrongPassword,
   MaxLength,
@@ -71,15 +73,18 @@ export class CreateUserDto {
   @MaxLength(15)
   password: string;
 
-  /**
-   * DNI asociado a las credenciales.
+   /**
+   * Documento Nacional de Identidad (DNI).
    * @example '12345678A'
    */
-  @ApiProperty({
+   @ApiProperty({
     example: '12345678A',
-    description: 'DNI asociado a las credenciales.',
+    description: 'Documento Nacional de Identidad (DNI).',
   })
   @IsString()
   @IsNotEmpty()
+  @MinLength(8)
+  @MaxLength(12)
   dni: string;
 }
+
