@@ -1,7 +1,7 @@
 
 import {
   valuesTypesRegisterPrueba,
-  valuesTypesRegister,
+
 } from "@/interfaces/TypesRegister";
 
 export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {

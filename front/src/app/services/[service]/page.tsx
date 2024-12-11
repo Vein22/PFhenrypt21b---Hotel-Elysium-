@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 
 type ServiceProps = {
@@ -70,10 +71,18 @@ const serviceData: Record<string, ServiceProps> = {
   },
 };
 
+export interface PageProps {
+  params: { service: string }; // Aseguramos que `service` es un string específico
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
-/// Mortal 
-const ServicePage = ({ params }: { params: { service: string } }) => {
+const ServicePage = ({ params, searchParams }: PageProps) => {
   const { service } = params;
+  const resolvedSearchParams = searchParams || {};
+
+  console.log('====================================');
+  console.log(resolvedSearchParams);
+  console.log('====================================');
 
   const serviceDataItem = serviceData[service];
 
