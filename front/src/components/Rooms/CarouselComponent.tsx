@@ -74,9 +74,6 @@ const SwiperComponent = () => {
           &#x276F;
         </button>
       </div>
-      <div>
-        <button className={styles.navigationButton}><Link href="roomsManagement">Crear habitaciones</Link></button>
-      </div>
     </div>
   );
 };

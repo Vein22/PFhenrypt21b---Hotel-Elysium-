@@ -46,7 +46,7 @@ export class AuthService {
 
   async createUser(createUserDto: CreateUserDto) {
     const existingUser = await this.userRepository.findOne({
-      where: { email: createUserDto.email },
+      where: [{ email: createUserDto.email }, { dni: createUserDto.dni }],
     });
 
     if (existingUser) {
@@ -62,6 +62,7 @@ export class AuthService {
       password: hashedPassword,
       dni: createUserDto.dni,
       registrationDate: new Date().toISOString().split('T')[0],
+      isAdmin: false,
     });
 
     const savedUser = await this.userRepository.save(newUser);
@@ -77,7 +78,10 @@ export class AuthService {
       name: savedUser.name,
       phone: savedUser.phone,
       email: savedUser.email,
+      dni: createUserDto.dni,
       registrationDate: savedUser.registrationDate,
+      isAdmin: savedUser.isAdmin,
     };
   }
+  
 }
