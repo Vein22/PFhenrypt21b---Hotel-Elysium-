@@ -2,17 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { userSession } from "@/interfaces/Types.session";
+import React from "react";
 import CardUser from "./CardUser";
 import { useLoggin } from "@/context/logginContext";
 import Switcher from "../Switcher";
 
 const Header = () => {
   const { userData, setUserData } = useLoggin();
-  const router = useRouter();
-  const path = usePathname();
-
   return (
     <header className="fixed w-full bg-black text-white shadow-md shadow-marronclaro z-50">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
