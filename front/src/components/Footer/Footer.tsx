@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-1/4 h-1 bg-amber-600 mb-2 mx-auto"></div>
+        <div className="w-1/4 h-1 bg-marron mb-2 mx-auto"></div>
 
         <div className="mt-8">
           <p className="text-xl font-semibold mb-2">Síguenos en Nuestras Redes</p>
@@ -67,7 +67,7 @@ const Footer = () => {
                       height={40}
                     />
                   </div>
-                  <span className="mt-1 hover:text-amber-600">Facebook</span>
+                  <span className="mt-1 hover:text-marron">Facebook</span>
                 </div>
               </Link>
             </div>
@@ -83,7 +83,7 @@ const Footer = () => {
                       height={40}
                     />
                   </div>
-                  <span className="mt-1 hover:text-amber-600">X</span>
+                  <span className="mt-1 hover:text-marron">X</span>
                 </div>
               </Link>
             </div>
@@ -99,15 +99,15 @@ const Footer = () => {
                       height={40}
                     />
                   </div>
-                  <span className="mt-1 hover:text-amber-600">LinkedIn</span>
+                  <span className="mt-1 hover:text-marronclaro">LinkedIn</span>
                 </div>
               </Link>
             </div>
           </div>
         </div>
 
-        <div className="w-1/4 h-1 bg-amber-600 mt-5 mb-1 mx-auto"></div>
-        <p className="text-amber-500">© 2024, Todos los derechos reservados.</p>
+        <div className="w-1/4 h-1 bg-marron mt-5 mb-1 mx-auto"></div>
+        <p className="text-marronclaro">© 2024, Todos los derechos reservados.</p>
       </div>
     </footer>
   );
