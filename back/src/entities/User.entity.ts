@@ -64,13 +64,25 @@ export class User {
   password: string;
 
   /**
-   * DNI asociado a las credenciales.
+   * Indica si el usuario tiene privilegios de administrador.
+   * @example false
+   */
+  @ApiProperty({
+    example: false,
+    description: 'Indica si el usuario tiene privilegios de administrador.',
+  })
+  @Column({ default: false })
+  isAdmin: boolean;
+
+  /**
+   * Documento Nacional de Identidad (DNI).
    * @example '12345678A'
    */
   @ApiProperty({
     example: '12345678A',
-    description: 'DNI asociado a las credenciales.',
+    description: 'Documento Nacional de Identidad (DNI).',
   })
-  @Column()
+  @Column({ unique: true, nullable: false })
   dni: string;
+  
 }
