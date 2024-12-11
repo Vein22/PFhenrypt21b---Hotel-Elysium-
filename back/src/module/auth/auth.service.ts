@@ -8,6 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/CreateUserDto';
+import { NotificationsService } from '../notifications/notifications.service';
 
 @Injectable()
 export class AuthService {
@@ -15,6 +16,7 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
+    private readonly notificationService: NotificationsService
   ) {}
 
   async signIn(userLogin: LoginUserDto) {
@@ -63,6 +65,12 @@ export class AuthService {
     });
 
     const savedUser = await this.userRepository.save(newUser);
+
+    try {
+      await this.notificationService.sendWelcomeEmail(savedUser.email, savedUser.name);
+    } catch (error) {
+      console.error('Error enviando el correo de bienvenida:', error);
+    }
 
     return {
       id: savedUser.id,
