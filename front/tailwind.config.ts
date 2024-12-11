@@ -10,7 +10,9 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        tertiary: "#b69663",
+      },
     },
   },
   darkMode: "class",
