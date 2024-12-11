@@ -7,11 +7,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { FilesModule } from './module/files/files.module';
 import { RoomsModule } from './module/create-room/rooms.module';
 
+
 @Module({
   imports: [
     AuthModule,
     FilesModule,
     RoomsModule,
+
     
     JwtModule.register({
       global: true,
@@ -29,6 +31,7 @@ import { RoomsModule } from './module/create-room/rooms.module';
       useFactory: (Config: ConfigService) => Config.get('typeorm'),
     }),
   ],
+ 
   controllers: [],
   providers: [],
 })

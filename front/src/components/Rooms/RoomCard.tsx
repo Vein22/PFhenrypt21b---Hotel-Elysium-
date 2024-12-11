@@ -1,10 +1,12 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { Room } from "@/interfaces";
+import Link from "next/link";
 
-const RoomCard: React.FC<Room> = ({ roomType, title, size, beds, rating = 0, image, price }) => {
+const RoomCard: React.FC<Room> = ({ roomType, title, size, beds, rating = 0, image, price, id }) => {
   return (
     <div className="w-80 h-96 bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+      <Link href={`/rooms/${id}`}>
       <div className="relative h-1/2">
         <img
           src={image}
@@ -35,6 +37,7 @@ const RoomCard: React.FC<Room> = ({ roomType, title, size, beds, rating = 0, ima
           </div>
         </div>
       </div>
+      </Link>
     </div>
   );
 };
