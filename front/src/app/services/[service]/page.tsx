@@ -45,7 +45,7 @@ const serviceData: Record<string, ServiceProps> = {
     comments: [
       { photo: "/persona1.jpg", comment: "Atención profesional con los mejores tratamientos" },
       { photo: "/persona2.jpg", comment: "A toda hora nuestros los mejores cortes y tratamientos" },
-      { photo: "/persona3.jpg", comment: "Impacta con los peinados modernos para ti, tu familia" },
+      { photo: "/persona3.jpg", comment: "Impacta con los peinados modernos para todos" },
     ],
   },
   spa: {
@@ -88,7 +88,7 @@ const ServicePage = async ({ params }: { params: { service: string } }) => {
 
 
 
-        <h2 className="text-6xl font-extrabold mb-12 text-center bg-gradient-to-r from-marron to-marronfuerte text-transparent bg-clip-text">
+        <h2 className="text-6xl font-extrabold mb-12 text-center bg-gradient-to-r text-titulo bg-clip-text">
           {serviceDataItem.referencia}
         </h2>
 

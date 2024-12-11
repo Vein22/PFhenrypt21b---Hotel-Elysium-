@@ -15,6 +15,7 @@ export default {
         marron:"#856e4c",
         marronclaro: "#b69663",
         marronfuerte:"#4b3b2c",
+        titulo:"#616161",
       },
     },
   },
