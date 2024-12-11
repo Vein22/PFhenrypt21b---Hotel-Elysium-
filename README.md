@@ -15,3 +15,5 @@
 <p>Texto o párrafo = 16px o 1rem</p>
 <p>Títulos o encabezados = 32px o 2rem</p>
 <p>Inputs o placeholder = 8px o 0.5rem</p>
+
+<p>deploy front<p> 
