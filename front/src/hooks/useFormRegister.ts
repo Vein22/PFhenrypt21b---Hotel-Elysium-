@@ -5,16 +5,14 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { velidateFormRegister } from "@/helpers/validateRegister";
 
-type DataFormHandler = (data: Omit<valuesTypesRegisterPrueba, "confirm_password">) => Promise<boolean>;
-
-type TypeFormVR = (
+type typeFormVR = (
   form: valuesTypesRegisterPrueba
 ) => Partial<valuesTypesRegisterPrueba>;
 
 export const useFormRegister = (
   initialForm: valuesTypesRegisterPrueba,
-  validateForm: TypeFormVR,
-  dataForm: DataFormHandler 
+  validateForm: typeFormVR,
+  dataForm: any
 ) => {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState<Partial<valuesTypesRegisterPrueba>>({});
@@ -33,12 +31,17 @@ export const useFormRegister = (
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target as { name: keyof valuesTypesRegisterPrueba; value: string };
+  
+    // Validar solo el campo que perdió el foco
     const fieldError = velidateFormRegister({ ...form, [name]: value });
+  
+    // Actualizar solo el campo correspondiente en el estado de errores
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: fieldError[name],
     }));
   };
+  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,8 +50,7 @@ export const useFormRegister = (
 
     if (Object.keys(formErrors).length === 0) {
       const { confirm_password, ...newData } = form;
-      console.log(confirm_password);
-      setLoading(true);
+      setLoading(true)
 
       try {
         const result = await dataForm(newData);
@@ -64,9 +66,9 @@ export const useFormRegister = (
             title: "Registrado",
             icon: "success",
           });
-          setLoading(false);
+          setLoading(false)
         } else {
-          setIsErrorResponse(true);
+          setIsErrorResponse(true)
           Swal.fire({
             text: "Ha ocurrido un error al registrarse.",
             title: "Error",
