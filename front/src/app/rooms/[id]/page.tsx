@@ -2,8 +2,13 @@ import RoomDetail from "@/components/Rooms/RoomDetail";
 import { getRoomById } from "@/api/getRooms";
 import NotFound from "@/app/not-found";
 
-const Page = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+interface Params {
+  id: string;
+}
+
+const Page = async ({ params }: { params: Promise<Params> }) => {
+  const resolvedParams = await params; // Resolver el objeto `params` si se pasa como `Promise`
+  const { id } = resolvedParams;
 
   try {
     const room = await getRoomById(id);
