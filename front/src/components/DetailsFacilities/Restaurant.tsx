@@ -5,7 +5,7 @@ import restaurantIMG from '../../../public/saul/instalaciones-restaurante-prueba
 
 export const RestaurantComponent = () => {
     return (
-        <section className={Style.container}>
+        <section className={Styles.container}>
         <div className={Styles.portadaDetails}>
             <h1>RESTAURANTE</h1>
             <h2>DISFRUTA DE NUESTRA VARIEDAD GASTRONÓMICA</h2>
@@ -16,7 +16,7 @@ export const RestaurantComponent = () => {
             <h1>DISFRUTA DE NUESTRAS INSTALACIONES Y NUESTRA GRAN VARIEDAD GASTRONÓMICA</h1>
         </article>
 {/*Gimnasio de entrenamiento*/}
-        <article className={Style.gimnasioContainer}>
+        <article className={Styles.gimnasioContainer}>
             <Image src={restaurantIMG} width={780} height={755} alt='Gimnasio'/>
 
             <div className={Styles.containerGim}>
@@ -27,47 +27,58 @@ export const RestaurantComponent = () => {
                 <p>Cena: <span className={Styles.cena}>20:30 a 22:00</span></p>
             </div>
         </article>
-        <hr className={Style.hr}/>
-        {/*Piscina con varios niveles*/}
-        <article className={Style.gimnasioContainer}>
-            <div className={Style.containerGim}>
-                <p className={Style.aptttud}>Relajación y diversión</p>
-                <h1>Piscina con varios niveles</h1>
-                <p className={Style.descriptionGim}>Relájate en nuestra piscina de diseño único, 
-                    con áreas para adultos y niños. Rodeada de vistas espectaculares y cómodas tumbonas, 
-                    es el lugar perfecto para disfrutar del sol y la tranquilidad.</p>
-                <button className={Style.saberMas}>Saber más</button>
-            </div>
-            <p>02</p>
-            <Image src='' width={810} height={755} alt='Gimnasio'/>
-        </article>
-        <hr className={Style.hr}/>
+
+        {/*Alimentos*/}
+        <article className={Styles.alimentosContainer}>
+            <h2 className={Styles.subTitulos}>ALIMENTOS</h2>
+            <h1>DETALLES DEL SERVICIO</h1>
+            <p className={Styles.detalles}>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
+             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
+             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
+             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
+             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
+             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
+             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
+             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
+             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
+             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
+             </p>
+
+             <h1>REGLAS DEL RESTAURANTE</h1>
+            <p className={Styles.detalles}>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
+             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
+             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
+             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
+             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
+             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro
+             </p>
+
+             <h1>CÓDIGO DE VESTIMENTA</h1>
+            <p className={Styles.detalles}>
+            Lorem ipsum, dolor sit amet cons
+             </p>
+
+             <p className={Styles.detalles}>
+            Lorem ipsum, dolor sit amet cons
+             </p>
+
+             <p className={Styles.detalles}>
+            Lorem ipsum, dolor sit amet cons
+             </p>
+            </article>
+        <hr className={Styles.hr}/>
         {/*Restaurante*/}
-        <article className={Style.gimnasioContainer}>
-            <Image src='' width={810} height={755} alt='Gimnasio'/>
-            <p>03</p>
-            <div className={Style.containerGim}>
-                <p className={Style.aptttud}>Gastronomía exclusiva</p>
-                <h1>Restaurante</h1>
-                <p className={Style.descriptionGim}>Déjate sorprender por una experiencia culinaria inolvidable. 
-                    Nuestro restaurante combina sabores locales e internacionales,
-                     preparados con ingredientes frescos y de alta calidad. Vive un viaje gastronómico único.</p>
-                <button className={Style.saberMas}>Saber más</button>
+        <article className={Styles.gimnasioContainer}>
+            <div>
+                <h1>MENÚ DE COMIDA DEL RESTAURANTE</h1>
+                <nav>
+                    <a href="">DESAYUNO</a>
+                    <a href="">COMIDA</a>
+                    <a href="">CENA</a>
+                </nav>
             </div>
-        </article>
-        <hr className={Style.hr}/>
-        {/*SPA y sala de estar*/}
-        <article className={Style.gimnasioContainer}>
-            <div className={Style.containerGim}>
-                <p className={Style.aptttud}>Bienestar y lujo</p>
-                <h1>SPA y sala de estar</h1>
-                <p className={Style.descriptionGim}>Sumérgete en un oasis de relajación en nuestro SPA. 
-                    Disfruta de masajes, tratamientos exclusivos y áreas de descanso diseñadas
-                     para renovar cuerpo y mente. Perfecto para desconectarte del estrés diario.</p>
-                <button className={Style.saberMas}>Saber más</button>
-            </div>
-            <Image src='' width={810} height={755} alt='Gimnasio'/>
-            <p>01</p>
         </article>
         </section>
     );
