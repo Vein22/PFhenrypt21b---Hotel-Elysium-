@@ -63,7 +63,7 @@ const RoomDetail = ({
           onClick={() => router.push(`/rooms/${id}`)}
           disabled={!userData?.token}
           title={!userData?.token? "Debe iniciar sesión" : ""}
-          className=" bg-tertiary focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-6 text-white {`${isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'`}"
+          className={`bg-tertiary focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-6 text-white ${!userData?.token ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
         >
           <FaCalendarAlt className="mr-2" />
           Reservá ahora
