@@ -36,7 +36,7 @@ export class RoomsController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT) 
-  async deleteRoomById(@Param('id') id: string): Promise<void> {
+  async deleteRoomById(@Param('id') id: string) {
     return this.roomsService.deleteRoomById(id);
   }
 }
