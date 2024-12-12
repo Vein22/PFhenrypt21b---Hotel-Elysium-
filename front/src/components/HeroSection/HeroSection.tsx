@@ -12,14 +12,14 @@ const HeroSection = () => {
     >
       <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-4xl mx-auto">
         <h1
-          className="text-4xl text-white font-bold mb-4"
+          className="text-white text-[3rem]"
           style={{ textShadow: "2px 2px 4px rgba(217, 119, 6, 1)" }}
         >
           Vive una Experiencia Única en California
         </h1>
 
         <p
-          className="text-2xl text-white mb-6 font-bold"
+          className="text-[2rem] text-white mb-6 font-bold"
           style={{ textShadow: "2px 2px 4px rgb(182, 150, 99)" }}
         >
           Hotel y Resort de Lujo
