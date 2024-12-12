@@ -15,7 +15,7 @@ const config = {
   migrations: [__dirname + '/../migrations/*{.ts,.js}'],
   synchronize: true,
   logging: false,
-    //  dropSchema: true,
+  // dropSchema: true,
   // ssl: true,
 };
 
