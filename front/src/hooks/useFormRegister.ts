@@ -10,7 +10,7 @@ type typeFormVR = (
 ) => Partial<valuesTypesRegisterPrueba>;
 
 type DataFormType = {
-  (data: valuesTypesRegisterPrueba): Promise<unknown>;
+  (data: Omit<valuesTypesRegisterPrueba, 'confirm_password'>): Promise<unknown>;
 };
 export const useFormRegister = (
   initialForm: valuesTypesRegisterPrueba,
