@@ -6,6 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { FilesModule } from './module/files/files.module';
 import { RoomsModule } from './module/create-room/rooms.module';
+import { NotificationsModule } from './module/notifications/notifications.module';
+import { ReservationsModule } from './module/reservations/reservations.module';
+import { User } from './entities/User.entity';
+import { Room } from './entities/Room.entity';
+import { Reservation } from './entities/Reservation.entity';
 
 
 @Module({
@@ -13,6 +18,7 @@ import { RoomsModule } from './module/create-room/rooms.module';
     AuthModule,
     FilesModule,
     RoomsModule,
+    ReservationsModule,
 
     
     JwtModule.register({
@@ -28,7 +34,7 @@ import { RoomsModule } from './module/create-room/rooms.module';
 
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (Config: ConfigService) => Config.get('typeorm'),
+      useFactory: (Config: ConfigService) => Config.get('typeorm')
     }),
   ],
  

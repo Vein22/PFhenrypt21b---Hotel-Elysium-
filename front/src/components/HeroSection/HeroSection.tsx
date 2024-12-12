@@ -1,6 +1,6 @@
-'use client'
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+"use client";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -15,18 +15,18 @@ const HeroSection = () => {
           className="text-white text-[3rem]"
           style={{ textShadow: "2px 2px 4px rgba(217, 119, 6, 1)" }}
         >
-          Vive una Experiencia Única en California
+          Vive una Experiencia Única en ELYSIUM
         </h1>
 
         <p
-          className="text-[2rem] text-white mb-6 font-bold"
+          className="text-[2rem] text-white mb-6"
           style={{ textShadow: "2px 2px 4px rgb(182, 150, 99)" }}
         >
           Hotel y Resort de Lujo
         </p>
 
         <motion.button
-          className="bg-marron text-white border border-marronfuerte rounded-lg py-2 px-4 hover:bg-opacity-70 transition-all"
+          className="bg-mostaza border-mostaza uppercase text-white rounded-lg py-2 px-4 hover:bg-opacity-70 transition-all"
           whileHover={{ scale: 1.05 }}
           onClick={() => setShowMessage(!showMessage)}
         >
@@ -41,8 +41,13 @@ const HeroSection = () => {
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
-            <p>El hotel perfecto. 
-            Si buscas unas vacaciones perfectas y recuerdos inolvidables, estás en el lugar indicado. Planifiquemos una estancia a tu medida, con los mejres Servicios, Atención en Habitación, Spa, Gimnasio, Peluqueria Profesional, Desayunos Buffet, la mejor Seguridad y mucho mas.</p>
+            <p>
+              El hotel perfecto. Si buscas unas vacaciones perfectas y recuerdos
+              inolvidables, estás en el lugar indicado. Planifiquemos una
+              estancia a tu medida, con los mejres Servicios, Atención en
+              Habitación, Spa, Gimnasio, Peluqueria Profesional, Desayunos
+              Buffet, la mejor Seguridad y mucho mas.
+            </p>
           </motion.div>
         )}
       </div>
