@@ -35,8 +35,9 @@ export class RoomsRepository {
 
 
 
-    async deleteRoomById(id: string): Promise<void> {    
+    async deleteRoomById(id: string): Promise<{id:string}> {    
         await this.roomRepository.delete(id), { isDeleted: false }; 
+        return {id};
     }
 
     
