@@ -11,19 +11,18 @@ const HeroSection = () => {
       style={{ backgroundImage: "url(/fondo3.png)" }}
     >
       <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-4xl mx-auto">
-        <h1
-          className="text-white text-[3rem]"
-          style={{ textShadow: "2px 2px 4px rgba(217, 119, 6, 1)" }}
-        >
-          Vive una Experiencia Única en ELYSIUM
-        </h1>
-
         <p
-          className="text-[2rem] text-white mb-6"
+          className="text-[1.5rem] text-white"
           style={{ textShadow: "2px 2px 4px rgb(182, 150, 99)" }}
         >
           Hotel y Resort de Lujo
         </p>
+        <h1
+          className="text-white text-[3rem] uppercase my-6"
+          style={{ textShadow: "2px 2px 4px rgba(217, 119, 6, 1)" }}
+        >
+          Vive una Experiencia Única en ELYSIUM
+        </h1>
 
         <motion.button
           className="bg-mostaza border-mostaza uppercase text-white rounded-lg py-2 px-4 hover:bg-opacity-70 transition-all"
