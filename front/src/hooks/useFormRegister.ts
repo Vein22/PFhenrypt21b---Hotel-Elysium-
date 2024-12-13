@@ -30,6 +30,7 @@ export const useFormRegister = (
       ...form,
       [name]: value,
     });
+
   };
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
