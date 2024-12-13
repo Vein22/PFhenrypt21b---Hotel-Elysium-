@@ -3,6 +3,8 @@ import React from "react";
 import { Room } from "@/interfaces";
 import { FaStar, FaCalendarAlt } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { useLoggin } from "@/context/logginContext";
+import Image from "next/image";
 
 const RoomDetail = ({
   id,
@@ -16,14 +18,17 @@ const RoomDetail = ({
   description,
 }: Room) => {
   const router = useRouter();
+  const { userData } = useLoggin();
 
   return (
     <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex">
       <div className="w-1/2 relative">
-        <img
-          className="w-full h-full object-cover"
+        <Image
           src={image}
           alt={title}
+          layout="fill" 
+          objectFit="cover" 
+          className="rounded-t-lg"
         />
         <div className="absolute top-2 right-2 bg-tertiary text-white text-sm font-semibold py-1 px-2 rounded-lg shadow-md">
           ${price} / noche
@@ -56,7 +61,9 @@ const RoomDetail = ({
         <div className="flex justify-center">
         <button
           onClick={() => router.push(`/rooms/${id}`)}
-          className=" bg-tertiary focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-6 text-white"
+          disabled={!userData?.token}
+          title={!userData?.token? "Debe iniciar sesión" : ""}
+          className=" bg-tertiary focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-6 text-white {`${isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'`}"
         >
           <FaCalendarAlt className="mr-2" />
           Reservá ahora

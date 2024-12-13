@@ -2,10 +2,8 @@ import Image from 'next/image';
 
 const FeatureSection = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16">
       <div className="container mx-auto grid md:grid-cols-2 gap-8 items-center">
-        
-        {/* Imagen centrada */}
         <div className="flex justify-center">
           <Image 
             src="/habitacion.png" 
@@ -15,17 +13,17 @@ const FeatureSection = () => {
             height={200} 
           />
         </div>
-        
-
         <div>
-          <h2 className="text-3xl font-bold mb-4">El Mejor Hotel en la Ciudad de California</h2>
+          <h3 className='text-mostaza'>Hotel y resort de lujo</h3>
+          <h2 className="text-[2.5rem] uppercase">El Mejor Hotel en la Ciudad de California</h2>
           <p className="text-gray-700 mb-6">
             Alojate y Volveras. La mejor Experiencia
           </p>
 
           <ul className="flex space-x-1"> 
             <li>
-              <span className="font-bold text-marron text-[3rem]">250+</span> Habitaciones de Lujo
+              <p className='text-mostaza text-[4rem]'>250</p>
+              <span className="text-mostaza font-bold text-[3rem] flex ">+</span> Habitaciones de Lujo
             </li>
             <li>
               <span className="font-bold text-marron text-[3rem] ml-5">4.9</span> Calificación de los Clientes

@@ -5,10 +5,7 @@ export const metadata = {
     description: 'Componente del servidor para el Restaurante.',
   }
 
-export const Restaurant = () => {
-    return (
-        <RestaurantComponent />
-    )
+export default function Restaurant () {
+    return <RestaurantComponent />
 }
 
-export default Restaurant;

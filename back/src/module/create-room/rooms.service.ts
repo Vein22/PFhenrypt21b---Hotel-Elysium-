@@ -34,7 +34,7 @@ export class RoomsService {
 
 
 
-  async deleteRoomById(id: string): Promise<void> {
+  async deleteRoomById(id: string): Promise<{id:string}> {
 
     const room = await this.roomRepository.findById(id);
     if (!room) {
@@ -42,6 +42,6 @@ export class RoomsService {
     }
 
 
-    await this.roomRepository.deleteRoomById(id); 
+    return this.roomRepository.deleteRoomById(id); 
   }
 }

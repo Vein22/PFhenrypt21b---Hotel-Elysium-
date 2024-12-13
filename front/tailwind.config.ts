@@ -10,12 +10,14 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        primary: ["var(--font-primary)", "serif"],
+        secondary: ["var(--font-secondary)", "serif"],
+      },
       colors: {
-        tertiary: "#b69663",
-        marron:"#856e4c",
-        marronclaro: "#b69663",
-        marronfuerte:"#4b3b2c",
-        titulo:"#616161",
+        grisOscuro: "#1E1E1E",
+        grisClaro: "#ACACAC",
+        mostaza: "#C19D68",
       },
     },
   },
