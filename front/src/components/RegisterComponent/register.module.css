@@ -114,8 +114,8 @@
 }
 
 .submitDisabled {
-    background-color: #7c7c7c;
-    color: #e2e2e2;
+    background-color: #b69663a9;
+    color: #ffffff;
 }
 
 
@@ -146,7 +146,7 @@
 /* Pantallas medianas (tabletas) */
 @media (max-width: 1044px) {
     .formContainer {
-        width: 60%;  /* Reducir el ancho para pantallas medianas */
+        width: 24rem;  /* Reducir el ancho para pantallas medianas */
     }
 
     .formContainer > h1 {
@@ -154,14 +154,14 @@
     }
 
     .submit {
-        width: 50%;
+        width: 3rem;
     }
 }
 
 /* Pantallas grandes (desktop) */
 @media (min-width: 1025px) {
     .formContainer {
-        width: 20%;  /* Ancho optimizado para pantallas grandes */
+        width: 25rem;  /* Ancho optimizado para pantallas grandes */
     }
 
     .formContainer > h1 {
