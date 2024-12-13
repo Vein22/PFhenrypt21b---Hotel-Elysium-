@@ -41,7 +41,7 @@ export const  UpdateRoll = () => {
         alert("Error al asignar el rol");
       }
     } catch (error) {
-      console.error("Error al asignar el rol", error);
+      console.log("Error al asignar el rol", error);
     }
   };
 

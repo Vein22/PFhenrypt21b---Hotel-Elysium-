@@ -1,7 +1,7 @@
 .container {
     min-height: 100vh;
-    background-color: aliceblue;
-    padding-top: .1rem;
+    background-color: rgba(240, 248, 255, 0);
+    padding-top: 0;
 }
 
 
@@ -52,7 +52,7 @@
     width: 60%;
     margin: 2rem auto;
     padding: 1rem;
-    background-color: aliceblue;
+    background-color: rgba(240, 248, 255, 0);
     font-family: serif;
     font-weight: bold;
     font-size: 1.3rem;
@@ -75,7 +75,6 @@
 /*//////////////////////////////////////////////////////*/
 
 .alimentosContainer {
-    border: solid;
     width: 90%;
     margin: 0 auto 3rem auto;
 }
@@ -83,13 +82,13 @@
     font-family: serif;
     font-weight: bold;
     margin: 1rem 0;
+    font-size: 2.5rem;
 }
 
 .alimentosContainer > p {
-    border: solid;
     width: 90%;
     margin: 1.7rem 0;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
 }
 
 

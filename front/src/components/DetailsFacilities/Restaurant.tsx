@@ -33,39 +33,37 @@ export const RestaurantComponent = () => {
             <h2 className={Styles.subTitulos}>ALIMENTOS</h2>
             <h1>DETALLES DEL SERVICIO</h1>
             <p className={Styles.detalles}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
-             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
-             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
-             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
-             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
-             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
-             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
-             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
-             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
-             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
+            En nuestro restaurante, nos enorgullece ofrecer un servicio impecable en cada uno de nuestros platillos. 
+            Nuestro equipo de cocina trabaja con pasión para brindarte una experiencia gastronómica excepcional, 
+            adaptada a tus gustos y necesidades dietéticas. Además, nuestro personal siempre está disponible 
+            para asegurar que tu experiencia sea lo más cómoda posible. Desde opciones tradicionales hasta 
+            innovadoras, cada plato está diseñado para deleitar tus sentidos.
              </p>
 
              <h1>REGLAS DEL RESTAURANTE</h1>
             <p className={Styles.detalles}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
-             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
-             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
-             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro nesciunt.
-             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis saepe necessitatibus maiores possimus.
-             Repellendus fugit, neque inventore aliquam, nihil quam quae impedit a, pariatur minima unde numquam qui porro
+            Nuestro restaurante sigue un código de conducta que garantiza una experiencia placentera para
+             todos los comensales. Te pedimos que respetes las siguientes reglas:
              </p>
+            
+                <p className={Styles.detalles}>1- Por favor, mantén un tono de voz moderado.</p>
+                <p className={Styles.detalles}>2- No está permitido fumar en el interior del restaurante.</p>
+                <p className={Styles.detalles}>3- Se agradece la puntualidad para las reservas, para poder ofrecer un servicio más eficiente.</p>
+                <p className={Styles.detalles}>4- Las mascotas no están permitidas dentro del restaurante.</p>
+
 
              <h1>CÓDIGO DE VESTIMENTA</h1>
             <p className={Styles.detalles}>
-            Lorem ipsum, dolor sit amet cons
+            Para asegurar que todos nuestros comensales disfruten de una experiencia agradable, 
+            pedimos que se sigan las siguientes normas de vestimenta:
              </p>
 
              <p className={Styles.detalles}>
-            Lorem ipsum, dolor sit amet cons
+             Ropa casual o formal.
              </p>
 
              <p className={Styles.detalles}>
-            Lorem ipsum, dolor sit amet cons
+             No se permite el uso de trajes de baño o ropa deportiva dentro del restaurante.
              </p>
             </article>
         <hr className={Styles.hr}/>
@@ -78,6 +76,9 @@ export const RestaurantComponent = () => {
                     <a href="">COMIDA</a>
                     <a href="">CENA</a>
                 </nav>
+            </div>
+            <div>
+                
             </div>
         </article>
         </section>
