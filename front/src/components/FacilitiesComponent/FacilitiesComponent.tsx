@@ -4,6 +4,7 @@ import gimnasioImg from '../../../public/saul/instalaciones-gimnasio_prueba.jpg'
 import piscinaImg from '../../../public/saul/instalaciones-piscina_prueba.jpg'
 import restauranteImg from '../../../public/saul/instalaciones-restaurante-1_prueba.jpg'
 import spaImg from '../../../public/saul/instalaciones-spa_prueba.jpg'
+import Link from 'next/link';
 
 export const FacilitiesComponent = () => {
     return (
@@ -30,7 +31,7 @@ export const FacilitiesComponent = () => {
                     equipado con máquinas de última generación y áreas
                      especializadas para entrenamiento funcional, cardio y pesas.
                       Ideal para mantenerte en forma durante tu estancia.</p>
-                <button className={Style.saberMas}>Saber más</button>
+                <button className={Style.saberMas}><Link href=''>Saber más</Link></button>
             </div>
         </article>
         <hr className={Style.hr}/>
@@ -42,7 +43,7 @@ export const FacilitiesComponent = () => {
                 <p className={Style.descriptionGim}>Relájate en nuestra piscina de diseño único, 
                     con áreas para adultos y niños. Rodeada de vistas espectaculares y cómodas tumbonas, 
                     es el lugar perfecto para disfrutar del sol y la tranquilidad.</p>
-                <button className={Style.saberMas}>Saber más</button>
+                <button className={Style.saberMas}><Link href='pool'>Saber más</Link></button>
             </div>
             <p>02</p>
             <Image src={piscinaImg} width={810} height={755} alt='Gimnasio'/>
@@ -58,7 +59,7 @@ export const FacilitiesComponent = () => {
                 <p className={Style.descriptionGim}>Déjate sorprender por una experiencia culinaria inolvidable. 
                     Nuestro restaurante combina sabores locales e internacionales,
                      preparados con ingredientes frescos y de alta calidad. Vive un viaje gastronómico único.</p>
-                <button className={Style.saberMas}>Saber más</button>
+                <button className={Style.saberMas}><Link href='restaurant'>Saber más</Link></button>
             </div>
         </article>
         <hr className={Style.hr}/>
@@ -70,7 +71,7 @@ export const FacilitiesComponent = () => {
                 <p className={Style.descriptionGim}>Sumérgete en un oasis de relajación en nuestro SPA. 
                     Disfruta de masajes, tratamientos exclusivos y áreas de descanso diseñadas
                      para renovar cuerpo y mente. Perfecto para desconectarte del estrés diario.</p>
-                <button className={Style.saberMas}>Saber más</button>
+                <button className={Style.saberMas}><Link href=''>Saber más</Link></button>
             </div>
             <Image src={spaImg} width={810} height={755} alt='Gimnasio'/>
             <p>01</p>
