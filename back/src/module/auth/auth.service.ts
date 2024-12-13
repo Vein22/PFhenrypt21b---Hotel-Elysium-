@@ -55,6 +55,9 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
 
+    // Temporalmente asigno el rol de cliente por defecto
+  const roleId = '331cdc0e-98d7-4db5-af5f-6f927a876bff';
+
     const newUser = this.userRepository.create({
       name: createUserDto.name,
       phone: createUserDto.phone,
@@ -63,6 +66,7 @@ export class AuthService {
       dni: createUserDto.dni,
       registrationDate: new Date().toISOString().split('T')[0],
       isAdmin: false,
+      role: { id: roleId },
     });
 
     const savedUser = await this.userRepository.save(newUser);
@@ -81,6 +85,7 @@ export class AuthService {
       dni: createUserDto.dni,
       registrationDate: savedUser.registrationDate,
       isAdmin: savedUser.isAdmin,
+      role: savedUser.role,
     };
   }
   
