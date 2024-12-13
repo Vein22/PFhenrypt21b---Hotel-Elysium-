@@ -1,6 +1,9 @@
+'use client'
+
+
 import { useState } from "react";
 
-export const  UserManagement = () => {
+export const  UpdateRoll = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [user, setUser] = useState(null);
   const [newRole, setNewRole] = useState("");
@@ -77,4 +80,4 @@ export const  UserManagement = () => {
   );
 }
 
-export default UserManagement;
+export default UpdateRoll;

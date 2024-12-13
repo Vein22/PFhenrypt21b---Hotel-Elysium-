@@ -1,6 +1,6 @@
 
 .container {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,11 +17,12 @@
     align-items: center;
     justify-content: center;
     width: 20%;
+    background-color: rgba(240, 248, 255, 0.219);
 }
 
 .formContainer > h1 {
     font-size: 2.5rem;
-    color: #535353;
+    /*color: #535353;*/
     margin-bottom: 1rem;
     font-family: serif;
     font-weight: bold;
@@ -50,9 +51,9 @@
     left: 1rem;
     transform: translateY(-50%);
     font-size: .9rem;
-    color: #535353;
+    /*color: #535353;*/
     transition: all 0.2s ease;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(240, 248, 255, 0);
     padding: .1rem;
    
 }
@@ -92,7 +93,7 @@
     font-weight: bold;
     color: rgb(252, 247, 247);
     background-color: #7d6641bc;
-    width: 40%;
+    width: 10rem;
     height: 2.7rem;
 }
 
@@ -106,13 +107,13 @@
 .inputForm:focus + .labelForm, .inputForm:not(:placeholder-shown) + .labelForm {
     transform: translateY(-2rem) scale(.9);
     transform-origin: left top;
-    color: #535353;
+    /*color: #535353;*/
     font-family: serif;
     font-weight: bold;
 
 }
 
 .submitDisabled {
-    background-color: #535353;
-    color: #afafaf;
+    background-color: #7c7c7c;
+    color: #e2e2e2;
 }
