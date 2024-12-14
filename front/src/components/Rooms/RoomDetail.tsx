@@ -1,10 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Room } from "@/interfaces";
 import { FaStar, FaCalendarAlt } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useLoggin } from "@/context/logginContext";
 import Image from "next/image";
+import DatePicker from "react-datepicker"; 
+import "react-datepicker/dist/react-datepicker.css";
+import { postBooking } from "@/api/bookReserve"; 
 
 const RoomDetail = ({
   id,
@@ -20,14 +23,37 @@ const RoomDetail = ({
   const router = useRouter();
   const { userData } = useLoggin();
 
+
+  const [checkInDate, setCheckInDate] = useState<Date | undefined>();
+  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>();
+
+
+  const handleBooking = async () => {
+    if (!userData?.userData.id || !checkInDate || !checkOutDate) return;
+    try {
+      const result = await postBooking(
+        userData.userData.id,
+        id,
+        checkInDate,
+        checkOutDate
+      );
+      console.log("Reserva realizada:", result);
+      alert("Reserva realizada con éxito!");
+      router.push("/"); //esto en el futuro lo tenemos que redireccionar al dashboard 
+    } catch (error) {
+      console.error("Error al reservar:", error);
+      alert("Hubo un error al realizar la reserva. Intenta nuevamente.");
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex">
       <div className="w-1/2 relative">
         <Image
           src={image}
           alt={title}
-          layout="fill" 
-          objectFit="cover" 
+          layout="fill"
+          objectFit="cover"
           className="rounded-t-lg"
         />
         <div className="absolute top-2 right-2 bg-tertiary text-white text-sm font-semibold py-1 px-2 rounded-lg shadow-md">
@@ -35,15 +61,12 @@ const RoomDetail = ({
         </div>
       </div>
 
-
       <div className="w-1/2 p-6 flex flex-col justify-between">
-
         <div>
           <h2 className="text-text text-sm uppercase tracking-wide">{roomType}</h2>
           <h1 className="text-gray-900 font-bold text-xl mt-1 truncate">{title}</h1>
           <p className="text-gray-700 mt-4 text-sm">{description}</p>
         </div>
-
 
         <div className="mt-4 border-t pt-4">
           <p className="text-text text-sm mb-2">{size}</p>
@@ -58,21 +81,49 @@ const RoomDetail = ({
           </div>
         </div>
 
+        <div className="mt-4">
+          <label className="block text-sm font-medium text-gray-700">Check-In:</label>
+          <DatePicker
+            selected={checkInDate}
+            onChange={(date) => setCheckInDate(date || undefined)} 
+            className="border rounded-md p-2 w-full"
+          />
+        </div>
+
+        <div className="mt-4">
+          <label className="block text-sm font-medium text-gray-700">Check-Out:</label>
+          <DatePicker
+            selected={checkOutDate}
+            onChange={(date) => setCheckOutDate(date || undefined)}
+            className="border rounded-md p-2 w-full"
+            minDate={checkInDate} 
+          />
+        </div>
+
         <div className="flex justify-center">
-        <button
-          onClick={() => router.push(`/rooms/${id}`)}
-          disabled={!userData?.token}
-          title={!userData?.token? "Debe iniciar sesión" : ""}
-          className=" bg-tertiary focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-6 text-white {`${isDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'`}"
-        >
-          <FaCalendarAlt className="mr-2" />
-          Reservá ahora
-        </button>
+          <button
+            onClick={handleBooking}
+            disabled={!userData?.token || !checkInDate || !checkOutDate}
+            title={
+              !userData?.token
+                ? "Debe iniciar sesión"
+                : !checkInDate || !checkOutDate
+                ? "Seleccione fechas de Check-In y Check-Out"
+                : ""
+            }
+            className={`bg-tertiary focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-6 text-white ${
+              !userData?.token || !checkInDate || !checkOutDate
+                ? "opacity-50 cursor-not-allowed"
+                : "cursor-pointer"
+            }`}
+          >
+            <FaCalendarAlt className="mr-2" />
+            Reservá ahora
+          </button>
         </div>
       </div>
     </div>
   );
 };
-
 
 export default RoomDetail;

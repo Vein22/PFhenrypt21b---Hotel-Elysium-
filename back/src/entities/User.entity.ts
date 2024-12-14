@@ -1,6 +1,6 @@
 
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn  } from 'typeorm';
+import { Role } from './role.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'users' })
@@ -84,5 +84,16 @@ export class User {
   })
   @Column({ unique: true, nullable: false })
   dni: string;
+
+  /**
+   * Relación con el rol del usuario.
+   */
+  @ApiProperty({
+    description: 'Rol asociado al usuario.',
+    type: () => Role,
+  })
+  @ManyToOne(() => Role, (role) => role.users, { eager: true, nullable: false })
+  @JoinColumn({ name: 'role_id' })
+  role: Role;
   
 }

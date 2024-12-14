@@ -2,8 +2,23 @@
     min-height: 100vh;
     background-color: rgba(240, 248, 255, 0);
     padding-top: 0;
+    position: relative;
 }
-
+.volver {
+    font-size: 1.5rem;
+    position: fixed;
+    top: 8.5rem;
+    z-index: 999;
+    font-family: serif;
+    font-weight: bold;
+    background-color: #b69663;
+    padding: .1rem 1rem;
+    border-radius: .1rem;
+}
+.volver:hover {
+    background-color: #e4bd7e;
+    transition: 0.5s;
+}
 
 .portadaDetails {
     min-height: 80vh;
@@ -18,6 +33,9 @@
     align-items: center;
     justify-content: center;
 }
+
+
+
 .portadaDetails > h1 {
     margin-top: 14rem;
     color: aliceblue;
@@ -38,7 +56,7 @@
 .containerGim {
     width: 40%;
     margin-left: 4rem;
-    background-color: rgb(231, 231, 231);
+    background-color: rgba(231, 231, 231, 0.411);
     border-radius: .4rem;
 }
 
@@ -162,4 +180,37 @@
 .saberMas {
     margin-bottom: 0;
     border-radius: .1rem;
+}
+
+
+/*/////////////////////////////////////////////////////*
+/*PORTADA PISCINA*/
+.portadaPiscina {
+    min-height: 80vh;
+    width: 100%;
+    background-image: url('../../../public/saul/piscinaPortada.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.portadaPiscina > h1 {
+    margin-top: 14rem;
+    color: aliceblue;
+    font-size: 3.5rem;
+    font-family: serif;
+    font-weight: bold;
+}
+
+.portadaPiscina > h2 {
+    color: aliceblue;
+    margin-top: 1.5rem;
+    font-size: 3rem;
+    font-family: serif;
+    font-weight: bold;
+    text-align: center;
 }

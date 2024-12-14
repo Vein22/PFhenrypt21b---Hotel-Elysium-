@@ -2,10 +2,12 @@ import Style from '../FacilitiesComponent/facilities.module.css'
 import Styles from '../DetailsFacilities/detailsStyles.module.css'
 import Image from 'next/image';
 import restaurantIMG from '../../../public/saul/instalaciones-restaurante-prueba.jpg';
+import Link from 'next/link';
 
 export const RestaurantComponent = () => {
     return (
         <section className={Styles.container}>
+            <button className={Styles.volver}><Link href='facilities'>VOLVER</Link></button>
         <div className={Styles.portadaDetails}>
             <h1>RESTAURANTE</h1>
             <h2>DISFRUTA DE NUESTRA VARIEDAD GASTRONÓMICA</h2>
