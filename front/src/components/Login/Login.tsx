@@ -1,6 +1,5 @@
 
 "use client";
-
 import styles from './Login.module.css';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
