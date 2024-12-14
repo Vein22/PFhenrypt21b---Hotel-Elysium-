@@ -33,12 +33,16 @@ const Testimonials = () => {
   const visibleTestimonials = [
     testimonials[currentIndex],
     testimonials[(currentIndex + 1) % testimonials.length],
+    testimonials[(currentIndex + 2) % testimonials.length],
   ];
 
   return (
-    <section className="py-16">
+    <section className="py-8">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8">Testimonios</h2>
+        <div className="mb-8">
+        <h2 className="text-[3rem]">Testimonios</h2>
+        <p>Descubre como nuestros huéspedes han vivido experiencias inolvidables con nosotros.</p>
+        </div>
 
         <div className="relative">
           <div className="flex flex-wrap justify-center items-center gap-6">
@@ -47,8 +51,10 @@ const Testimonials = () => {
                 key={index}
                 className="relative bg-white border border-marronfuerte shadow-lg shadow-marronclaro rounded-lg p-6 w-72"
               >
-                <div className="absolute -top-2 left-0 right-0 mx-auto w-64 h-2 bg-marron rounded"></div>
+                {/* <div className="absolute -top-2 left-0 right-0 mx-auto w-64 h-2 bg-marron rounded"></div>
                 <div className="absolute -bottom-2 left-0 right-0 mx-auto w-64 h-2 bg-marron rounded"></div>
+                <div className="absolute top-1 right-1 text-marronfuerte text-2xl"> */}
+                <div className="relative w-full h-2 bg-marron rounded mb-4"></div>
                 <div className="absolute top-1 right-1 text-marronfuerte text-2xl">
                   <Image
                     src="/pluma.svg"
@@ -73,13 +79,13 @@ const Testimonials = () => {
           <div className="absolute inset-y-0 flex items-center justify-between w-full px-4">
             <button
               onClick={prevSlide}
-              className="bg-marron text-white p-3 rounded-full shadow-md hover:bg-opacity-70 transition"
+              className="bg-mostaza text-white p-3 rounded-full shadow-md hover:bg-opacity-70 transition"
             >
               &#9664;
             </button>
             <button
               onClick={nextSlide}
-              className="bg-marron text-white p-3 rounded-full shadow-md hover:bg-opacity-70 transition"
+              className="bg-mostaza text-white p-3 rounded-full shadow-md border hover:bg-opacity-70 transition"
             >
               &#9654;
             </button>

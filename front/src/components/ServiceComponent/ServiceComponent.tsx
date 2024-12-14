@@ -18,7 +18,6 @@ const ServiceComponent = ({ serviceDataItem }: PageProps) => {
         <h2 className="text-6xl font-extrabold mb-12 text-center bg-gradient-to-r text-titulo bg-clip-text">
           {serviceDataItem.referencia}
         </h2>
-
         <div className="space-y-12">
           {serviceDataItem.photos.map((photo, index) => (
             <div
