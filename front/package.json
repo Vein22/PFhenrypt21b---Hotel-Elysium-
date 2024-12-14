@@ -15,6 +15,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@next/env": "^15.1.0",
     "@nextui-org/react": "^2.6.7",
+    "@swc/helpers": "^0.5.15",
     "autoprefixer": "^10.4.20",
     "browserslist": "^4.24.3",
     "caniuse-lite": "^1.0.30001688",
