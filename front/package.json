@@ -26,6 +26,7 @@
     "react-slick": "^0.30.2",
     "sharp": "^0.31.0",
     "slick-carousel": "^1.8.1",
+    "styled-jsx": "^5.1.6",
     "sweetalert2": "^11.14.5",
     "swiper": "^11.1.15",
     "validator": "^13.12.0"
