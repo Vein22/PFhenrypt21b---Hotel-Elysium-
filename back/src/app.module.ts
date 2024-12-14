@@ -14,6 +14,7 @@ import { Reservation } from './entities/Reservation.entity';
 import { UsersModule } from './module/users/users.module'; 
 import { RolesModule } from './module/roles/roles.module'; 
 import { Role } from './entities/Role.entity';
+import { PaymentModule} from './module/payment/payment.module';
 
 
 @Module({
@@ -24,6 +25,7 @@ import { Role } from './entities/Role.entity';
     ReservationsModule,
     UsersModule,
     RolesModule,
+    PaymentModule,
 
     
     JwtModule.register({
