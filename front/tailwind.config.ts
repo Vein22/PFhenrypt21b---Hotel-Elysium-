@@ -15,9 +15,10 @@ export default {
         secondary: ["var(--font-secondary)", "serif"],
       },
       colors: {
-        grisOscuro: "#1E1E1E",
+        grisOscuro: "#1e1e1e",
         grisClaro: "#ACACAC",
         mostaza: "#C19D68",
+        beige: "#f8f6f3",
       },
     },
   },
