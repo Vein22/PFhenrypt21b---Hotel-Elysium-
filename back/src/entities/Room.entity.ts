@@ -3,6 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'rooms' })
 export class Room {
+  
 
   /**
    * Identificador único de la habitación.
