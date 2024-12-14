@@ -67,8 +67,8 @@ const ServicesSection = () => {
         <div className="mb-[2rem]">
           <h2 className="text-[2.5rem] uppercase">Servicios Exclusivos</h2>
           <span className="font-secondary text-grisClaro">
-            "Cada momento, un servicio a tu medida." <br /> En nuestro hotel, nos
-            aseguramos de que cada detalle de tu estancia sea perfecto.
+            Cada momento, un servicio a tu medida. <br /> En nuestro hotel,
+            nos aseguramos de que cada detalle de tu estancia sea perfecto.
           </span>
         </div>
 
