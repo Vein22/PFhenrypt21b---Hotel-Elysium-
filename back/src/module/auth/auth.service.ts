@@ -9,6 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/CreateUserDto';
 import { NotificationsService } from '../notifications/notifications.service';
+import { RolesService } from '../../module/roles/roles.service';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,8 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
-    private readonly notificationService: NotificationsService
+    private readonly notificationService: NotificationsService,
+    private readonly rolesService: RolesService,
   ) {}
 
   async signIn(userLogin: LoginUserDto) {
@@ -56,7 +58,9 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
 
     //Temporalmente asigno el rol de cliente por defecto
-  const roleId = '331cdc0e-98d7-4db5-af5f-6f927a876bff';
+  //const roleId = '"f656692b-8e84-42d3-82e9-900e20cf91c6"';
+  const clienteRole = await this.rolesService.getRoleByNameCliente();
+  const roleId = clienteRole.id;
 
     const newUser = this.userRepository.create({
       name: createUserDto.name,
