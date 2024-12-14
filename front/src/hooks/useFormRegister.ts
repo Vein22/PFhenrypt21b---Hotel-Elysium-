@@ -9,10 +9,13 @@ type typeFormVR = (
   form: valuesTypesRegisterPrueba
 ) => Partial<valuesTypesRegisterPrueba>;
 
+type DataFormType = {
+  (data: Omit<valuesTypesRegisterPrueba, 'confirm_password'>): Promise<unknown>;
+};
 export const useFormRegister = (
   initialForm: valuesTypesRegisterPrueba,
   validateForm: typeFormVR,
-  dataForm: any
+  dataForm: DataFormType,
 ) => {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState<Partial<valuesTypesRegisterPrueba>>({});
@@ -27,6 +30,7 @@ export const useFormRegister = (
       ...form,
       [name]: value,
     });
+
   };
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +55,7 @@ export const useFormRegister = (
     if (Object.keys(formErrors).length === 0) {
       const { confirm_password, ...newData } = form;
       setLoading(true)
+console.log(confirm_password);
 
       try {
         const result = await dataForm(newData);

@@ -6,6 +6,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { FilesModule } from './module/files/files.module';
 import { RoomsModule } from './module/create-room/rooms.module';
+import { NotificationsModule } from './module/notifications/notifications.module';
+import { ReservationsModule } from './module/reservations/reservations.module';
+import { User } from './entities/User.entity';
+import { Room } from './entities/Room.entity';
+import { Reservation } from './entities/Reservation.entity';
+import { UsersModule } from './module/users/users.module'; 
+import { RolesModule } from './module/roles/roles.module'; 
+import { Role } from './entities/Role.entity';
+import { PaymentModule} from './module/payment/payment.module';
 
 
 @Module({
@@ -13,6 +22,10 @@ import { RoomsModule } from './module/create-room/rooms.module';
     AuthModule,
     FilesModule,
     RoomsModule,
+    ReservationsModule,
+    UsersModule,
+    RolesModule,
+    PaymentModule,
 
     
     JwtModule.register({

@@ -1,4 +1,4 @@
-import { mockRooms } from "@/app/mocks/rooms";
+
 import { Room } from "@/interfaces";
 
 
@@ -21,7 +21,7 @@ export const getRooms = async (): Promise<Room[]> => {
         console.log("Rooms fetched:", data);  
         return data; 
     } catch (error) {
-        console.error("Error fetching rooms:", error);
+        console.log("Error fetching rooms:", error);
         return [];
     }
 };

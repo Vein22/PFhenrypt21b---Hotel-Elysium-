@@ -1,16 +1,13 @@
 
 .container {
     min-height: 100vh;
-    background-color: aliceblue;
-    padding-top: .1rem;
-  
+    background-color: rgba(240, 248, 255, 0);
 }
 
 .portadaContainer {
     position: relative;
     min-height: 80vh;
     width: 100%;
-    margin: 6rem auto 0 auto;
     background-image: url('../../../public/saul/instalaciones-portada_prueba.jpg');
     background-size: cover;
     background-position: center;
@@ -45,7 +42,6 @@
     text-align: center;
     width: 60%;
 }
-
 .imgPortada {
     border: solid;
     width: 100%;

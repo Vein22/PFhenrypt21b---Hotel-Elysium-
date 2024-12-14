@@ -4,6 +4,8 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: '.env' });
 
+const sslConfig = process.env.DB_SSL ? JSON.parse(process.env.DB_SSL) : null;
+
 const config = {
   type: 'postgres',
   host: process.env.DB_HOST,
@@ -16,7 +18,7 @@ const config = {
   synchronize: true,
   logging: false,
   // dropSchema: true,
-  // ssl: true,
+  ssl: sslConfig,
 };
 
 export default registerAs('typeorm', () => config);

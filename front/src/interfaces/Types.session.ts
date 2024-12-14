@@ -1,7 +1,7 @@
 export interface userSession {
     token: string,
     userData: {
-        id: number,
+        id: string,
         address: string,
         name: string,
         email: string,
