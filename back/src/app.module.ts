@@ -11,6 +11,7 @@ import { ReservationsModule } from './module/reservations/reservations.module';
 import { User } from './entities/User.entity';
 import { Room } from './entities/Room.entity';
 import { Reservation } from './entities/Reservation.entity';
+import { UsersModule } from './module/users/users.module'; 
 
 
 @Module({
@@ -19,6 +20,7 @@ import { Reservation } from './entities/Reservation.entity';
     FilesModule,
     RoomsModule,
     ReservationsModule,
+    UsersModule,
 
     
     JwtModule.register({
