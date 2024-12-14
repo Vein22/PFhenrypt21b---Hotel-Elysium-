@@ -8,5 +8,13 @@ export interface Room {
     image: string,
     price: number,
     description: string,
-    isDeleted: boolean,
+    isDeleted?: boolean,
+}
+
+export interface Booking {
+    userId: string,
+    roomId: string,
+    checkInDate: Date,
+    checkOutDate: Date,
+    //status?: 'pending' | 'confirmed' | 'cancelled';
 }
