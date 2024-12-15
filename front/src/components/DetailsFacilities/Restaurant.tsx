@@ -23,72 +23,73 @@ export const RestaurantComponent = () => {
               id: 2, 
               nombre: "Desayuno Americano", 
               descripcion: "Huevos revueltos o al gusto, Pancakes o waffles, Patatas fritas, Tostadas integrales o de pan de molde, Café, té y jugos naturales",
-              img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck01.jpg" 
+              img: "https://media.istockphoto.com/id/1126089794/es/foto/saludable-desayuno-americano-con-huevos-bacon-tortitas-y-latkes.jpg?s=612x612&w=0&k=20&c=IiwDQ0sMSsE0Uk5KzDAA3xJKyKSR0fxpNm2fv2Rrbvs=" 
             },
             { 
               id: 3, 
               nombre: "Desayuno Saludable", 
               descripcion: "Avena, Tostadas de aguacate, Smoothie bowl, Ensalada de frutas, Jugos naturales detox",
-              img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck01.jpg" 
+              img: "https://media-cdn.tripadvisor.com/media/photo-s/19/8c/a3/39/zumo-de-naranjas-huevo.jpg" 
             },
             { 
               id: 4, 
               nombre: "Desayuno Internacional", 
               descripcion: "Dim sum, Pita con hummus y tabulé, Croissants y panes con mermeladas artesanales, Frutas tropicales, Café expreso o té verde",
-              img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck01.jpg" 
+              img: "https://i.blogs.es/41884d/desayuno_continental/1366_2000.jpg" 
             }
           ],
-
+//ALMUERZO
       almuerzo: [
         { 
           id: 1, 
-          nombre: "Desayuno Continental", 
-          descripcion: "Panecillos frescos, Café, té y jugos naturales, Embutidos, Frutas frescas, Yogur y granola",
-          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck1.jpg" 
+          nombre: "Almuerzo mediterráneo", 
+          descripcion: "Ensalada Caprese con tomate fresco, Filete de salmón a la plancha con hierbas provenzales",
+          img: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/537802258.jpg?k=b3b69c041a2a06723d22658eebde1ec125b26ca57b6da8791fa11e2b2debe75f&o=&hp=1" 
         },
         { 
           id: 2, 
-          nombre: "Desayuno Americano", 
-          descripcion: "Huevos revueltos o al gusto, Pancakes o waffles, Patatas fritas, Tostadas integrales o de pan de molde, Café, té y jugos naturales",
-          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstuec01.jpg" 
+          nombre: "Almuerzo Caribeño", 
+          descripcion: "Ceviche de camarones con mango, cebolla morada y aguacate, acompañado de chips de plátano, Pollo al curry con coco, servido con arroz blanco y ensalada fresca de repollo y zanahoria",
+          img: "https://www.brasileiraspelomundo.com/wp-content/uploads/2019/06/bandeja.jpg" 
         },
         { 
           id: 3, 
-          nombre: "Desayuno Saludable", 
-          descripcion: "Avena, Tostadas de aguacate, Smoothie bowl, Ensalada de frutas, Jugos naturales detox",
-          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstuec01.jpg" 
+          nombre: "Almuerzo Gourmet Internacional:", 
+          descripcion: "Solomillo de ternera en salsa de vino tinto, acompañado de puré de papas trufado y verduras asadas, Carpaccio de res con rúcula, queso parmesano y un toque de limón",
+          img: "https://images.ecestaticos.com/PIN1EVz_brWM3r3uBkfQNsz0-4E=/75x3:961x667/1200x899/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F5b9%2Fbcb%2F998%2F5b9bcb998350cf79ab004d8708c277c3.jpg" 
         },
         { 
           id: 4, 
-          nombre: "Desayuno Internacional", 
-          descripcion: "Dim sum, Pita con hummus y tabulé, Croissants y panes con mermeladas artesanales, Frutas tropicales, Café expreso o té verde",
-          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstuec01.jpg" 
+          nombre: "Almuerzo Ligero y Saludable", 
+          descripcion: "Pechuga de pollo a la plancha con especias, servida con una ensalada fresca de espinaca, fresas, nueces y aderezo balsámico",
+          img: "https://www.cocinadelirante.com/800x600/filters:format(webp):quality(75)/sites/default/files/images/2024/10/recetas-de-cenas-ligeras.jpg" 
         }
       ],
+      //CENA
       cena: [
         { 
           id: 1, 
-          nombre: "Desayuno Continental", 
-          descripcion: "Panecillos frescos, Café, té y jugos naturales, Embutidos, Frutas frescas, Yogur y granola",
-          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck0.jpg" 
+          nombre: "Cena Internacional Buffet", 
+          descripcion: "Filete de res en salsa de vino tinto.Salmón al horno con costra de hierbas. Estación de pastas al gusto con diferentes salsas",
+          img: "https://www.tabiulala.com/wp/wp-content/uploads/2024/12/1378-2-960x640.jpg" 
         },
         { 
           id: 2, 
-          nombre: "Desayuno Americano", 
-          descripcion: "Huevos revueltos o al gusto, Pancakes o waffles, Patatas fritas, Tostadas integrales o de pan de molde, Café, té y jugos naturales",
-          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck01jpg" 
+          nombre: "Cena Romántica en la Playa", 
+          descripcion: "Langosta a la mantequilla de ajo con puré de papa trufado. Rib eye a la parrilla con vegetales al vapor.",
+          img: "https://s0.smartresize.com/wallpaper/409/509/HD-wallpaper-romantic-beach-dinner-dinner-beach-nature-romantic.jpg" 
         },
         { 
           id: 3, 
-          nombre: "Desayuno Saludable", 
-          descripcion: "Avena, Tostadas de aguacate, Smoothie bowl, Ensalada de frutas, Jugos naturales detox",
-          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck0.jpg"  
+          nombre: "Cena Temática Mexicana", 
+          descripcion: "Filete mignon con reducción de oporto y papas gratinadas. Lomo de robalo al vapor con risotto de espárragos",
+          img: "https://i.blogs.es/25d6b7/1366_2000-5-/450_1000.jpg"  
         },
         { 
           id: 4, 
-          nombre: "Desayuno Internacional", 
+          nombre: "Cena Gourmet de Alta Cocina", 
           descripcion: "Dim sum, Pita con hummus y tabulé, Croissants y panes con mermeladas artesanales, Frutas tropicales, Café expreso o té verde",
-          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck0.jpg" 
+          img: "https://chefalexortiz.com/wp-content/uploads/2020/02/La-cocina-gourmet-en-eventos.jpg" 
         }
       ],
     };

@@ -31,7 +31,7 @@ export const FacilitiesComponent = () => {
                     equipado con máquinas de última generación y áreas
                      especializadas para entrenamiento funcional, cardio y pesas.
                       Ideal para mantenerte en forma durante tu estancia.</p>
-                <button className={Style.saberMas}><Link href=''>Saber más</Link></button>
+                <button className={Style.saberMas}><Link href='gym'>Saber más</Link></button>
             </div>
         </article>
         <hr className={Style.hr}/>
@@ -71,7 +71,7 @@ export const FacilitiesComponent = () => {
                 <p className={Style.descriptionGim}>Sumérgete en un oasis de relajación en nuestro SPA. 
                     Disfruta de masajes, tratamientos exclusivos y áreas de descanso diseñadas
                      para renovar cuerpo y mente. Perfecto para desconectarte del estrés diario.</p>
-                <button className={Style.saberMas}><Link href=''>Saber más</Link></button>
+                <button className={Style.saberMas}><Link href='spa'>Saber más</Link></button>
             </div>
             <Image src={spaImg} width={810} height={755} alt='Gimnasio'/>
             <p>01</p>
