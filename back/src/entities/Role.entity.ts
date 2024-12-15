@@ -2,8 +2,20 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany  } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from './User.entity';
 
-@Entity('role')
+//@Entity('role')
+@Entity({ name: 'roles' })
 export class Role {
+
+
+    /**
+   * Identificador único del rol.
+   * @example "f34b2e7c-3ed5-4f91-9342-bf6c537dfb47"
+   */
+    @ApiProperty({
+
+      example: 'f34b2e7c-3ed5-4f91-9342-bf6c537dfb47',
+      description: 'Identificador único del rol.',
+    })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
