@@ -6,12 +6,13 @@
 @import "~slick-carousel/slick/slick-theme.css";
 /* @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poiret+One&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poiret+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 
 :root {
   --font-primary: "Cormorant Garamond", "serif";
   --font-secondary: "Lora", "serif";
+  --color-primary: #c19d68;
 }
 
 body {
@@ -32,7 +33,7 @@ p {
   font-family: var(--font-secondary);
 }
 
-button, a {
+a {
   cursor: pointer;
   font-family: var(--font-primary);
 }
@@ -50,22 +51,16 @@ button, a {
   color: #acacac;
 }
 
-.button {
-  margin: 1.3rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.2rem;
-  color: rgb(255, 255, 255);
-  background-color: #b69663;
+button {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: var(--font-primary);
+  background-color: var(--color-primary);
+  border: var(--color-primary);
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: 0.3s ease-in-out;
 }
 
-.button:hover {
+button:hover {
   background-color: #d9af71;
 }
-
-/* Estilo CSS adicional */
-/* .highest-zindex {
-  z-index: 99999 !important;
-  position: relative;
-} */
