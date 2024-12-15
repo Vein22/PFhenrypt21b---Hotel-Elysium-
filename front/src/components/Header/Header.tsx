@@ -38,6 +38,7 @@ const Header = () => {
           </Link>
           <Switcher /> 
         </div>
+        <CardUser />
       </nav>
       <div className="space-x-4 flex items-center">
         {userData?.token ? (     
