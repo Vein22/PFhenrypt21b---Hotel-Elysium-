@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Reservation } from 'src/entities/Reservation.entity';
+import { PaymentStatus } from 'src/enums/enums';
 import { Repository, Between } from 'typeorm';
 import { CreateReservationDto } from './dto/create-reservations.dto';
 
@@ -53,5 +54,10 @@ export class ReservationRepository {
         },
       ],
     });
+  }
+
+
+  async findById(id: string): Promise<Reservation | null> {
+    return await this.reservationRepository.findOne({ where: { id, isDeleted: false } });
   }
 }
