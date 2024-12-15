@@ -1,9 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import Stripe from 'stripe';
+import { PaymentStatus } from 'src/enums/enums';
+import { ReservationRepository } from '../reservations/reservations.repository';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Reservation } from 'src/entities/Reservation.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PaymentService {
+  @InjectRepository(Reservation)
+  private readonly reservationRepository: Repository<Reservation>
   private stripe: Stripe;
 
   constructor() {
@@ -13,7 +20,7 @@ export class PaymentService {
     }
     this.stripe = new Stripe(stripeKey);  }
 
-  async createCheckoutSession(createPaymentDto: CreatePaymentDto) {
+  async createCheckoutSession(createPaymentDto: CreatePaymentDto, reservationId: string) {
     const { amount, currency, description } = createPaymentDto;
   
     const session = await this.stripe.checkout.sessions.create({
@@ -31,8 +38,11 @@ export class PaymentService {
         },
       ],
       mode: 'payment',
-      success_url: 'http://localhost:3000/success',
-      cancel_url: 'http://localhost:3000/cancel',
+      metadata: {
+        reservationId, 
+      },
+      success_url: `http://localhost:4000/payments/success?reservationId=${reservationId}`,
+      cancel_url: 'http://localhost:4000/payments/cancel',
     });
   
     return {
@@ -40,4 +50,16 @@ export class PaymentService {
     };
   }
   
+  
+  async handlePaymentSuccess(reservationId: string) {
+    const reservation = await this.reservationRepository.findOne({ where: { id: reservationId } });
+
+    if (!reservation) {
+      throw new Error('Reserva no encontrada.');
+    }
+
+    reservation.paymentStatus = PaymentStatus.PAID_ONLINE;
+     await this.reservationRepository.save(reservation);
+    return { message: 'Pago exitoso, estado de reserva actualizado.' };
+  }
 }
