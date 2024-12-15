@@ -20,18 +20,17 @@ export const FacilitiesComponent = () => {
             <h1>DISFRUTA DE LAS MÁS COMPLETAS Y MEJORES INSTALACIONES DE CALIDAD</h1>
         </article>
         <hr className={Style.hr}/>
-{/*Gimnasio de entrenamiento*/}
+        {/*Restaurante*/}
         <article className={Style.gimnasioContainer}>
-            <Image src={gimnasioImg} width={810} height={755} alt='Gimnasio'/>
-            <p>01</p>
+            <Image src={restauranteImg} width={810} height={755} alt='Gimnasio'/>
+            <p>03</p>
             <div className={Style.containerGim}>
-                <p className={Style.aptttud}>Bienestar físico</p>
-                <h1>Gimnasio de entrenamiento</h1>
-                <p className={Style.descriptionGim}>Disfruta de un gimnasio completamente 
-                    equipado con máquinas de última generación y áreas
-                     especializadas para entrenamiento funcional, cardio y pesas.
-                      Ideal para mantenerte en forma durante tu estancia.</p>
-                <button className={Style.saberMas}><Link href='gym'>Saber más</Link></button>
+                <p className={Style.aptttud}>Gastronomía exclusiva</p>
+                <h1>Restaurante</h1>
+                <p className={Style.descriptionGim}>Déjate sorprender por una experiencia culinaria inolvidable. 
+                    Nuestro restaurante combina sabores locales e internacionales,
+                     preparados con ingredientes frescos y de alta calidad. Vive un viaje gastronómico único.</p>
+                <button className={Style.saberMas}><Link href='restaurant'>Saber más</Link></button>
             </div>
         </article>
         <hr className={Style.hr}/>
@@ -49,17 +48,18 @@ export const FacilitiesComponent = () => {
             <Image src={piscinaImg} width={810} height={755} alt='Gimnasio'/>
         </article>
         <hr className={Style.hr}/>
-        {/*Restaurante*/}
+        {/*Gimnasio de entrenamiento*/}
         <article className={Style.gimnasioContainer}>
-            <Image src={restauranteImg} width={810} height={755} alt='Gimnasio'/>
-            <p>03</p>
+            <Image src={gimnasioImg} width={810} height={755} alt='Gimnasio'/>
+            <p>01</p>
             <div className={Style.containerGim}>
-                <p className={Style.aptttud}>Gastronomía exclusiva</p>
-                <h1>Restaurante</h1>
-                <p className={Style.descriptionGim}>Déjate sorprender por una experiencia culinaria inolvidable. 
-                    Nuestro restaurante combina sabores locales e internacionales,
-                     preparados con ingredientes frescos y de alta calidad. Vive un viaje gastronómico único.</p>
-                <button className={Style.saberMas}><Link href='restaurant'>Saber más</Link></button>
+                <p className={Style.aptttud}>Bienestar físico</p>
+                <h1>Gimnasio de entrenamiento</h1>
+                <p className={Style.descriptionGim}>Disfruta de un gimnasio completamente 
+                    equipado con máquinas de última generación y áreas
+                     especializadas para entrenamiento funcional, cardio y pesas.
+                      Ideal para mantenerte en forma durante tu estancia.</p>
+                <button className={Style.saberMas}><Link href='gym'>Saber más</Link></button>
             </div>
         </article>
         <hr className={Style.hr}/>
