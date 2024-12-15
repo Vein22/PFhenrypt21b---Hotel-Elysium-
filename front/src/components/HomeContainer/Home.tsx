@@ -9,7 +9,7 @@ const HomeContainer = () => {
     <div>
 
       <HeroSection />
-      <SwiperComponent/>
+      {/* <SwiperComponent/> */}
       <FeatureSection />
       <ServicesSection />
       <Testimonials />
