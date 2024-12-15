@@ -2,6 +2,7 @@
 .container {
     min-height: 100vh;
     background-color: rgba(240, 248, 255, 0);
+    padding-bottom: 10rem;
 }
 
 .portadaContainer {
@@ -116,5 +117,15 @@
 
 .saberMas {
     margin-bottom: 0;
+    padding: .3rem 1rem;
     border-radius: .1rem;
+    background-color: #b69663;
+    color: #fff;
+    font-family: serif;
+    font-weight: bold;
+}
+.saberMas:hover {
+    background-color: #e4bd7e;
+    transition: 0.5s;
+    color: #616161;
 }

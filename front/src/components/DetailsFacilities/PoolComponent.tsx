@@ -1,11 +1,71 @@
+'use client';
+
 import Style from '../FacilitiesComponent/facilities.module.css'
 import Styles from '../DetailsFacilities/detailsStyles.module.css'
+import menuStyle from './subDetails.module.css';
 import Image from 'next/image';
 import restaurantIMG from '../../../public/saul/piscina-detail.jpg';
 import restaurantIMG2 from '../../../public/saul/piscina-detail-2.jpg';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export const PoolComponent = () => {
+    const [categoriaActiva, setCategoriaActiva] = useState<"principal" | "bebidas">("principal");
+    const menu = {
+      principal: [
+            { 
+              id: 1, 
+              nombre: "Piscina Familiar con Zona de Juegos ", 
+              descripcion: "Área de juegos acuáticos supervisada por personal capacitado. Tumbonas familiares y sombrillas grandes.",
+              img: "https://www.camping-beaurivage.fr/wp-content/themes/yootheme/cache/0c/193-Camping-Occitanie-Beau-Rivage-Ciela-Village-Parc-Aquatique-1-0c483d68.jpeg" 
+            },
+            { 
+              id: 2, 
+              nombre: "Piscina de Relajación para Adultos ", 
+              descripcion: "Un área exclusiva para adultos donde el ambiente es tranquilo y sofisticado.",
+              img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/d1/29/03/caption.jpg?w=800&h=600&s=1" 
+            },
+            { 
+              id: 3, 
+              nombre: "Piscina Infinity con Vista Panorámica ", 
+              descripcion: "Servicio de fotografía profesional para capturar momentos inolvidables. Tumbonas sumergidas para una experiencia única.",
+              img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/d1/22/07/caption.jpg?w=800&h=-1&s=1" 
+            },
+            { 
+              id: 4, 
+              nombre: "Piscina de Actividades y Entretenimiento ", 
+              descripcion: "Clases de aqua zumba, voleibol acuático y competencias recreativas. Equipo de animación y actividades para todas las edades. Servicio de bebidas y snacks al área de la piscina.",
+              img: "https://files-colreservas.s3.sa-east-1.amazonaws.com/photos/LXL6mSSpxsHBZFpmYLuPuTkcnL1rM4hjSUZkR8AL.jpg" 
+            }
+          ],
+//ALMUERZO
+bebidas: [
+        { 
+          id: 1, 
+          nombre: "Bebidas y Cócteles Refrescantes ", 
+          descripcion: "Disfruta del sol y la diversión mientras saboreas nuestras bebidas refrescantes y jugos naturales en el bar junto a la piscina.  ",
+          img: "https://regionalizacion.uned.ac.cr/destinobrunca/catalog-api/storage/app/public//items/Perez_Zeledon/bar-restaurante-y-piscina-los-delfines/image157.jpg" 
+        },
+        { 
+          id: 2, 
+          nombre: "Cócteles Clásicos y Tropicales ", 
+          descripcion: " Piña Colada, Mojito Tropical , Daiquiri de Fresa , Margarita de Mango,  Caipirinha",
+          img: "https://elcoctelero.com/wp-content/uploads/2020/09/coctel-nueva-ola-ok.jpg" 
+        },
+        { 
+          id: 3, 
+          nombre: "Jugos Naturales y Bebidas para Niños ", 
+          descripcion: "Jugo de Naranja Fresca,  Limonada Tropical,  Smoothie de Frutas, Jugo de Sandía ",
+          img: "https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2020/07/07/15941217762783.jpg" 
+        },
+        { 
+          id: 4, 
+          nombre: "Whisky al Aire Libre ", 
+          descripcion: "whiskies premium cuidadosamente elegidos para satisfacer los paladares más exigentes. Un toque de lujo y sofisticación en un entorno relajado ",
+          img: "https://thumbs.dreamstime.com/b/budva-montenegro-de-junio-bar-con-alcohol-en-una-fiesta-al-aire-libre-verano-soleado-botella-vino-y-whisky-sobre-mesa-madera-fondo-279323809.jpg" 
+        }
+      ],
+    };
     return (
         <section className={Styles.container}>
             <button className={Styles.volver}><Link href='facilities'>VOLVER</Link></button>
@@ -80,19 +140,36 @@ opciones de actividades acuáticas para mantenerte activo, es el espacio perfect
              </p>
             </article>
         <hr className={Styles.hr}/>
-        {/*Restaurante*/}
-        <article className={Styles.gimnasioContainer}>
-            <div>
-                <h1>MENÚ EN EL ÁREA DE LA PISCINA</h1>
-                <nav>
-                    <a href="">DESAYUNO</a>
-                    <a href="">COMIDA</a>
-                    <a href="">CENA</a>
-                </nav>
+          {/*Restaurante detalles*/}
+          <article className={menuStyle.menuDetails}>
+      <div className={menuStyle.submMenuDetails}>
+      <h1>Más detalles de nuestras piscinas</h1>
+        <button
+          onClick={() => setCategoriaActiva("principal")}
+          className={categoriaActiva === "principal" ? "activo" : ""}
+        >
+          Principal
+        </button>
+        <button
+          onClick={() => setCategoriaActiva("bebidas")}
+          className={categoriaActiva === "bebidas" ? "activo" : ""}
+        >
+          Bebidas
+        </button>
+
+      </div>
+
+    <div className={menuStyle.cardContainer}>
+      {menu[categoriaActiva].map((plato) => (
+        <div key={plato.id} className={menuStyle.cards}>
+            <Image src={plato.img} alt={plato.nombre} width={300} height={200}/>
+            <div className={menuStyle.cardsDescription}>
+                <h3>{plato.nombre}</h3>
+                <p>{plato.descripcion}</p>
             </div>
-            <div>
-                
-            </div>
+    </div>
+  ))}
+      </div>
         </article>
         </section>
     );
