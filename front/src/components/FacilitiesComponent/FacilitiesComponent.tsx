@@ -49,6 +49,7 @@ export const FacilitiesComponent = () => {
               <Link href="">Saber más</Link>
             </button>
           </div>
+
         </article>
         <hr className={Style.hr} />
 
@@ -109,6 +110,7 @@ export const FacilitiesComponent = () => {
           </div>
           <span className={Style.span}>04</span>
           <Image src={spaImg} width={810} height={755} alt="Gimnasio" />
+
         </article>
       </section>
     </>

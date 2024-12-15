@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { PaymentStatus } from 'src/enums/enums';
 
 @Entity({ name: 'reservations' })
 export class Reservation {
@@ -59,6 +60,22 @@ export class Reservation {
   })
   @Column('date')
   checkOutDate: Date;
+
+
+   /**
+   * Estado del pago de la reservación.
+   * @example "Reserva no Pagado"
+   */
+   @ApiProperty({
+    example: PaymentStatus.NOT_PAID,
+    description: 'Estado del pago de la reservación.',
+  })
+  @Column({
+    type: 'enum',
+    enum: PaymentStatus,
+    default: PaymentStatus.NOT_PAID,
+  })
+  paymentStatus: PaymentStatus;
 
 
    /**
