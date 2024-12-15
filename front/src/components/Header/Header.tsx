@@ -1,16 +1,16 @@
 "use client";
+import { useLoggin } from "@/context/logginContext";
+import { PaymentButton } from "../PaymentButton/PaymentButton";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import CardUser from "./CardUser";
-import { useLoggin } from "@/context/logginContext";
 import Switcher from "../Switcher";
 
 const Header = () => {
   const { userData } = useLoggin();
   return (
     <header className="sticky top-0 w-full h-[4.5rem] bg-grisOscuro text-white z-10 grid grid-cols-3 place-items-center">
-      {/* Logo */}
       <div>
         <Link href="/">
           <Image
@@ -22,10 +22,8 @@ const Header = () => {
           />
         </Link>
       </div>
-
-      {/* Navbar */}
       <nav>
-        <div className="space-x-6 text-[1rem] uppercase">
+        <div className="flex space-x-6 text-[1rem] uppercase items-center">
           <Link href="/" className="hover:text-mostaza">
             Home
           </Link>
@@ -38,16 +36,21 @@ const Header = () => {
           <Link href="/contact" className="hover:text-mostaza">
             Contacto
           </Link>
-          <Switcher />
+          <Switcher /> 
         </div>
       </nav>
-
-      {/* User actions */}
-      <div className="space-x-4">
-        {userData?.token ? (
-          <CardUser />
+      <div className="space-x-4 flex items-center">
+        {userData?.token ? (     
+            <CardUser />
         ) : (
           <>
+            {/* Esto esta aqui provisional ojo provisional va en componente de Reserva pero seguro
+            lo van a modifcar ni modo */}
+            <PaymentButton
+              amount={5000}
+              currency="usd"
+              description="Producto de ejemplo"
+            />
             <Link href="/login">
               <button className="bg-marron text-white border border-marronfuerte rounded-lg py-2 px-4 hover:bg-opacity-70">
                 Iniciar Sesión
