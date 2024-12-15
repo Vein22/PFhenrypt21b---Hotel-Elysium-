@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import RoomCard from "@/components/Rooms/RoomCard";
 import { getRooms } from "@/api/getRooms";
 import { Room } from "@/interfaces/index";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [rooms, setRooms] = useState<Room[]>([]);
@@ -46,15 +46,16 @@ const Page = () => {
   };
 
   return (
-
-    <div className="min-h-[75vh] pt-20 px-16">
-      <div className="flex flex-col gap-6 mb-6">
-        <div className="text-center pt-10">
-          <h1 className="text-2xl font-bold">Habitaciones y Suites del Hotel Elysium</h1>
-          <h2 className="text-sm text-gray-600 pt-5">
+    <div className="min-h-screen">
+      <div className="flex flex-col gap-6 mb-6 p-6 border">
+        <div className="text-center">
+          <h1 className="text-[2.5rem]">
+            Habitaciones y Suites del Hotel Elysium
+          </h1>
+          <p className="pt-5">
             Descubra nuestras elegantes opciones de alojamiento diseñadas para
             ofrecerle una experiencia única de confort y lujo
-          </h2>
+          </p>
         </div>
 
         <div className="flex flex-wrap items-center justify-between ">
@@ -65,7 +66,7 @@ const Page = () => {
             Registrar nueva habitación
           </button>
           <select
-            className="bg-tertiary text-white border border-tertiary rounded-lg py-2 px-3 hover:bg-opacity-90 shadow-md"
+            className="bg-mostaza text-white border-mostaza rounded-lg py-2 px-3 hover:bg-opacity-90 shadow-md"
             value={sortCriteria}
             onChange={(e) => handleSort(e.target.value)}
           >
@@ -80,7 +81,7 @@ const Page = () => {
         {sortedRooms.length > 0 ? (
           sortedRooms.map((room, i) => <RoomCard key={i} {...room} />)
         ) : (
-          <p className="col-span-full text-center text-gray-500">No rooms available</p>
+          <p className="col-span-full text-center">No rooms available</p>
         )}
       </div>
     </div>

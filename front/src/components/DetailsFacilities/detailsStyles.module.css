@@ -214,3 +214,67 @@
     font-weight: bold;
     text-align: center;
 }
+
+/*///////////////////////////////////////////*/
+/*GIMNASIO*/
+.portadaGym {
+    min-height: 80vh;
+    width: 100%;
+    background-image: url('../../../public/gym3.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.portadaGym > h1 {
+    margin-top: 14rem;
+    color: aliceblue;
+    font-size: 3.5rem;
+    font-family: serif;
+    font-weight: bold;
+}
+
+.portadaGym > h2 {
+    color: aliceblue;
+    margin-top: 1.5rem;
+    font-size: 3rem;
+    font-family: serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*/////////////////////////////*/
+/*SPA*/
+.portadaSpa {
+    min-height: 80vh;
+    width: 100%;
+    background-image: url('../../../public/instalaciones/spaPrueba.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.portadaSpa > h1 {
+    margin-top: 14rem;
+    color: aliceblue;
+    font-size: 3.5rem;
+    font-family: serif;
+    font-weight: bold;
+}
+
+.portadaSpa > h2 {
+    color: aliceblue;
+    margin-top: 1.5rem;
+    font-size: 3rem;
+    font-family: serif;
+    font-weight: bold;
+    text-align: center;
+}
