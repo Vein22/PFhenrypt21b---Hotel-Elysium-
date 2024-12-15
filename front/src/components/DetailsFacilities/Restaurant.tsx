@@ -1,10 +1,100 @@
+'use client';
 import Style from '../FacilitiesComponent/facilities.module.css'
 import Styles from '../DetailsFacilities/detailsStyles.module.css'
 import Image from 'next/image';
 import restaurantIMG from '../../../public/saul/instalaciones-restaurante-prueba.jpg';
+
 import Link from 'next/link';
+import { useState } from 'react';
+import menuStyle from './subDetails.module.css';
 
 export const RestaurantComponent = () => {
+    const [categoriaActiva, setCategoriaActiva] = useState<"desayuno" | "almuerzo" | "cena">("desayuno");
+
+    const menu = {
+        desayuno: [
+            { 
+              id: 1, 
+              nombre: "Desayuno Continental", 
+              descripcion: "Panecillos frescos, Café, té y jugos naturales, Embutidos, Frutas frescas, Yogur y granola",
+              img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck01.jpg" 
+            },
+            { 
+              id: 2, 
+              nombre: "Desayuno Americano", 
+              descripcion: "Huevos revueltos o al gusto, Pancakes o waffles, Patatas fritas, Tostadas integrales o de pan de molde, Café, té y jugos naturales",
+              img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck01.jpg" 
+            },
+            { 
+              id: 3, 
+              nombre: "Desayuno Saludable", 
+              descripcion: "Avena, Tostadas de aguacate, Smoothie bowl, Ensalada de frutas, Jugos naturales detox",
+              img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck01.jpg" 
+            },
+            { 
+              id: 4, 
+              nombre: "Desayuno Internacional", 
+              descripcion: "Dim sum, Pita con hummus y tabulé, Croissants y panes con mermeladas artesanales, Frutas tropicales, Café expreso o té verde",
+              img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck01.jpg" 
+            }
+          ],
+
+      almuerzo: [
+        { 
+          id: 1, 
+          nombre: "Desayuno Continental", 
+          descripcion: "Panecillos frescos, Café, té y jugos naturales, Embutidos, Frutas frescas, Yogur y granola",
+          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck1.jpg" 
+        },
+        { 
+          id: 2, 
+          nombre: "Desayuno Americano", 
+          descripcion: "Huevos revueltos o al gusto, Pancakes o waffles, Patatas fritas, Tostadas integrales o de pan de molde, Café, té y jugos naturales",
+          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstuec01.jpg" 
+        },
+        { 
+          id: 3, 
+          nombre: "Desayuno Saludable", 
+          descripcion: "Avena, Tostadas de aguacate, Smoothie bowl, Ensalada de frutas, Jugos naturales detox",
+          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstuec01.jpg" 
+        },
+        { 
+          id: 4, 
+          nombre: "Desayuno Internacional", 
+          descripcion: "Dim sum, Pita con hummus y tabulé, Croissants y panes con mermeladas artesanales, Frutas tropicales, Café expreso o té verde",
+          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstuec01.jpg" 
+        }
+      ],
+      cena: [
+        { 
+          id: 1, 
+          nombre: "Desayuno Continental", 
+          descripcion: "Panecillos frescos, Café, té y jugos naturales, Embutidos, Frutas frescas, Yogur y granola",
+          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck0.jpg" 
+        },
+        { 
+          id: 2, 
+          nombre: "Desayuno Americano", 
+          descripcion: "Huevos revueltos o al gusto, Pancakes o waffles, Patatas fritas, Tostadas integrales o de pan de molde, Café, té y jugos naturales",
+          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck01jpg" 
+        },
+        { 
+          id: 3, 
+          nombre: "Desayuno Saludable", 
+          descripcion: "Avena, Tostadas de aguacate, Smoothie bowl, Ensalada de frutas, Jugos naturales detox",
+          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck0.jpg"  
+        },
+        { 
+          id: 4, 
+          nombre: "Desayuno Internacional", 
+          descripcion: "Dim sum, Pita con hummus y tabulé, Croissants y panes con mermeladas artesanales, Frutas tropicales, Café expreso o té verde",
+          img: "https://www.hotel-alfa.de/wp-content/uploads/sites/19/2016/04/Fruehstueck0.jpg" 
+        }
+      ],
+    };
+
+
+
     return (
         <section className={Styles.container}>
             <button className={Styles.volver}><Link href='facilities'>VOLVER</Link></button>
@@ -69,19 +159,41 @@ export const RestaurantComponent = () => {
              </p>
             </article>
         <hr className={Styles.hr}/>
-        {/*Restaurante*/}
-        <article className={Styles.gimnasioContainer}>
-            <div>
-                <h1>MENÚ DE COMIDA DEL RESTAURANTE</h1>
-                <nav>
-                    <a href="">DESAYUNO</a>
-                    <a href="">COMIDA</a>
-                    <a href="">CENA</a>
-                </nav>
+        {/*Restaurante detalles*/}
+        <article className={menuStyle.menuDetails}>
+      <div className={menuStyle.submMenuDetails}>
+      <h1>Menú de Comida del Restaurante</h1>
+        <button
+          onClick={() => setCategoriaActiva("desayuno")}
+          className={categoriaActiva === "desayuno" ? "activo" : ""}
+        >
+          Desayuno
+        </button>
+        <button
+          onClick={() => setCategoriaActiva("almuerzo")}
+          className={categoriaActiva === "almuerzo" ? "activo" : ""}
+        >
+          Almuerzo
+        </button>
+        <button
+          onClick={() => setCategoriaActiva("cena")}
+          className={categoriaActiva === "cena" ? "activo" : ""}
+        >
+          Cena
+        </button>
+      </div>
+
+    <div className={menuStyle.cardContainer}>
+      {menu[categoriaActiva].map((plato) => (
+        <div key={plato.id} className={menuStyle.cards}>
+            <Image src={plato.img} alt={plato.nombre} width={300} height={200}/>
+            <div className={menuStyle.cardsDescription}>
+                <h3>{plato.nombre}</h3>
+                <p>{plato.descripcion}</p>
             </div>
-            <div>
-                
-            </div>
+    </div>
+  ))}
+      </div>
         </article>
         </section>
     );
