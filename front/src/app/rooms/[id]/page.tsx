@@ -7,7 +7,7 @@ interface Params {
 }
 
 const Page = async ({ params }: { params: Promise<Params> }) => {
-  const resolvedParams = await params; // Resolver el objeto `params` si se pasa como `Promise`
+  const resolvedParams = await params; 
   const { id } = resolvedParams;
 
   try {

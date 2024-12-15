@@ -10,23 +10,22 @@ const HeroSection = () => {
       className="bg-cover bg-center h-screen flex items-center justify-center text-center"
       style={{ backgroundImage: "url(/fondo3.png)" }}
     >
-      <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-4xl mx-auto">
+      <div className="bg-black bg-opacity-50 p- rounded-lg max-w-4xl mx-auto p-8">
+        <h2
+          className="text-[1.5rem] text-white"
+          style={{ textShadow: "2px 2px 4px rgb(182, 150, 99)" }}
+        >
+          Hotel y Resort de Lujo
+        </h2>
         <h1
-          className="text-white text-[3rem]"
+          className="text-white text-[3rem] uppercase my-6"
           style={{ textShadow: "2px 2px 4px rgba(217, 119, 6, 1)" }}
         >
           Vive una Experiencia Única en ELYSIUM
         </h1>
 
-        <p
-          className="text-[2rem] text-white mb-6"
-          style={{ textShadow: "2px 2px 4px rgb(182, 150, 99)" }}
-        >
-          Hotel y Resort de Lujo
-        </p>
-
         <motion.button
-          className="bg-mostaza border-mostaza uppercase text-white rounded-lg py-2 px-4 hover:bg-opacity-70 transition-all"
+          className="bg-mostaza border-mostaza uppercase text-white py-2 px-4 hover:bg-opacity-70 transition-all"
           whileHover={{ scale: 1.05 }}
           onClick={() => setShowMessage(!showMessage)}
         >
