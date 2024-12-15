@@ -1,10 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 interface CreateCheckoutSessionBody {
   amount: number;
   currency: string;
   description: string;
+}
+
+interface ErrorResponse {
+  message: string;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -27,10 +31,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error('Error en la respuesta del backend');
     }
 
-    // Responde con la URL de la sesión de Stripe
     res.status(200).json({ url: response.data.url });
-  } catch (error: any) {
-    console.error('Error en el API de Next.js:', error.message);
-    res.status(500).json({ message: error.message || 'Error interno del servidor' });
+  } catch (error) {
+    // Definimos el tipo de error como AxiosError
+    const axiosError = error as AxiosError<ErrorResponse>;
+    console.error('Error en el API de Next.js:', axiosError.message);
+    res.status(500).json({ message: axiosError.response?.data.message || 'Error interno del servidor' });
   }
 }
