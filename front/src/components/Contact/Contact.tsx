@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const ContactForm = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center min-h-screen">
       <div className="flex bg-beige justify-center items-center p-[6rem] gap-10">
         <div className="flex flex-col lg:flex-row p-4 rounded-lg space-y-8 lg:space-y-0 lg:space-x-8 max-w-4xl">
           <div className="flex-1 max-w-md">
