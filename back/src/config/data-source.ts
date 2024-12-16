@@ -17,9 +17,9 @@ const config = {
   migrations: [__dirname + '/../migrations/*{.ts,.js}'],
   synchronize: true,
   logging: false,
-  //  dropSchema: true,
-   ssl: sslConfig,
-};
+  // dropSchema: true,
+  ssl: sslConfig,
+
 
 export default registerAs('typeorm', () => config);
 export const connectionSource = new DataSource(config as DataSourceOptions);
