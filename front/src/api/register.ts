@@ -14,6 +14,7 @@ export const fetchRegister = async (form: Omit<valuesTypesRegister, 'confirm_pas
 
         if(result.ok) {
             const data = await result.json();
+
             console.log('¡Usuario creado exitosamente!');
             return data
         } else {

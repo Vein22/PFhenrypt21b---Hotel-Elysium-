@@ -1,0 +1,105 @@
+.container {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container > h1 {
+    font-family: serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin: 2rem auto 0 auto;
+}
+
+.seachContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+
+}
+.seachContainer > input {
+    width: 39rem;
+    height: 2.5rem;
+    border: .1rem solid rgba(0, 0, 0, 0.351);
+    background-color: rgba(255, 255, 255, 0.334);
+    margin: .5rem 0 0 auto;
+    padding: 0 5rem;
+    border-radius: .2rem 0 0 .2rem ;
+    color: rgba(0, 0, 0, 0.582);
+}
+.seachContainer > button {
+    height: 2.5rem;
+    width: 4%;
+    border: .1rem solid rgba(0, 0, 0, 0.351);
+    margin: .5rem auto 0 0;
+    padding: 0 1rem;
+    border-radius: 0 .2rem .2rem 0;
+    color: rgba(0, 0, 0, 0.582);
+}
+.datosContainer {
+
+    width: 37%;
+}
+
+.datosTitulo {
+    font-family: serif;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.detallesContainer {
+    text-align: center;
+    background-color: rgba(203, 164, 114, 0.19);
+    margin: auto;
+    padding: 1rem;
+}
+.detallesContainer > p span {
+    font-family: serif;
+    font-weight: bold;
+
+    font-size: 1.2rem;
+}
+.detallesContainer > p  {
+    font-family: serif;
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+
+}
+.rollContainer {
+    display: flex;
+}
+.cambiarRoll {
+    font-family: serif;
+    font-weight: bold;
+    font-size: 1.5rem; 
+    margin: 1rem;
+}
+.rollContainer > select {
+    background-color: rgba(203, 164, 114, 0.19);
+    padding:  .1rem 2rem;
+    margin: 1rem;
+    border-radius: .3rem;
+    font-family: serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.rollContainer > select > option {
+    font-family: serif;
+    font-weight: bold;
+    background-color: rgba(203, 164, 114, 0.19);
+    color: rgba(0, 0, 0, 0.657);
+}
+.submit {
+    padding: .8rem 2rem;
+    font-family: serif;
+    font-weight: bold;
+    border-radius: .3rem;
+    margin: 1rem auto;
+    display: block;
+    font-size: 1.2rem;
+}

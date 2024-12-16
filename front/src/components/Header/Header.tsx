@@ -53,12 +53,12 @@ const Header = () => {
               description="Producto de ejemplo"
             />
             <Link href="/login">
-              <button className="bg-marron text-white border border-marronfuerte rounded-lg py-2 px-4 hover:bg-opacity-70">
+              <button className="py-2 px-4 hover:bg-opacity-70">
                 Iniciar Sesión
               </button>
             </Link>
             <Link href="/register">
-              <button className="bg-marron text-white border border-marronfuerte rounded-lg py-2 px-4 hover:bg-opacity-70">
+              <button className="py-2 px-4 hover:bg-opacity-70">
                 Registrarse
               </button>
             </Link>

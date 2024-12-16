@@ -47,7 +47,7 @@ const Page = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="flex flex-col gap-6 mb-6 p-6 border">
+      <div className="flex flex-col gap-6 mb-6 p-6">
         <div className="text-center">
           <h1 className="text-[2.5rem]">
             Habitaciones y Suites del Hotel Elysium
@@ -60,13 +60,13 @@ const Page = () => {
 
         <div className="flex flex-wrap items-center justify-between ">
           <button
-            className="bg-tertiary text-white py-2 px-6 rounded-lg hover:bg-primary-dark shadow-md"
+            className="py-2 px-6 hover:bg-opacity-70 shadow-md"
             onClick={handleRegisterRoom}
           >
             Registrar nueva habitación
           </button>
           <select
-            className="bg-mostaza text-white border-mostaza rounded-lg py-2 px-3 hover:bg-opacity-90 shadow-md"
+            className="bg-mostaza text-white border-mostaza py-2 px-3 hover:bg-opacity-90"
             value={sortCriteria}
             onChange={(e) => handleSort(e.target.value)}
           >

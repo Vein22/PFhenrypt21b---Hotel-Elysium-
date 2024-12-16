@@ -11,9 +11,9 @@ export const FacilitiesComponent = () => {
     <>
       <section className={Style.container}>
         <div className={Style.portadaContainer}>
-          <h2>HOTEL Y RESORT DE LUJO</h2>
+          <p>HOTEL Y RESORT DE LUJO</p>
           <h1>INSTALACIONES</h1>
-          <p>Disfruta de unas instalaciones completas y de mejor calidad</p>
+          <h2>Disfruta de unas instalaciones completas y de mejor calidad</h2>
         </div>
       </section>
 
@@ -26,30 +26,23 @@ export const FacilitiesComponent = () => {
         </article>
         <hr className={Style.hr} />
 
-        {/*Gimnasio de entrenamiento*/}
+        {/*Restaurante*/}
         <article className={Style.gimnasioContainer}>
-          <Image
-            src={gimnasioImg}
-            width={810}
-            height={755}
-            alt="Gimnasio"
-            className={Style.img}
-          />
-          <span className={Style.span}>01</span>
+          <Image src={restauranteImg} width={810} height={755} alt="Gimnasio" />
+          <span>01</span>
           <div className={Style.containerGim}>
-            <h3 className={Style.aptttud}>Bienestar físico</h3>
-            <h1 className={Style.h1}>Gimnasio de entrenamiento</h1>
+            <h3 className={Style.aptttud}>Gastronomía exclusiva</h3>
+            <h1>Restaurante</h1>
             <p className={Style.descriptionGim}>
-              Disfruta de un gimnasio completamente equipado con máquinas de
-              última generación y áreas especializadas para entrenamiento
-              funcional, cardio y pesas. Ideal para mantenerte en forma durante
-              tu estancia.
+              Déjate sorprender por una experiencia culinaria inolvidable.
+              Nuestro restaurante combina sabores locales e internacionales,
+              preparados con ingredientes frescos y de alta calidad. Vive un
+              viaje gastronómico único.
             </p>
             <button className={Style.saberMas}>
-              <Link href="">Saber más</Link>
+              <Link href="restaurant">Saber más</Link>
             </button>
           </div>
-
         </article>
         <hr className={Style.hr} />
 
@@ -68,26 +61,26 @@ export const FacilitiesComponent = () => {
               <Link href="pool">Saber más</Link>
             </button>
           </div>
-          <span className={Style.span}>02</span>
+          <span>02</span>
           <Image src={piscinaImg} width={810} height={755} alt="Gimnasio" />
         </article>
         <hr className={Style.hr} />
 
-        {/*Restaurante*/}
+        {/*Gimnasio de entrenamiento*/}
         <article className={Style.gimnasioContainer}>
-          <Image src={restauranteImg} width={810} height={755} alt="Gimnasio" />
-          <span className={Style.span}>03</span>
+          <Image src={gimnasioImg} width={810} height={755} alt="Gimnasio" />
+          <span>03</span>
           <div className={Style.containerGim}>
-            <h3 className={Style.aptttud}>Gastronomía exclusiva</h3>
-            <h1>Restaurante</h1>
+            <h3 className={Style.aptttud}>Bienestar físico</h3>
+            <h1>Gimnasio de entrenamiento</h1>
             <p className={Style.descriptionGim}>
-              Déjate sorprender por una experiencia culinaria inolvidable.
-              Nuestro restaurante combina sabores locales e internacionales,
-              preparados con ingredientes frescos y de alta calidad. Vive un
-              viaje gastronómico único.
+              Disfruta de un gimnasio completamente equipado con máquinas de
+              última generación y áreas especializadas para entrenamiento
+              funcional, cardio y pesas. Ideal para mantenerte en forma durante
+              tu estancia.
             </p>
             <button className={Style.saberMas}>
-              <Link href="restaurant">Saber más</Link>
+              <Link href="gym">Saber más</Link>
             </button>
           </div>
         </article>
@@ -101,16 +94,15 @@ export const FacilitiesComponent = () => {
             <p className={Style.descriptionGim}>
               Sumérgete en un oasis de relajación en nuestro SPA. Disfruta de
               masajes, tratamientos exclusivos y áreas de descanso diseño para
-              renovar cuerpo y mente. Perfecto para desconectarte del estrés
-              diario.
+              renovar cuerpo y mente. Perfecto para desconectarte del
+              estrés diario.
             </p>
             <button className={Style.saberMas}>
-              <Link href="">Saber más</Link>
+              <Link href="spa">Saber más</Link>
             </button>
           </div>
-          <span className={Style.span}>04</span>
+          <span>04</span>
           <Image src={spaImg} width={810} height={755} alt="Gimnasio" />
-
         </article>
       </section>
     </>
