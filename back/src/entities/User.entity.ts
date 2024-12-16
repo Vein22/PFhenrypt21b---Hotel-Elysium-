@@ -3,10 +3,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { Role } from './role.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Reservation } from './Reservation.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -78,6 +80,10 @@ export class User {
   })
   @Column({ unique: true, nullable: false })
   dni: string;
+
+  @OneToMany(() => Reservation, (reservation) => reservation.user)
+  @JoinColumn()
+  reservations: Reservation[];
 
   /**
    * Indica si el usuario tiene privilegios de administrador.
