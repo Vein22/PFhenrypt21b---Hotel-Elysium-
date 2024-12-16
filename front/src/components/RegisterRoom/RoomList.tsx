@@ -1,41 +1,33 @@
 'use client'
 
-import { useState } from 'react';
+import { useState } from 'react'
 
-interface Room {
-  id: number;
-  number: string;
-  type: string;
-  price: number;
-  available: boolean;
-}
-
-const mockRooms: Room[] = [
+const mockRooms = [
   { id: 1, number: '101', type: 'Individual', price: 100, available: true },
   { id: 2, number: '102', type: 'Doble', price: 150, available: true },
   { id: 3, number: '103', type: 'Suite', price: 250, available: true },
-];
+]
 
 export default function RoomList() {
-  const [rooms, setRooms] = useState<Room[]>(mockRooms);
-  const [editingRoom, setEditingRoom] = useState<number | null>(null);
+  const [rooms, setRooms] = useState(mockRooms)
+  const [editingRoom, setEditingRoom] = useState<number | null>(null)
 
   const handleToggleAvailability = (id: number) => {
     setRooms(rooms.map(room => 
       room.id === id ? { ...room, available: !room.available } : room
-    ));
-  };
+    ))
+  }
 
   const handleEditRoom = (id: number) => {
-    setEditingRoom(id);
-  };
+    setEditingRoom(id)
+  }
 
-  const handleSaveRoom = (id: number, updatedRoom: Partial<Room>) => {
+  const handleSaveRoom = (id: number, updatedRoom: any) => {
     setRooms(rooms.map(room => 
       room.id === id ? { ...room, ...updatedRoom } : room
-    ));
-    setEditingRoom(null);
-  };
+    ))
+    setEditingRoom(null)
+  }
 
   return (
     <div className="bg-white shadow rounded-lg p-6">
@@ -136,4 +128,3 @@ export default function RoomList() {
     </div>
   )
 }
-
