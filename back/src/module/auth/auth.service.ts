@@ -10,12 +10,16 @@ import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/CreateUserDto';
 import { NotificationsService } from '../notifications/notifications.service';
 import { RolesService } from '../../module/roles/roles.service';
+import { adminMock } from './Admin-mock';
+import { Role } from 'src/entities/role.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(Role) 
+    private readonly roleRepository: Repository<Role>,
     private readonly jwtService: JwtService,
     private readonly notificationService: NotificationsService,
     private readonly rolesService: RolesService,
@@ -96,5 +100,39 @@ export class AuthService {
 
   async findById(id: string): Promise<User> {
     return await this.userRepository.findOne({ where: { id } });
+  }
+
+  
+  async seedAdmin() {
+    const existingAdmins = (await this.userRepository.find()).map(
+      (user) => user.email,
+    );
+
+    let adminRole = await this.roleRepository.findOne({ where: { name: 'Administrador' } });
+
+    if (!adminRole) {
+      adminRole = new Role();
+      adminRole.name = 'Administrador';
+      adminRole.description = 'Persona con permisos de administrador.';
+      await this.roleRepository.save(adminRole);
+    }
+
+    for (const authData of adminMock) {
+      if (!existingAdmins.includes(authData.email)) {
+        const user = new User();
+        user.name = authData.name;
+        user.phone = authData.phone;
+        user.email = authData.email;
+        user.password = authData.password;
+        user.dni = authData.dni;
+        user.registrationDate = authData.registrationDate;
+
+        user.role = adminRole;
+
+        await this.userRepository.save(user);
+      }
+    }
+
+    console.log('Admin seeding completed');
   }
 }
