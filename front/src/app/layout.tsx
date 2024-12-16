@@ -5,6 +5,7 @@ import Footer from "@/components/Footer/Footer";
 import Chatbot from "@/components/chatbot/chatbot";
 import { LogginProvider } from "@/context/logginContext";
 import Providers from "./providers";
+import ProvidersAuth from '@/contextauth/providersAuth'
 
 export const metadata: Metadata = {
   title: "Hotel y Resort de Lujo",
@@ -20,12 +21,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
+        <ProvidersAuth>
           <LogginProvider>
             <Header />
             {children}
             <Chatbot />
             <Footer />
           </LogginProvider>
+          </ProvidersAuth>
         </Providers>
       </body>
     </html>
