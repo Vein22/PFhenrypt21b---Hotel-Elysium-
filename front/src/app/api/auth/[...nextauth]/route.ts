@@ -15,7 +15,7 @@ const handler = NextAuth({
     signIn: "/", // Página de inicio de sesión
   },
   callbacks: {
-    async redirect({ url, baseUrl }) {
+    async redirect({ baseUrl }) {
       // Redirigir a la página deseada después de iniciar sesión
       return baseUrl; // Cambia esto a la URL a la que deseas redirigir
     },
