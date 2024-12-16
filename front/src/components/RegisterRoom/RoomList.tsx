@@ -21,7 +21,7 @@ export default function RoomList() {
   const handleEditRoom = (id: number) => {
     setEditingRoom(id)
   }
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSaveRoom = (id: number, updatedRoom: any) => {
     setRooms(rooms.map(room => 
       room.id === id ? { ...room, ...updatedRoom } : room
