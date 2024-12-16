@@ -1,7 +1,8 @@
 
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn  } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany  } from 'typeorm';
 import { Role } from './role.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Reservation } from './Reservation.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -84,6 +85,10 @@ export class User {
   })
   @Column({ unique: true, nullable: false })
   dni: string;
+
+  @OneToMany(() => Reservation, (reservation) => reservation.user)
+  @JoinColumn()
+  reservations: Reservation[];
 
   /**
    * Relación con el rol del usuario.
