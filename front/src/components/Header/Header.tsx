@@ -9,6 +9,7 @@ import Switcher from "../Switcher";
 
 const Header = () => {
   const { userData } = useLoggin();
+
   return (
     <header className="sticky top-0 w-full h-[4.5rem] bg-grisOscuro text-white z-10 grid grid-cols-3 place-items-center">
       <div>
@@ -36,21 +37,22 @@ const Header = () => {
           <Link href="/contact" className="hover:text-mostaza">
             Contacto
           </Link>
-          <Switcher /> 
+          <Switcher />
         </div>
       </nav>
       <div className="space-x-4 flex items-center">
-        {userData?.token ? (     
-            <CardUser />
-        ) : (
+        {userData?.token ? (
           <>
-            {/* Esto esta aqui provisional ojo provisional va en componente de Reserva pero seguro
-            lo van a modifcar ni modo */}
+            {/* Esto está aquí provisional */}
             <PaymentButton
               amount={5000}
               currency="usd"
               description="Producto de ejemplo"
             />
+            <CardUser />
+          </>
+        ) : (
+          <>
             <Link href="/login">
               <button className="py-2 px-4 hover:bg-opacity-70">
                 Iniciar Sesión
