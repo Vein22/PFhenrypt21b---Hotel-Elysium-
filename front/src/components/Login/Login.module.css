@@ -1,4 +1,15 @@
 
+.containerp {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: row;
+    align-items: center;
+    min-height: 100vh;
+    /* margin-top: 3rem; */
+    margin: auto;
+}
+
 .container {
     background-color: rgb(255, 255, 255);
     display: flex;

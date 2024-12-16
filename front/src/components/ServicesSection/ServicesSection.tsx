@@ -8,7 +8,7 @@ type Service = {
   name: string;
   icon: string;
   photos: string[];
-  route: string; 
+  route: string;
 };
 
 const ServicesSection = () => {
@@ -62,20 +62,26 @@ const ServicesSection = () => {
   };
 
   return (
-    <section className="py-16 bg-black text-white relative">
+    <section className="text-white bg-grisOscuro p-10">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-8">Servicios Exclusivos</h2>
+        <div className="mb-[2rem]">
+          <h2 className="text-[2.5rem] uppercase">Servicios Exclusivos</h2>
+          <span className="font-secondary text-grisClaro">
+            Cada momento, un servicio a tu medida. <br /> En nuestro hotel,
+            nos aseguramos de que cada detalle de tu estancia sea perfecto.
+          </span>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {services.map((service, index) => (
             <Link
               key={service.name}
               href={`/services/${service.route}`}
-              className="relative flex flex-col items-center transition-transform duration-300 hover:scale-110"
+              className="relative flex flex-col items-center transition-transform duration-300 hover:scale-110 border border-grisClaro py-4"
               onMouseEnter={() => handleMouseEnter(service.name)}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="relative z-0">
+              <div className="relative">
                 <Image
                   src={service.icon}
                   alt={service.name}
@@ -84,7 +90,8 @@ const ServicesSection = () => {
                   className="mb-4"
                 />
               </div>
-              <h3 className="text-lg font-semibold z-0">{service.name}</h3>
+              <h3 className="text-[1rem]">{service.name}</h3>
+
 
               {visibleService === service.name && (
                 <div
@@ -98,7 +105,8 @@ const ServicesSection = () => {
                   style={{
                     boxShadow: "0 4px 15px rgb(182, 150, 99)",
                     maxWidth: "calc(100vw - 48px)",
-                    zIndex: 99999,
+                    zIndex:100,
+                    // position: "relative",
                   }}
                 >
                   <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row gap-4">

@@ -9,9 +9,9 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
 
   const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
   const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const regexPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{5,}$/;
-  const regexPhone = /^\+?\d{5,15}$/;
-  const regexDni = /^[A-Za-z0-9]{5,15}$/;
+  const regexPassword = /^(?=.*[A-Z]).{8,}$/;
+  const regexPhone = /^\+?\d{10,15}$/;
+  const regexDni = /^[A-Za-z0-9]{8,15}$/;
 
   const errors: Partial<valuesTypesRegisterPrueba> = {};
 
@@ -35,7 +35,7 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
     errors.password = "La contraseña es requerida";
   } else if (!regexPassword.test(form.password)) {
     errors.password =
-      "La contraseña debe cumplir con los requisitos: al menos 5 caracteres, una letra mayúscula, una minúscula, un número y un carácter especial.";
+      "La contraseña debe cumplir con los requisitos: al menos 8 caracteres Y una letra mayúscula.";
   }
 
   // Validar la confirmación de la contraseña
@@ -50,14 +50,14 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
     errors.phone = "El teléfono es requerido";
   } else if (!regexPhone.test(form.phone)) {
     errors.phone =
-      "El número de teléfono debe tener entre 5 y 15 dígitos, y puede incluir un signo de más";
+      "El número de teléfono debe tener entre 10 y 15 dígitos, y puede incluir un signo de más";
   }
 
   // Validar el DNI
   if (!form.dni) {
     errors.dni = "El DNI es requerido";
   } else if (!regexDni.test(form.dni)) {
-    errors.dni = "El DNI debe tener entre 5 y 12 caracteres alfanuméricos.";
+    errors.dni = "El DNI debe tener entre 8 y 12 caracteres alfanuméricos.";
   }
 
   return errors;

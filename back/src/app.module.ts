@@ -11,6 +11,10 @@ import { ReservationsModule } from './module/reservations/reservations.module';
 import { User } from './entities/User.entity';
 import { Room } from './entities/Room.entity';
 import { Reservation } from './entities/Reservation.entity';
+import { UsersModule } from './module/users/users.module'; 
+import { RolesModule } from './module/roles/roles.module'; 
+import { Role } from './entities/Role.entity';
+import { PaymentModule} from './module/payment/payment.module';
 
 
 @Module({
@@ -19,6 +23,9 @@ import { Reservation } from './entities/Reservation.entity';
     FilesModule,
     RoomsModule,
     ReservationsModule,
+    UsersModule,
+    RolesModule,
+    PaymentModule,
 
     
     JwtModule.register({
@@ -34,7 +41,7 @@ import { Reservation } from './entities/Reservation.entity';
 
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (Config: ConfigService) => Config.get('typeorm')
+      useFactory: (Config: ConfigService) => Config.get('typeorm'),
     }),
   ],
  

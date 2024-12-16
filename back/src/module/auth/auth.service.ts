@@ -9,14 +9,20 @@ import { JwtService } from '@nestjs/jwt';
 import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/CreateUserDto';
 import { NotificationsService } from '../notifications/notifications.service';
+import { RolesService } from '../../module/roles/roles.service';
+import { adminMock } from './Admin-mock';
+import { Role } from 'src/entities/role.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(Role) 
+    private readonly roleRepository: Repository<Role>,
     private readonly jwtService: JwtService,
-    private readonly notificationService: NotificationsService
+    private readonly notificationService: NotificationsService,
+    private readonly rolesService: RolesService,
   ) {}
 
   async signIn(userLogin: LoginUserDto) {
@@ -56,7 +62,9 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
 
     //Temporalmente asigno el rol de cliente por defecto
-  const roleId = '331cdc0e-98d7-4db5-af5f-6f927a876bff';
+  //const roleId = '"f656692b-8e84-42d3-82e9-900e20cf91c6"';
+  const clienteRole = await this.rolesService.getRoleByNameCliente();
+  const roleId = clienteRole.id;
 
     const newUser = this.userRepository.create({
       name: createUserDto.name,
@@ -92,5 +100,39 @@ export class AuthService {
 
   async findById(id: string): Promise<User> {
     return await this.userRepository.findOne({ where: { id } });
+  }
+
+  
+  async seedAdmin() {
+    const existingAdmins = (await this.userRepository.find()).map(
+      (user) => user.email,
+    );
+
+    let adminRole = await this.roleRepository.findOne({ where: { name: 'Administrador' } });
+
+    if (!adminRole) {
+      adminRole = new Role();
+      adminRole.name = 'Administrador';
+      adminRole.description = 'Persona con permisos de administrador.';
+      await this.roleRepository.save(adminRole);
+    }
+
+    for (const authData of adminMock) {
+      if (!existingAdmins.includes(authData.email)) {
+        const user = new User();
+        user.name = authData.name;
+        user.phone = authData.phone;
+        user.email = authData.email;
+        user.password = authData.password;
+        user.dni = authData.dni;
+        user.registrationDate = authData.registrationDate;
+
+        user.role = adminRole;
+
+        await this.userRepository.save(user);
+      }
+    }
+
+    console.log('Admin seeding completed');
   }
 }

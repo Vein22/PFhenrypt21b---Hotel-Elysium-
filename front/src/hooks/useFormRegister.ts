@@ -56,6 +56,11 @@ export const useFormRegister = (
       const { confirm_password, ...newData } = form;
       setLoading(true)
 console.log(confirm_password);
+        const errorResponse = {
+         message: 'El correo electrónico ya está registrado',
+         error: 'Conflict',
+         statusCode: 409
+        };
 
       try {
         const result = await dataForm(newData);
@@ -72,7 +77,7 @@ console.log(confirm_password);
             icon: "success",
           });
           setLoading(false)
-        } else {
+        } else if(result === 409) {
           setIsErrorResponse(true)
           Swal.fire({
             text: "Ha ocurrido un error al registrarse.",
@@ -83,7 +88,7 @@ console.log(confirm_password);
       } catch (error) {
         console.log("Error al registrar:", error);
         Swal.fire({
-          text: "Ha ocurrido un error al registrarse.",
+          text: errorResponse.message,
           title: "Error",
           icon: "error",
         });

@@ -1,6 +1,5 @@
 
 "use client";
-
 import styles from './Login.module.css';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
@@ -11,12 +10,15 @@ import { IloginError, IloginProps } from '@/interfaces/TypesLogin';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useLoggin } from '@/context/logginContext'; 
+import { signIn, useSession } from 'next-auth/react';
 
 
 
 function LoginForm() {
   const router = useRouter();
   const { setUserData } = useLoggin(); 
+  const {data:session} = useSession()
+  console.log (session)
 
   const initialState = {
     email: "",
@@ -83,6 +85,7 @@ function LoginForm() {
   };
 
   return (
+    <div className={styles.containerp}>
     <form onSubmit={handleSubmit} className={styles.container}>
       <div className={styles.imgContainer}>
         <Image
@@ -137,6 +140,10 @@ function LoginForm() {
         </div>
       </div>
     </form>
+    <div>
+       <button onClick={ () => signIn ('google') } className={styles.submit}>Autenticación con google</button>
+    </div>
+    </div>
   );
 }
 

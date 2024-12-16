@@ -1,83 +1,72 @@
-'use client'
-
-
+"use client";
 import { useState } from "react";
+import { searchUser } from "@/api/updateRollUser";
+import { User } from "../../interfaces/user";
+import Style from './updateRoll.module.css';
+import Image from "next/image";
+import img from '../../../public/Form Íconos/Name-User.png'
 
-export const  UpdateRoll = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [user, setUser] = useState(null);
-  const [newRole, setNewRole] = useState("");
+export const UpdateRoll = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [users, setUsers] = useState<User[]>([]);
 
-  // Buscar usuario EXISTENTE°°°°°°°°°°°°°°°°°°
   const handleSearch = async () => {
-    try {
-      const response = await fetch(`pendiente?search=${searchQuery}`);
-      const data = await response.json();
-      setUser(data);
-    } catch (error) {
-      console.error("Error al buscar el usuario", error);
-    }
-  };
-
-  // Asignar roll a un USUARIO EXISTENTE°°°°°°°°°°°°°°°°
-  const handleAssignRole = async () => {
-    if (!user || !newRole) return;
-
-    try {
-      const response = await fetch(`/pendiente`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ role: newRole }),
-      });
-
-      if (response.ok) {
-        alert("Rol asignado correctamente");
-        setUser(null);
-        setSearchQuery("");
-        setNewRole("");
-      } else {
-        alert("Error al asignar el rol");
-      }
-    } catch (error) {
-      console.log("Error al asignar el rol", error);
-    }
+    if (!searchTerm.trim()) return;
+    const results = await searchUser(searchTerm);
+    setUsers(results);
   };
 
   return (
-    <div>
-      <h1>Asignar Rol a Usuario</h1>
+    <div className={Style.container}>
+      <h1 className="">Buscar Usuario</h1>
 
-      <input
-        type="text"
-        placeholder="Buscar usuario..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <button onClick={handleSearch}>Buscar</button>
+      <div className={Style.seachContainer}>
+        <input
+          type="text"
+          placeholder="Nombre de usuario"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
 
-      {user && (
-        <div>
-          <h2>Usuario Encontrado</h2>
-          <p>Nombre:</p>
-          <p>Email:</p>
+      <button
+        onClick={handleSearch}>
+        <Image src={img} width={30} height={30} alt="img"/>
+      </button>
+      </div>
 
-          <select
-            value={newRole}
-            onChange={(e) => setNewRole(e.target.value)}
-          >
-            <option value="">Selecciona un rol</option>
-            <option value="admin">Administrador</option>
-            <option value="editor">Editor</option>
-            <option value="viewer">Visualizador</option>
-          </select>
-
-          <button onClick={handleAssignRole}>Asignar Rol</button>
-        </div>
+    <div className={Style.datosContainer}>
+      <h2 className={Style.datosTitulo}>{users.length > 0 ? 'Datos del usuario' : 'Aquí se mostrarán los datos del usuario que buscas'}</h2>
+      {users.length > 0 && (
+        <article className={Style.userContainer}>
+          {users.map((user) => (
+            <div
+              key={user.id}
+              className={Style.detallesContainer}>
+              <p><span>Nombre:  </span>{user.name}</p>
+              <p><span>Correo Elétronico:  </span>{user.email}</p>
+              <p><span>Teléfono:  </span>{user.phone}</p>
+              <p><span>DNI:  </span>{user.dni}</p>
+              <p><span>ROLL:  </span>{user.isAdmin}</p>
+              <p><span>Se unió el:  </span>{user.registrationDate}</p>
+            </div>   
+          ))}
+        </article>
       )}
+      {users.length > 0 && <div>
+      <div className={Style.rollContainer}>
+        <h2 className={Style.cambiarRoll}>Cambiar Roll</h2>     
+      <select>
+        <option value="user">Usuario</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+    <button className={Style.submit}>Cambiar Roll</button>
+    </div> 
+    }
+    </div>
+
     </div>
   );
-}
+};
 
 export default UpdateRoll;
