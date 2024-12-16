@@ -15,29 +15,6 @@ export const fetchRegister = async (form: Omit<valuesTypesRegister, 'confirm_pas
         if(result.ok) {
             const data = await result.json();
 
-///ROLL DEL USUARIO/////////////////////////////////////
-            const defaultRole = {
-                name: 'cliente',
-                description: 'Persona con permisos de cliente.'
-            };
-
-            const createRoleResponse = await fetch(`${APIURL}/roles`, {
-               method: 'POST',
-                headers: {
-                   'Content-Type': 'application/json'
-               },
-               body: JSON.stringify(defaultRole)
-            });
-
-            
-            if (createRoleResponse.ok) {
-                const roleData = await createRoleResponse.json();
-                console.log('Rol "Cliente" creado :', roleData);
-            } else {
-                throw new Error('Error al crear el rol "Cliente"');
-            }
-/////////////////////FIN//////////////////////////////////
-
             console.log('¡Usuario creado exitosamente!');
             return data
         } else {
