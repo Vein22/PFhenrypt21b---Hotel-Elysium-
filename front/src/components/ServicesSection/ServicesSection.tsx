@@ -92,6 +92,7 @@ const ServicesSection = () => {
               </div>
               <h3 className="text-[1rem]">{service.name}</h3>
 
+
               {visibleService === service.name && (
                 <div
                   className={`absolute top-full mt-4 bg-black p-4 rounded-lg shadow-lg ${
@@ -104,7 +105,7 @@ const ServicesSection = () => {
                   style={{
                     boxShadow: "0 4px 15px rgb(182, 150, 99)",
                     maxWidth: "calc(100vw - 48px)",
-                    zIndex: 99999,
+                    zIndex:100,
                     // position: "relative",
                   }}
                 >

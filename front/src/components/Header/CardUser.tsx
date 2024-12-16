@@ -7,11 +7,10 @@ import ClickOutside from "../ClickOutside";
 import { useLoggin } from "@/context/logginContext";
 import { useRouter } from "next/navigation";
 
-
 const CardUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { userData, setUserData } = useLoggin();
-  const router=useRouter();
+  const router = useRouter();
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
@@ -56,12 +55,32 @@ const CardUser = () => {
       </Link>
 
       {dropdownOpen && (
-        <div className="absolute right-0 mt-2 flex w-62.5 flex-col rounded-sm shadow-amber-400 bg-black">
-          <ul className="flex flex-col gap-5 border-amber-500 px-6 py-7.5">
+        <div className="absolute right-0 mt-2 flex w-62.5 flex-col rounded-sm shadow-mostaza bg-black">
+          <ul className="flex flex-col gap-3 border-mostaza">
+            <li>
+              <Link
+                href="/reserva"
+                className="flex items-center gap-3 mt-3 px-4 py-7.5 text-sm font-medium text-white hover:text-mostaza lg:text-base"
+              >
+                <svg
+                  width="35"
+                  height="35"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 12h20v6h-1v3h-2v-3H5v3H3v-3H2v-6zm3 6h14v-4H5v4zm1-10h12v4H6v-4zm6-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-4 3c1.1 0 2-.9 2-2S9.1 4 8 4s-2 .9-2 2 .9 2 2 2zm4 0c1.1 0 2-.9 2-2S13.1 4 12 4s-2 .9-2 2 .9 2 2 2zm4 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
+                    fill="currentColor"
+                  />
+                </svg>
+                Reserva Hoy
+              </Link>
+            </li>
             <li>
               <Link
                 href="/profile"
-                className="flex items-center gap-3.5 mt-2 text-sm font-medium text-white hover:text-amber-200 lg:text-base"
+                className="flex items-center gap-4 px-6 py-7.5 text-sm font-medium text-white hover:text-mostaza lg:text-base"
               >
                 <svg
                   className="text-white"
@@ -85,7 +104,7 @@ const CardUser = () => {
             <li>
               <Link
                 href="/profile"
-                className="flex items-center gap-3.5 text-sm font-medium text-white hover:text-amber-400 lg:text-base"
+                className="flex items-center gap-3.5 px-6 py-7.5 text-sm font-medium text-white hover:text-mostaza lg:text-base"
               >
                 <svg
                   className="text-white"
@@ -105,7 +124,7 @@ const CardUser = () => {
             <li>
               <Link
                 href="/profile"
-                className="flex items-center mb-3 gap-3.5 text-sm font-medium text-white hover:text-amber-400 lg:text-base"
+                className="flex items-center mb-3 gap-3.5 px-6 py-7.5 text-sm font-medium text-white hover:text-mostaza lg:text-base"
               >
                 <svg
                   className="text-white"
@@ -127,22 +146,19 @@ const CardUser = () => {
               </Link>
             </li>
           </ul>
-          <button className="flex items-center gap-2 px-1 py-2 text-sm font-medium bg-amber-600 lg:text-base"
-          
-          onClick={() => {
-            localStorage.removeItem("sessionStart");
-            setUserData(null);
-            router.push("/");
-          }}
-          
-          
+          <button
+            className="flex items-center gap-2 px-2 py-2 text-sm font-medium bg-mostaza lg:text-base"
+            onClick={() => {
+              localStorage.removeItem("sessionStart");
+              setUserData(null);
+              router.push("/");
+            }}
           >
             <svg
               className="fill-current"
               width="22"
               height="22"
               viewBox="0 0 22 22"
-         
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
