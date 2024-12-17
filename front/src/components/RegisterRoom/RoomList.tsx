@@ -2,14 +2,22 @@
 
 import { useState } from 'react'
 
-const mockRooms = [
+type Room = {
+  id: number
+  number: string
+  type: string
+  price: number
+  available: boolean
+}
+
+const mockRooms: Room[] = [
   { id: 1, number: '101', type: 'Individual', price: 100, available: true },
   { id: 2, number: '102', type: 'Doble', price: 150, available: true },
   { id: 3, number: '103', type: 'Suite', price: 250, available: true },
 ]
 
 export default function RoomList() {
-  const [rooms, setRooms] = useState(mockRooms)
+  const [rooms, setRooms] = useState<Room[]>(mockRooms)
   const [editingRoom, setEditingRoom] = useState<number | null>(null)
 
   const handleToggleAvailability = (id: number) => {
@@ -23,6 +31,7 @@ export default function RoomList() {
   }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSaveRoom = (id: number, updatedRoom: any) => {
+
     setRooms(rooms.map(room => 
       room.id === id ? { ...room, ...updatedRoom } : room
     ))
@@ -98,7 +107,15 @@ export default function RoomList() {
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
                     <button
-                      onClick={() => handleSaveRoom(room.id, {})}
+                    onClick={() => handleSaveRoom(room.id, {
+                      number: 'nuevo número',
+                      type: 'nuevo tipo',
+                      price: 100,
+                      beds: 2,
+                      rating: 4,
+                      image: 'nueva imagen',
+                      description: 'nueva descripción'
+                    })}
                       className="px-3 py-1 rounded text-white text-xs bg-green-500 hover:bg-green-600 mr-2"
                     >
                       Guardar
@@ -128,4 +145,3 @@ export default function RoomList() {
     </div>
   )
 }
-
