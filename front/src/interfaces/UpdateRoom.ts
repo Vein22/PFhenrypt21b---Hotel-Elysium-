@@ -1,4 +1,4 @@
-interface UpdatedRoom {
+export interface UpdatedRoom {
   number: string;
   type: string;
   price: number;
