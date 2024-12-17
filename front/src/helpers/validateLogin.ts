@@ -23,7 +23,7 @@ export const validateFields = (values: IloginProps): IloginError => {
     // // setErrors(errors);
 
 
-
+    const regexPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{5,}$/;
     const errors: IloginError = {};
 
   // validar el email
@@ -35,7 +35,7 @@ export const validateFields = (values: IloginProps): IloginError => {
   }
 
   // Validar la contraseña
-  if (!values.password) {
+  /* if (!values.password) {
     errors.password = "La contraseña es obligatoria";
   } else {
     if (!/^(?=.*[!@#$%^&*+-])/.test(values.password)) {
@@ -56,6 +56,13 @@ export const validateFields = (values: IloginProps): IloginError => {
       errors.password =
         "La contraseña debe contener al menos una letra mayúscula";
     }
-  }
+  } */
+    if (!values.password) {
+      errors.password = "La contraseña es requerida";
+    } else if (!regexPassword.test(values.password)) {
+      errors.password =
+        "La contraseña debe cumplir con los requisitos: al menos 5 caracteres, una letra mayúscula, una minúscula, un número y un carácter especial.";
+    }
   return errors;
   };
+
