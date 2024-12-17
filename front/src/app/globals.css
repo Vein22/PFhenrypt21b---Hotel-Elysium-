@@ -64,3 +64,11 @@ button {
 button:hover {
   background-color: #d9af71;
 }
+
+button {
+  @apply bg-mostaza text-white border-white rounded-lg py-2 px-6 hover:bg-grisOscuro shadow-md text-base transition duration-300 ease-in-out;
+}
+
+label {
+  @apply text-sm font-medium text-grisOscuro
+}
