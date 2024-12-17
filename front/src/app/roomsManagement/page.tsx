@@ -3,7 +3,8 @@ import RegisterForm from "@/components/RegisterRoom/RegisterRoom2"
 
 const page = () => {
     return (
-        <div className="min-h-[75vh] pt-40">
+        <div className="min-h-[75vh] pt-10">
+            <h1 className="flex justify-center text-2xl pb-4">Gestión de alojamientos</h1>
             <RegisterForm/>
         </div>
     )
