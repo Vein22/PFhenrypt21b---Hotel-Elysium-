@@ -15,7 +15,7 @@ export const postBooking = async (userId: string, roomId:string, checkInDate: Da
 
         if (!res.ok) {
             const errorText = await res.text();
-            throw new Error(`Error ${res.status}: ${errorText}`);
+            console.log(`Error ${res.status}: ${errorText}`);
         }
         
         return await res.json();
@@ -24,3 +24,4 @@ export const postBooking = async (userId: string, roomId:string, checkInDate: Da
         throw error; 
     }
 };
+  
