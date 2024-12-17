@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 interface GuestsInputProps {
   maxGuests?: number;
@@ -6,8 +6,13 @@ interface GuestsInputProps {
   initialGuests?: number; // Se puede recibir un valor inicial
 }
 
-const GuestsInput: React.FC<GuestsInputProps> = ({ maxGuests = 8, onGuestsChange, initialGuests = 0 }) => {
+const GuestsInput: React.FC<GuestsInputProps> = ({
+  maxGuests = 8,
+  onGuestsChange,
+  initialGuests = 0,
+}) => {
   const [guests, setGuests] = useState<number>(initialGuests);
+  
 
   // Actualiza el valor de guests si cambia desde el componente padre (RegisterForm)
   useEffect(() => {
@@ -29,13 +34,13 @@ const GuestsInput: React.FC<GuestsInputProps> = ({ maxGuests = 8, onGuestsChange
       onGuestsChange(newGuests);
     }
   };
-  console.log('====================================');
+  console.log("====================================");
   console.log(incrementGuests);
-  console.log('====================================');
+  console.log("====================================");
 
-  console.log('====================================');
+  console.log("====================================");
   console.log(decrementGuests);
-  console.log('====================================');
+  console.log("====================================");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value, 10);
@@ -61,7 +66,3 @@ const GuestsInput: React.FC<GuestsInputProps> = ({ maxGuests = 8, onGuestsChange
 };
 
 export default GuestsInput;
-
-
-  
-  
