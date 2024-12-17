@@ -2,14 +2,22 @@
 
 import { useState } from 'react'
 
-const mockRooms = [
+type Room = {
+  id: number
+  number: string
+  type: string
+  price: number
+  available: boolean
+}
+
+const mockRooms: Room[] = [
   { id: 1, number: '101', type: 'Individual', price: 100, available: true },
   { id: 2, number: '102', type: 'Doble', price: 150, available: true },
   { id: 3, number: '103', type: 'Suite', price: 250, available: true },
 ]
 
 export default function RoomList() {
-  const [rooms, setRooms] = useState(mockRooms)
+  const [rooms, setRooms] = useState<Room[]>(mockRooms)
   const [editingRoom, setEditingRoom] = useState<number | null>(null)
 
   const handleToggleAvailability = (id: number) => {
@@ -23,6 +31,7 @@ export default function RoomList() {
   }
 
   const handleSaveRoom = (id: number, updatedRoom: UpdatedRoom) => {
+
     setRooms(rooms.map(room => 
       room.id === id ? { ...room, ...updatedRoom } : room
     ))
@@ -136,4 +145,3 @@ export default function RoomList() {
     </div>
   )
 }
-

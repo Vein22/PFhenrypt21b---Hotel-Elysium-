@@ -92,6 +92,7 @@ const ServicesSection = () => {
               </div>
               <h3 className="text-[1rem]">{service.name}</h3>
 
+
               {visibleService === service.name && (
                 <div
                   className={`absolute top-full mt-4 bg-grisOscuro p-4 shadow-lg ${
