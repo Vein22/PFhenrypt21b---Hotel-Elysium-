@@ -105,15 +105,23 @@ const RegisterForm = () => {
     }
 
     try {
-      console.log("Datos a enviar:", formData);
+      const datosParaEnviar = {
+        ...formData,
+        beds: parseInt(formData.beds, 10),
+        rating: parseFloat(formData.rating),
+        price: parseFloat(formData.price)
+      };
+
+      console.log("Datos a enviar:", datosParaEnviar);
       const response = await fetch(`${APIURL}/rooms/registerRoom`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(datosParaEnviar),
       });
 
       if (!response.ok) {
-        throw new Error("No se pudo registrar la habitación.");
+        const datosError = await response.json();
+        throw new Error(datosError.message || "No se pudo registrar la habitación.");
       }
 
       Swal.fire({
@@ -130,7 +138,7 @@ const RegisterForm = () => {
       });
     }
   };
-
+  
   return (
     <>
       <form

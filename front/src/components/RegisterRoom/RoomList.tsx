@@ -30,7 +30,8 @@ export default function RoomList() {
     setEditingRoom(id)
   }
 
-  const handleSaveRoom = (id: number, updatedRoom: Partial<Room>) => {
+  const handleSaveRoom = (id: number, updatedRoom: UpdatedRoom) => {
+
     setRooms(rooms.map(room => 
       room.id === id ? { ...room, ...updatedRoom } : room
     ))
@@ -106,7 +107,15 @@ export default function RoomList() {
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
                     <button
-                      onClick={() => handleSaveRoom(room.id, {})}
+                    onClick={() => handleSaveRoom(room.id, {
+                      number: 'nuevo número',
+                      type: 'nuevo tipo',
+                      price: 100,
+                      beds: 2,
+                      rating: 4,
+                      image: 'nueva imagen',
+                      description: 'nueva descripción'
+                    })}
                       className="px-3 py-1 rounded text-white text-xs bg-green-500 hover:bg-green-600 mr-2"
                     >
                       Guardar
