@@ -41,8 +41,8 @@ export class PaymentService {
       metadata: {
         reservationId, 
       },
-      success_url: `http://localhost:4000/payments/success?reservationId=${reservationId}`,
-      cancel_url: 'http://localhost:4000/payments/cancel',
+      success_url: 'http://localhost:3000/success',
+      cancel_url: 'http://localhost:3000/cancel',
     });
   
     return {
