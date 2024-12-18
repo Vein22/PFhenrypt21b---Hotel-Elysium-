@@ -1,44 +1,43 @@
-'use client'
+"use client";
 
-
-import { useState } from 'react'
-import { UpdatedRoom } from '@/interfaces/UpdateRoom'
+import { useState } from "react";
 
 type Room = {
-  id: number
-  number: string
-  type: string
-  price: number
-  available: boolean
-}
+  id: number;
+  number: string;
+  type: string;
+  price: number;
+  available: boolean;
+};
 
 const mockRooms: Room[] = [
-  { id: 1, number: '101', type: 'Individual', price: 100, available: true },
-  { id: 2, number: '102', type: 'Doble', price: 150, available: true },
-  { id: 3, number: '103', type: 'Suite', price: 250, available: true },
-]
+  { id: 1, number: "101", type: "Individual", price: 100, available: true },
+  { id: 2, number: "102", type: "Doble", price: 150, available: true },
+  { id: 3, number: "103", type: "Suite", price: 250, available: true },
+];
 
 export default function RoomList() {
-  const [rooms, setRooms] = useState<Room[]>(mockRooms)
-  const [editingRoom, setEditingRoom] = useState<number | null>(null)
+  const [rooms, setRooms] = useState<Room[]>(mockRooms);
+  const [editingRoom, setEditingRoom] = useState<number | null>(null);
 
   const handleToggleAvailability = (id: number) => {
-    setRooms(rooms.map(room => 
-      room.id === id ? { ...room, available: !room.available } : room
-    ))
-  }
+    setRooms(
+      rooms.map((room) =>
+        room.id === id ? { ...room, available: !room.available } : room
+      )
+    );
+  };
 
   const handleEditRoom = (id: number) => {
-    setEditingRoom(id)
-  }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setEditingRoom(id);
+  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSaveRoom = (id: number, updatedRoom: any) => {
-
-    setRooms(rooms.map(room => 
-      room.id === id ? { ...room, ...updatedRoom } : room
-    ))
-    setEditingRoom(null)
-  }
+    setRooms(
+      rooms.map((room) => (room.id === id ? { ...room, ...updatedRoom } : room))
+    );
+    setEditingRoom(null);
+  };
 
   return (
     <div className="bg-white shadow rounded-lg p-6">
@@ -65,12 +64,12 @@ export default function RoomList() {
             </tr>
           </thead>
           <tbody>
-            {rooms.map(room => (
+            {rooms.map((room) => (
               <tr key={room.id}>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       defaultValue={room.number}
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
@@ -80,8 +79,8 @@ export default function RoomList() {
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       defaultValue={room.type}
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
@@ -91,8 +90,8 @@ export default function RoomList() {
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
-                    <input 
-                      type="number" 
+                    <input
+                      type="number"
                       defaultValue={room.price}
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
@@ -101,23 +100,36 @@ export default function RoomList() {
                   )}
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <span className={`relative inline-block px-3 py-1 font-semibold ${room.available ? 'text-green-900' : 'text-red-900'} leading-tight`}>
-                    <span aria-hidden className={`absolute inset-0 ${room.available ? 'bg-green-200' : 'bg-red-200'} opacity-50 rounded-full`}></span>
-                    <span className="relative">{room.available ? 'Disponible' : 'No Disponible'}</span>
+                  <span
+                    className={`relative inline-block px-3 py-1 font-semibold ${
+                      room.available ? "text-green-900" : "text-red-900"
+                    } leading-tight`}
+                  >
+                    <span
+                      aria-hidden
+                      className={`absolute inset-0 ${
+                        room.available ? "bg-green-200" : "bg-red-200"
+                      } opacity-50 rounded-full`}
+                    ></span>
+                    <span className="relative">
+                      {room.available ? "Disponible" : "No Disponible"}
+                    </span>
                   </span>
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
                     <button
-                    onClick={() => handleSaveRoom(room.id, {
-                      number: 'nuevo número',
-                      type: 'nuevo tipo',
-                      price: 100,
-                      beds: 2,
-                      rating: 4,
-                      image: 'nueva imagen',
-                      description: 'nueva descripción'
-                    })}
+                      onClick={() =>
+                        handleSaveRoom(room.id, {
+                          number: "nuevo número",
+                          type: "nuevo tipo",
+                          price: 100,
+                          beds: 2,
+                          rating: 4,
+                          image: "nueva imagen",
+                          description: "nueva descripción",
+                        })
+                      }
                       className="px-3 py-1 rounded text-white text-xs bg-green-500 hover:bg-green-600 mr-2"
                     >
                       Guardar
@@ -133,10 +145,12 @@ export default function RoomList() {
                   <button
                     onClick={() => handleToggleAvailability(room.id)}
                     className={`px-3 py-1 rounded text-white text-xs ${
-                      room.available ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'
+                      room.available
+                        ? "bg-red-500 hover:bg-red-600"
+                        : "bg-green-500 hover:bg-green-600"
                     }`}
                   >
-                    {room.available ? 'Deshabilitar' : 'Habilitar'}
+                    {room.available ? "Deshabilitar" : "Habilitar"}
                   </button>
                 </td>
               </tr>
@@ -145,5 +159,5 @@ export default function RoomList() {
         </table>
       </div>
     </div>
-  )
+  );
 }
