@@ -50,7 +50,7 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
     errors.phone = "El teléfono es requerido";
   } else if (!regexPhone.test(form.phone)) {
     errors.phone =
-      "El número de teléfono debe tener entre 10 y 15 dígitos, y puede incluir un signo de más";
+      "El número de teléfono debe tener entre 10 y 15 dígitos, y puede incluir un signo +";
   }
 
   // Validar el DNI

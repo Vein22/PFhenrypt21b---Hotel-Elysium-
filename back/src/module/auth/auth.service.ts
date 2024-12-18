@@ -52,7 +52,7 @@ export class AuthService {
 
   async createUser(createUserDto: CreateUserDto) {
     const existingUser = await this.userRepository.findOne({
-      where: [{ email: createUserDto.email }, { dni: createUserDto.dni }],
+      where: [{ email: createUserDto.email }],
     });
 
     if (existingUser) {

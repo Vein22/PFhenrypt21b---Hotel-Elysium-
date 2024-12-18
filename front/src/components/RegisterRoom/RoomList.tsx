@@ -1,6 +1,8 @@
 'use client'
 
+
 import { useState } from 'react'
+import { UpdatedRoom } from '@/interfaces/UpdateRoom'
 
 type Room = {
   id: number
