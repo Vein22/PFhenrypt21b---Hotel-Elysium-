@@ -52,24 +52,25 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileUpload }) => {
   };
 
   return (
-    <div className="bg-gray-500 h-1/3 flex flex-col justify-center items-center gap-4">
+    <div className="relative w-full h-40 border border-gray-400 rounded bg-white shadow-sm flex items-center justify-center">
       {previewUrl ? (
         <Image
           src={previewUrl}
           alt="Preview"
-          width={192}
-          height={192}
+          width={160}
+          height={160}
           className="object-cover rounded"
           unoptimized
         />
       ) : (
-        <p className="text-gray-200">Selecciona una imagen para verla aquí</p>
+        <p className="text-gray-600 text-sm font-medium">Selecciona una imagen</p>
       )}
+
       <input
         type="file"
         accept="image/*"
         onChange={handleFileChange}
-        className="border border-gray-300 p-2 rounded"
+        className="absolute inset-0 opacity-0 cursor-pointer"
       />
     </div>
   );
