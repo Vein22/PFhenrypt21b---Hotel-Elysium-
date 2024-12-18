@@ -16,4 +16,15 @@ export class UsersService {
       .where('LOWER(user.name) LIKE LOWER(:search)', { search: `%${search}%` })
       .getMany();
   }
+
+  async findUsers() {
+    return await this.userRepository.find();
+  }
+
+  async findUsersById(id: string) {
+    return await this.userRepository.findOne({
+      where: { id },
+      relations: ['reservations'],
+    });
+  }
 }
