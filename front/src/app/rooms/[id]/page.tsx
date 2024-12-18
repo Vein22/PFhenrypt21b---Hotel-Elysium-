@@ -4,11 +4,12 @@ import NotFound from "@/app/not-found";
 
 interface Params {
   id: string;
+  price:number;
 }
 
 const Page = async ({ params }: { params: Promise<Params> }) => {
   const resolvedParams = await params; 
-  const { id } = resolvedParams;
+  const { id,price } = resolvedParams;
 
   try {
     const room = await getRoomById(id);

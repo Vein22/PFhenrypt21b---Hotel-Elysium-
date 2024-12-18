@@ -21,9 +21,9 @@ async createCheckoutSession(@Body() createPaymentDto: CreatePaymentDto,
 }
 
 @Get('/success')
-  async handlePaymentSuccess(@Query('reservationId') reservationId: string) {
-    return await this.paymentService.handlePaymentSuccess(reservationId);
-  }
+async handlePaymentSuccess(@Query('reservationId') reservationId: string) {
+  return await this.paymentService.handlePaymentSuccess(reservationId);
+}
 
   @Get('/cancel')
   handleCancel() {

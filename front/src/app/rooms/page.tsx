@@ -76,7 +76,7 @@ const Page = () => {
           </select>
         </div>
       </div>
-
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-10 pl-10">
         {sortedRooms.length > 0 ? (
           sortedRooms.map((room, i) => <RoomCard key={i} {...room} />)
