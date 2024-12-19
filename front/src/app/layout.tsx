@@ -24,7 +24,9 @@ export default function RootLayout({
         <ProvidersAuth>
           <LogginProvider>
             <Header />
-            {children}
+           
+                    {children}
+
             <Chatbot />
             <Footer />
           </LogginProvider>

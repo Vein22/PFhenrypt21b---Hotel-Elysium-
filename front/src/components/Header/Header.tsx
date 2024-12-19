@@ -44,11 +44,11 @@ const Header = () => {
         {userData?.token ? (
           <>
             {/* Esto está aquí provisional */}
-            <PaymentButton
+            {/* <PaymentButton
               amount={5000}
               currency="usd"
               description="Producto de ejemplo"
-            />
+            /> */}
             <CardUser />
           </>
         ) : (
