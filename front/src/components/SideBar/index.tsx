@@ -2,9 +2,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
+
+
 const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+
+  
   return (
     <aside
       onMouseEnter={() => setIsExpanded(true)}
@@ -18,7 +22,6 @@ const Sidebar = () => {
           isExpanded ? "opacity-100" : "opacity-0"
         }`}
       >
-        DASHBOARD ADMINISTRADOR
       </div>
       <ul className="space-y-4">
         <li
@@ -37,7 +40,7 @@ const Sidebar = () => {
             />
           </svg>
           {isExpanded && (
-            <Link href="/clientes-registrados" className="ml-4">
+            <Link href="/dashboardAdmin/clientList" className="ml-4">
               CLIENTES REGISTRADOS
             </Link>
           )}
