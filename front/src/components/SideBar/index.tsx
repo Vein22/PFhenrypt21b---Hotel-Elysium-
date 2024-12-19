@@ -80,7 +80,7 @@ const Sidebar = () => {
             <path d="M6 2H4v20h2V2zm14 0h-2v20h2V2z" fill="currentColor" />
           </svg>
           {isExpanded && (
-            <Link href="/historial-clientes" className="ml-4">
+            <Link href="/dashboardAdmin/createRooms" className="ml-4">
               REGISTRO DE HABITACIONES
             </Link>
           )}
