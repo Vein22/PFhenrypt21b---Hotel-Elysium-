@@ -67,8 +67,8 @@ const ServicesSection = () => {
         <div className="mb-[2rem]">
           <h2 className="text-[2.5rem] uppercase">Servicios Exclusivos</h2>
           <span className="font-secondary text-grisClaro">
-            Cada momento, un servicio a tu medida. <br /> En nuestro hotel,
-            nos aseguramos de que cada detalle de tu estancia sea perfecto.
+            Cada momento, un servicio a tu medida. <br /> En nuestro hotel, nos
+            aseguramos de que cada detalle de tu estancia sea perfecto.
           </span>
         </div>
 
@@ -77,7 +77,7 @@ const ServicesSection = () => {
             <Link
               key={service.name}
               href={`/services/${service.route}`}
-              className="relative flex flex-col items-center transition-transform duration-300 hover:scale-110 border border-grisClaro py-4"
+              className="relative flex flex-col items-center transition-transform duration-300 hover:scale-110 border border-grisClaro py-4 z-10"
               onMouseEnter={() => handleMouseEnter(service.name)}
               onMouseLeave={handleMouseLeave}
             >
@@ -85,16 +85,17 @@ const ServicesSection = () => {
                 <Image
                   src={service.icon}
                   alt={service.name}
-                  width={64}
-                  height={64}
-                  className="mb-4"
+                  width={60}
+                  height={60}
+                  className="mb-2"
                 />
               </div>
               <h3 className="text-[1rem]">{service.name}</h3>
 
+
               {visibleService === service.name && (
                 <div
-                  className={`absolute top-full mt-4 bg-black p-4 rounded-lg shadow-lg ${
+                  className={`absolute top-full mt-4 bg-grisOscuro p-4 shadow-lg ${
                     index === 0
                       ? "left-1/2 transform -translate-x-1/2 lg:left-0 lg:transform-none"
                       : index === services.length - 1
@@ -104,23 +105,21 @@ const ServicesSection = () => {
                   style={{
                     boxShadow: "0 4px 15px rgb(182, 150, 99)",
                     maxWidth: "calc(100vw - 48px)",
-                    zIndex: 99999,
-                    // position: "relative",
                   }}
                 >
                   <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row gap-4">
                     {service.photos.map((photo, photoIndex) => (
                       <div
                         key={photoIndex}
-                        className="w-[180px] h-[180px] flex-shrink-0 overflow-hidden border-2 border-marronclaro rounded-lg"
+                        className="w-[250px] h-[150px] flex-shrink-0 overflow-hidden border-2 border-grisClaro"
+                        style={{ width: "250px", height: "150px"}}
                       >
                         <Image
                           src={photo}
                           alt={`${service.name} Foto ${photoIndex + 1}`}
-                          width={120}
-                          height={180}
+                          width={250}
+                          height={150}
                           className="object-cover w-full h-full"
-                          style={{ objectPosition: "top" }}
                         />
                       </div>
                     ))}

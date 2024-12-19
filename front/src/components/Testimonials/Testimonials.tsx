@@ -49,11 +49,14 @@ const Testimonials = () => {
             {visibleTestimonials.map((testimonial, index) => (
               <div
                 key={index}
+                
                 className="relative bg-white border border-marronfuerte shadow-lg shadow-marronclaro rounded-lg p-6 w-72"
+                style={{
+
+                  zIndex:-1,
+
+                }}
               >
-                {/* <div className="absolute -top-2 left-0 right-0 mx-auto w-64 h-2 bg-marron rounded"></div>
-                <div className="absolute -bottom-2 left-0 right-0 mx-auto w-64 h-2 bg-marron rounded"></div>
-                <div className="absolute top-1 right-1 text-marronfuerte text-2xl"> */}
                 <div className="relative w-full h-2 bg-marron rounded mb-4"></div>
                 <div className="absolute top-1 right-1 text-marronfuerte text-2xl">
                   <Image

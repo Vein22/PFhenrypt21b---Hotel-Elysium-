@@ -66,7 +66,6 @@ const Footer = () => {
                 {/* </div> */}
               </Link>
             </div>
-
             <div className="flex flex-col items-center hover:scale-110 transition-transform duration-200">
               <Link href="https://www.twitter.com">
                 {/* <div className="flex flex-col items-center"> */}

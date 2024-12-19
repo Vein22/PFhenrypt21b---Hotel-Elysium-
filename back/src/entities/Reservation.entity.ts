@@ -1,11 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { PaymentStatus } from 'src/enums/enums';
+import { Room } from './Room.entity';
+import { User } from './User.entity';
 
 @Entity({ name: 'reservations' })
 export class Reservation {
-
-
   /**
    * Identificador único de la reservación.
    * @example "123e4567-e89b-12d3-a456-426614174000"
@@ -17,7 +23,6 @@ export class Reservation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-
   /**
    * Usuario que realiza la reservación.
    */
@@ -27,6 +32,13 @@ export class Reservation {
   @Column()
   userId: string;
 
+  @ManyToOne(() => User, (user) => user.reservations)
+  @JoinColumn()
+  user: User;
+
+  @ManyToOne(() => Room, (room) => room.reservations)
+  @JoinColumn()
+  room: Room;
 
   /**
    * Habitación reservada.
@@ -37,7 +49,6 @@ export class Reservation {
   @Column()
   roomId: string;
 
-  
   /**
    * Fecha de check-in.
    * @example "2024-12-20"
@@ -48,7 +59,6 @@ export class Reservation {
   })
   @Column('date')
   checkInDate: Date;
-
 
   /**
    * Fecha de check-out.
@@ -61,12 +71,11 @@ export class Reservation {
   @Column('date')
   checkOutDate: Date;
 
-
-   /**
+  /**
    * Estado del pago de la reservación.
    * @example "Reserva no Pagado"
    */
-   @ApiProperty({
+  @ApiProperty({
     example: PaymentStatus.NOT_PAID,
     description: 'Estado del pago de la reservación.',
   })
@@ -77,12 +86,11 @@ export class Reservation {
   })
   paymentStatus: PaymentStatus;
 
-
-   /**
+  /**
    * Estado de eliminación lógica de la reservación.
    * @example false
    */
-   @ApiProperty({
+  @ApiProperty({
     example: false,
     description: 'Indica si la reservación está eliminada de forma lógica.',
   })

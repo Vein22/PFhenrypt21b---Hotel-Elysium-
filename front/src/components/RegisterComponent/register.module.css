@@ -41,8 +41,8 @@
     padding: .5rem;
     width: 100%;
     outline: none;
-    color: #000000;
     background: none;
+    font-family: var(--font-secondary);
 }
 
 .labelForm {
