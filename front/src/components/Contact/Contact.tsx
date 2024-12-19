@@ -77,9 +77,14 @@ const ContactForm = () => {
     setLoading(true);
 
 
-    const YOUR_SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID;
-    const YOUR_TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
-    const YOUR_USER_ID = process.env.NEXT_PUBLIC_USER_ID;
+    // const YOUR_SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID;
+    // const YOUR_TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+    // const YOUR_USER_ID = process.env.NEXT_PUBLIC_USER_ID;
+
+
+    const YOUR_SERVICE_ID = 'service_clpikcu';
+    const YOUR_TEMPLATE_ID = 'template_7n7m164';
+    const YOUR_USER_ID = '5sj5rQFeGjN3K-g-D';
 
 
     if (!YOUR_SERVICE_ID || !YOUR_TEMPLATE_ID || !YOUR_USER_ID) {
