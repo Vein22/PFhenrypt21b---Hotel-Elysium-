@@ -29,17 +29,6 @@ export default function RoomList() {
   };
 
   const handleEditRoom = (id: number) => {
-<<<<<<< HEAD
-    setEditingRoom(id);
-  };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSaveRoom = (id: number, updatedRoom: any) => {
-    setRooms(
-      rooms.map((room) => (room.id === id ? { ...room, ...updatedRoom } : room))
-    );
-    setEditingRoom(null);
-  };
-=======
     setEditingRoom(id)
   }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -50,7 +39,6 @@ export default function RoomList() {
     ))
     setEditingRoom(null)
   }
->>>>>>> origin/auththree
 
   return (
     <div className="bg-white shadow rounded-lg p-6">
