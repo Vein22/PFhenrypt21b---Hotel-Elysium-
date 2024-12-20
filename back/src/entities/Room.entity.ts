@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { Reservation } from './Reservation.entity';
 
 @Entity({ name: 'rooms' })
 export class Room {
@@ -116,8 +117,6 @@ export class Room {
 
   roomType: string;
 
-<<<<<<< HEAD
-=======
 
   /**
    * numero de la habitación.
@@ -135,7 +134,6 @@ export class Room {
   @OneToMany(() => Reservation, (reservation) => reservation.room)
   @JoinColumn()
   reservations: Reservation[];
->>>>>>> development
 
   /**
    * Estado de eliminación lógica de la habitación.
