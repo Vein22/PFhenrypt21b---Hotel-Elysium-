@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Role } from 'src/entities/Role.entity';
 import { Repository } from 'typeorm';
 import { CreateRoleDto } from './dto/create-role.dto';
-import { rolesMock } from './roles-mock';
 
 @Injectable()
 export class RolesRepository {
@@ -31,22 +30,5 @@ export class RolesRepository {
 
   async deleteRoleById(id: string): Promise<void> {
     await this.roleRepository.delete(id);
-  }
-
-  async seedRoles() {
-    const existingRoleNames = (await this.roleRepository.find()).map(
-      (role) => role.name,
-    );
-
-    for (const roleData of rolesMock) {
-      if (!existingRoleNames.includes(roleData.name)) {
-        const role = new Role();
-        role.name = roleData.name;
-        role.description = roleData.description;
-        await this.roleRepository.save(role);
-      }
-    }
-
-    console.log('Roles seeding completed');
   }
 }

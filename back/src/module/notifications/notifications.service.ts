@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
-import { Reservation } from 'src/entities/Reservation.entity';
-import { Room } from 'src/entities/Room.entity';
-import { User } from 'src/entities/User.entity';
 
 @Injectable()
 export class NotificationsService {
@@ -67,53 +64,6 @@ export class NotificationsService {
       `,
     };
 
-    await this.transporter.sendMail(mailOptions);
-  }
-
-  async sendReservationEmail(user: User, room: Room, reservation: Reservation): Promise<void> {
-   
-    const mailOptions = {
-      from: '"Elysium Hotel & Resort" <tu-email@gmail.com>',
-      to:user.email,
-      subject: 'Detalles de tu reservación en Elysium Hotel & Resort',
-      text: `Hola ${user.name},
-  
-      Tu reservación ha sido confirmada con los siguientes detalles:
-      - Habitación: ${room.title} (${room.size}, ${room.beds} cama(s))
-      - Precio por noche: $${room.price}
-      - Check-in: ${reservation.checkInDate.toDateString()}
-      - Check-out: ${reservation.checkOutDate.toDateString()}
-      - Descripción: ${room.description}
-      - Estado del pago: ${reservation.paymentStatus}
-      
-      Estamos emocionados de recibirte pronto en Elysium Hotel & Resort. Si tienes preguntas o necesitas asistencia, no dudes en contactarnos.
-  
-      ¡Gracias por elegirnos!
-  
-      Elysium Hotel & Resort
-      📧 info@elysiumhotel.com
-      📞 +1-800-123-4567
-      🌐 www.elysiumhotel.com`,
-      html: `
-        <p>Hola, ${user.name}</p>
-        <p>Tu reservación ha sido confirmada con los siguientes detalles:</p>
-        <ul>
-          <li><strong>Habitación:</strong> ${room.title} (${room.size}, ${room.beds} cama(s))</li>
-          <li><strong>Precio por noche:</strong> $${room.price}</li>
-          <li><strong>Check-in:</strong> ${reservation.checkInDate.toDateString()}</li>
-          <li><strong>Check-out:</strong> ${reservation.checkOutDate.toDateString()}</li>
-          <li><strong>Descripción:</strong> ${room.description}</li>
-        </ul>
-        <p>Estamos emocionados de recibirte pronto en <strong>Elysium Hotel & Resort</strong>. Si tienes preguntas o necesitas asistencia, no dudes en contactarnos.</p>
-        <p><strong>¡Gracias por elegirnos!</strong><br>
-        Elysium Hotel & Resort<br>
-        📧 info@elysiumhotel.com<br>
-        📞 +1-800-123-4567<br>
-        🌐 <a href="https://www.elysiumhotel.com">www.elysiumhotel.com</a></p>
-      `,
-    };
-    
-    
     await this.transporter.sendMail(mailOptions);
   }
 }

@@ -1,4 +1,3 @@
-
 "use client";
 import styles from './Login.module.css';
 import Image from 'next/image';
@@ -22,7 +21,8 @@ function LoginForm() {
 
   const initialState = {
     email: "",
-    password: ""
+    password: "",
+    role:""
   };
 
   const [dataUser, SetdataUser] = useState<IloginProps>(initialState);
@@ -54,16 +54,15 @@ function LoginForm() {
       try {
         const response = await login(dataUser);
         if (response.success) {
-          const { token, user } = response.data;
-
+          const { token, user, role } = response.data; // Asegúrate de que la API devuelva el rol
 
           setUserData({
             token,
             userData: user,
+ // Añadir el rol al contexto de usuario
           });
 
-          localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user }));
-
+          localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user, role })); // Guardar el rol en localStorage
 
           router.push('/');
         } else {

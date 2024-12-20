@@ -41,8 +41,8 @@ export class PaymentService {
       metadata: {
         reservationId, 
       },
-      success_url: 'http://localhost:3000/success',
-      cancel_url: 'http://localhost:3000/cancel',
+      success_url: `http://localhost:4000/payments/success?reservationId=${reservationId}`,
+      cancel_url: 'http://localhost:4000/payments/cancel',
     });
   
     return {
@@ -53,14 +53,13 @@ export class PaymentService {
   
   async handlePaymentSuccess(reservationId: string) {
     const reservation = await this.reservationRepository.findOne({ where: { id: reservationId } });
-  
+
     if (!reservation) {
       throw new Error('Reserva no encontrada.');
     }
-  
+
     reservation.paymentStatus = PaymentStatus.PAID_ONLINE;
-    await this.reservationRepository.save(reservation);
+     await this.reservationRepository.save(reservation);
     return { message: 'Pago exitoso, estado de reserva actualizado.' };
   }
-  
 }

@@ -1,14 +1,7 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToMany,
-  JoinColumn,
-} from 'typeorm';
+
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn  } from 'typeorm';
 import { Role } from './role.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { Reservation } from './Reservation.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -71,21 +64,6 @@ export class User {
   password: string;
 
   /**
-   * Documento Nacional de Identidad (DNI).
-   * @example '12345678A'
-   */
-  @ApiProperty({
-    example: '12345678A',
-    description: 'Documento Nacional de Identidad (DNI).',
-  })
-  @Column({ unique: true, nullable: false })
-  dni: string;
-
-  @OneToMany(() => Reservation, (reservation) => reservation.user)
-  @JoinColumn()
-  reservations: Reservation[];
-
-  /**
    * Indica si el usuario tiene privilegios de administrador.
    * @example false
    */
@@ -97,6 +75,17 @@ export class User {
   isAdmin: boolean;
 
   /**
+   * Documento Nacional de Identidad (DNI).
+   * @example '12345678A'
+   */
+  @ApiProperty({
+    example: '12345678A',
+    description: 'Documento Nacional de Identidad (DNI).',
+  })
+  @Column({ unique: true, nullable: false })
+  dni: string;
+
+  /**
    * Relación con el rol del usuario.
    */
   @ApiProperty({
@@ -106,4 +95,5 @@ export class User {
   @ManyToOne(() => Role, (role) => role.users, { eager: true, nullable: false })
   @JoinColumn({ name: 'role_id' })
   role: Role;
+  
 }

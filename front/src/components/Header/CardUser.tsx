@@ -11,6 +11,9 @@ const CardUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { userData, setUserData } = useLoggin();
   const router = useRouter();
+  console.log('====================================');
+  console.log(userData);
+  console.log('====================================');
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
@@ -22,7 +25,7 @@ const CardUser = () => {
           <span className="block text-sm font-medium text-white">
             {userData?.userData.name}
           </span>
-          <span className="block text-xs text-white">Rol Cliente</span>
+          <span className="block text-xs text-white">{userData?.userData.role.name}</span>
         </span>
 
         <span className="h-12 w-12 rounded-full">
@@ -77,6 +80,7 @@ const CardUser = () => {
                 Reserva Hoy
               </Link>
             </li>
+            
             <li>
               <Link
                 href="/profile"
@@ -101,6 +105,8 @@ const CardUser = () => {
                 Mi Perfil
               </Link>
             </li>
+
+{userData?.userData.role.name === "Administrador" &&
             <li>
               <Link
                 href="/dashboardAdmin"
@@ -121,6 +127,8 @@ const CardUser = () => {
                 Dashboard Admin
               </Link>
             </li>
+
+}
             <li>
               <Link
                 href="/profile"

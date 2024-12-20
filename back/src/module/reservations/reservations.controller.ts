@@ -1,5 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, Query, ParseUUIDPipe } from '@nestjs/common';
-import { IsUUID } from "class-validator";
+import { Controller, Get, Post, Body, Param, Put, Delete, Query } from '@nestjs/common';
 import { CreateReservationDto } from './dto/create-reservations.dto';
 import { ApiTags } from "@nestjs/swagger";
 import { ReservationService } from './reservations.service';
@@ -22,11 +21,6 @@ export class ReservationController {
       return this.reservationService.getReservations(page, limit);
   }
 
-  @Get(':id')
-  async getReservationByuserId(@Param('id', new ParseUUIDPipe()) userId: string) {
-     if(!IsUUID(4, {each: true})) throw new Error('Invalid UUID');
-     return await this.reservationService.getReservationByuserId(userId);
-      }
 
   @Delete(':id')
   async deleteReservationById(@Param('id') id: string) {

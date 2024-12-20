@@ -42,10 +42,6 @@ export class ReservationService {
     return this.reservationRepository.getReservations(page, limit);
 }
 
-async getReservationByuserId(userId: string): Promise<Reservation[]> {
-  return await this.reservationRepository.getReservationByuserId(userId);
-  }
-
 
   async deleteReservationById(id: string): Promise<{id:string}>  {
     return this.reservationRepository.deleteReservationById(id);
