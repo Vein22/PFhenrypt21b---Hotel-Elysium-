@@ -1,26 +1,48 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
-import EmployeeList from '../EmployeeForm/EmployeeList'
+import React, { useState, useEffect } from 'react';
+import { getClientList } from '@/api/clientList';
+import Link from 'next/link';
 
-const mockClients = [
-  { id: 1, name: 'Juan Pérez', email: 'juan@example.com' },
-  { id: 2, name: 'María García', email: 'maria@example.com' },
-  { id: 3, name: 'Carlos López', email: 'carlos@example.com' },
-]
+interface Client {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+}
 
-export default function ClientList() {
-  const [filter, setFilter] = useState('')
+const ClientList: React.FC = () => {
+  const [clients, setClients] = useState<Client[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('');
 
-  const filteredClients = mockClients.filter(client =>
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const data = await getClientList();
+        setClients(data);
+      } catch (error) {
+        console.error('Error al obtener los clientes:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClients();
+  }, []);
+
+  const filteredClients = clients.filter(client =>
     client.name.toLowerCase().includes(filter.toLowerCase()) ||
     client.email.toLowerCase().includes(filter.toLowerCase())
-  )
+  );
+
+  if (loading) {
+    return <div>Cargando clientes...</div>;
+  }
 
   return (
-    <div className="bg-white shadow rounded-lg p-6">
-      <h4 className="text-xl font-semibold mb-4">Clientes Registrados</h4>
+    <div className="shadow rounded-lg p-6">
+      <h3 className="text-[2.5rem] mb-4">Clientes Registrados</h3>
       <input
         type="text"
         placeholder="Buscar clientes..."
@@ -33,22 +55,23 @@ export default function ClientList() {
           <li key={client.id} className="py-4">
             <div className="flex items-center justify-between">
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
+                <h4 className="text-[1.1rem] font-semibold">
                   {client.name}
-                </p>
-                <p className="text-sm text-gray-500 truncate">
+                </h4>
+                <p className="text-gray-500 truncate">
                   {client.email}
                 </p>
               </div>
-              <Link href={`/dashboard/clients/${client.id}`} className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <Link href={`/dashboard/clients/${client.id}`} className="ml-4 bg-mostaza hover:bg-opacity-70 text-white py-2 px-4 hover:scale-105 transition-transform duration-300">
                 Ver Detalles
               </Link>
             </div>
           </li>
         ))}
       </ul>
-      <EmployeeList />
     </div>
   )
 }
+
+export default ClientList;
 

@@ -7,9 +7,9 @@ import { login } from '@/api/login';
 import { validateFields } from '@/helpers/validateLogin';
 import { IloginError, IloginProps } from '@/interfaces/TypesLogin';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useState,useEffect, useCallback } from 'react';
 import { useLoggin } from '@/context/logginContext'; 
-import { signIn, useSession } from 'next-auth/react';
+import { signIn, useSession, signOut } from 'next-auth/react';
 
 
 
@@ -18,6 +18,7 @@ function LoginForm() {
   const { setUserData } = useLoggin(); 
   const {data:session} = useSession()
   console.log (session)
+
 
   const initialState = {
     email: "",
@@ -54,15 +55,23 @@ function LoginForm() {
       try {
         const response = await login(dataUser);
         if (response.success) {
+
           const { token, user, role } = response.data; // Asegúrate de que la API devuelva el rol
+
+
+
 
           setUserData({
             token,
             userData: user,
- // Añadir el rol al contexto de usuario
+
           });
 
-          localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user, role })); // Guardar el rol en localStorage
+
+          localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user, role })); 
+
+
+
 
           router.push('/');
         } else {
@@ -82,6 +91,86 @@ function LoginForm() {
       }
     }
   };
+
+  // const handleGoogleLogin = async () => {
+  //   if (session?.user?.email) {
+  //     const email = session.user.email;
+  //     console.log (email)
+  //     const response = await login({ email }); 
+  //     console.log(response)
+  //     if (response.success) {
+  //       const { token, user } = response.data;
+ 
+  //       setUserData({
+  //         token,
+  //         userData: user,
+  //       });
+
+  //       localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user }));
+
+  //       router.push('/');
+  //     } else {
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: 'Error',
+  //         text: 'Error al iniciar sesión con Google.',
+  //       });
+  //     }
+  //   } else {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Error',
+  //       text: 'No se pudo obtener el email de la sesión de Google.',
+  //     });
+  //   }
+  // };
+
+  // // useEffect para manejar el inicio de sesión con Google
+  // useEffect(() => {
+  //   if (session) {
+  //     handleGoogleLogin();
+  //   }
+  // }, [session]); // Se ejecu
+
+  const handleGoogleLogin = useCallback(async () => {
+    if (session?.user?.email) {
+      const email = session.user.email;
+      console.log(email);
+      const response = await login({ email });
+      console.log(response);
+      if (response.success) {
+        const { token, user } = response.data;
+
+        setUserData({
+          token,
+          userData: user,
+        });
+
+        localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user }));
+
+        router.push('/');
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Error al iniciar sesión con Google.',
+        });
+      }
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudo obtener el email de la sesión de Google.',
+      });
+    }
+  }, [session]); // Asegúrate de incluir las dependencias necesarias
+
+  // useEffect para manejar el inicio de sesión con Google
+  useEffect(() => {
+    if (session) {
+      handleGoogleLogin();
+    }
+  }, [session, handleGoogleLogin]); 
 
   return (
     <div className={styles.containerp}>
@@ -139,9 +228,16 @@ function LoginForm() {
         </div>
       </div>
     </form>
+    
     <div>
-       <button onClick={ () => signIn ('google') } className={styles.submit}>Autenticación con google</button>
-    </div>
+          <button onClick={() => signIn('google')} className={styles.submit}>INGRESAR CON GOOGLE</button>
+        <p>{session?.user?.email}</p>
+        </div>
+          
+          <div>
+        <button onClick={() => signOut()} className={styles.submit}>cerrar</button>
+        </div>
+
     </div>
   );
 }
