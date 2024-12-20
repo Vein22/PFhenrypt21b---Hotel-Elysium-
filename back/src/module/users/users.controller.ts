@@ -1,4 +1,15 @@
-import { Controller, Get, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  NotFoundException,
+  Param,
+  ParseUUIDPipe,
+  Query,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { SearchUserDto } from '../users/dto/search-user.dto';
@@ -21,5 +32,21 @@ export class UsersController {
   })
   async searchUsers(@Query() searchUserDto: SearchUserDto) {
     return this.usersService.searchUsersByName(searchUserDto.search);
+  }
+
+  @Get('clientlist')
+  @HttpCode(HttpStatus.OK)
+  findUsers() {
+    return this.usersService.findUsers();
+  }
+
+  @Get(':id')
+  @HttpCode(HttpStatus.OK)
+  async findUsersById(@Param('id', ParseUUIDPipe) id: string) {
+    const user = await this.usersService.findUsersById(id);
+    if (!user) {
+      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
+    }
+    return user;
   }
 }
