@@ -1,5 +1,5 @@
 import { IloginProps } from "@/interfaces/TypesLogin"
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
 

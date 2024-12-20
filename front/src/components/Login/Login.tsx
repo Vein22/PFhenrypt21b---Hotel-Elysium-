@@ -8,7 +8,7 @@ import { login } from '@/api/login';
 import { validateFields } from '@/helpers/validateLogin';
 import { IloginError, IloginProps } from '@/interfaces/TypesLogin';
 import { useRouter } from 'next/navigation';
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useCallback } from 'react';
 import { useLoggin } from '@/context/logginContext'; 
 import { signIn, useSession, signOut } from 'next-auth/react';
 
@@ -83,15 +83,55 @@ function LoginForm() {
     }
   };
 
-  const handleGoogleLogin = async () => {
+  // const handleGoogleLogin = async () => {
+  //   if (session?.user?.email) {
+  //     const email = session.user.email;
+  //     console.log (email)
+  //     const response = await login({ email }); 
+  //     console.log(response)
+  //     if (response.success) {
+  //       const { token, user } = response.data;
+ 
+  //       setUserData({
+  //         token,
+  //         userData: user,
+  //       });
+
+  //       localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user }));
+
+  //       router.push('/');
+  //     } else {
+  //       Swal.fire({
+  //         icon: 'error',
+  //         title: 'Error',
+  //         text: 'Error al iniciar sesión con Google.',
+  //       });
+  //     }
+  //   } else {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Error',
+  //       text: 'No se pudo obtener el email de la sesión de Google.',
+  //     });
+  //   }
+  // };
+
+  // // useEffect para manejar el inicio de sesión con Google
+  // useEffect(() => {
+  //   if (session) {
+  //     handleGoogleLogin();
+  //   }
+  // }, [session]); // Se ejecu
+
+  const handleGoogleLogin = useCallback(async () => {
     if (session?.user?.email) {
       const email = session.user.email;
-      console.log (email)
-      const response = await login({ email }); 
-      console.log(response)
+      console.log(email);
+      const response = await login({ email });
+      console.log(response);
       if (response.success) {
         const { token, user } = response.data;
- 
+
         setUserData({
           token,
           userData: user,
@@ -114,14 +154,14 @@ function LoginForm() {
         text: 'No se pudo obtener el email de la sesión de Google.',
       });
     }
-  };
+  }, [session]); // Asegúrate de incluir las dependencias necesarias
 
   // useEffect para manejar el inicio de sesión con Google
   useEffect(() => {
     if (session) {
       handleGoogleLogin();
     }
-  }, [session]); // Se ejecu
+  }, [session, handleGoogleLogin]); 
 
   return (
     <div className={styles.containerp}>
