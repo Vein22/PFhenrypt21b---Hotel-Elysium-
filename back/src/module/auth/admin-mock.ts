@@ -1,6 +1,6 @@
 export const adminMock = [
-    { email: 'admin@gmail.com', 
-      password: 'Admin123+',
+    { email: 'admin@example.com', 
+      password: 'Admin123+', 
       name: 'John Connor',
       dni: '56729472',
       phone: '6947657585',

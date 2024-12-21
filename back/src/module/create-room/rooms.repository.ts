@@ -4,6 +4,7 @@ import { Room } from "src/entities/Room.entity";
 import { Repository } from "typeorm";
 import { FilesService } from "../files/files.service";
 import { CreateRoomDto } from "./dto/create-room.dto";
+import { roomsMock } from "./rooms-mock";
 
 
 @Injectable()
@@ -60,4 +61,28 @@ export class RoomsRepository {
      return this.roomRepository.findOne({ where: { title } });
   }
 
+  async seedRooms() {
+    const existingRoom = (await this.roomRepository.find()).map(
+      (rooms) => rooms.title,
+      );
+
+      for(const roomsData of roomsMock) {
+        if(!existingRoom.includes(roomsData.title)) {
+          const rooms = new Room();
+          rooms.title = roomsData.title;
+          rooms.size = roomsData.size;
+          rooms.beds = roomsData.beds;
+          rooms.rating = roomsData.rating;
+          rooms.image = roomsData.image;
+          rooms.price = roomsData.price;
+          rooms.description = roomsData.description;
+          rooms.roomType = roomsData.roomType;
+          rooms.roomNumber = roomsData.roomNumber;
+
+          await this.roomRepository.save(rooms)
+        }
+      }
+
+      console.log('Rooms seeding complete')
+  }
 }
