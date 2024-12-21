@@ -55,6 +55,8 @@ export class AuthService {
     return { success: 'Inicio de sesión exitoso', token, user: userFound };
   }
 
+
+
   async createUser(createUserDto: CreateUserDto) {
     const existingUser = await this.userRepository.findOne({
       where: [{ email: createUserDto.email }],
@@ -62,6 +64,14 @@ export class AuthService {
 
     if (existingUser) {
       throw new ConflictException('El correo electrónico ya está registrado');
+    }
+
+    const existingUserDni = await this.userRepository.findOne({
+      where: [{ dni: createUserDto.dni }],
+    });
+
+    if (existingUserDni) {
+      throw new ConflictException('El Dni ya está registrado');
     }
 
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
@@ -128,7 +138,7 @@ export class AuthService {
         user.name = authData.name;
         user.phone = authData.phone;
         user.email = authData.email;
-        user.password = authData.password;
+        user.password = await bcrypt.hash(authData.password, 10);
         user.dni = authData.dni;
         user.registrationDate = authData.registrationDate;
 
