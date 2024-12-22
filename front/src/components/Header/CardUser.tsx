@@ -79,11 +79,10 @@ const CardUser = () => {
                 </svg>
                 Reserva Hoy
               </Link>
-            </li>
-            
+            </li>            
             <li>
               <Link
-                href="/profile"
+                href={`/dashboard/clients/${userData?.userData.id}`}
                 className="flex items-center gap-4 px-6 py-7.5 text-sm font-medium text-white hover:text-mostaza lg:text-base"
               >
                 <svg

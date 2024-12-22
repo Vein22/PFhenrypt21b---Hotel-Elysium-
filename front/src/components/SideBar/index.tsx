@@ -2,13 +2,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-
-
 const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-
-  
   return (
     <aside
       onMouseEnter={() => setIsExpanded(true)}
@@ -21,8 +17,7 @@ const Sidebar = () => {
         className={`font-bold text-grisClaro mb-4 transition-opacity duration-300 ${
           isExpanded ? "opacity-100" : "opacity-0"
         }`}
-      >
-      </div>
+      ></div>
       <ul className="space-y-4">
         <li
           className="hover:text-mostaza cursor-pointer flex items-center"
@@ -41,7 +36,7 @@ const Sidebar = () => {
           </svg>
           {isExpanded && (
             <Link href="/dashboardAdmin/clientList" className="ml-4">
-              CLIENTES REGISTRADOS
+              Clientes Registrados
             </Link>
           )}
         </li>
@@ -58,8 +53,8 @@ const Sidebar = () => {
             <path d="M3 3v18h18V3H3zm17 17H4V10h16v10zm0-11H4V4h16v5zM6 13h2v2H6v-2zm0 3h2v2H6v-2zm3-3h2v2H9v-2zm0 3h2v2H9v-2zm3-3h2v2h-2v-2zm0 3h2v2h-2v-2zm3-3h2v2h-2v-2zm0 3h2v2h-2v-2zm-9-6h2v2H6v-2zm3 0h2v2H9v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2z" />
           </svg>
           {isExpanded && (
-            <Link href="/historial-clientes" className="ml-4">
-              HISTORIAL DE CLIENTES
+            <Link href="/clientlist" className="ml-4">
+              Historial de Clientes
             </Link>
           )}
         </li>
@@ -80,8 +75,8 @@ const Sidebar = () => {
             <path d="M6 2H4v20h2V2zm14 0h-2v20h2V2z" fill="currentColor" />
           </svg>
           {isExpanded && (
-            <Link href="/dashboardAdmin/createRooms" className="ml-4">
-              REGISTRO DE HABITACIONES
+            <Link href="/roomsManagement" className="ml-4">
+              Registro de Habitaciones
             </Link>
           )}
         </li>
@@ -102,8 +97,8 @@ const Sidebar = () => {
             />
           </svg>
           {isExpanded && (
-            <Link href="/historial-clientes" className="ml-4">
-              LISTA DE HABITACIONES
+            <Link href="/rooms" className="ml-4">
+              Lista de Habitaciones
             </Link>
           )}
         </li>
@@ -121,8 +116,8 @@ const Sidebar = () => {
             <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-4.42 0-8 3.58-8 8h16c0-4.42-3.58-8-8-8z" />
           </svg>
           {isExpanded && (
-            <Link href="/historial-clientes" className="ml-4">
-              CREAR EMPLEADOS
+            <Link href="/employee" className="ml-4">
+              Crear Empleados
             </Link>
           )}
         </li>
@@ -147,7 +142,36 @@ const Sidebar = () => {
           </svg>
           {isExpanded && (
             <Link href="/historial-clientes" className="ml-4">
-              MODIFICAR EMPLEADOS
+              Modificar Empleados
+            </Link>
+          )}
+        </li>
+        <li
+          className="hover:text-mostaza cursor-pointer flex items-center"
+          title="APROBAR TESTIMONIOS"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-10 h-10"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M10 10 H 190 V 140 H 10 Z"
+              fill="#f0f0f0"
+              stroke="#000"
+              stroke-width="2"
+            />
+            <path
+              d="M10 10 Q 0 75 10 140"
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+            />
+          </svg>
+          {isExpanded && (
+            <Link href="/historial-clientes" className="ml-3">
+              Aprobar testimonios
             </Link>
           )}
         </li>

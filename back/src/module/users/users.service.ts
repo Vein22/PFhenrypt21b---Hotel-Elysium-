@@ -17,11 +17,20 @@ export class UsersService {
       .getMany();
   }
 
-  async findUsers() {
-    return await this.userRepository.find();
+  async findUsers(): Promise<User[]> {
+    return await this.userRepository.find({
+      relations: ['reservations','role'],
+      where: {
+        role: {
+            name: 'Cliente'
+        }
+    }
+
+  });
+    
   }
 
-  async findUsersById(id: string) {
+  async findUsersById(id: string): Promise<User | undefined> {
     return await this.userRepository.findOne({
       where: { id },
       relations: ['reservations'],

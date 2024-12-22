@@ -36,7 +36,7 @@ export class UsersController {
 
   @Get('clientlist')
   @HttpCode(HttpStatus.OK)
-  findUsers() {
+  async findUsers() {
     return this.usersService.findUsers();
   }
 
