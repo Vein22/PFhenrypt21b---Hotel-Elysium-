@@ -11,6 +11,11 @@ const Page = async ({ params }: { params: Promise<Params> }) => {
   const resolvedParams = await params; 
   const { id,price } = resolvedParams;
 
+console.log('====================================');
+console.log(price);
+console.log('====================================');
+
+
   try {
     const room = await getRoomById(id);
 

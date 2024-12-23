@@ -25,12 +25,13 @@ const SuccessPage: FC = () => {
           throw new Error('Hubo un error al actualizar el estado del pago.');
         }
 
-        // Si la respuesta es exitosa, cambiamos el estado de paymentSuccess
+
         setPaymentSuccess(true);
         setLoading(false);
       } catch (err) {
         setError('Hubo un error al procesar tu pago. Intenta nuevamente.');
         setLoading(false);
+        console.error(err);
       }
     };
 

@@ -1,10 +1,12 @@
 import ClientDetails from "@/components/ClientList/ClientDetails";
-
+import ProtectedAdmin from "@/components/ProtectedAdmin/page";
 const clientDetails = () => {
   return (
-    <div>
-      <ClientDetails />
-    </div>
+    <ProtectedAdmin>
+      <div>
+        <ClientDetails />
+      </div>
+    </ProtectedAdmin>
   );
 };
 

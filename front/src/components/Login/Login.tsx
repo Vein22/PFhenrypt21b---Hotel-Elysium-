@@ -11,8 +11,6 @@ import React, { useState,useEffect, useCallback } from 'react';
 import { useLoggin } from '@/context/logginContext'; 
 import { signIn, useSession, signOut } from 'next-auth/react';
 
-
-
 function LoginForm() {
   const router = useRouter();
   const { setUserData } = useLoggin(); 

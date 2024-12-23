@@ -1,13 +1,17 @@
-
-import RegisterForm from "@/components/RegisterRoom/RegisterRoom2"
+import ProtectedClient from "@/components/ProtectedClient/page";
+import RegisterForm from "@/components/RegisterRoom/RegisterRoom2";
 
 const page = () => {
-    return (
-        <div className="min-h-[75vh] pt-10">
-            <h1 className="flex justify-center text-2xl pb-4">Gestión de alojamientos</h1>
-            <RegisterForm/>
-        </div>
-    )
+  return (
+    <ProtectedClient>
+      <div className="min-h-[75vh] pt-10">
+        <h1 className="flex justify-center text-2xl pb-4">
+          Gestión de alojamientos
+        </h1>
+        <RegisterForm />
+      </div>
+    </ProtectedClient>
+  );
 };
 
-export default page
+export default page;

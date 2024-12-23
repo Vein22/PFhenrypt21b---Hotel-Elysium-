@@ -1,4 +1,3 @@
-import Sidebar from "@/components/SideBar";
 import React from "react";
 
 export default function Dashboard({ children }: { children: React.ReactNode }) {
@@ -9,7 +8,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
       </header> */}
       <div className="flex flex-col min-h-screen pt-16">
         <div className="flex flex-1 bg-gray-100">
-          {/* <Sidebar /> */}
+
           <main className="flex-1 p-4 bg-gray-100 overflow-y-auto ml-5">
             {children}
           </main>

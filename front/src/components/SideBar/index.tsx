@@ -141,7 +141,7 @@ const Sidebar = () => {
             />
           </svg>
           {isExpanded && (
-            <Link href="/historial-clientes" className="ml-4">
+            <Link href="/employeelist" className="ml-4">
               Modificar Empleados
             </Link>
           )}

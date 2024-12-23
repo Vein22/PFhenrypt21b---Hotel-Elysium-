@@ -1,4 +1,4 @@
-import RoomCard from '@/components/Rooms/RoomCard'
+
 import React from 'react'
 
 const page = () => {
