@@ -76,7 +76,6 @@ console.log(confirm_password);
             title: "Registrado",
             icon: "success",
           });
-          setLoading(false)
         } else if(result === 409) {
           setIsErrorResponse(true)
           Swal.fire({
@@ -84,6 +83,7 @@ console.log(confirm_password);
             title: "Error",
             icon: "error",
           });
+          setLoading(false)
         }
       } catch (error) {
         console.log("Error al registrar:", error);
@@ -92,11 +92,13 @@ console.log(confirm_password);
           title: "Error",
           icon: "error",
         });
+        setLoading(false)
       }
     } else {
       setErrors(formErrors);
       console.log("Hay errores en el formulario", formErrors);
     }
+    setLoading(false)
   };
 
   return {

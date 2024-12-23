@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 import { ValidationPipe } from '@nestjs/common';
 import { RolesRepository } from './module/roles/roles.repository';
 import { AuthService } from './module/auth/auth.service';
+import { RoomsRepository } from './module/create-room/rooms.repository';
 
 dotenv.config();
 
@@ -42,6 +43,14 @@ async function bootstrap() {
     console.log('Admin seed ejecutado exitosamente');
   } catch (error) {
     console.error('Error ejecutando el seed de admin:', error);
+  }
+
+  try {
+    const roomsRepository = app.get(RoomsRepository); 
+    await roomsRepository.seedRooms();
+    console.log('Rooms seed ejecutado exitosamente');
+  } catch (error) {
+    console.error('Error ejecutando el seed de Rooms:', error);
   }
 
   const port = process.env.PORT ?? 3000;

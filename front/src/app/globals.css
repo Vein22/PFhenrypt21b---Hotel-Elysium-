@@ -13,6 +13,7 @@
   --font-primary: "Cormorant Garamond", "serif";
   --font-secondary: "Lora", "serif";
   --color-primary: #c19d68;
+  --color-secondary: #ACACAC;
 }
 
 body {
@@ -31,12 +32,14 @@ h5 {
 
 p {
   font-family: var(--font-secondary);
+  font-size: 1.5rem;
 }
 
 a {
   cursor: pointer;
   font-family: var(--font-primary);
 }
+
 
 [data-theme="dark"] body {
   background-color: #161616;
@@ -56,19 +59,24 @@ button {
   text-transform: uppercase;
   font-family: var(--font-primary);
   background-color: var(--color-primary);
+  font-weight: 600;
   border: var(--color-primary);
+  border-radius: 0.3rem;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  padding: 0.5rem 1rem;
 }
 
 button:hover {
-  background-color: #d9af71;
-}
+  background-color: var(--color-secondary);
+} 
 
-button {
-  @apply bg-mostaza text-white border-white rounded-lg py-2 px-6 hover:bg-grisOscuro shadow-md text-base transition duration-300 ease-in-out;
+
+
+/* button {
+  @apply bg-mostaza text-white border-mostaza rounded-lg py-2 px-6 hover:bg-grisOscuro shadow-md text-base transition duration-300 ease-in-out;
 }
 
 label {
   @apply text-sm font-medium text-grisOscuro
-}
+} */

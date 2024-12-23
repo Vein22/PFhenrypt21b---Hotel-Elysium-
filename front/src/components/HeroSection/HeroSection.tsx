@@ -34,19 +34,19 @@ const HeroSection = () => {
 
         {showMessage && (
           <motion.div
-            className="mt-6 p-4 text-xl bg-white text-black rounded-lg shadow-lg border-4 border-marronclaro"
+            className="mt-6 p-4 text-xl rounded-lg bg-white shadow-lg border-4 border-marronclaro"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
-            <p>
+            <span className="text-grisOscuro font-secondary">
               El hotel perfecto. Si buscas unas vacaciones perfectas y recuerdos
               inolvidables, estás en el lugar indicado. Planifiquemos una
               estancia a tu medida, con los mejres Servicios, Atención en
               Habitación, Spa, Gimnasio, Peluqueria Profesional, Desayunos
               Buffet, la mejor Seguridad y mucho mas.
-            </p>
+            </span>
           </motion.div>
         )}
       </div>

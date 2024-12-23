@@ -1,12 +1,17 @@
 import { Controller, Param, UploadedFile, Body, UsePipes} from '@nestjs/common';
-import { Post, UseInterceptors, Get, Put, } from '@nestjs/common/decorators';
+import { Post, UseInterceptors, Get, Put, UseGuards, } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { ImageValidatorPipe } from 'src/pipes/imageValidatorPipe';
 import { FilesService } from './files.service';
 import { postImagesSchema, replaceImageSchema, updateMetadataSchema } from './files.swagger.schemas';
+import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
+import { RolesGuard } from 'src/guards/roles/roles.guard';
+import { Roles } from 'src/decorators/roles/roles.decorator';
 
 @Controller('files')
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles('admin')
 export class FilesController {
   constructor(
     private readonly filesService: FilesService) {}
