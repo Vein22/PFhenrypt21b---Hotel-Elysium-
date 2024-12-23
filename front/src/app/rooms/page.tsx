@@ -66,7 +66,7 @@ const Page = () => {
         <div className="flex items-center gap-4">
           <div className="relative">
             <button
-              className="py-2 px-6 hover:bg-opacity-70 shadow-md"
+              className="hover:bg-opacity-70 shadow-md"
               onClick={() => setShowFilter(!showFilter)}
             >
               Filtrar por
@@ -156,7 +156,7 @@ const Page = () => {
           </div>
 
           <select
-            className="bg-mostaza text-white border-white rounded-lg py-2 px-6 hover:bg-grisOscuro shadow-md text-base transition duration-300 ease-in-out"
+            className="bg-mostaza text-white  rounded-lg py-2 px-6 hover:bg-grisClaro shadow-md text-base transition duration-300 ease-in-out"
             value={sortCriteria}
             onChange={(e) => handleSort(e.target.value)}
           >

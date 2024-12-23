@@ -80,16 +80,14 @@ export class ReservationRepository {
   }
 
   async findOverlappingReservation(createReservationDto: CreateReservationDto): Promise<Reservation | null> {
-    const { userId, roomId, checkInDate, checkOutDate } = createReservationDto;
+    const { roomId, checkInDate, checkOutDate } = createReservationDto;
     return this.reservationRepository.findOne({
       where: [
         {
-          userId,
           roomId,
           checkInDate: Between(checkInDate, checkOutDate),
         },
         {
-          userId,
           roomId,
           checkOutDate: Between(checkInDate, checkOutDate),
         },

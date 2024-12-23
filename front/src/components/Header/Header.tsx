@@ -10,8 +10,8 @@ const Header = () => {
   const { userData } = useLoggin();
 
   return (
-    <header className="sticky top-0 w-full h-[4.5rem] bg-grisOscuro text-white z-10 grid grid-cols-3 place-items-center">
-      <div>
+    <header className="sticky top-0 z-100 w-full h-[4.5rem] bg-grisOscuro text-white z-10 flex justify-between items-center px-6">
+      <div className="flex items-center">
         <Link href="/">
           <Image
             src="/HE.png"
@@ -22,7 +22,7 @@ const Header = () => {
           />
         </Link>
       </div>
-      <nav>
+      <nav className="flex items-center space-x-6 text-[1rem] uppercase">
         <div className="flex space-x-6 text-[1rem] uppercase items-center">
           <Link href="/" className="hover:text-mostaza">
             Home
@@ -53,12 +53,12 @@ const Header = () => {
         ) : (
           <>
             <Link href="/login">
-              <button className="py-2 px-4 hover:bg-opacity-70">
+              <button >
                 Iniciar Sesión
               </button>
             </Link>
             <Link href="/register">
-              <button className="py-2 px-4 hover:bg-opacity-70">
+              <button >
                 Registrarse
               </button>
             </Link>

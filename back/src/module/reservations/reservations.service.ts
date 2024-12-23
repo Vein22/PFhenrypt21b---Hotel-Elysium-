@@ -28,7 +28,7 @@ export class ReservationService {
 
     const existingReservation = await this.reservationRepository.findOverlappingReservation(createReservationDto);
     if (existingReservation) {
-      throw new Error('Ya existe una reserva para este usuario y habitación en el rango de fechas especificado.');
+      throw new Error('Ya existe una reserva en esta habitación en el rango de fechas especificado.');
     }
 
     return await this.reservationRepository.createReservation(createReservationDto);
