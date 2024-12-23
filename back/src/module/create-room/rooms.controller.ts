@@ -1,4 +1,4 @@
-import { Controller, Post, Delete, Get, Body, Param, Query, HttpCode, HttpStatus, UploadedFile, UseInterceptors, BadRequestException } from '@nestjs/common';
+import { Controller, Post, Delete, Get, Body, Param, Query, HttpCode, HttpStatus, UploadedFile, UseInterceptors, BadRequestException, UseGuards } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
@@ -6,9 +6,13 @@ import { Room } from 'src/entities/Room.entity';
 import { ApiBody, ApiConsumes, ApiTags, ApiResponse } from '@nestjs/swagger';
 
 import { ImageValidatorPipe } from 'src/pipes/imageValidatorPipe';
+import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
+import { RolesGuard } from 'src/guards/roles/roles.guard';
+import { Roles } from 'src/decorators/roles/roles.decorator';
 
 
 @Controller('rooms')
+@UseGuards(JwtAuthGuard, RolesGuard)
 export class RoomsController {
   constructor(private readonly roomsService: RoomsService) {}
   @ApiTags('Rooms')
@@ -20,6 +24,8 @@ export class RoomsController {
   @ApiBody({ type: CreateRoomDto })
   @ApiResponse({ status: 201, description: 'Room created successfully.' })
   @ApiResponse({ status: 400, description: 'Invalid input.' })
+  @Roles('admin')
+  @Post('registerRoom')
   async createRoom(@Body() createRoomDto: CreateRoomDto) {
     return this.roomsService.createRoom(createRoomDto);
 
