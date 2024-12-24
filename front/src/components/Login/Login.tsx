@@ -132,36 +132,36 @@ function LoginForm() {
 
   const handleGoogleLogin = useCallback(async () => {
     if (session?.user?.email) {
-      const email = session.user.email;
-      console.log(email);
-      const response = await login({ email });
-      console.log(response);
-      if (response.success) {
-        const { token, user } = response.data;
+        const email = session.user.email;
+        console.log(email);
+        const response = await login({ email });
+        console.log(response);
+        if (response.success) {
+            const { token, user } = response.data;
 
-        setUserData({
-          token,
-          userData: user,
-        });
+            setUserData({
+                token,
+                userData: user,
+            });
 
-        localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user }));
+            localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user }));
 
-        router.push('/');
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Error al iniciar sesión con Google.',
-        });
-      }
+            router.push('/');
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error al iniciar sesión con Google.',
+            });
+        }
     } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'No se pudo obtener el email de la sesión de Google.',
-      });
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo obtener el email de la sesión de Google.',
+        });
     }
-  }, [session]); // Asegúrate de incluir las dependencias necesarias
+}, [session, setUserData, router]); // Incluye las dependencias
 
   // useEffect para manejar el inicio de sesión con Google
   useEffect(() => {

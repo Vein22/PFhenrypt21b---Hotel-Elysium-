@@ -6,7 +6,14 @@ const SuccessPage: FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
-  const reservationId = new URLSearchParams(window.location.search).get('reservationId');
+  const [reservationId, setReservationId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const id = new URLSearchParams(window.location.search).get('reservationId');
+      setReservationId(id);
+    }
+  }, [])
 
   useEffect(() => {
     const updatePaymentStatus = async () => {
