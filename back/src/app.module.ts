@@ -15,6 +15,7 @@ import { UsersModule } from './module/users/users.module';
 import { RolesModule } from './module/roles/roles.module'; 
 import { Role } from './entities/Role.entity';
 import { PaymentModule} from './module/payment/payment.module';
+import { EmployeeModule } from './module/employee/employee.module';
 
 
 @Module({
@@ -43,6 +44,8 @@ import { PaymentModule} from './module/payment/payment.module';
       inject: [ConfigService],
       useFactory: (Config: ConfigService) => Config.get('typeorm'),
     }),
+
+    EmployeeModule,
   ],
  
   controllers: [],
