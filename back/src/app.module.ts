@@ -15,8 +15,7 @@ import { UsersModule } from './module/users/users.module';
 import { RolesModule } from './module/roles/roles.module'; 
 import { Role } from './entities/Role.entity';
 import { PaymentModule} from './module/payment/payment.module';
-import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
-
+import { EmployeeModule } from './module/employee/employee.module';
 
 @Module({
   imports: [
@@ -44,6 +43,8 @@ import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
       inject: [ConfigService],
       useFactory: (Config: ConfigService) => Config.get('typeorm'),
     }),
+
+    EmployeeModule,
   ],
  
   controllers: [],
