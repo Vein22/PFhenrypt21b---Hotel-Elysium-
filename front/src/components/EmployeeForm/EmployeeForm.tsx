@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import employee from "@/api/employee";
+import { validateEmployee } from "@/helpers/validateEmployee";
 import EmployeeList from "./EmployeeList";
+import { IEmployeeProps } from "@/interfaces/TypeEmployee";
+import { IEmployeeError } from "@/interfaces/TypeEmployee";
+import Swal from "sweetalert2";
 
 export default function EmployeeForm() {
   const [fullName, setFullName] = useState("");
@@ -9,16 +14,47 @@ export default function EmployeeForm() {
   const [birthDate, setBirthDate] = useState("");
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
+  const [errors, setErrors] = useState<IEmployeeError>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí iría la lógica para enviar los datos al backend
-    console.log("Nuevo empleado:", { fullName, dni, birthDate, phone, role });
-    setFullName("");
-    setDni("");
-    setBirthDate("");
-    setPhone("");
-    setRole("");
+    const newEmployee: IEmployeeProps = {
+      name: fullName,
+      dni: Number(dni),
+      birthdate: new Date(birthDate),
+      phone: Number(phone),
+      role,
+    };
+    const validationErrors = validateEmployee(newEmployee);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      try {
+        const response = await employee(newEmployee);
+        if (response.success) {
+          console.log("Empleado creado exitosamente:", response.data);
+          setFullName("");
+          setDni("");
+          setBirthDate("");
+          setPhone("");
+          setRole("");
+          Swal.fire({
+            title: "Empleado creado",
+            text: "El empleado se ha creado exitosamente",
+            icon: "success",
+          });
+        } else {
+          console.error("Error al crear empleado:", response.error);
+          Swal.fire({
+            title: "Error",
+            text: "Hubo un error al crear el empleado",
+            icon: "error",
+          });
+        }
+      } catch (error) {
+        console.error("Error al crear empleado:", error);
+      }
+    }
   };
 
   return (
@@ -41,6 +77,9 @@ export default function EmployeeForm() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
+            {errors.name && (
+              <p className="text-red-500 text-xs italic">{errors.name}</p>
+            )}
           </div>
           <div className="mb-4">
             <label
@@ -57,6 +96,9 @@ export default function EmployeeForm() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
+            {errors.dni && (
+              <p className="text-red-500 text-xs italic">{errors.dni}</p>
+            )}
           </div>
           <div className="mb-4">
             <label
@@ -73,6 +115,9 @@ export default function EmployeeForm() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
+            {errors.birthdate && (
+              <p className="text-red-500 text-xs italic">{errors.birthdate}</p>
+            )}
           </div>
           <div className="mb-4">
             <label
@@ -89,6 +134,9 @@ export default function EmployeeForm() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
+            {errors.phone && (
+              <p className="text-red-500 text-xs italic">{errors.phone}</p>
+            )}
           </div>
           <div className="mb-4">
             <label
@@ -104,11 +152,15 @@ export default function EmployeeForm() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             >
-              <option value="administrador">Administrador</option>
-              <option value="recepcionista">Recepcionista</option>
-              <option value="mantenimiento">Mantenimiento</option>
-              <option value="limpieza">Limpieza</option>
+              <option value="">Seleccione un rol</option>
+              <option value="Administrador">Administrador</option>
+              <option value="Recepcionista">Recepcionista</option>
+              <option value="Mantenimiento">Mantenimiento</option>
+              <option value="Limpieza">Limpieza</option>
             </select>
+            {errors.role && (
+              <p className="text-red-500 text-xs italic">{errors.role}</p>
+            )}
           </div>
           <button
             type="submit"
@@ -122,3 +174,5 @@ export default function EmployeeForm() {
     </>
   );
 }
+
+
