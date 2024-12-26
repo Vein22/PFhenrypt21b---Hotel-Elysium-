@@ -16,7 +16,7 @@ import { RolesModule } from './module/roles/roles.module';
 import { Role } from './entities/Role.entity';
 import { PaymentModule} from './module/payment/payment.module';
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
-import { TestimonyModule } from './module/testimony/testimony.module';
+import { VisitCounterModule } from './module/VisitCounter/visit-counter.module';
 
 
 
@@ -29,7 +29,7 @@ import { TestimonyModule } from './module/testimony/testimony.module';
     UsersModule,
     RolesModule,
     PaymentModule,
-    TestimonyModule,
+    VisitCounterModule,
     
     JwtModule.register({
       global: true,
