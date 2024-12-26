@@ -15,9 +15,10 @@ import { UsersModule } from './module/users/users.module';
 import { RolesModule } from './module/roles/roles.module'; 
 import { Role } from './entities/Role.entity';
 import { PaymentModule} from './module/payment/payment.module';
+import { EmployeeModule } from './module/employee/employee.module';
+import { TestimonialsModule } from './module/testimonials/testimonials.module'; 
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
 import { VisitCounterModule } from './module/VisitCounter/visit-counter.module';
-
 
 
 @Module({
@@ -30,7 +31,7 @@ import { VisitCounterModule } from './module/VisitCounter/visit-counter.module';
     RolesModule,
     PaymentModule,
     VisitCounterModule,
-    
+    TestimonialsModule,  
     JwtModule.register({
       global: true,
       signOptions: { expiresIn: '1d' },
@@ -46,6 +47,8 @@ import { VisitCounterModule } from './module/VisitCounter/visit-counter.module';
       inject: [ConfigService],
       useFactory: (Config: ConfigService) => Config.get('typeorm'),
     }),
+
+    EmployeeModule,
   ],
  
   controllers: [],

@@ -1,6 +1,11 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { registerAs } from '@nestjs/config';
 import { config as dotenvConfig } from 'dotenv';
+import { Reservation } from 'src/entities/Reservation.entity';
+import { Role } from 'src/entities/role.entity';
+import { Room } from 'src/entities/Room.entity';
+import { Testimonial } from 'src/entities/testimonial.entity';
+import { User } from 'src/entities/User.entity';
 
 dotenvConfig({ path: '.env' });
 
@@ -17,7 +22,7 @@ const config = {
   migrations: [__dirname + '/../migrations/*{.ts,.js}'],
   synchronize: true,
   logging: false,
-  //dropSchema: true,
+  // dropSchema: true,
   ssl: sslConfig,
 
 };
