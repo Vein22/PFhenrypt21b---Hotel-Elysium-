@@ -4,6 +4,13 @@ import { useFormRegister } from "@/hooks/useFormRegister";
 import { velidateFormRegister } from "@/helpers/validateRegister";
 import { fetchRegister } from "@/api/register";
 import Image from "next/image";
+import usuario from '../../../public/Form Íconos/Name-User.png';
+import email from '../../../public/Form Íconos/Email.png';
+import password from '../../../public/Form Íconos/Password.png';
+import confirmPassword from '../../../public/Form Íconos/Confirm Password.png';
+import phone from '../../../public/Form Íconos/Phone.png';
+import DNI from '../../../public/Form Íconos/Dni.png';
+
 
 import registerImg from "../../../public/register_prueba.png";
 import Style from "./register.module.css";
@@ -23,7 +30,7 @@ const RegisterComponent = () => {
     useFormRegister(initialForm, velidateFormRegister, fetchRegister);
 
   return (
-    <form onSubmit={handleSubmit} className={Style.container}>
+    <form onSubmit={handleSubmit} className={`${Style.container} bg-beige `}>
       {/*Imagen estática para el componente Register*/}
       <div className={Style.imgContainer}>
         <Image src={registerImg} alt="Usuario" width={500} height={500} />
@@ -36,6 +43,7 @@ const RegisterComponent = () => {
         )}
         {/*Nombre*/}
         <div className={Style.inputLabelGroup}>
+          <Image src={usuario} width={35} height={35} alt="usuario" className={Style.iconos}/>
           <input
             type="text"
             name="name"
@@ -56,6 +64,7 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.email}</p>
         )}
         <div className={Style.inputLabelGroup}>
+        <Image src={email} width={35} height={35} alt="usuario" className={Style.iconos}/>
           <input
             type="text"
             name="email"
@@ -75,6 +84,7 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.password}</p>
         )}
         <div className={Style.inputLabelGroup}>
+        <Image src={password} width={35} height={35} alt="usuario" className={Style.iconos}/>
           <input
             type="password"
             name="password"
@@ -94,6 +104,7 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.confirm_password}</p>
         )}
         <div className={Style.inputLabelGroup}>
+        <Image src={confirmPassword} width={35} height={35} alt="usuario" className={Style.iconos}/>
           <input
             type="password"
             name="confirm_password"
@@ -113,6 +124,7 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.phone}</p>
         )}
         <div className={Style.inputLabelGroup}>
+        <Image src={phone} width={35} height={35} alt="usuario" className={Style.iconos}/>
           <input
             type="text"
             name="phone"
@@ -130,6 +142,7 @@ const RegisterComponent = () => {
         {/*Dni*/}
         {errors.dni && <p className="text-red-500 text-xs m-2">{errors.dni}</p>}
         <div className={Style.inputLabelGroup}>
+        <Image src={DNI} width={35} height={35} alt="usuario" className={Style.iconos}/>
           <input
             type="text"
             name="dni"
