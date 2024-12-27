@@ -61,6 +61,7 @@ export default function EmployeeList() {
                 {employee.position}
               </p>
             </div>
+            <button className="px-3 py-1 rounded text-white text-sm bg-blue-500 hover:bg-blue-600">Editar</button>
             <button
               onClick={() => handleDeactivate(employee.id)}
               className={`px-3 py-1 rounded text-white text-sm ${
