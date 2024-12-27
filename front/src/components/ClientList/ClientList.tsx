@@ -20,7 +20,11 @@ const ClientList: React.FC = () => {
     const fetchClients = async () => {
       try {
         const data = await getClientList();
-        setClients(data);
+        if (Array.isArray(data)) {
+          setClients(data);
+        } else {
+          console.error('La respuesta no es un array:', data);
+        }
       } catch (error) {
         console.error('Error al obtener los clientes:', error);
       } finally {
@@ -74,4 +78,3 @@ const ClientList: React.FC = () => {
 }
 
 export default ClientList;
-

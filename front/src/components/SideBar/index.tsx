@@ -35,7 +35,7 @@ const Sidebar = () => {
             />
           </svg>
           {isExpanded && (
-            <Link href="/dashboardAdmin/clientList" className="ml-4">
+            <Link href="/clientdetails">
               Clientes Registrados
             </Link>
           )}
