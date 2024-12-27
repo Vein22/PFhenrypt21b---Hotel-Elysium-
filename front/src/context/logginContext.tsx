@@ -6,21 +6,21 @@ import { userSession } from "@/interfaces/Types.session";
 export interface LogginContextProps {
   userData: userSession | null; 
   setUserData: (userData: userSession | null) => void; 
+  loadUserData: () => Promise<userSession | null>; // Agregar la función loadUserData
 }
 
 export const LogginContext = createContext<LogginContextProps>({
   userData: null, 
   setUserData: () => {}, 
+  loadUserData: async () => null, // Agregar la función loadUserData
 });
 
 export interface LogginProviderProps {
   children: React.ReactNode;
 }
 
-
 export const LogginProvider: React.FC<LogginProviderProps> = ({ children }) => {
   const [userData, setUserData] = useState<userSession | null>(null);
-
 
   useEffect(() => {
     if (userData) {
@@ -33,7 +33,6 @@ export const LogginProvider: React.FC<LogginProviderProps> = ({ children }) => {
       );
     }
   }, [userData]);
-
 
   useEffect(() => {
     const storedUserData = localStorage.getItem("sessionStart");
@@ -48,12 +47,27 @@ export const LogginProvider: React.FC<LogginProviderProps> = ({ children }) => {
     }
   }, []);
 
+  const loadUserData = async (): Promise<userSession | null> => {
+    const storedUserData = localStorage.getItem("sessionStart");
+    if (storedUserData) {
+      try {
+        const parsedData = JSON.parse(storedUserData);
+        setUserData(parsedData);
+        return parsedData;
+      } catch (error) {
+        console.error("Error parsing session data:", error);
+        setUserData(null);
+        return null;
+      }
+    }
+    return null;
+  };
+
   return (
-    <LogginContext.Provider value={{ userData, setUserData }}>
+    <LogginContext.Provider value={{ userData, setUserData, loadUserData }}>
       {children}
     </LogginContext.Provider>
   );
 };
-
 
 export const useLoggin = () => useContext(LogginContext);

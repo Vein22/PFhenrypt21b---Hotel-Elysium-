@@ -73,16 +73,15 @@ export class TestimonialsController {
   }
 
   @Patch(':id/status')
-@HttpCode(HttpStatus.OK)
-@UsePipes(new ValidationPipe({ transform: true }))
-@ApiOperation({ summary: 'Cambiar el estatus de un testimonio' })
-@ApiResponse({ status: 200, description: 'Estatus del testimonio actualizado exitosamente' })
-@ApiResponse({ status: 404, description: 'Testimonio no encontrado' })
-async updateStatus(
-  @Param('id') id: string,
-  @Body('status') status: TestimonialStatus,
-) {
-  return this.testimonialsService.updateStatus(id, status);
-}
-
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(new ValidationPipe({ transform: true }))
+  @ApiOperation({ summary: 'Cambiar el estatus de un testimonio' })
+  @ApiResponse({ status: 200, description: 'Estatus del testimonio actualizado exitosamente' })
+  @ApiResponse({ status: 404, description: 'Testimonio no encontrado' })
+  async updateStatus(
+    @Param('id') id: string,
+    @Body('status') status: TestimonialStatus,
+  ) {
+    return this.testimonialsService.updateStatus(id, status);
+  }
 }

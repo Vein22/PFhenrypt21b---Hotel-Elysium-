@@ -1,11 +1,15 @@
-import React from 'react'
-import UserWrite from '@/components/TestimonialsWrite/UserWrite'
+import React from "react";
+import UserWrite from "@/components/TestimonialsWrite/UserWrite";
+import ProtectedClient from "@/components/ProtectedClient/page";
+
 const page = () => {
   return (
     <div>
-      <UserWrite/>
+      <ProtectedClient>
+        <UserWrite />
+      </ProtectedClient>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

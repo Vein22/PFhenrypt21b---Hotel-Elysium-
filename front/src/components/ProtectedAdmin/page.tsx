@@ -5,27 +5,44 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import Swal from "sweetalert2";
 
-const ProtectedAdmin: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { userData } = useLoggin();
+const ProtectedClient: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { userData, loadUserData } = useLoggin();
   const router = useRouter();
 
   useEffect(() => {
-    if (!userData || userData.userData.role.name !== "Administrador") {
-      Swal.fire({
-        title: "Acceso Denegado",
-        text: "Esta ruta es solo para Administradores.",
-        icon: "error",
-        confirmButtonText: "Aceptar",
-      }).then(() => {
-        router.push("/login"); 
-      });
-    }
-  }, [userData, router]);
+    const checkAccess = async () => {
+      if (!userData) {
+        try {
+          const data = await loadUserData();
+        
+          if (!data || data.userData.role.name !== "Administrador") {
+            Swal.fire({
+              title: "Acceso Restringido",
+              html: "Esta ruta es solo para usuarios Administrador. <br> Por favor, inicia sesión Como Administrador.<br>Si no Cuenta Con los permisos, por favor, Dirijase a Elysium",
+              icon: "warning",
+              confirmButtonText: "Aceptar",
+            }).then(() => {
+              router.push("/login");
+            });
+          }
+        } catch (error) {
+          console.error('Error al cargar los datos del usuario:', error);
+          router.push("/login");
+        }
+      }
+    };
 
-  if (!userData || userData.userData.role.name !== "Administrador") {
+    checkAccess();
+  }, [router, loadUserData, userData]);
+
+  if (userData === undefined) {
     return <div>Cargando...</div>; 
   }
-  return <>{children}</>;
+
+  if (userData?.userData.role.name === "Administrador") {
+    return <>{children}</>;
+  }
+  return <div>Espere ... Cargando</div>;
 };
 
-export default ProtectedAdmin;
+export default ProtectedClient;

@@ -11,9 +11,6 @@ const CardUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { userData, setUserData } = useLoggin();
   const router = useRouter();
-  console.log('====================================');
-  console.log(userData);
-  console.log('====================================');
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
@@ -150,7 +147,7 @@ const CardUser = () => {
             </li>
             <li>
               <Link
-                href="/profile"
+                href="/testimonials"
                 className="flex items-center mb-3 gap-3.5 px-6 py-7.5 text-sm font-medium text-white hover:text-mostaza lg:text-base"
               >
                 <svg
@@ -169,7 +166,7 @@ const CardUser = () => {
                     fill=""
                   />
                 </svg>
-                Configurar
+                Tu Testimonio
               </Link>
             </li>
           </ul>

@@ -1,5 +1,5 @@
 import { Controller, Post, Get, Body } from '@nestjs/common';
-import { VisitCounterService } from './VisitCounter.Service'; // Asegúrate de importar correctamente el servicio
+import { VisitCounterService } from './VisitCounter.Service'; 
 
 @Controller('visits')
 export class VisitCounterController {
@@ -16,7 +16,7 @@ export class VisitCounterController {
     const total = await this.visitCounterService.getTotalVisitCount();
     return { total };
   }
-  
+
   @Post()
   async storeVisit(@Body() body: { ip: string }): Promise<void> {
     await this.visitCounterService.storeVisitIp(body.ip);
