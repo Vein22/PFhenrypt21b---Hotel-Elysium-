@@ -170,8 +170,8 @@ const Sidebar = () => {
             />
           </svg>
           {isExpanded && (
-            <Link href="/historial-clientes" className="ml-3">
-              Aprobar testimonios
+            <Link href="/testimonialsadmin" className="ml-3">
+              Aprobar Testimonios
             </Link>
           )}
         </li>

@@ -5,8 +5,6 @@ import { useLoggin } from "@/context/logginContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-
-
 interface TestimonialFormData {
   name: string;
   email: string;
@@ -69,8 +67,7 @@ const TestimonialForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const validationErrors: Partial<TestimonialFormData> =
-      validateTestimonials(form);
+    const validationErrors: Partial<TestimonialFormData> = validateTestimonials(form);
 
     if (Object.keys(validationErrors).length === 0) {
       try {
@@ -100,9 +97,7 @@ const TestimonialForm = () => {
       let errorMessages = "";
       for (let field in validationErrors) {
         if (validationErrors[field as keyof TestimonialFormData]) {
-          errorMessages += `${
-            validationErrors[field as keyof TestimonialFormData]
-          }\n`;
+          errorMessages += `${validationErrors[field as keyof TestimonialFormData]}\n`;
         }
       }
 
@@ -123,7 +118,6 @@ const TestimonialForm = () => {
   }, [form]);
 
   return (
-
     <div className="w-full h-screen flex items-center justify-center p-2">
       <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-7xl gap-5">
         <div className="w-full md:w-2/5">
@@ -132,7 +126,6 @@ const TestimonialForm = () => {
             alt="Testimonios"
             width={700}
             height={700}
-          
           />
         </div>
         <form
@@ -217,7 +210,6 @@ const TestimonialForm = () => {
         </form>
       </div>
     </div>
-
   );
 };
 

@@ -11,15 +11,14 @@ import { ReservationsModule } from './module/reservations/reservations.module';
 import { User } from './entities/User.entity';
 import { Room } from './entities/Room.entity';
 import { Reservation } from './entities/Reservation.entity';
-import { UsersModule } from './module/users/users.module'; 
-import { RolesModule } from './module/roles/roles.module'; 
+import { UsersModule } from './module/users/users.module';
+import { RolesModule } from './module/roles/roles.module';
 import { Role } from './entities/Role.entity';
-import { PaymentModule} from './module/payment/payment.module';
+import { PaymentModule } from './module/payment/payment.module';
 import { EmployeeModule } from './module/employee/employee.module';
-import { TestimonialsModule } from './module/testimonials/testimonials.module'; 
+import { TestimonialsModule } from './module/testimonials/testimonials.module'; // Importa el módulo de testimonios
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
 import { VisitCounterModule } from './module/VisitCounter/visit-counter.module';
-
 
 @Module({
   imports: [
@@ -31,7 +30,7 @@ import { VisitCounterModule } from './module/VisitCounter/visit-counter.module';
     RolesModule,
     PaymentModule,
     VisitCounterModule,
-    TestimonialsModule,  
+    TestimonialsModule, // Registra el módulo de testimonios
     JwtModule.register({
       global: true,
       signOptions: { expiresIn: '1d' },
@@ -50,14 +49,12 @@ import { VisitCounterModule } from './module/VisitCounter/visit-counter.module';
 
     EmployeeModule,
   ],
- 
+
   controllers: [],
   providers: [],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes('*');
+    consumer.apply(LoggerMiddleware).forRoutes('*');
   }
 }

@@ -1,5 +1,5 @@
 import ServicesSection from "@/components/ServicesSection/ServicesSection";
-import Testimonials from "@/components/Testimonials/Testimonials";
+import Testimonials from "@/components/TestmonialsCarousel/Testimonials";
 const ServicesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="bg-white text-black">
