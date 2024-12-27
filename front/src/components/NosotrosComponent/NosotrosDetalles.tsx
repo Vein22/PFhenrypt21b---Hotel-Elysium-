@@ -4,6 +4,7 @@ import Style from './nosotros.module.css';
 //import linkedin from '../../../public/Form Íconos/linkedin.png';
 //import whatsapp from '../../../public/Form Íconos/whatsapp.png';
 //import github from '../../../public/Form Íconos/github.png';
+import user from '../../../public/Form Íconos/user.png'
 
 
   export const NosotrosDetalles: React.FC<NosotrosDetallesProps> = ({ detalle }) => {
@@ -29,6 +30,7 @@ import Style from './nosotros.module.css';
                     <a className={Style.dfs} href={detalle.linkedin_link}>LinkedIn {detalle.linkedin_link}</a>
                     <a className={Style.dfs} href={detalle.github_link}>GitHub {detalle.github_link}</a>
                     <a className={Style.dfs} href={detalle.contacto_directo}>Contacto {detalle.contacto_directo}</a>
+                    <Image src={user} width={100} height={100} alt="dsdd" />
                 </div>
       </article>
     )
