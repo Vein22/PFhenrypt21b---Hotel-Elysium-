@@ -4,7 +4,6 @@ import Style from './nosotros.module.css';
 import linkedin from '../../../public/Form Íconos/linkedin.png';
 import whatsapp from '../../../public/Form Íconos/whatsapp.png';
 import github from '../../../public/Form Íconos/github.png';
-import user from '../../../public/Form Íconos/user.png'
 
 
   export const NosotrosDetalles: React.FC<NosotrosDetallesProps> = ({ detalle }) => {
