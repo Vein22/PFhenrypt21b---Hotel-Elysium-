@@ -37,7 +37,7 @@ export class SchedulerService {
         const timeElapsed = now.getTime() - createdAt.getTime();
   
         // const hoursElapsed = timeElapsed / (1000 * 60 * 60); //metodo correcto de conversión a 24 horas
-        const secondsElapsed = timeElapsed / 1000;              //metodo temporal de conversión 24 segs
+        const secondsElapsed = timeElapsed / 1000;              //metodo temporal de conversión a segs
         // Ahora mismo esta advertencia esta a 30 segundos
         if (secondsElapsed > 30 && secondsElapsed <= 60 && !reservation.notified12Hours) {
           const user = await this.userRepository.findOne({ where: { id: reservation.userId } });
@@ -49,7 +49,7 @@ export class SchedulerService {
           console.log(`12-hour notification sent for reservation ${reservation.id}`);
         }
   
-          // Ahora mismo esta eliminación y notificación estan a 24 segundos
+          // Ahora mismo esta eliminación y notificación estan a 60 segundos
         if (secondsElapsed > 60 && !reservation.isDeleted) {
           const user = await this.userRepository.findOne({ where: { id: reservation.userId } });
   
