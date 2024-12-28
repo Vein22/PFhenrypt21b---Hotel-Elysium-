@@ -116,4 +116,91 @@ export class NotificationsService {
     
     await this.transporter.sendMail(mailOptions);
   }
+
+
+  async sendReminderNotification(user: User, room: Room, reservation: Reservation): Promise<void> {
+  
+    const checkInDate = new Date(reservation.checkInDate);
+    const checkOutDate = new Date(reservation.checkOutDate);
+
+
+    const mailOptions = {
+      from: '"Elysium Hotel & Resort" <tu-email@gmail.com>',
+      to: user.email,
+      subject: '⏳ ¡Última oportunidad para pagar tu reservación! ⏳',
+      text: `Hola ${user.name},
+      
+      Queremos recordarte que tu reservación está a punto de expirar. Aquí están los detalles:
+      - Habitación: ${room.title} (${room.size}, ${room.beds} cama(s))
+      - Check-in: ${checkInDate.toDateString()}
+      - Check-out: ${checkOutDate.toDateString()}
+      - Estado del pago: ${reservation.paymentStatus}
+      
+      Por favor, realiza tu pago dentro de las próximas 12 horas para asegurar tu reservación.
+      
+      Si necesitas asistencia, contáctanos.
+      
+      Elysium Hotel & Resort
+      📧 info@elysiumhotel.com
+      📞 +1-800-123-4567
+      🌐 www.elysiumhotel.com`,
+      html: `
+        <p>Hola <strong>${user.name}</strong>,</p>
+        <p>Queremos recordarte que tu reservación está a punto de expirar. Aquí están los detalles:</p>
+        <ul>
+          <li><strong>Habitación:</strong> ${room.title} (${room.size}, ${room.beds} cama(s))</li>
+          <li><strong>Check-in:</strong> ${checkInDate.toDateString()}</li>
+          <li><strong>Check-out:</strong> ${checkOutDate.toDateString()}</li>
+          <li><strong>Estado del pago:</strong> ${reservation.paymentStatus}</li>
+        </ul>
+        <p><strong>Por favor, realiza tu pago dentro de las próximas 12 horas para asegurar tu reservación.</strong></p>
+        <p>Si necesitas asistencia, contáctanos.</p>
+        <p><strong>Elysium Hotel & Resort</strong><br>
+        📧 info@elysiumhotel.com<br>
+        📞 +1-800-123-4567<br>
+        🌐 <a href="https://www.elysiumhotel.com">www.elysiumhotel.com</a></p>
+      `,
+    };
+  
+    await this.transporter.sendMail(mailOptions);
+  }
+
+  async sendDeletionNotification(user: User, reservation: Reservation): Promise<void> {
+      
+    const checkInDate = new Date(reservation.checkInDate);
+    const checkOutDate = new Date(reservation.checkOutDate);
+
+    const mailOptions = {
+      from: '"Elysium Hotel & Resort" <tu-email@gmail.com>',
+      to: user.email,
+      subject: '❌ Reservación cancelada en Elysium Hotel & Resort ❌',
+      text: `Hola ${user.name},
+      
+      Lamentamos informarte que tu reservación ha sido cancelada debido a la falta de pago dentro del tiempo establecido. Aquí están los detalles de la reservación cancelada:
+      - Check-in: ${checkInDate.toDateString()}
+      - Check-out: ${checkOutDate.toDateString()}
+      
+      Si tienes alguna pregunta o deseas realizar una nueva reservación, no dudes en contactarnos.
+      
+      Elysium Hotel & Resort
+      📧 info@elysiumhotel.com
+      📞 +1-800-123-4567
+      🌐 www.elysiumhotel.com`,
+      html: `
+        <p>Hola <strong>${user.name}</strong>,</p>
+        <p>Lamentamos informarte que tu reservación ha sido cancelada debido a la falta de pago dentro del tiempo establecido. Aquí están los detalles de la reservación cancelada:</p>
+        <ul>
+          <li><strong>Check-in:</strong> ${checkInDate.toDateString()}</li>
+          <li><strong>Check-out:</strong> ${checkOutDate.toDateString()}</li>
+        </ul>
+        <p>Si tienes alguna pregunta o deseas realizar una nueva reservación, no dudes en contactarnos.</p>
+        <p><strong>Elysium Hotel & Resort</strong><br>
+        📧 info@elysiumhotel.com<br>
+        📞 +1-800-123-4567<br>
+        🌐 <a href="https://www.elysiumhotel.com">www.elysiumhotel.com</a></p>
+      `,
+    };
+  
+    await this.transporter.sendMail(mailOptions);
+  }
 }
