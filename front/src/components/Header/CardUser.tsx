@@ -107,7 +107,7 @@ const CardUser = () => {
             {userData?.userData.role.name === "Administrador" && (
               <li>
                 <Link
-                  href="/dashboardAdmin"
+                  href="/"
                   className="flex items-center gap-4 px-6 py-7.5 text-sm font-medium text-white hover:text-mostaza lg:text-base"
                 >
                   <svg
