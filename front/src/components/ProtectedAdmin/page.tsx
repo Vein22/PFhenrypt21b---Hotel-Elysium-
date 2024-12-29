@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import Swal from "sweetalert2";
 
-const ProtectedClient: React.FC<{ children: React.ReactNode }> = ({
+const ProtectedAdmin: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { userData, loadUserData } = useLoggin();
@@ -59,4 +59,4 @@ const ProtectedClient: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export default ProtectedClient;
+export default ProtectedAdmin;

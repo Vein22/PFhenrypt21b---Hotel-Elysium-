@@ -3,7 +3,9 @@
 import { clientDetails } from "@/api/clientDetails";
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import ProtectedAdmin from "@/components/ProtectedAdmin/page";
+import ProtectedClient from "../ProtectedClient/page";
+
+
 interface Reservation {
   id: string;
   checkInDate: string;
@@ -55,7 +57,7 @@ const ClientDetails: React.FC = () => {
   }
 
   return (
-    <ProtectedAdmin>
+    <ProtectedClient>
       <div className="shadow-md rounded-lg overflow-hidden mt-4">
         <h2 className="text-[2.5rem] font-semibold px-6 py-4">
           Detalles del Cliente
@@ -80,13 +82,13 @@ const ClientDetails: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-grisOscuro font-primary text-[1rem] font-medium uppercase tracking-wider">
+                <th className="px-6 py-3 text-grisOscuro font-primary text-[1rem] font-medium text-gray-500 uppercase tracking-wider">
                   Check-in
                 </th>
-                <th className="px-6 py-3 text-grisOscuro font-primary text-[1rem] font-medium uppercase tracking-wider">
+                <th className="px-6 py-3 text-grisOscuro font-primary text-[1rem] font-medium text-gray-500 uppercase tracking-wider">
                   Check-out
                 </th>
-                <th className="px-6 py-3 text-grisOscuro font-primary text-[1rem] font-medium uppercase tracking-wider">
+                <th className="px-6 py-3 text-grisOscuro font-primary text-[1rem] font-medium text-gray-500 uppercase tracking-wider">
                   Habitación
                 </th>
               </tr>
@@ -109,7 +111,7 @@ const ClientDetails: React.FC = () => {
           </table>
         )}
       </div>
-    </ProtectedAdmin>
+    </ProtectedClient>
   );
 };
 
