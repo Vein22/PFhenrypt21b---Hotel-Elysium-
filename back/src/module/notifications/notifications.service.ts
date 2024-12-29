@@ -203,4 +203,47 @@ export class NotificationsService {
   
     await this.transporter.sendMail(mailOptions);
   }
+
+  async sendPaymentSuccessNotification(user: User, room: Room, reservation: Reservation): Promise<void> {
+    const checkInDate = new Date(reservation.checkInDate);
+    const checkOutDate = new Date(reservation.checkOutDate);
+  
+    const mailOptions = {
+      from: '"Elysium Hotel & Resort" <tu-email@gmail.com>',
+      to: user.email,
+      subject: '✅ Pago confirmado para tu reservación en Elysium Hotel & Resort ✅',
+      text: `Hola ${user.name},
+      
+      ¡Nos complace informarte que tu pago ha sido confirmado con éxito! Aquí están los detalles de tu reservación:
+  
+      - Habitación: ${room.title} (${room.size}, ${room.beds} cama(s))
+      - Check-in: ${checkInDate.toDateString()}
+      - Check-out: ${checkOutDate.toDateString()}
+      - Estado del pago: ${reservation.paymentStatus}
+      
+      Gracias por elegir Elysium Hotel & Resort. Estamos emocionados de recibirte. Si tienes alguna pregunta o deseas modificar tu reservación, no dudes en contactarnos.
+  
+      Elysium Hotel & Resort
+      📧 info@elysiumhotel.com
+      📞 +1-800-123-4567
+      🌐 www.elysiumhotel.com`,
+      html: `
+        <p>Hola <strong>${user.name}</strong>,</p>
+        <p>¡Nos complace informarte que tu pago ha sido confirmado con éxito! Aquí están los detalles de tu reservación:</p>
+        <ul>
+          <li><strong>Habitación:</strong> ${room.title} (${room.size}, ${room.beds} cama(s))</li>
+          <li><strong>Check-in:</strong> ${checkInDate.toDateString()}</li>
+          <li><strong>Check-out:</strong> ${checkOutDate.toDateString()}</li>
+          <li><strong>Estado del pago:</strong> ${reservation.paymentStatus}</li>
+        </ul>
+        <p>Gracias por elegir <strong>Elysium Hotel & Resort</strong>. Estamos emocionados de recibirte. Si tienes alguna pregunta o deseas modificar tu reservación, no dudes en contactarnos.</p>
+        <p><strong>Elysium Hotel & Resort</strong><br>
+        📧 info@elysiumhotel.com<br>
+        📞 +1-800-123-4567<br>
+        🌐 <a href="https://www.elysiumhotel.com">www.elysiumhotel.com</a></p>
+      `,
+    };
+  
+    await this.transporter.sendMail(mailOptions);
+  }
 }

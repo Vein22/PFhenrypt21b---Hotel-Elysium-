@@ -35,7 +35,7 @@ export class CreateUserDto {
   })
   @IsString()
   @IsNotEmpty()
-  @MinLength(10)
+  @MinLength(5)
   @MaxLength(15)
   phone: string;
 
@@ -83,8 +83,8 @@ export class CreateUserDto {
   })
   @IsString()
   @IsNotEmpty()
-  @MinLength(8)
-  @MaxLength(12)
+  @MinLength(5)
+  @MaxLength(15)
   dni: string;
 }
 
