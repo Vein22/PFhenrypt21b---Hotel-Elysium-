@@ -40,3 +40,19 @@ export const clientDetailsAll = async (): Promise<Client[]> => {
   const data = await response.json();
   return data;
 };
+
+
+export const fetchClientsWithReservations = async (token: string) => {
+  const response = await fetch('/api/users/clientlist', {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`, 
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Error al obtener la lista de clientes con reservas');
+  }
+
+  return response.json();
+};

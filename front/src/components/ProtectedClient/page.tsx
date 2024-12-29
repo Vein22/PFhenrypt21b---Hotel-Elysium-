@@ -36,13 +36,26 @@ const ProtectedClient: React.FC<{ children: React.ReactNode }> = ({ children }) 
   }, [router, loadUserData, userData]);
 
   if (userData === undefined) {
-    return <div>Cargando...</div>; 
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-gray-500 text-3xl font-bold shadow-lg shadow-gray-500/50">
+         Espere. Cargando... Usuario No Registrado
+        </div>
+      </div>
+    );
   }
+ 
 
   if (userData?.userData.role.name === "Cliente" || userData?.userData.role.name === "Administrador") {
     return <>{children}</>;
   }
-  return <div>Espere ... Cargando</div>;
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <div className="text-gray-500 text-3xl font-bold shadow-lg shadow-gray-500/50">
+       Espere. Cargando...
+      </div>
+    </div>
+  );
 };
 
 export default ProtectedClient;

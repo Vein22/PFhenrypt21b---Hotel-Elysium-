@@ -1,130 +1,95 @@
-"use client";
+'use client'; // Next.js 15 requiere esto para componentes que usan hooks
 
-import { clientDetailsAll, Client } from "@/api/clientDetails";
-import React, { useState, useEffect } from "react";
-import ProtectedAdmin from "../ProtectedAdmin/page";
+import { fetchClientsWithReservations } from '@/api/clientDetails';
+import { useLoggin } from '@/context/logginContext';
+import React, { useEffect, useState } from 'react';
 
-const Clients: React.FC = () => {
+interface Client {
+  id: string;
+  name: string;
+  email: string;
+  reservations: Array<{
+    id: string;
+    checkInDate: string;
+    checkOutDate: string;
+  }>;
+}
+
+const ClientList: React.FC = () => {
   const [clients, setClients] = useState<Client[]>([]);
-  const [filteredClients, setFilteredClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { userData } = useLoggin();
 
+  const token = userData?.token ?? '';
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getClients = async () => {
       try {
-        const data = await clientDetailsAll();
+        setLoading(true);
+        const data = await fetchClientsWithReservations(token);
         setClients(data);
-        setFilteredClients(data);
-      } catch (error) {
-        console.error("Error al obtener los detalles de los clientes:", error);
-        setError("No se pudo cargar la información de los clientes");
+      } catch (error: any) {
+        if (error.message.includes('401')) {
+          setError('No autorizado. Por favor, inicie sesión nuevamente.');
+        } else {
+          setError(error.message || 'Error al cargar los datos');
+        }
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    getClients();
   }, []);
 
-  useEffect(() => {
-    const lowerCaseSearch = searchTerm.toLowerCase();
-    const filtered = clients.filter(
-      (client) =>
-        client.name.toLowerCase().includes(lowerCaseSearch) ||
-        client.email.toLowerCase().includes(lowerCaseSearch) ||
-        client.phone.toLowerCase().includes(lowerCaseSearch)
-    );
-    setFilteredClients(filtered);
-  }, [searchTerm, clients]);
-
-  if (loading) {
-    return <div>Cargando detalles de los clientes...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (filteredClients.length === 0) {
-    return <div>No se encontró información de los clientes</div>;
-  }
+  if (loading)
+    return <p className="text-center text-gray-500">Cargando clientes...</p>;
+  if (error)
+    return <p className="text-center text-red-500">Error: {error}</p>;
 
   return (
-    <ProtectedAdmin>
-      <div className="shadow-md rounded-lg overflow-hidden mt-4">
-        <h2 className="text-[2.5rem] font-semibold px-6 py-4 text-center">
-          Historial de Clientes
-        </h2>
-        <div className="px-6 py-4">
-          <input
-            type="text"
-            className="border rounded-md px-4 py-2 w-full"
-            placeholder="Buscar por nombre, correo o teléfono"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        {filteredClients.map((client) => (
-          <div key={client.id} className="px-6 py-4">
-            <h3>
-              <strong>Nombre:</strong> {client.name}
-            </h3>
-            <h3>
-              <strong>Email:</strong> {client.email}
-            </h3>
-            <h3>
-              <strong>Teléfono:</strong> {client.phone}
-            </h3>
-            <h3 className="text-[1.5rem] font-semibold px-6 py-4">
-              Historial de Reservas
-            </h3>
-            {client.reservations && client.reservations.length === 0 ? (
-              <p className="px-6 py-4">No hay reservas para este cliente.</p>
-            ) : (
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-grisOscuro font-primary text-[1rem] font-medium uppercase tracking-wider">
-                      Check-in
-                    </th>
-                    <th className="px-6 py-3 text-grisOscuro font-primary text-[1rem] font-medium uppercase tracking-wider">
-                      Check-out
-                    </th>
-                    <th className="px-6 py-3 text-grisOscuro font-primary text-[1rem] font-medium uppercase tracking-wider">
-                      Habitación
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {client.reservations &&
-                    client.reservations.map((reservation) => (
-                      <tr key={reservation.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-grisClaro">
-                          {new Date(
-                            reservation.checkInDate
-                          ).toLocaleDateString()}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-grisClaro">
-                          {new Date(
-                            reservation.checkOutDate
-                          ).toLocaleDateString()}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-grisClaro">
-                          {reservation.roomId}
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            )}
-          </div>
+    <div className="max-w-4xl mx-auto py-6">
+      <h1 className="text-2xl font-bold text-center text-blue-600">
+        Clientes con Reservas
+      </h1>
+      <ul className="space-y-4 mt-6">
+        {clients.map((client) => (
+          <li
+            key={client.id}
+            className="border border-gray-300 rounded-lg p-4 shadow-md"
+          >
+            <h2 className="text-xl font-semibold">{client.name}</h2>
+            <p className="text-gray-600">Email: {client.email}</p>
+            <h3 className="mt-4 text-lg font-medium">Reservas:</h3>
+            <ul className="mt-2 space-y-2">
+              {client.reservations.map((reservation) => (
+                <li
+                  key={reservation.id}
+                  className="bg-gray-100 p-2 rounded-lg"
+                >
+                  <p>
+                    Desde:{' '}
+                    <span className="font-semibold">
+                      {new Date(
+                        reservation.checkInDate
+                      ).toLocaleDateString()}
+                    </span>{' '}
+                    hasta:{' '}
+                    <span className="font-semibold">
+                      {new Date(
+                        reservation.checkOutDate
+                      ).toLocaleDateString()}
+                    </span>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </li>
         ))}
-      </div>
-    </ProtectedAdmin>
+      </ul>
+    </div>
   );
 };
 
-export default Clients;
+export default ClientList;

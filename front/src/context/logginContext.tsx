@@ -6,13 +6,13 @@ import { userSession } from "@/interfaces/Types.session";
 export interface LogginContextProps {
   userData: userSession | null; 
   setUserData: (userData: userSession | null) => void; 
-  loadUserData: () => Promise<userSession | null>; // Agregar la función loadUserData
+  loadUserData: () => Promise<userSession | null>; 
 }
 
 export const LogginContext = createContext<LogginContextProps>({
   userData: null, 
   setUserData: () => {}, 
-  loadUserData: async () => null, // Agregar la función loadUserData
+  loadUserData: async () => null, 
 });
 
 export interface LogginProviderProps {
