@@ -1,28 +1,18 @@
-// components/TestimonialCard.tsx
-import SweetAlert from "sweetalert2";
+import { TestimonialCardProps } from "./Type.Testimonials";
 
-interface Testimonial {
-  id: string;
-  username: string;
-  email: string;
-  testimonial: string;
-  status: string;
-}
 
-interface TestimonialCardProps {
-  testimonial: Testimonial;
-  onDelete: (id: string) => void;
-  onClick: (testimonial: Testimonial) => void;
-  onStatusChange: (id: string, status: string) => void;
-}
 
 const TestimonialCard = ({ testimonial, onDelete, onClick, onStatusChange }: TestimonialCardProps) => {
   const { id, username, email, testimonial: message, status } = testimonial;
+
+
 
   const handleStatusToggle = () => {
     const newStatus = status === "Pendiente" ? "Publicado" : "Pendiente";
     onStatusChange(id, newStatus);
   };
+
+
 
   return (
     <div className="p-4 border rounded-lg shadow-md shadow-mostaza flex justify-between items-center">

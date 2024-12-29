@@ -1,19 +1,4 @@
-// components/TestimonialModal.tsx
-import SweetAlert from "sweetalert2";
-
-interface Testimonial {
-  id: string;
-  username: string;
-  email: string;
-  testimonial: string;
-  status: string;
-}
-
-interface TestimonialModalProps {
-  testimonial: Testimonial;
-  onClose: () => void;
-  onStatusChange: (id: string, status: string) => void;
-}
+import { TestimonialModalProps } from "./Type.Testimonials";
 
 const TestimonialModal = ({ testimonial, onClose, onStatusChange }: TestimonialModalProps) => {
   const { username, email, testimonial: message, status, id } = testimonial;

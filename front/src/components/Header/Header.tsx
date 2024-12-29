@@ -78,7 +78,9 @@ import ContadorVisitas from "../visits/visits";
 
 const Header = () => {
   const { userData } = useLoggin();
-
+console.log('====================================');
+console.log('userData', userData?.token);
+console.log('====================================');
   return (
     <header className="sticky top-0 z-100 w-full h-[4.5rem] bg-grisOscuro text-white z-10 flex justify-between items-center px-6">
       <div className="flex items-center">
