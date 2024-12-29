@@ -13,6 +13,7 @@ export function ThemeSwitcher() {
 
   if(!mounted) return null
 
+
   return (
     <div>
       The current theme is: {theme}
