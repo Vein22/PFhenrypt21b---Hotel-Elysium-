@@ -11,20 +11,11 @@ import { UsersModule } from './module/users/users.module';
 import { RolesModule } from './module/roles/roles.module'; 
 import { PaymentModule} from './module/payment/payment.module';
 import { EmployeeModule } from './module/employee/employee.module';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
-=======
-=======
->>>>>>> fad83a596ab77db9444510a6ded0364e3ee35587
 import { TestimonialsModule } from './module/testimonials/testimonials.module'; 
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
 import { ScheduleModule } from '@nestjs/schedule';
 import { SchedulerModule } from './module/Scheduler/scheduler.module';
-<<<<<<< HEAD
->>>>>>> 76854cd2c0e3ca0b09bfc3f24fe99e36c7b37686
-=======
->>>>>>> fad83a596ab77db9444510a6ded0364e3ee35587
+// import { SomeOtherModule } from './some-other.module';
 
 @Module({
   imports: [
@@ -36,16 +27,8 @@ import { SchedulerModule } from './module/Scheduler/scheduler.module';
     UsersModule,
     RolesModule,
     PaymentModule,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    EmployeeModule,
-=======
     TestimonialsModule,
->>>>>>> 76854cd2c0e3ca0b09bfc3f24fe99e36c7b37686
-=======
     EmployeeModule,
-    TestimonialsModule,
->>>>>>> fad83a596ab77db9444510a6ded0364e3ee35587
 
     JwtModule.register({
       global: true,
