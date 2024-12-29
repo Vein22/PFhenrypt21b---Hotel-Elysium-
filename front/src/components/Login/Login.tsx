@@ -112,6 +112,10 @@ function LoginForm() {
     }
   }, [session, handleGoogleLogin]);
 
+  const handleLogin = useCallback(() => {
+    // ...existing code...
+  }, [router, setUserData]); // Asegúrate de incluir router y setUserData en las dependencias
+
   return (
     <div className={styles.containerp}>
       <form onSubmit={handleSubmit} className={styles.container}>
