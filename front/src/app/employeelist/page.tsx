@@ -1,10 +1,12 @@
 import EmployeeList from "@/components/EmployeeForm/EmployeeList";
 import React from "react";
-
+import ProtectedAdmin from "@/components/ProtectedAdmin/page";
 const page = () => {
   return (
     <>
-      <EmployeeList />
+      <ProtectedAdmin>
+        <EmployeeList />
+      </ProtectedAdmin>
     </>
   );
 };

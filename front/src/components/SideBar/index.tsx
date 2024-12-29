@@ -35,9 +35,7 @@ const Sidebar = () => {
             />
           </svg>
           {isExpanded && (
-            <Link href="/clientdetails">
-              Clientes Registrados
-            </Link>
+            <Link href="/clientdetails">Clientes Registrados</Link>
           )}
         </li>
         <li
@@ -55,6 +53,36 @@ const Sidebar = () => {
           {isExpanded && (
             <Link href="/clientlist" className="ml-4">
               Historial de Clientes
+            </Link>
+          )}
+        </li>
+        <li
+          className="hover:text-mostaza cursor-pointer flex items-center"
+          title="REGISTRAR CLIENTES"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-10 h-10"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              d="M12 2h36a4 4 0 014 4v52a4 4 0 01-4 4H12a4 4 0 01-4-4V6a4 4 0 014-4z"
+              fill="#f5f5f5"
+              stroke="#333"
+            />
+            <path
+              d="M16 2v60M24 10h16M24 18h16M24 26h16M24 34h16M24 42h16M24 50h16"
+              stroke="#333"
+            />
+            <path
+              d="M6 10h4M6 18h4M6 26h4M6 34h4M6 42h4M6 50h4"
+              stroke="#888"
+            />
+          </svg>
+          {isExpanded && (
+            <Link href="/register" className="ml-4">
+              Registrar Clientes
             </Link>
           )}
         </li>

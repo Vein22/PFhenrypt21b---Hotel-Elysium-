@@ -1,13 +1,15 @@
 // pages/login.tsx
 
 import LoginForm from "@/components/Login/Login";
+import ProtectedSesionIniciada from "@/components/ProtectedSesionIniciada/page";
 
 const Login: React.FC = () => {
   return (
-    <div className="flex m-auto">
-
-      <LoginForm />
-    </div>
+    <ProtectedSesionIniciada>
+      <div className="flex m-auto">
+        <LoginForm />
+      </div>
+    </ProtectedSesionIniciada>
   );
 };
 
