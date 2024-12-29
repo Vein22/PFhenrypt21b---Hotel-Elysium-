@@ -1,14 +1,18 @@
 .menuDetails {
-    /*border: 2px solid red;*/
     background-color: rgba(231, 231, 231, 0.411);
     padding: 0 4rem 3rem 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+.masDetalles {
+   align-self: flex-start;
+   margin: 0rem 0 1rem 5rem;
+   padding: .1rem .5rem;
+   border-radius: .2rem;
+}
 
 .submMenuDetails {
-    /*border: solid green;*/
     text-align: center;
     width: 100%;
     margin-bottom: 2rem;
@@ -35,7 +39,7 @@
 }
 
 .submMenuDetails > button:hover {
-    background-color: #a47d51;
+    background-color: #ACACAC;
 }
 
 .cardContainer {
@@ -79,4 +83,7 @@
     /*border: solid;*/
     width: 100%;
     font-size: 1.1rem;
+}
+.submMenuDetails .activo {
+    background-color: #ACACAC;
 }
