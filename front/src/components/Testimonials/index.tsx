@@ -98,6 +98,8 @@ const TestimonialsPage = () => {
         setFilteredTestimonials((prev) => prev.filter((t) => t.id !== id));
         SweetAlert.fire("¡Eliminado!", "El testimonio ha sido eliminado.", "success");
       } catch (error) {
+        console.log("Error deleting testimonial", error);
+        
         SweetAlert.fire("Error", "No se pudo eliminar el testimonio.", "error");
       }
     }
@@ -141,6 +143,8 @@ const TestimonialsPage = () => {
         );
         SweetAlert.fire("¡Cambiado!", `El estatus ha sido actualizado a ${status}.`, "success");
       } catch (error) {
+        console.log("Error changing status", error);
+        
         SweetAlert.fire("Error", "No se pudo cambiar el estatus.", "error");
       }
     }

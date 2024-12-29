@@ -1,5 +1,4 @@
 import ProtectedAdmin from "@/components/ProtectedAdmin/page";
-import ProtectedClient from "@/components/ProtectedClient/page";
 import RegisterForm from "@/components/RegisterRoom/RegisterRoom2";
 
 const page = () => {

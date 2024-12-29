@@ -12,6 +12,7 @@ const TestimonialCard = ({ testimonial, onDelete, onClick, onStatusChange }: Tes
     onStatusChange(id, newStatus);
   };
 
+console.log(handleStatusToggle);
 
 
   return (

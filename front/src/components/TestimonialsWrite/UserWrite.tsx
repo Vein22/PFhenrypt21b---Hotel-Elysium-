@@ -76,9 +76,11 @@ const TestimonialForm = () => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         const response = await axios.post(`${APIURL}/testimonials`, form, {
+          
           headers: {
             Authorization: `Bearer ${userData?.token}`,
           },
+          
         });
 
 
@@ -114,6 +116,8 @@ const TestimonialForm = () => {
           rating: false,
         });
       } catch (error) {
+        console.log(error);
+        
         Swal.fire({
           title: "Error",
           text: "Hubo un error al enviar el testimonio o el correo. Intenta nuevamente.",
