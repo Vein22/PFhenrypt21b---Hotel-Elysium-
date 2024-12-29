@@ -6,6 +6,8 @@ import {
   HttpStatus,
   UsePipes,
   ValidationPipe,
+  Get,
+  Query,
 } from '@nestjs/common';
 
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -43,4 +45,10 @@ export class AuthController {
     return this.authService.createUser(createUserDto);
   }
   
+
+  @Get('check-email')
+  async checkEmail(@Query('email') email: string) {
+    const user = await this.authService.findByEmail(email);
+    return { exists: !!user };
+  }
 }

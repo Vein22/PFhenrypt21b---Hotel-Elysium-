@@ -6,11 +6,14 @@ import { ValidationPipe } from '@nestjs/common';
 import { RolesRepository } from './module/roles/roles.repository';
 import { AuthService } from './module/auth/auth.service';
 import { RoomsRepository } from './module/create-room/rooms.repository';
+import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
 
 dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
+
+  app.use(LoggerMiddleware)
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 

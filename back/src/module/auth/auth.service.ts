@@ -18,7 +18,7 @@ export class AuthService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-    @InjectRepository(Role) 
+    @InjectRepository(Role)
     private readonly roleRepository: Repository<Role>,
     private readonly jwtService: JwtService,
     private readonly notificationService: NotificationsService,
@@ -50,8 +50,6 @@ export class AuthService {
     return { success: 'Inicio de sesión exitoso', token, user: userFound };
   }
 
-
-
   async createUser(createUserDto: CreateUserDto) {
     const existingUser = await this.userRepository.findOne({
       where: [{ email: createUserDto.email }],
@@ -72,9 +70,9 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
 
     //Temporalmente asigno el rol de cliente por defecto
-  //const roleId = '"f656692b-8e84-42d3-82e9-900e20cf91c6"';
-  const clienteRole = await this.rolesService.getRoleByNameCliente();
-  const roleId = clienteRole.id;
+    //const roleId = '"f656692b-8e84-42d3-82e9-900e20cf91c6"';
+    const clienteRole = await this.rolesService.getRoleByNameCliente();
+    const roleId = clienteRole.id;
 
     const newUser = this.userRepository.create({
       name: createUserDto.name,
@@ -90,7 +88,10 @@ export class AuthService {
     const savedUser = await this.userRepository.save(newUser);
 
     try {
-      await this.notificationService.sendWelcomeEmail(savedUser.email, savedUser.name);
+      await this.notificationService.sendWelcomeEmail(
+        savedUser.email,
+        savedUser.name,
+      );
     } catch (error) {
       console.error('Error enviando el correo de bienvenida:', error);
     }
@@ -106,19 +107,19 @@ export class AuthService {
       role: savedUser.role,
     };
   }
-  
 
   async findById(id: string): Promise<User> {
     return await this.userRepository.findOne({ where: { id } });
   }
 
-  
   async seedAdmin() {
     const existingAdmins = (await this.userRepository.find()).map(
       (user) => user.email,
     );
 
-    let adminRole = await this.roleRepository.findOne({ where: { name: 'Administrador' } });
+    let adminRole = await this.roleRepository.findOne({
+      where: { name: 'Administrador' },
+    });
 
     if (!adminRole) {
       adminRole = new Role();
@@ -144,5 +145,9 @@ export class AuthService {
     }
 
     console.log('Admin seeding completed');
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    return await this.userRepository.findOne({ where: { email } });
   }
 }

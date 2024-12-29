@@ -1,5 +1,5 @@
-
 "use client";
+
 import styles from './Login.module.css';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
@@ -83,85 +83,33 @@ function LoginForm() {
     }
   };
 
-  // const handleGoogleLogin = async () => {
-  //   if (session?.user?.email) {
-  //     const email = session.user.email;
-  //     console.log (email)
-  //     const response = await login({ email }); 
-  //     console.log(response)
-  //     if (response.success) {
-  //       const { token, user } = response.data;
- 
-  //       setUserData({
-  //         token,
-  //         userData: user,
-  //       });
-
-  //       localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user }));
-
-  //       router.push('/');
-  //     } else {
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: 'Error',
-  //         text: 'Error al iniciar sesión con Google.',
-  //       });
-  //     }
-  //   } else {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Error',
-  //       text: 'No se pudo obtener el email de la sesión de Google.',
-  //     });
-  //   }
-  // };
-
-  // // useEffect para manejar el inicio de sesión con Google
-  // useEffect(() => {
-  //   if (session) {
-  //     handleGoogleLogin();
-  //   }
-  // }, [session]); // Se ejecu
-
   const handleGoogleLogin = useCallback(async () => {
     if (session?.user?.email) {
-      const email = session.user.email;
-      console.log(email);
-      const response = await login({ email });
-      console.log(response);
-      if (response.success) {
-        const { token, user } = response.data;
-
-        setUserData({
-          token,
-          userData: user,
-        });
-
-        localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user }));
-
-        router.push('/');
+      if (session.user.newUser) {
+        router.push('/auth/register');
       } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Error al iniciar sesión con Google.',
-        });
+        const response = await login({ email: session.user.email });
+        if (response.success) {
+          const { token, user } = response.data;
+          setUserData({ token, userData: user });
+          localStorage.setItem('sessionStart', JSON.stringify({ token, userData: user }));
+          router.push('/');
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al iniciar sesión con Google.',
+          });
+        }
       }
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'No se pudo obtener el email de la sesión de Google.',
-      });
     }
-  }, [session]); // Asegúrate de incluir las dependencias necesarias
+  }, [session]);
 
-  // useEffect para manejar el inicio de sesión con Google
   useEffect(() => {
     if (session) {
       handleGoogleLogin();
     }
-  }, [session, handleGoogleLogin]); 
+  }, [session, handleGoogleLogin]);
 
   return (
     <div className={styles.containerp}>
