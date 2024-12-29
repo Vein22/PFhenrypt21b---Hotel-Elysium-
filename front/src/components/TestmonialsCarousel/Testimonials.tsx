@@ -39,7 +39,7 @@ const Testimonials = () => {
     };
 
     fetchTestimonials();
-  }, []);
+  }, [APIURL, token]);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);

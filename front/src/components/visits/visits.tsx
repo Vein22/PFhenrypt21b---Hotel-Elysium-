@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function contadorVisitas() {
+export default function ContadorVisitas() {
   const [visits, setVisits] = useState<number>(0);
 
   useEffect(() => {
@@ -66,11 +66,9 @@ export default function contadorVisitas() {
       <h1 className="text-medium font-semibold text-white drop-shadow-sm">
         Visitante
       </h1>
-
-        <span className="text-white font-bold px-1 text-2xl drop-shadow-lg shadow-mostaza">
-          N° {visits}
-        </span>
-
+      <span className="text-white font-bold px-1 text-2xl drop-shadow-lg shadow-mostaza">
+        N° {visits}
+      </span>
     </div>
   );
 }

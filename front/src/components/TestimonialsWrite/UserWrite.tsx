@@ -5,6 +5,7 @@ import { useLoggin } from "@/context/logginContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 import emailjs from "emailjs-com"; // Importar EmailJS
+import Image from "next/image"; // Importar Image de next/image
 
 interface TestimonialFormData {
   name: string;
@@ -75,14 +76,11 @@ const TestimonialForm = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       try {
-        const response = await axios.post(`${APIURL}/testimonials`, form, {
-          
+        await axios.post(`${APIURL}/testimonials`, form, {
           headers: {
             Authorization: `Bearer ${userData?.token}`,
           },
-          
         });
-
 
         await emailjs.send(
           "service_clpikcu",
@@ -144,7 +142,7 @@ const TestimonialForm = () => {
     <div className="w-full h-screen flex items-center justify-center p-2">
       <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-7xl gap-5">
         <div className="w-full md:w-2/5">
-          <img src="/fondo3.png" alt="Testimonios" width={700} height={700} />
+          <Image src="/fondo3.png" alt="Testimonios" width={700} height={700} />
         </div>
         <form
           onSubmit={handleSubmit}
