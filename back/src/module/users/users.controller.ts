@@ -40,11 +40,9 @@ export class UsersController {
     return this.usersService.searchUsersByName(searchUserDto.search);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('Admin')
   @Get('clientlist')
   @HttpCode(HttpStatus.OK)
-  async findAllClients() {
+  async findUsers() {
     return this.usersService.findUsers();
   }
 
