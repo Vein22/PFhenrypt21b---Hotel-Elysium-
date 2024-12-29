@@ -1,9 +1,7 @@
+import BranchesComponent from "@/components/BranchesComponent/BranchesComponent";
 
-
-export const Branches = () => {
-    return (
-        <h1>branches</h1>
-    );
-};
-
-export default Branches;
+const Branches: React.FC = () => {
+    return <BranchesComponent/>;
+  };
+  
+  export default Branches;

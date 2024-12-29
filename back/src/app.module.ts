@@ -11,10 +11,14 @@ import { UsersModule } from './module/users/users.module';
 import { RolesModule } from './module/roles/roles.module'; 
 import { PaymentModule} from './module/payment/payment.module';
 import { EmployeeModule } from './module/employee/employee.module';
+import { TestimonialsModule } from './module/testimonials/testimonials.module'; 
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
+import { ScheduleModule } from '@nestjs/schedule';
+import { SchedulerModule } from './module/Scheduler/scheduler.module';
 
 @Module({
   imports: [
+    SchedulerModule,
     AuthModule,
     FilesModule,
     RoomsModule,
@@ -23,6 +27,7 @@ import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
     RolesModule,
     PaymentModule,
     EmployeeModule,
+    TestimonialsModule,
 
     JwtModule.register({
       global: true,
