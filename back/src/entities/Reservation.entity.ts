@@ -86,6 +86,29 @@ export class Reservation {
   })
   paymentStatus: PaymentStatus;
 
+
+    /**
+   * Fecha de creación de la reservación.
+   * @example "2024-12-25"
+   */
+    @ApiProperty({
+      example: '2024-12-25',
+      description: 'Fecha de creación de la reservación.',
+    })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    createdAt: Date;
+
+
+    /**
+    * Notificación recordartorio del pago pasadas 12 horas.
+    */
+    @ApiProperty({
+    description: 'Notificación recordartorio del pago pasadas 12 horas.',
+     })
+    @Column({ default: false })
+    notified12Hours: boolean;
+
+
   /**
    * Estado de eliminación lógica de la reservación.
    * @example false
