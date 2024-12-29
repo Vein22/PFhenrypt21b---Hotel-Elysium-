@@ -4,6 +4,7 @@ import { validateTestimonials } from "@/helpers/validatetestimonials";
 import { useLoggin } from "@/context/logginContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import emailjs from "emailjs-com"; // Importar EmailJS
 
 interface TestimonialFormData {
   name: string;
@@ -42,25 +43,23 @@ const TestimonialForm = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm({
-        ...form,
-        [name]: name === "rating" ? parseInt(value, 10) || 0 : value,
+      ...form,
+      [name]: name === "rating" ? parseInt(value, 10) || 0 : value,
     });
 
     const validationErrors: Partial<TestimonialFormData> = validateTestimonials({
-        ...form,
-        [name]: name === "rating" ? parseInt(value, 10) || 0 : value,
+      ...form,
+      [name]: name === "rating" ? parseInt(value, 10) || 0 : value,
     });
     setErrors(validationErrors);
     setIsValid(Object.keys(validationErrors).length === 0 && form.rating > 0);
-};
-
+  };
 
   const handleStarClick = (value: number) => {
     setForm((prev) => ({
       ...prev,
       rating: Number(value), // Convertir a número
     }));
-    
     setIsValid(Object.keys(errors).length === 0 && value > 0);
   };
 
@@ -71,7 +70,10 @@ const TestimonialForm = () => {
 
     const validationErrors: Partial<TestimonialFormData> = validateTestimonials(form);
     if (!form.rating) {
-      validationErrors.rating = "Debes seleccionar una calificación." as unknown as number;}    if (Object.keys(validationErrors).length === 0) {
+      validationErrors.rating = "Debes seleccionar una calificación." as unknown as number;
+    }
+
+    if (Object.keys(validationErrors).length === 0) {
       try {
         const response = await axios.post(`${APIURL}/testimonials`, form, {
           headers: {
@@ -79,11 +81,24 @@ const TestimonialForm = () => {
           },
         });
 
+
+        await emailjs.send(
+          "service_clpikcu",
+          "template_v4ea3gi",
+          {
+            user_name: form.name,
+            user_email: form.email,
+            user_message: form.message,
+            user_rating: form.rating,
+          },
+          "5sj5rQFeGjN3K-g-D"
+        );
+
         Swal.fire({
           title: "Éxito",
-          text: "Testimonio enviado con éxito!",
+          text: "Testimonio enviado con éxito y correo enviado al usuario.",
           icon: "success",
-          confirmButtonText: "OK",
+          confirmButtonText: "Aceptar",
         });
 
         setForm({
@@ -101,7 +116,7 @@ const TestimonialForm = () => {
       } catch (error) {
         Swal.fire({
           title: "Error",
-          text: "Hubo un error al enviar el testimonio. Intenta nuevamente.",
+          text: "Hubo un error al enviar el testimonio o el correo. Intenta nuevamente.",
           icon: "error",
           confirmButtonText: "OK",
         });
@@ -116,11 +131,11 @@ const TestimonialForm = () => {
     if (!form.rating) {
       validationErrors.rating = "Debes seleccionar una calificación." as unknown as number;
     }
-
     setErrors(validationErrors);
     setIsValid(Object.keys(validationErrors).length === 0 && form.rating > 0);
   }, [form]);
 
+ 
   return (
     <div className="w-full h-screen flex items-center justify-center p-2">
       <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-7xl gap-5">

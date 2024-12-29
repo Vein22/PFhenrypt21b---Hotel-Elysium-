@@ -74,7 +74,7 @@ const TestimonialsPage = () => {
       text: "¡Este testimonio será eliminado permanentemente!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Sí, eliminar",
+      confirmButtonText: "Sí, Eliminar",
       cancelButtonText: "Cancelar",
       customClass: {
         confirmButton: 'bg-mostaza text-white hover:bg-beige',
@@ -111,7 +111,7 @@ const TestimonialsPage = () => {
       text: `¿Deseas cambiar el Status a ${status}?`,
       icon: "question",
       showCancelButton: true,
-      confirmButtonText: "Sí, cambiar",
+      confirmButtonText: "Sí, Cambiar",
       cancelButtonText: "Cancelar",
       customClass: {
         confirmButton: 'bg-mostaza text-white hover:bg-beige',
