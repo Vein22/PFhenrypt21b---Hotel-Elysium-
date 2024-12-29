@@ -95,28 +95,7 @@
 
 // export default Testimonials;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'use client'
+"use client";
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
@@ -148,10 +127,10 @@ const Testimonials = () => {
         });
       };
 
-      window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
       handleResize();
 
-      return () => window.removeEventListener('resize', handleResize);
+      return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     return windowSize;
@@ -213,7 +192,10 @@ const Testimonials = () => {
       <div className="container mx-auto text-center">
         <div className="mb-8">
           <h2 className="text-[3rem]">Testimonios</h2>
-          <p>Descubre como nuestros huéspedes han vivido experiencias inolvidables con nosotros.</p>
+          <p>
+            Descubre como nuestros huéspedes han vivido experiencias
+            inolvidables con nosotros.
+          </p>
         </div>
 
         {windowSize.width < 1024 ? (
