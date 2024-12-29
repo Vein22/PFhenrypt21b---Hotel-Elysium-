@@ -15,3 +15,44 @@ export const clientDetails = async (id: string) => {
   }
 };
 
+
+export interface Reservation {
+  id: string;
+  checkInDate: string;
+  checkOutDate: string;
+  roomId: string;
+}
+
+export interface Client {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  reservations: Reservation[];
+}
+
+
+export const clientDetailsAll = async (): Promise<Client[]> => {
+  const response = await fetch('http://localhost:4000/users/clientlist');
+  if (!response.ok) {
+    throw new Error('Error al obtener los detalles de los clientes');
+  }
+  const data = await response.json();
+  return data;
+};
+
+
+export const fetchClientsWithReservations = async (token: string) => {
+  const response = await fetch('/api/users/clientlist', {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`, 
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Error al obtener la lista de clientes con reservas');
+  }
+
+  return response.json();
+};

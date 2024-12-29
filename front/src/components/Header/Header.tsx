@@ -1,15 +1,13 @@
-"use client";
 import { useLoggin } from "@/context/logginContext";
-import { PaymentButton } from "../PaymentButton/PaymentButton";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import CardUser from "./CardUser";
 import Switcher from "../Switcher";
+import ContadorVisitas from "../visits/visits"; 
 
 const Header = () => {
   const { userData } = useLoggin();
-
   return (
     <header className="sticky top-0 z-100 w-full h-[4.5rem] bg-grisOscuro text-white z-10 flex justify-between items-center px-6">
       <div className="flex items-center">
@@ -22,6 +20,8 @@ const Header = () => {
             className="hover:scale-105 transition-transform duration-200"
           />
         </Link>
+
+        <ContadorVisitas />
       </div>
       <nav className="flex items-center space-x-6 text-[1rem] uppercase">
         <div className="flex space-x-6 text-[1rem] uppercase items-center">
@@ -37,31 +37,24 @@ const Header = () => {
           <Link href="/contact" className="hover:text-mostaza">
             Contacto
           </Link>
+          <Link href="/nosotros" className="hover:text-mostaza">
+            Acerca de...
+          </Link>
           <Switcher />
         </div>
       </nav>
       <div className="space-x-4 flex items-center">
         {userData?.token ? (
           <>
-            {/* Esto está aquí provisional */}
-            <PaymentButton
-              amount={5000}
-              currency="usd"
-              description="Producto de ejemplo"
-            />
             <CardUser />
           </>
         ) : (
           <>
             <Link href="/login">
-              <button >
-                Iniciar Sesión
-              </button>
+              <button>Iniciar Sesión</button>
             </Link>
             <Link href="/register">
-              <button >
-                Registrarse
-              </button>
+              <button>Registrarse</button>
             </Link>
           </>
         )}

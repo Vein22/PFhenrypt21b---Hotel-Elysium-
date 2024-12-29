@@ -6,6 +6,10 @@ export interface userSession {
         name: string,
         email: string,
         phone: string,
-        order: []
+        order: [],
+        role: {
+            id: string,
+            name: string
+        }
     }
 }

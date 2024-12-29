@@ -21,22 +21,23 @@ import { TestimonialStatus } from 'src/enums/testimonial-status.enum';
 
 @ApiTags('Testimonials')
 @Controller('testimonials')
-@UseGuards(JwtAuthGuard) // Autenticación JWT obligatoria
 export class TestimonialsController {
   constructor(private readonly testimonialsService: TestimonialsService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard) // Autenticación JWT obligatoria
   @HttpCode(HttpStatus.CREATED)
   @UsePipes(new ValidationPipe({ transform: true }))
   @ApiOperation({ summary: 'Crear un nuevo testimonio' })
   @ApiResponse({ status: 201, description: 'Testimonio creado exitosamente' })
   @ApiResponse({ status: 400, description: 'Error de validación' })
-  async create(@Body() createTestimonialDto: CreateTestimonialDto, @Req() req: any) {
+  async create(@Body() createTestimonialDto: CreateTestimonialDto, @Req() req: any){
     const userId = req.user.id; // Extrae el ID del token JWT
     return this.testimonialsService.create(createTestimonialDto, userId);
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard) // Autenticación JWT obligatoria
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Obtener todos los testimonios' })
   @ApiResponse({ status: 200, description: 'Listado de testimonios' })
@@ -44,7 +45,16 @@ export class TestimonialsController {
     return this.testimonialsService.findAll();
   }
 
+  @Get('published')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Obtener testimonios publicados' })
+  @ApiResponse({ status: 200, description: 'Listado de testimonios publicados' })
+  async findPublished() {
+    return this.testimonialsService.findByStatus(TestimonialStatus.PUBLISHED);
+  }
+
   @Get(':id')
+  @UseGuards(JwtAuthGuard) // Autenticación JWT obligatoria
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Obtener un testimonio por ID' })
   @ApiResponse({ status: 200, description: 'Testimonio encontrado' })
@@ -54,6 +64,7 @@ export class TestimonialsController {
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard) // Autenticación JWT obligatoria
   @HttpCode(HttpStatus.OK)
   @UsePipes(new ValidationPipe({ transform: true }))
   @ApiOperation({ summary: 'Actualizar un testimonio' })
@@ -64,6 +75,7 @@ export class TestimonialsController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard) // Autenticación JWT obligatoria
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Eliminar un testimonio' })
   @ApiResponse({ status: 204, description: 'Testimonio eliminado exitosamente' })
@@ -73,16 +85,16 @@ export class TestimonialsController {
   }
 
   @Patch(':id/status')
-@HttpCode(HttpStatus.OK)
-@UsePipes(new ValidationPipe({ transform: true }))
-@ApiOperation({ summary: 'Cambiar el estatus de un testimonio' })
-@ApiResponse({ status: 200, description: 'Estatus del testimonio actualizado exitosamente' })
-@ApiResponse({ status: 404, description: 'Testimonio no encontrado' })
-async updateStatus(
-  @Param('id') id: string,
-  @Body('status') status: TestimonialStatus,
-) {
-  return this.testimonialsService.updateStatus(id, status);
-}
-
+  @UseGuards(JwtAuthGuard) // Autenticación JWT obligatoria
+  @HttpCode(HttpStatus.OK)
+  @UsePipes(new ValidationPipe({ transform: true }))
+  @ApiOperation({ summary: 'Cambiar el estatus de un testimonio' })
+  @ApiResponse({ status: 200, description: 'Estatus del testimonio actualizado exitosamente' })
+  @ApiResponse({ status: 404, description: 'Testimonio no encontrado' })
+  async updateStatus(
+    @Param('id') id: string,
+    @Body('status') status: TestimonialStatus,
+  ) {
+    return this.testimonialsService.updateStatus(id, status);
+  }
 }
