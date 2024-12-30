@@ -171,7 +171,14 @@ const Header = () => {
           </div>
           <div className="uppercase absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             {userData ? (
-              <CardUser />
+              <>
+                <PaymentButton
+                  amount={5000}
+                  currency="usd"
+                  description="Producto de ejemplo"
+                />
+                <CardUser />
+              </>
             ) : (
               <div className="flex space-x-4">
                 <Link href="/login" className="rounded-md px-3 py-2 font-bold text-white bg-mostaza hover:bg-gray-700">
@@ -187,30 +194,29 @@ const Header = () => {
       </div>
       {menuOpen && (
         <div className="absolute top-16 left-0 right-0 z-50 bg-grisOscuro sm:hidden" id="mobile-menu">
-        <div className="space-y-1 px-2 pb-3 pt-2">
-          <Link href="/" className="block rounded-md px-3 py-2 text-base font-medium text-white">
-            Home
-          </Link>
-          <Link href="/rooms" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-            Habitaciones
-          </Link>
-          <Link href="/facilities" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-            Servicios
-          </Link>
-          <Link href="/contact" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-            Contacto
-          </Link>
-          
-          {!userData && (
-            <div className="mt-6">
-              <Link href="/login" className="rounded-md px-3 py-2 font-bold text-white bg-mostaza hover:bg-gray-700">
-                Iniciar sesión
-              </Link>
-            </div>
-          )}
+          <div className="space-y-1 px-2 pb-3 pt-2">
+            <Link href="/" className="block rounded-md px-3 py-2 text-base font-medium text-white">
+              Home
+            </Link>
+            <Link href="/rooms" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+              Habitaciones
+            </Link>
+            <Link href="/facilities" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+              Servicios
+            </Link>
+            <Link href="/contact" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+              Contacto
+            </Link>
+
+            {!userData && (
+              <div className="mt-6">
+                <Link href="/login" className="rounded-md px-3 py-2 font-bold text-white bg-mostaza hover:bg-gray-700">
+                  Iniciar sesión
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-      
       )}
     </header>
   );
