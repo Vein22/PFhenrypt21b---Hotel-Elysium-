@@ -10,7 +10,7 @@ import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/CreateUserDto';
 import { NotificationsService } from '../notifications/notifications.service';
 import { RolesService } from '../../module/roles/roles.service';
-import { adminMock } from './Admin-mock';
+import { adminMock } from './admin-mock';
 import { Role } from 'src/entities/role.entity';
 
 @Injectable()
@@ -28,6 +28,7 @@ export class AuthService {
   async signIn(userLogin: LoginUserDto) {
     const userFound = await this.userRepository.findOne({
       where: { email: userLogin.email },
+      relations: ['role'],      
     });
     if (!userFound) {
       throw new BadRequestException('Credenciales incorrectas');
@@ -45,6 +46,10 @@ export class AuthService {
       sub: userFound.id,
       id: userFound.id,
       email: userFound.email,
+      role: {
+        id: userFound.role.id,
+        name: userFound.role.name, 
+      },
     };
     const token = this.jwtService.sign(userPayload);
     return { success: 'Inicio de sesión exitoso', token, user: userFound };

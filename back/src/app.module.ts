@@ -11,11 +11,12 @@ import { UsersModule } from './module/users/users.module';
 import { RolesModule } from './module/roles/roles.module'; 
 import { PaymentModule} from './module/payment/payment.module';
 import { EmployeeModule } from './module/employee/employee.module';
-import { TestimonialsModule } from './module/testimonials/testimonials.module'; 
+import { TestimonialsModule } from './module/testimonials/testimonials.module'; // Importa el módulo de testimonios
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
-import { ScheduleModule } from '@nestjs/schedule';
+import { VisitCounterModule } from './module/VisitCounter/visit-counter.module';
 import { SchedulerModule } from './module/Scheduler/scheduler.module';
 // import { SomeOtherModule } from './some-other.module';
+
 
 @Module({
   imports: [
@@ -30,6 +31,8 @@ import { SchedulerModule } from './module/Scheduler/scheduler.module';
     TestimonialsModule,
     EmployeeModule,
 
+    VisitCounterModule,
+    TestimonialsModule, // Registra el módulo de testimonios
     JwtModule.register({
       global: true,
       signOptions: { expiresIn: '1d' },
@@ -44,14 +47,13 @@ import { SchedulerModule } from './module/Scheduler/scheduler.module';
       useFactory: (Config: ConfigService) => Config.get('typeorm'),
     }),
   ],
+
   controllers: [],
   providers: [],
 })
 
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes('*');
+    consumer.apply(LoggerMiddleware).forRoutes('*');
   }
 }

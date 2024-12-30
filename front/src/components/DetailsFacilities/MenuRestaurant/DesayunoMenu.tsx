@@ -1,14 +1,14 @@
 import Style from './style.module.css';
 import { useState } from 'react';
-import desayunos from './data';
+import { desayunos } from './data';
 
 
-export const MenuRestaurant = () => {
+export const DesayunoMenu = () => {
     const [desayuno, setDesayuno] = useState<"continental" | "americano" | "saludable" | "internacional">("continental");
 
     return (
         <article className={Style.container}>
-            <h2>DESATUNOS</h2>
+            <h2>DESAYUNOS</h2>
             <div className={Style.buttonConainer}>
                 <button onClick={() => setDesayuno("continental")} className={desayuno === "continental" ? Style.select : ""}>Continental</button>
                 <button onClick={() => setDesayuno("americano")} className={desayuno === "americano" ? Style.select : ""}>Americano</button>
@@ -26,4 +26,4 @@ export const MenuRestaurant = () => {
     )
 }
 
-export default MenuRestaurant;
+export default DesayunoMenu;

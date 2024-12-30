@@ -1,13 +1,15 @@
-"use client";
+'use client'
+
 import React, { useState } from "react";
 import { Room } from "@/interfaces";
 import { FaStar, FaCalendarAlt } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useLoggin } from "@/context/logginContext";
 import Image from "next/image";
-import DatePicker from "react-datepicker"; 
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { postBooking } from "@/api/bookReserve"; 
+import { postBooking } from "@/api/bookReserve";
+import { PaymentButton } from "../PaymentButton/PaymentButton";
 
 const RoomDetail = ({
   id,
@@ -23,10 +25,8 @@ const RoomDetail = ({
   const router = useRouter();
   const { userData } = useLoggin();
 
-
   const [checkInDate, setCheckInDate] = useState<Date | undefined>();
   const [checkOutDate, setCheckOutDate] = useState<Date | undefined>();
-
 
   const handleBooking = async () => {
     if (!userData?.userData.id || !checkInDate || !checkOutDate) return;
@@ -39,7 +39,7 @@ const RoomDetail = ({
       );
       console.log("Reserva realizada:", result);
       alert("Reserva realizada con éxito!");
-      router.push("/"); //esto en el futuro lo tenemos que redireccionar al dashboard 
+      router.push("/"); // Esto en el futuro lo tenemos que redireccionar al dashboard
     } catch (error) {
       console.error("Error al reservar:", error);
       alert("Hubo un error al realizar la reserva. Intenta nuevamente.");
@@ -63,8 +63,12 @@ const RoomDetail = ({
 
       <div className="w-1/2 p-6 flex flex-col justify-between">
         <div>
-          <h2 className="text-text text-sm uppercase tracking-wide">{roomType}</h2>
-          <h1 className="text-gray-900 font-bold text-xl mt-1 truncate">{title}</h1>
+          <h2 className="text-text text-sm uppercase tracking-wide">
+            {roomType}
+          </h2>
+          <h1 className="text-gray-900 font-bold text-xl mt-1 truncate">
+            {title}
+          </h1>
           <p className="text-gray-700 mt-4 text-sm">{description}</p>
         </div>
 
@@ -82,25 +86,29 @@ const RoomDetail = ({
         </div>
 
         <div className="mt-4">
-          <label className="block text-sm font-medium text-gray-700">Check-In:</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Check-In:
+          </label>
           <DatePicker
             selected={checkInDate}
-            onChange={(date) => setCheckInDate(date || undefined)} 
+            onChange={(date) => setCheckInDate(date || undefined)}
             className="border rounded-md p-2 w-full"
           />
         </div>
 
         <div className="mt-4">
-          <label className="block text-sm font-medium text-gray-700">Check-Out:</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Check-Out:
+          </label>
           <DatePicker
             selected={checkOutDate}
             onChange={(date) => setCheckOutDate(date || undefined)}
             className="border rounded-md p-2 w-full"
-            minDate={checkInDate} 
+            minDate={checkInDate}
           />
         </div>
 
-        <div className="flex justify-center">
+        <div className="mt-6 flex justify-center gap-4"> 
           <button
             onClick={handleBooking}
             disabled={!userData?.token || !checkInDate || !checkOutDate}
@@ -111,7 +119,7 @@ const RoomDetail = ({
                 ? "Seleccione fechas de Check-In y Check-Out"
                 : ""
             }
-            className={`bg-tertiary focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-6 text-white ${
+            className={`bg-tertiary focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center text-white ${
               !userData?.token || !checkInDate || !checkOutDate
                 ? "opacity-50 cursor-not-allowed"
                 : "cursor-pointer"
@@ -120,6 +128,12 @@ const RoomDetail = ({
             <FaCalendarAlt className="mr-2" />
             Reservá ahora
           </button>
+          <PaymentButton
+            amount={price}
+            currency="usd"
+            description={description}
+            id={id}
+          />
         </div>
       </div>
     </div>
@@ -127,5 +141,3 @@ const RoomDetail = ({
 };
 
 export default RoomDetail;
-
-

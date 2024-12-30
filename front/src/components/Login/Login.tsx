@@ -50,11 +50,16 @@ function LoginForm() {
       try {
         const response = await login(dataUser);
         if (response.success) {
-          const { token, user } = response.data;
+
+          const { token, user, role } = response.data; // Asegúrate de que la API devuelva el rol
+
+
+
 
           setUserData({
             token,
             userData: user,
+
           });
 
           localStorage.setItem(

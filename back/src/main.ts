@@ -56,7 +56,7 @@ async function bootstrap() {
     console.error('Error ejecutando el seed de Rooms:', error);
   }
 
-  const port = process.env.PORT ?? 3000;
+  const port = process.env.PORT ?? 4000; // Asegúrate de que el servidor esté escuchando en el puerto correcto
   await app.listen(port);
   console.log(`Aplicación corriendo en el puerto ${port}`);
 }

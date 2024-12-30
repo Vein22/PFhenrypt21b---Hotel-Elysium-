@@ -3,7 +3,9 @@ import Style from '../FacilitiesComponent/facilities.module.css'
 import Styles from '../DetailsFacilities/detailsStyles.module.css'
 import Image from 'next/image';
 import restaurantIMG from '../../../public/saul/instalaciones-restaurante-prueba.jpg';
-import MenuRestaurant from './MenuRestaurant/component';
+import DesayunoMenu from './MenuRestaurant/DesayunoMenu';
+import AlmuerzoMenu from './MenuRestaurant/AlmuerzoMenu';
+import CenaMenu from './MenuRestaurant/CenaMenu';
 import ModalReusable from '../Modals/ModalReusable';
 import { useModal } from '@/hooks/useModal';
 
@@ -202,8 +204,14 @@ export const RestaurantComponent = () => {
       </div>
         </article>
         <ModalReusable isOpens={isOpenModal} closeModal={closeModals}>
-          <MenuRestaurant />
-        </ModalReusable>
+          {categoriaActiva === "desayuno" ? (
+            <DesayunoMenu />
+               ) : categoriaActiva === "almuerzo" ? (
+                <AlmuerzoMenu />
+                ) : categoriaActiva === "cena" ? (
+                 <CenaMenu />
+                 ) : null}
+            </ModalReusable>
         </section>
     );
 };

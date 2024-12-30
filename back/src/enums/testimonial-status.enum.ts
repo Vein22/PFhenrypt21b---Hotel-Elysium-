@@ -1,4 +1,4 @@
 export enum TestimonialStatus {
-  PENDING = 'pending',
-  PUBLISHED = 'published',
+  PENDING = 'Pendiente',
+  PUBLISHED = 'Publicado',
 }

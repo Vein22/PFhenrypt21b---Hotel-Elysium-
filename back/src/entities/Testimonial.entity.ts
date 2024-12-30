@@ -48,6 +48,17 @@ export class Testimonial {
   testimonial: string;
 
   /**
+   * Calificación del testimonio.
+   * @example 5
+   */
+  @ApiProperty({
+    example: 5,
+    description: 'Calificación del testimonio (número entre 1 y 5).',
+  })
+  @Column({ type: 'int', width: 1 })
+  rating: number;
+
+  /**
    * Estado del testimonio (pendiente o publicado).
    * @example 'pending'
    */

@@ -73,17 +73,7 @@
 
 // export default Header;
 
-
-
-
-
-
-
-
-
-
-
-'use client';
+"use client";
 
 import { useState } from "react";
 import { useLoggin } from "@/context/logginContext";
@@ -154,16 +144,28 @@ const Header = () => {
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-4">
-              <Link href="/" className="rounded-md px-3 py-2 text-white hover:text-mostaza">
+              <Link
+                href="/"
+                className="rounded-md px-3 py-2 text-white hover:text-mostaza"
+              >
                 Home
               </Link>
-              <Link href="/rooms" className="rounded-md px-3 py-2 text-white hover:text-mostaza">
+              <Link
+                href="/rooms"
+                className="rounded-md px-3 py-2 text-white hover:text-mostaza"
+              >
                 Habitaciones
               </Link>
-              <Link href="/facilities" className="rounded-md px-3 py-2 text-white hover:text-mostaza">
+              <Link
+                href="/facilities"
+                className="rounded-md px-3 py-2 text-white hover:text-mostaza"
+              >
                 Servicios
               </Link>
-              <Link href="/contact" className="rounded-md px-3 py-2 text-white hover:text-mostaza">
+              <Link
+                href="/contact"
+                className="rounded-md px-3 py-2 text-white hover:text-mostaza"
+              >
                 Contacto
               </Link>
               <Switcher />
@@ -173,18 +175,26 @@ const Header = () => {
             {userData ? (
               <>
                 <PaymentButton
+                  id="payment-123"
                   amount={5000}
                   currency="usd"
                   description="Producto de ejemplo"
                 />
+
                 <CardUser />
               </>
             ) : (
               <div className="flex space-x-4">
-                <Link href="/login" className="rounded-md px-3 py-2 font-bold text-white bg-mostaza hover:bg-gray-700">
+                <Link
+                  href="/login"
+                  className="rounded-md px-3 py-2 font-bold text-white bg-mostaza hover:bg-gray-700"
+                >
                   Iniciar sesión
                 </Link>
-                <Link href="/register" className="hidden md:block rounded-md px-3 py-2 font-bold text-white bg-mostaza hover:bg-gray-700 hover:text-white">
+                <Link
+                  href="/register"
+                  className="hidden md:block rounded-md px-3 py-2 font-bold text-white bg-mostaza hover:bg-gray-700 hover:text-white"
+                >
                   Registrarse
                 </Link>
               </div>
@@ -193,24 +203,42 @@ const Header = () => {
         </div>
       </div>
       {menuOpen && (
-        <div className="absolute top-16 left-0 right-0 z-50 bg-grisOscuro sm:hidden" id="mobile-menu">
+        <div
+          className="absolute top-16 left-0 right-0 z-50 bg-grisOscuro sm:hidden"
+          id="mobile-menu"
+        >
           <div className="space-y-1 px-2 pb-3 pt-2">
-            <Link href="/" className="block rounded-md px-3 py-2 text-base font-medium text-white">
+            <Link
+              href="/"
+              className="block rounded-md px-3 py-2 text-base font-medium text-white"
+            >
               Home
             </Link>
-            <Link href="/rooms" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <Link
+              href="/rooms"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
               Habitaciones
             </Link>
-            <Link href="/facilities" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <Link
+              href="/facilities"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
               Servicios
             </Link>
-            <Link href="/contact" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            <Link
+              href="/contact"
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
               Contacto
             </Link>
 
             {!userData && (
               <div className="mt-6">
-                <Link href="/login" className="rounded-md px-3 py-2 font-bold text-white bg-mostaza hover:bg-gray-700">
+                <Link
+                  href="/login"
+                  className="rounded-md px-3 py-2 font-bold text-white bg-mostaza hover:bg-gray-700"
+                >
                   Iniciar sesión
                 </Link>
               </div>

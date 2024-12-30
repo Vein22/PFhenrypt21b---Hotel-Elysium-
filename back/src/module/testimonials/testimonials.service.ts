@@ -24,6 +24,7 @@ export class TestimonialsService {
 
     const testimonial = this.testimonialRepository.create({
       testimonial: createTestimonialDto.message,
+      rating: createTestimonialDto.rating,
       status: TestimonialStatus.PENDING,
       user,
       username: user.name,
@@ -71,5 +72,8 @@ export class TestimonialsService {
     return await this.testimonialRepository.save(testimonial);
   }
   
+  async findByStatus(status: TestimonialStatus): Promise<Testimonial[]> {
+    return await this.testimonialRepository.find({ where: { status }, relations: ['user'] });
+  }
 
 }
