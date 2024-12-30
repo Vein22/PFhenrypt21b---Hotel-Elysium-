@@ -14,7 +14,7 @@ const authOptions = {
     newUser: "/auth/register",
   },
   callbacks: {
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, user, account, profile }: { token: any, user?: any, account?: any, profile?: any }) {
       if (account) {
         token.accessToken = account.access_token;
         token.id = user?.id;
@@ -34,14 +34,14 @@ const authOptions = {
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: any, token: any }) {
       session.accessToken = token.accessToken as string;
       session.user.id = token.id as string;
       session.user.email = token.email as string;
       session.user.newUser = token.newUser as boolean;
       return session;
     },
-    async redirect({ url, baseUrl }) {
+    async redirect({ url, baseUrl }: { url: string, baseUrl: string }) {
       if (url === "/auth/register") {
         return baseUrl + url;
       }
