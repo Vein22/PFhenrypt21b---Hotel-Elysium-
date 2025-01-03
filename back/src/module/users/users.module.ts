@@ -10,5 +10,6 @@ import { Testimonial } from '../../entities/Testimonial.entity';
   imports: [TypeOrmModule.forFeature([User, Testimonial])],
   controllers: [UsersController],
   providers: [UsersService],
+  exports: [UsersService], // Exporta el servicio de usuarios
 })
 export class UsersModule {}

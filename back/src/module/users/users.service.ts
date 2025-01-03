@@ -36,4 +36,12 @@ export class UsersService {
       relations: ['reservations'],
     });
   }
+
+
+  ///// login google
+  async findUsersByGoogleAuthProvider(): Promise<User[]> {
+    return this.userRepository.find({ where: { authProvider: 'google' } });
+  }
 }
+
+
