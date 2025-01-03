@@ -21,6 +21,7 @@ export class RolesService {
 
   async getRoleByNameCliente(): Promise<Role> {
     const roleName = 'Cliente';
+    //const roleName = 'Administrador';
     const role = await this.rolesRepository.findByName(roleName);
     if (!role) {
       throw new NotFoundException(`El rol "${roleName}" no se encontró.`);
