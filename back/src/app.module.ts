@@ -15,6 +15,7 @@ import { TestimonialsModule } from './module/testimonials/testimonials.module'; 
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
 import { VisitCounterModule } from './module/VisitCounter/visit-counter.module';
 import { SchedulerModule } from './module/Scheduler/scheduler.module';
+// import { SomeOtherModule } from './some-other.module';
 
 
 @Module({
@@ -27,6 +28,9 @@ import { SchedulerModule } from './module/Scheduler/scheduler.module';
     UsersModule,
     RolesModule,
     PaymentModule,
+    TestimonialsModule,
+    EmployeeModule,
+
     VisitCounterModule,
     TestimonialsModule, // Registra el módulo de testimonios
     JwtModule.register({
@@ -34,23 +38,20 @@ import { SchedulerModule } from './module/Scheduler/scheduler.module';
       signOptions: { expiresIn: '1d' },
       secret: process.env.JWT_SECRET,
     }),
-
     ConfigModule.forRoot({
       isGlobal: true,
       load: [typeormConfig],
     }),
-
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (Config: ConfigService) => Config.get('typeorm'),
     }),
-
-    EmployeeModule,
   ],
 
   controllers: [],
   providers: [],
 })
+
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes('*');

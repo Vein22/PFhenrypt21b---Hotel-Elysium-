@@ -11,7 +11,7 @@
   --font-primary: "Cormorant Garamond", "serif";
   --font-secondary: "Lora", "serif";
   --color-primary: #c19d68;
-  --color-secondary: #ACACAC;
+  --color-secondary: #acacac;
 }
 
 body {
@@ -30,7 +30,7 @@ h5 {
 
 p {
   font-family: var(--font-secondary);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 a {
@@ -65,10 +65,8 @@ button {
   border-radius: 0.3rem;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  padding: 0.5rem 1rem;
 }
 
 button:hover {
-  background-color: var(--color-secondary);
-} 
-
+  background-color: #374151;
+}

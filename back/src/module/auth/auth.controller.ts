@@ -7,6 +7,7 @@ import {
   UsePipes,
   ValidationPipe,
   Get,
+  Query,
 } from '@nestjs/common';
 
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -48,11 +49,11 @@ export class AuthController {
   async registerUser(@Body() createUserDto: CreateUserDto) {
     return this.authService.createUser(createUserDto);
   }
+  
 
-
-  ///////GOOGLE LOGIN
-  @Get('google-auth')
-  async getUsersByGoogleAuthProvider(): Promise<User[]> {
-    return this.UserService.findUsersByGoogleAuthProvider();
+  @Get('check-email')
+  async checkEmail(@Query('email') email: string) {
+    const user = await this.authService.findByEmail(email);
+    return { exists: !!user };
   }
 }
