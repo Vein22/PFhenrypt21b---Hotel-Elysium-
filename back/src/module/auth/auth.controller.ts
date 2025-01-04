@@ -7,10 +7,7 @@ import {
   UsePipes,
   ValidationPipe,
   Get,
-<<<<<<< HEAD
   Query,
-=======
->>>>>>> 781d3bb557e44e44a54d2796140010279ba3a839
 } from '@nestjs/common';
 
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -52,20 +49,11 @@ export class AuthController {
   async registerUser(@Body() createUserDto: CreateUserDto) {
     return this.authService.createUser(createUserDto);
   }
-<<<<<<< HEAD
   
 
   @Get('check-email')
   async checkEmail(@Query('email') email: string) {
     const user = await this.authService.findByEmail(email);
     return { exists: !!user };
-=======
-
-
-  ///////GOOGLE LOGIN
-  @Get('google-auth')
-  async getUsersByGoogleAuthProvider(): Promise<User[]> {
-    return this.UserService.findUsersByGoogleAuthProvider();
->>>>>>> 781d3bb557e44e44a54d2796140010279ba3a839
   }
 }
