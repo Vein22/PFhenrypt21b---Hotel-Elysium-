@@ -1,4 +1,3 @@
-
 export interface valuesTypesRegister {
   name: string;
   email: string;
@@ -15,4 +14,13 @@ export interface valuesTypesRegisterPrueba {
   confirm_password: string;
   phone: string;
   dni: string;
+}
+export interface valuesTypesRegisterGoogle {
+  name: string;
+  email: string;
+  password: string;
+  confirm_password: string;
+  phone: string;
+  dni: string;
+  authProvider: string;
 }
