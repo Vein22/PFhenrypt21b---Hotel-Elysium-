@@ -1,82 +1,122 @@
-'use client';
+"use client";
 
+
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useLoggin } from "@/context/logginContext";
-import { login } from "@/api/login";
-import { IloginProps, IloginPropsGoogle } from "@/interfaces/TypesLogin";
 
-function LoginGoogle() {
+
+
+
+
+export interface IloginPropsGoogle {
+  emailgoogle: string;
+  password?: string;
+}
+
+export async function logingoogle(userData: IloginPropsGoogle) {
+  const APIURL = process.env.NEXT_PUBLIC_API_URL;
+
+  console.log("Sending login data:", userData);
+
+  try {
+    const ResLogin = await fetch(`${APIURL}/auth/signin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: userData.emailgoogle,
+        password: userData.password,
+      }),
+    });
+
+    if (ResLogin.ok) {
+      const data = await ResLogin.json();
+      console.log("Login success:", data);
+      return { success: true, data };
+    } else {
+      const errorData = await ResLogin.json();
+      console.log("Login failed:", errorData);
+      return { success: false, errorData };
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    return { success: false, error };
+  }
+}
+
+const LoginGoogle: React.FC<IloginPropsGoogle> = ({ emailgoogle, password }) => {
   const router = useRouter();
-  const { setUserData } = useLoggin();
+const { setUserData } = useLoggin();
 
-  // Usamos useSearchParams para obtener los parámetros de la URL
-  const searchParams = useSearchParams();
-  const emailgoogle = searchParams?.get("email") ?? "";
-  const password = searchParams?.get("password") ?? "";
 
-  const [dataUser, SetdataUser] = useState<IloginProps>({
-    email: emailgoogle ?? "",
-    password: password ?? "Admin123+", // La contraseña por defecto
-  });
+  const [dataUser, setDataUser] = useState({ emailgoogle: "", password: "" });
+  const [isFormReady, setIsFormReady] = useState(false);
 
-  console.log('====================================');
-  console.log(dataUser);
-  console.log('====================================');
-
-  // Verificar que los parámetros se están leyendo correctamente
   useEffect(() => {
     if (emailgoogle && password) {
-      console.log("Redirigiendo con email y password:", emailgoogle, password);
-      handleSubmitGoogle(); // Llamar automáticamente al submit
+      setDataUser({ emailgoogle, password });
+      setIsFormReady(true);
     }
   }, [emailgoogle, password]);
 
+  const handleSubmitGoogle = async () => {
+    console.log("Email:", dataUser.emailgoogle);
+    console.log("Password:", dataUser.password);
 
+    try {
+      const response = await logingoogle(dataUser);
 
-  const handleSubmitGoogle = async (event?: React.FormEvent<HTMLFormElement>) => {
-    if (event) {
-      event.preventDefault(); // Evitar el comportamiento por defecto si es llamado por un submit manual
-    }
+      if (response.success) {
+        const { token, user, role } = response.data;
 
-    console.log("Intentando iniciar sesión con:", dataUser); // Verifica que los datos son correctos.
-
-
-        const response = await login(dataUser);
-        if (response.success) {
-          const { token, user, role } = response.data;
-
-          setUserData({
-            token,
-            userData: user,
-          });
-
-          localStorage.setItem(
-            "sessionStart",
-            JSON.stringify({ token, userData: user, role })
-          );
-
-          router.push("/"); // Redirige a la página principal
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Tus credenciales no son correctas.",
-          });
-        }
-    
+        setUserData({
+          token,
+          userData: user,
+        });
+        
+              
+        router.push("/");
       
-    
+      } else {
+        console.log("Login failed:", response.errorData);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text:
+            response.errorData?.message || "Tus credenciales no son correctas.",
+        });
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Error al iniciar sesión.",
+      });
+    }
   };
 
+  useEffect(() => {
+    if (isFormReady) {
+      handleSubmitGoogle();
+    }
+  }, [isFormReady]);
+
+  
   return (
-    <div>
-      Ejemplo de inicio de sesión con Google
-      {/* Aquí puedes agregar el formulario o UI que desees */}
-      <form onSubmit={handleSubmitGoogle}>
-        {/* Agregar campos del formulario si los necesitas */}
-      </form>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-5xl font-bold text-center text-gray-800 drop-shadow-lg">
+        Iniciar sesión con Google
+      </h1>
+      <p className="text-xl text-center text-gray-600 drop-shadow-md mt-4">
+        Bienvenido
+      </p>
+      <p className="text-xl text-center text-gray-600 drop-shadow-md mt-2">
+        HOTEL Y RESORT DE LUJO ELYSIUM 
+      </p>
     </div>
   );
 }

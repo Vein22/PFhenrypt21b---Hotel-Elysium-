@@ -121,13 +121,13 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
           <p className="text-red-500 text-xs m-2">{errors.password}</p>
         )}
         <div className={Style.inputLabelGroup}>
-          <Image
+          {/* <Image
             src={password}
             width={25}
             height={25}
             alt="usuario"
             className={Style.iconos}
-          />
+          /> */}
           <input
             type="password"
             name="password"
@@ -138,23 +138,26 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
             className={Style.inputForm}
             placeholder=" "
             disabled
+            style={{ display: "none" }}
           />
-          <label htmlFor="password_id" className={Style.labelForm}>
+          {/* <label htmlFor="password_id" className={Style.labelForm}>
             Contraseña
-          </label>
+          </label> */}
         </div>
-        {/*Confirmar contraseña*/}
+
+
+
         {errors.confirm_password && (
           <p className="text-red-500 text-xs m-2">{errors.confirm_password}</p>
         )}
         <div className={Style.inputLabelGroup}>
-          <Image
+          {/* <Image
             src={confirmPassword}
             width={25}
             height={25}
             alt="usuario"
             className={Style.iconos}
-          />
+          /> */}
           <input
             type="password"
             name="confirm_password"
@@ -165,12 +168,15 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
             className={Style.inputForm}
             placeholder=" "
             disabled
+            style={{ display: "none" }}
           />
-          <label htmlFor="confirm_password_id" className={Style.labelForm}>
+          {/* <label htmlFor="confirm_password_id" className={Style.labelForm}>
             Confirmar Contraseña
-          </label>
+          </label> */}
         </div>
-        {/*Teléfono*/}
+
+
+
         {errors.phone && (
           <p className="text-red-500 text-xs m-2">{errors.phone}</p>
         )}
@@ -196,7 +202,7 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
             Teléfono
           </label>
         </div>
-        {/*Dni*/}
+
         {errors.dni && <p className="text-red-500 text-xs m-2">{errors.dni}</p>}
         <div className={Style.inputLabelGroup}>
           <Image
@@ -225,7 +231,7 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
           name="authProvider"
           value="google"
           disabled
-          style={{ display: "none" }} // O un campo oculto
+          style={{ display: "none" }}
         />
         <p className={Style.tienesCuenta}>
           ¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a>

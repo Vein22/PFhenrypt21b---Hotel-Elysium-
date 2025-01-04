@@ -7,9 +7,9 @@ import { login } from "@/api/login";
 import { validateFields } from "@/helpers/validateLogin";
 import { IloginError, IloginProps } from "@/interfaces/TypesLogin";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { useLoggin } from "@/context/logginContext";
-import { signIn, useSession, signOut } from "next-auth/react";
 
 function LoginForm() {
   const router = useRouter();
