@@ -1,11 +1,11 @@
 import FacilitiesComponent from "@/components/FacilitiesComponent/FacilitiesComponent";
 
 
-export const Facilities = () => {
+export const Hotels = () => {
 
     return (
         <FacilitiesComponent />
     );
 };
 
-export default Facilities;
+export default Hotels;

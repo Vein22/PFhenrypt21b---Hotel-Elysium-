@@ -94,8 +94,8 @@ export const FacilitiesComponent = () => {
             <p className={Style.descriptionGim}>
               Sumérgete en un oasis de relajación en nuestro SPA. Disfruta de
               masajes, tratamientos exclusivos y áreas de descanso diseño para
-              renovar cuerpo y mente. Perfecto para desconectarte del estrés
-              diario.
+              renovar cuerpo y mente. Perfecto para desconectarte del
+              estrés diario.
             </p>
             <button className={Style.saberMas}>
               <Link href="spa">Saber más</Link>

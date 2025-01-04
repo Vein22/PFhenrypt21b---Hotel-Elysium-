@@ -1,5 +1,4 @@
-
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 
 import { Room } from 'src/entities/Room.entity';
 import { CreateRoomDto } from './dto/create-room.dto';
@@ -29,7 +28,8 @@ export class RoomsService {
 
   
   async getAllRooms(page: number, limit: number): Promise<Room[]> {
-    return this.roomRepository.getAllRooms(page, limit);
+    const rooms = await this.roomRepository.getAllRooms(page, limit);
+    return rooms;
   }
 
 
@@ -43,5 +43,16 @@ export class RoomsService {
 
 
     return this.roomRepository.deleteRoomById(id); 
+  }
+
+
+  async getRoomById(id: string): Promise<Room> {
+    const room = await this.roomRepository.findById(id);
+    
+    if (!room) {
+      throw new NotFoundException('Room not found');
+    }
+
+    return room;
   }
 }

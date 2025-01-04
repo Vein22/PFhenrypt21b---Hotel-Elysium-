@@ -20,12 +20,14 @@ export default function RootLayout({
             <LogginProvider>
               <Header />
 
-              <div className="flex flex-1 ">
+              <div className="flex flex-1 bg-gray-100">
                 <ShowComponent>
                   <Sidebar />
                 </ShowComponent>
 
-                <main className="flex-1 overflow-y-auto">{children}</main>
+                <main className="flex-1 p-4 bg-gray-100 overflow-y-auto ml-5">
+                  {children}
+                </main>
               </div>
 
               <Chatbot />

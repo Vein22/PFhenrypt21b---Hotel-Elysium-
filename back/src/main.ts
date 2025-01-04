@@ -8,12 +8,14 @@ import { AuthService } from './module/auth/auth.service';
 import { RoomsRepository } from './module/create-room/rooms.repository';
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
 
+
+
 dotenv.config();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
 
-  app.use(LoggerMiddleware)
+  const app = await NestFactory.create(AppModule, { cors: true });
+  app.use(new LoggerMiddleware().use)
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 
