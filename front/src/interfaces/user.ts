@@ -6,6 +6,5 @@ export interface User {
     registrationDate: string;
     isAdmin: boolean;
     dni: string;
-    newUser?: boolean;
   }
   
