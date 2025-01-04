@@ -1,9 +1,9 @@
-type Desayuno = {
+type menu = {
   nombre: string;
   precio: number;
 };
 
-const desayunos: { [tipo: string]: Desayuno[] } = {
+export const desayunos: { [tipo: string]: menu[] } = {
   continental: [
     { nombre: "Tostadas con mantequilla y mermelada", precio: 4 },
     { nombre: "Croissant con jamón y queso", precio: 6 },
@@ -54,4 +54,104 @@ const desayunos: { [tipo: string]: Desayuno[] } = {
   ],
 };
 
-export default desayunos;
+export const almuerzos: { [tipo: string]: menu[] } = {
+  mediterraneo: [
+    { nombre: "Ensalada griega", precio: 8 },
+    { nombre: "Pasta al pesto", precio: 12 },
+    { nombre: "Risotto de mariscos", precio: 14 },
+    { nombre: "Cordero al horno con hierbas", precio: 18 },
+    { nombre: "Pizza margherita", precio: 10 },
+    { nombre: "Caprese con balsámico", precio: 9 },
+    { nombre: "Hummus con pan pita", precio: 7 },
+    { nombre: "Pollo a la parmesana", precio: 13 },
+    { nombre: "Paella de verduras", precio: 15 },
+    { nombre: "Tzatziki con ensalada de pepino", precio: 6 },
+  ],
+  caribeno: [
+    { nombre: "Arroz con coco y pescado frito", precio: 10 },
+    { nombre: "Mofongo con camarones", precio: 12 },
+    { nombre: "Ropa vieja con plátano maduro", precio: 13 },
+    { nombre: "Asopao de pollo", precio: 9 },
+    { nombre: "Arepitas de yuca con ensalada", precio: 8 },
+    { nombre: "Empanadas de carne al estilo caribeño", precio: 7 },
+    { nombre: "Curry de cabra", precio: 14 },
+    { nombre: "Pescado al ajillo con tostones", precio: 12 },
+    { nombre: "Fricasé de pollo", precio: 10 },
+    { nombre: "Sancocho tropical", precio: 11 },
+  ],
+  gourmetInternacional: [
+    { nombre: "Filete mignon con puré de papas", precio: 25 },
+    { nombre: "Salmón glaseado con miel y mostaza", precio: 22 },
+    { nombre: "Confit de pato con salsa de frutos rojos", precio: 28 },
+    { nombre: "Risotto de trufas", precio: 24 },
+    { nombre: "Carpaccio de res con arúgula", precio: 18 },
+    { nombre: "Cordero al estilo marroquí", precio: 26 },
+    { nombre: "Langosta con mantequilla de ajo", precio: 30 },
+    { nombre: "Foie gras con compota de manzana", precio: 20 },
+    { nombre: "Pato pekinés (China)", precio: 27 },
+    { nombre: "Tartar de atún con aguacate", precio: 19 },
+  ],
+  ligeroSaludable: [
+    { nombre: "Wrap de pollo y espinacas", precio: 8 },
+    { nombre: "Ensalada César con pollo", precio: 10 },
+    { nombre: "Sopa de lentejas con vegetales", precio: 7 },
+    { nombre: "Tazón de quinoa con aguacate", precio: 9 },
+    { nombre: "Crema de calabaza con crutones", precio: 8 },
+    { nombre: "Ensalada de garbanzos y feta", precio: 9 },
+    { nombre: "Pollo a la plancha con brócoli", precio: 10 },
+    { nombre: "Batata al horno con hierbas", precio: 6 },
+    { nombre: "Poke bowl de salmón", precio: 12 },
+    { nombre: "Wrap vegetariano de hummus", precio: 8 },
+  ],
+};
+
+export const cenas: { [tipo: string]: menu[] } = {
+  internacional: [
+    { nombre: "Sushi variado", precio: 18 },
+    { nombre: "Carne asada al estilo brasileño", precio: 20 },
+    { nombre: "Pastas frescas con diferentes salsas", precio: 15 },
+    { nombre: "Ensaladas mixtas con toppings variados", precio: 12 },
+    { nombre: "Paella de mariscos", precio: 22 },
+    { nombre: "Estación de quesos y embutidos", precio: 16 },
+    { nombre: "Tacos de pescado estilo Baja California", precio: 14 },
+    { nombre: "Rollitos primavera y dim sum", precio: 13 },
+    { nombre: "Estación de postres internacionales", precio: 10 },
+    { nombre: "Parrillada de vegetales", precio: 12 },
+  ],
+  romantica: [
+    { nombre: "Langosta a la mantequilla con espárragos", precio: 30 },
+    { nombre: "Filete de res con salsa de vino tinto", precio: 28 },
+    { nombre: "Risotto de champiñones y trufas", precio: 25 },
+    { nombre: "Ensalada de arúgula con peras y nueces", precio: 15 },
+    { nombre: "Tarta de chocolate con frutos rojos", precio: 12 },
+    { nombre: "Vino tinto o espumante", precio: 20 },
+    { nombre: "Ceviche de camarones frescos", precio: 18 },
+    { nombre: "Sopa de langosta", precio: 22 },
+    { nombre: "Carpaccio de salmón con limón y eneldo", precio: 16 },
+    { nombre: "Helado artesanal servido en coco", precio: 10 },
+  ],
+  mexicana: [
+    { nombre: "Pozole rojo con guarniciones", precio: 14 },
+    { nombre: "Tacos al pastor", precio: 12 },
+    { nombre: "Quesadillas de huitlacoche", precio: 10 },
+    { nombre: "Chiles en nogada", precio: 16 },
+    { nombre: "Tamales de diferentes sabores", precio: 12 },
+    { nombre: "Guacamole con totopos", precio: 8 },
+    { nombre: "Sopes con frijoles y carne", precio: 10 },
+    { nombre: "Enchiladas verdes o rojas", precio: 13 },
+    { nombre: "Agua fresca de horchata o jamaica", precio: 5 },
+    { nombre: "Flan de cajeta", precio: 7 },
+  ],
+  gourmet: [
+    { nombre: "Foie gras con reducción de frutos rojos", precio: 25 },
+    { nombre: "Vieiras a la plancha con puré de coliflor", precio: 28 },
+    { nombre: "Pato confitado con salsa de naranja", precio: 30 },
+    { nombre: "Salmón ahumado con caviar", precio: 32 },
+    { nombre: "Bife de chorizo con chimichurri", precio: 27 },
+    { nombre: "Carpaccio de ternera con parmesano", precio: 20 },
+    { nombre: "Langosta con trufa y mantequilla clarificada", precio: 35 },
+    { nombre: "Sopa de cebolla francesa gratinada", precio: 18 },
+    { nombre: "Tartar de atún rojo con aguacate", precio: 22 },
+    { nombre: "Soufflé de chocolate con helado de vainilla", precio: 15 },
+  ],
+};
