@@ -59,26 +59,33 @@ export class AuthService {
     const existingUser = await this.userRepository.findOne({
       where: [{ email: createUserDto.email }],
     });
-
+  
     if (existingUser) {
       throw new ConflictException('El correo electrónico ya está registrado');
     }
-
+  
     const existingUserDni = await this.userRepository.findOne({
       where: [{ dni: createUserDto.dni }],
     });
-
+  
     if (existingUserDni) {
       throw new ConflictException('El Dni ya está registrado');
     }
-
+  
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+<<<<<<< HEAD
 
     //Temporalmente asigno el rol de cliente por defecto
     //const roleId = '"f656692b-8e84-42d3-82e9-900e20cf91c6"';
     const clienteRole = await this.rolesService.getRoleByNameCliente();
     const roleId = clienteRole.id;
 
+=======
+  
+    const clienteRole = await this.rolesService.getRoleByNameCliente();
+    const roleId = clienteRole.id;
+  
+>>>>>>> 781d3bb557e44e44a54d2796140010279ba3a839
     const newUser = this.userRepository.create({
       name: createUserDto.name,
       phone: createUserDto.phone,
@@ -88,9 +95,11 @@ export class AuthService {
       registrationDate: new Date().toISOString().split('T')[0],
       isAdmin: false,
       role: { id: roleId },
+      authProvider: createUserDto.authProvider, // Aquí se incluye el authProvider
     });
-
+  
     const savedUser = await this.userRepository.save(newUser);
+<<<<<<< HEAD
 
     try {
       await this.notificationService.sendWelcomeEmail(
@@ -101,22 +110,34 @@ export class AuthService {
       console.error('Error enviando el correo de bienvenida:', error);
     }
 
+=======
+  
+>>>>>>> 781d3bb557e44e44a54d2796140010279ba3a839
     return {
       id: savedUser.id,
       name: savedUser.name,
       phone: savedUser.phone,
       email: savedUser.email,
-      dni: createUserDto.dni,
+      dni: savedUser.dni,
       registrationDate: savedUser.registrationDate,
       isAdmin: savedUser.isAdmin,
       role: savedUser.role,
+      authProvider: savedUser.authProvider, // LOGIN GOOGLE CAMPO ADICIONAL NO OBLIGATORIO
     };
   }
+<<<<<<< HEAD
 
   async findById(id: string): Promise<User> {
     return await this.userRepository.findOne({ where: { id } });
   }
 
+=======
+  
+  async findById(id: string): Promise<User> {
+    return await this.userRepository.findOne({ where: { id } });
+  }
+  
+>>>>>>> 781d3bb557e44e44a54d2796140010279ba3a839
   async seedAdmin() {
     const existingAdmins = (await this.userRepository.find()).map(
       (user) => user.email,

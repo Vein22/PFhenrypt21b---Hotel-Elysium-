@@ -28,7 +28,7 @@ export class VisitCounterRepository extends Repository<VisitCounter> {
     if (!visit) {
       visit = this.create({ count: 1 });
     } else {
-      visit.count=1;
+      visit.count += 1;
     }
   
     await this.save(visit);

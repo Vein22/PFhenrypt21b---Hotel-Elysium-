@@ -20,6 +20,5 @@ export class VisitCounterController {
   @Post()
   async storeVisit(@Body() body: { ip: string }): Promise<void> {
     await this.visitCounterService.storeVisitIp(body.ip);
-    await this.visitCounterService.incrementVisitCount();
   }
 }

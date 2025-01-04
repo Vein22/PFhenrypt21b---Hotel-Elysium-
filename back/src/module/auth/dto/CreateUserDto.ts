@@ -86,5 +86,13 @@ export class CreateUserDto {
   @MinLength(5)
   @MaxLength(15)
   dni: string;
+
+
+
+
+  ////////LOGIN GOOGLE
+  @IsString()
+  @IsOptional()  
+  authProvider: string;  
 }
 

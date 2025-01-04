@@ -24,7 +24,7 @@ export class RoomsController {
   @ApiBody({ type: CreateRoomDto })
   @ApiResponse({ status: 201, description: 'Room created successfully.' })
   @ApiResponse({ status: 400, description: 'Invalid input.' })
-  @Roles('admin')
+  @Roles('Administrador')
   @Post('registerRoom')
   async createRoom(@Body() createRoomDto: CreateRoomDto) {
     return this.roomsService.createRoom(createRoomDto);
