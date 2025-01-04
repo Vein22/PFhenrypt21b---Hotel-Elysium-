@@ -1,19 +1,17 @@
 "use client";
-
+import styles from "./Button.module.css";
 import { fetchRegister } from "@/api/register";
 import Image from "next/image";
 import usuario from "../../../public/Form Íconos/user.svg";
 import email from "../../../public/Form Íconos/emai_1.svg";
-import password from "../../../public/Form Íconos/password.svg";
-import confirmPassword from "../../../public/Form Íconos/repetir.svg";
 import phone from "../../../public/Form Íconos/phone.svg";
 import DNI from "../../../public/Form Íconos/DNI_1.svg";
-
 import registerImg from "../../../public/register_prueba.png";
 import Style from "./register.module.css";
 import Loading from "../Loading/Loading";
 import { validateFormRegisterGoogle } from "@/helpers/validateRegisterGoogle";
 import { useFormRegisterGoogle } from "@/hooks/useFormRegisterGoogle";
+import { signIn } from "next-auth/react";
 
 const initialForm = {
   name: "",
@@ -54,17 +52,23 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
 
   return (
     <form onSubmit={handleSubmit} className={`${Style.container} bg-beige `}>
-      {/*Imagen estática para el componente Register*/}
+      
+      
+      
       <div className={Style.imgContainer}>
         <Image src={registerImg} alt="Usuario" width={525} height={525} />
       </div>
-      {/*Formulario de registro*/}
+
+
+
       <div className={Style.formContainer}>
         <h1>Registrarse</h1>
         {errors.name && (
           <p className="text-red-500 text-xs m-2">{errors.name}</p>
         )}
-        {/*Nombre*/}
+
+
+
         <div className={Style.inputLabelGroup}>
           <Image
             src={usuario}
@@ -89,7 +93,9 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
             Nombre Completo
           </label>
         </div>
-        {/*Email*/}
+
+
+
         {errors.email && (
           <p className="text-red-500 text-xs m-2">{errors.email}</p>
         )}
@@ -116,18 +122,10 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
             Correo Electrónico
           </label>
         </div>
-        {/*Contraseña*/}
-        {errors.password && (
-          <p className="text-red-500 text-xs m-2">{errors.password}</p>
-        )}
+
+
+        
         <div className={Style.inputLabelGroup}>
-          {/* <Image
-            src={password}
-            width={25}
-            height={25}
-            alt="usuario"
-            className={Style.iconos}
-          /> */}
           <input
             type="password"
             name="password"
@@ -140,24 +138,12 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
             disabled
             style={{ display: "none" }}
           />
-          {/* <label htmlFor="password_id" className={Style.labelForm}>
-            Contraseña
-          </label> */}
         </div>
 
 
 
-        {errors.confirm_password && (
-          <p className="text-red-500 text-xs m-2">{errors.confirm_password}</p>
-        )}
+
         <div className={Style.inputLabelGroup}>
-          {/* <Image
-            src={confirmPassword}
-            width={25}
-            height={25}
-            alt="usuario"
-            className={Style.iconos}
-          /> */}
           <input
             type="password"
             name="confirm_password"
@@ -170,9 +156,6 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
             disabled
             style={{ display: "none" }}
           />
-          {/* <label htmlFor="confirm_password_id" className={Style.labelForm}>
-            Confirmar Contraseña
-          </label> */}
         </div>
 
 
@@ -236,7 +219,24 @@ const RegisterGoogle: React.FC<RegisterGoogleProps> = ({
         <p className={Style.tienesCuenta}>
           ¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a>
         </p>
-
+        <div className="flex flex-col justify-center items-center mt-5 gap-3">
+          <button
+            type="button"
+            onClick={() =>
+              signIn("google", { callbackUrl: "/custom-redirect-url" })
+            }
+            className={`${styles.googleButton} flex items-center justify-center`}
+          >
+            <Image
+              src="/google-logo.png"
+              alt="Google Logo"
+              width={30}
+              height={30}
+              className="mr-2"
+            />
+            Iniciar Sesión con Google
+          </button>
+        </div>
         <button
           type="submit"
           className={`${
