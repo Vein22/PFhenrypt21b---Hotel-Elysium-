@@ -10,7 +10,7 @@ const handler = NextAuth({
   ],
   
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user, account}) {
       if (account && account.provider === "google") {
         try {
           console.log('====================================');

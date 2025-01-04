@@ -1,7 +1,8 @@
-'use client'
+'use client';
+
 import React from "react";
 import { useSearchParams } from "next/navigation";
-import LoginGoogle from "@/components/logingoogle/LoginGoogle";
+import LoginGoogle from "@/components/LoginGoogle/LoginGoogle";
 
 const GoogleLogin = () => {
   const searchParams = useSearchParams();
@@ -11,4 +12,5 @@ const GoogleLogin = () => {
   return <LoginGoogle emailgoogle={emailgoogle} password={password} />;
 };
 
+export const dynamic = 'force-dynamic'; 
 export default GoogleLogin;

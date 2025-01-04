@@ -70,7 +70,7 @@ const { setUserData } = useLoggin();
       const response = await logingoogle(dataUser);
 
       if (response.success) {
-        const { token, user, role } = response.data;
+        const { token, user} = response.data;
 
         setUserData({
           token,
