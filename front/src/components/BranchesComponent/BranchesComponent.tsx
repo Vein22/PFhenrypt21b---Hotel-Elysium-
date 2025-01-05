@@ -46,7 +46,7 @@ const BranchesComponent: React.FC = () => {
   return (
     <section className={Style.container}>
       <article className={Style.messageContainer}>
-        <h1>¡Bienvenido a nuestras sucursales!</h1>
+        <h1>¡Visitenos en nuestras sucursales!</h1>
         <p>Encuentra la sucursal más cercana y explora nuestros servicios. Haz clic en una tarjeta para ver su ubicación en el mapa.</p>
       </article>
       <div className={Style.subContainer}>

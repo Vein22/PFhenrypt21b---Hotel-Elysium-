@@ -219,14 +219,13 @@ const RegisterForm = () => {
 
     <div>
       <label className="block text-gray-600 text-lg font-medium">Categoría</label>
-      <input
-        name="roomType"
-        placeholder="Tipo de habitación"
-        value={formData.roomType}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2"
-      />
+      <select name="roomType" id="" className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2">
+        <option value="">seleccionar una categoría</option>
+        <option value="luxury">Habitación de lujo</option>
+        <option value="standard">Habitación estándar</option>
+        <option value="suite">Suite</option>
+        <option value="family">Habitación familiar deluxe</option>
+      </select>
       <p
         className={`text-red-500 text-xs mt-1 ${
           errors.roomType ? "" : "invisible"
@@ -245,9 +244,8 @@ const RegisterForm = () => {
           value={formData.size}
           onChange={handleChange}
           onBlur={handleBlur}
-          className="w-3/4 border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2"
+          className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2"
         />
-        <span className="text-gray-600">m2</span>
       </div>
       <p
         className={`text-red-500 text-xs mt-1 ${errors.size ? "" : "invisible"}`}
@@ -281,7 +279,7 @@ const RegisterForm = () => {
       <label className="block text-gray-600 text-lg font-medium">Precio por noche</label>
       <input
         name="price"
-        placeholder="Precio por noche"
+        placeholder="Precio por noche Usd."
         value={formData.price}
         onChange={handleChange}
         onBlur={handleBlur}

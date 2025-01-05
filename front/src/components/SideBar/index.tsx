@@ -9,7 +9,7 @@ const Sidebar = () => {
     <aside
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
-      className={`bg-grisOscuro text-white ${
+      className={`absolute bg-grisOscuro text-white ${
         isExpanded ? "w-72" : "w-20"
       } h-auto p-4 transition-all duration-300`}
     >
@@ -111,28 +111,6 @@ const Sidebar = () => {
 
         <li
           className="hover:text-mostaza cursor-pointer flex items-center"
-          title="LISTA DE HABITACIONES"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-10 h-10"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              d="M21 10h-8V6c0-1.66-1.34-3-3-3s-3 1.34-3 3v4H3c-1.1 0-2 .9-2 2v7h2v-3h18v3h2v-7c0-1.1-.9-2-2-2zM10 6c0-.55.45-1 1-1s1 .45 1 1v4h-2V6zM3 15v-3h6v3H3zm8 0v-3h2v3h-2zm8 0h-6v-3h6v3z"
-              fill="currentColor"
-            />
-          </svg>
-          {isExpanded && (
-            <Link href="/rooms" className="ml-4">
-              Lista de Habitaciones
-            </Link>
-          )}
-        </li>
-
-        <li
-          className="hover:text-mostaza cursor-pointer flex items-center"
           title="CREAR EMPLEADOS"
         >
           <svg
@@ -149,31 +127,7 @@ const Sidebar = () => {
             </Link>
           )}
         </li>
-        <li
-          className="hover:text-mostaza cursor-pointer flex items-center"
-          title="MODIFICAR EMPLEADOS"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-10 h-10"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              d="M15.41 6.17l1.41-1.41 2.83 2.83-1.41 1.41L20 10.59 21.41 12l1.41-1.41a2 2 0 0 0 0-2.83l-6.24-6.24a2 2 0 0 0-2.83 0L12 3.59 13.41 5l1.42-1.42-1.42 1.42L15.41 6.17zM3 20.59L20.59 3H14V1h9v9h-2V3.41L4.41 20.59 3 19.18z"
-              fill="currentColor"
-            />{" "}
-            <path
-              d="M14 18h-4v-1h4v1zm0 3h-4v-1h4v1zm2-8v1H8v-1h8zM4 5.41L5.41 4 11 9.59l-1.41 1.41L4 5.41zm1.41 13.18L2 20.59 3.41 22l3.41-3.41-1.41-1.41zM13 14h-2v-1h2v1zm-4 4h8v1H9v-1z"
-              fill="currentColor"
-            />
-          </svg>
-          {isExpanded && (
-            <Link href="/employeelist" className="ml-4">
-              Modificar Empleados
-            </Link>
-          )}
-        </li>
+
         <li
           className="hover:text-mostaza cursor-pointer flex items-center"
           title="APROBAR TESTIMONIOS"

@@ -10,7 +10,8 @@ interface Params {
 
 const Page = async ({ params }: { params: { id: string } }) => {
   try {
-    const room = await getRoomById(params.id);
+    const { id } = await params;
+    const room = await getRoomById(id);
 
     if (!room) {
       return <NotFound />;
