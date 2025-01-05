@@ -16,7 +16,7 @@ export const validateSize = (size: string): string => {
     const regex = /^\d+\s?m2$/; // Ejemplo: "150 m2"
     return regex.test(size)
         ? ""
-        : "El tamaño debe estar en el formato '150 m2'.";
+        : "Especificar los metros cuadrados. Ejemplo: '150 m2'.";
 };
 
 export const validateBeds = (beds: number): string => {
@@ -32,9 +32,9 @@ export const validateRating = (rating: number): string => {
 };
 
 export const validatePrice = (price: number): string => {
-    return validator.isInt(price.toString(), { min: 50, max: 20000 })
+    return validator.isInt(price.toString(), { min: 50, max: 5000 })
         ? ""
-        : "El precio por noche debe estar entre 50 y 20000 USD.";
+        : "El precio por noche debe estar entre 50 y 5000 USD.";
 };
 
 export const validateImage = (image: string): string => {

@@ -10,6 +10,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { postBooking } from "@/api/bookReserve";
 import { PaymentButton } from "../PaymentButton/PaymentButton";
+import Swal from "sweetalert2";
 
 const RoomDetail = ({
   id,
@@ -35,14 +36,15 @@ const RoomDetail = ({
         userData.userData.id,
         id,
         checkInDate,
-        checkOutDate
+        checkOutDate,
+        userData.token // Pasa el token a la función
       );
       console.log("Reserva realizada:", result);
-      alert("Reserva realizada con éxito!");
+      Swal.fire("Reserva realizada con éxito!", "Gracias por elegirnos", "success");
       router.push("/"); // Esto en el futuro lo tenemos que redireccionar al dashboard
     } catch (error) {
       console.error("Error al reservar:", error);
-      alert("Hubo un error al realizar la reserva. Intenta nuevamente.");
+      Swal.fire("Error", "Hubo un error al realizar la reserva. Intenta nuevamente.", "error");
     }
   };
 
