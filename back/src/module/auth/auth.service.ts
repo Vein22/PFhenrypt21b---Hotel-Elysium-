@@ -93,6 +93,12 @@ export class AuthService {
   
     const savedUser = await this.userRepository.save(newUser);
   
+    try {
+      await this.notificationService.sendWelcomeEmail(savedUser.email, savedUser.name);
+    } catch (error) {
+      console.error('Error enviando el correo de bienvenida:', error);
+    }
+
     return {
       id: savedUser.id,
       name: savedUser.name,
