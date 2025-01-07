@@ -39,16 +39,14 @@ export class ReservationRepository {
     reservation.roomId = roomId; 
     reservation.checkInDate = checkInDate;
     reservation.checkOutDate = checkOutDate;
+    reservation.createdAt = new Date()
 
     const savedReservation = await this.reservationRepository.save(reservation);
 
     const reservationWithRelations = await this.reservationRepository.findOne({
       where: { id: savedReservation.id },
       relations: ['user', 'room'],
-    });
-    
-    console.log(reservationWithRelations);
-    
+    });    
 
     if (!reservationWithRelations) {
       throw new Error('La reserva no se pudo cargar correctamente.');

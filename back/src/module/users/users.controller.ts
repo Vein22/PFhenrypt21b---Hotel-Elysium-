@@ -7,15 +7,22 @@ import {
   Param,
   ParseUUIDPipe,
   Query,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { SearchUserDto } from '../users/dto/search-user.dto';
+import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
+import { Roles } from 'src/decorators/roles/roles.decorator';
+import { RolesGuard } from 'src/guards/roles/roles.guard';
+import { User } from 'src/entities/User.entity';
 
 @ApiTags('Users')
 @Controller('users')
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles('admin') 
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -36,7 +43,7 @@ export class UsersController {
 
   @Get('clientlist')
   @HttpCode(HttpStatus.OK)
-  findUsers() {
+  async findUsers() {
     return this.usersService.findUsers();
   }
 
@@ -48,5 +55,11 @@ export class UsersController {
       throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
     }
     return user;
+  }
+
+  /// google login
+  @Get('google-auth')
+  async getUsersByGoogleAuthProvider(): Promise<User[]> {
+    return this.usersService.findUsersByGoogleAuthProvider();
   }
 }

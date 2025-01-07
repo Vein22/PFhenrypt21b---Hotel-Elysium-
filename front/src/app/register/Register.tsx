@@ -1,15 +1,14 @@
+import ProtectedSesionIniciada from "@/components/ProtectedSesionIniciada/page";
 import RegisterComponent from "@/components/RegisterComponent/RegisterComponent";
 
-
 export const Register = () => {
-
-    return (
-
-        <section>
+  return (
+    <ProtectedSesionIniciada>
+      <section>
         <RegisterComponent />
-        </section>
-
-    )
-}
+      </section>
+    </ProtectedSesionIniciada>
+  );
+};
 
 export default Register;

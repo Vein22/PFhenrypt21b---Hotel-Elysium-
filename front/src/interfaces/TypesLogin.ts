@@ -9,3 +9,7 @@ export interface IloginError {
     password?: string
 }
 
+export interface IloginPropsGoogle {
+    emailgoogle: string
+    password?: string
+}

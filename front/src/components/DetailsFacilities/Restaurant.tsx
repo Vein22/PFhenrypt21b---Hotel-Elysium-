@@ -3,6 +3,11 @@ import Style from '../FacilitiesComponent/facilities.module.css'
 import Styles from '../DetailsFacilities/detailsStyles.module.css'
 import Image from 'next/image';
 import restaurantIMG from '../../../public/saul/instalaciones-restaurante-prueba.jpg';
+import DesayunoMenu from './MenuRestaurant/DesayunoMenu';
+import AlmuerzoMenu from './MenuRestaurant/AlmuerzoMenu';
+import CenaMenu from './MenuRestaurant/CenaMenu';
+import ModalReusable from '../Modals/ModalReusable';
+import { useModal } from '@/hooks/useModal';
 
 import Link from 'next/link';
 import { useState } from 'react';
@@ -10,6 +15,7 @@ import menuStyle from './subDetails.module.css';
 
 export const RestaurantComponent = () => {
     const [categoriaActiva, setCategoriaActiva] = useState<"desayuno" | "almuerzo" | "cena">("desayuno");
+      const [isOpenModal, openModals, closeModals] = useModal(false);
 
     const menu = {
         desayuno: [
@@ -166,23 +172,24 @@ export const RestaurantComponent = () => {
       <h1>Menú de Comida del Restaurante</h1>
         <button
           onClick={() => setCategoriaActiva("desayuno")}
-          className={categoriaActiva === "desayuno" ? "activo" : ""}
+          className={categoriaActiva === "desayuno" ? menuStyle.activo : ""}
         >
           Desayuno
         </button>
         <button
           onClick={() => setCategoriaActiva("almuerzo")}
-          className={categoriaActiva === "almuerzo" ? "activo" : ""}
+          className={categoriaActiva === "almuerzo" ? menuStyle.activo : ""}
         >
           Almuerzo
         </button>
         <button
           onClick={() => setCategoriaActiva("cena")}
-          className={categoriaActiva === "cena" ? "activo" : ""}
+          className={categoriaActiva === "cena" ? menuStyle.activo : ""}
         >
           Cena
         </button>
       </div>
+      <button className={menuStyle.masDetalles} onClick={() => openModals()}>Mostrar más</button>
 
     <div className={menuStyle.cardContainer}>
       {menu[categoriaActiva].map((plato) => (
@@ -196,6 +203,15 @@ export const RestaurantComponent = () => {
   ))}
       </div>
         </article>
+        <ModalReusable isOpens={isOpenModal} closeModal={closeModals}>
+          {categoriaActiva === "desayuno" ? (
+            <DesayunoMenu />
+               ) : categoriaActiva === "almuerzo" ? (
+                <AlmuerzoMenu />
+                ) : categoriaActiva === "cena" ? (
+                 <CenaMenu />
+                 ) : null}
+            </ModalReusable>
         </section>
     );
 };

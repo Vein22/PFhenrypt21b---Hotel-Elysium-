@@ -4,6 +4,7 @@ import { useState } from "react";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
+import Branches from "@/app/branches/Branches";
 
 
 const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
@@ -139,7 +140,7 @@ const ContactForm = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="flex-grow flex justify-center items-center">
-        <div className="flex bg-beige justify-center items-center p-[6rem] gap-10">
+        <div className="flex bg-beige justify-center items-center p-[4rem] gap-10">
           <div className="flex flex-col lg:flex-row p-2 rounded-lg space-y-8 lg:space-y-0 lg:space-x-8 max-w-4xl">
             <div className="flex-1 max-w-md">
               <span className="font-primary text-mostaza uppercase">
@@ -260,6 +261,7 @@ const ContactForm = () => {
           </div>
         </div>
       </div>
+      <Branches />
     </div>
   );
 };

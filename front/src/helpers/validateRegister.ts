@@ -1,8 +1,4 @@
-
-import {
-  valuesTypesRegisterPrueba,
-
-} from "@/interfaces/TypesRegister";
+import { valuesTypesRegisterPrueba } from "@/interfaces/TypesRegister";
 
 export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
   //const errors: Partial<valuesTypesRegisterPrueba> = {};
@@ -10,8 +6,8 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
   const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
   const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const regexPassword = /^(?=.*[A-Z]).{8,}$/;
-  const regexPhone = /^\+?\d{10,15}$/;
-  const regexDni = /^[A-Za-z0-9]{8,15}$/;
+  const regexPhone = /^\+?\d{5,15}$/;
+  const regexDni = /^[A-Za-z0-9]{5,15}$/;
 
   const errors: Partial<valuesTypesRegisterPrueba> = {};
 
@@ -19,7 +15,7 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
   if (!form.name) {
     errors.name = "El nombre es requerido";
   } else if (!regexName.test(form.name)) {
-    errors.name = `El campo 'Nombre' debe contener solo letras y espacios, pero has escrito: '${form.name}'.`;
+    errors.name = `El campo 'Nombre' debe contener solo letras, pero has escrito: '${form.name}'.`;
   }
 
   // Validar el correo
@@ -50,16 +46,15 @@ export const velidateFormRegister = (form: valuesTypesRegisterPrueba) => {
     errors.phone = "El teléfono es requerido";
   } else if (!regexPhone.test(form.phone)) {
     errors.phone =
-      "El número de teléfono debe tener entre 10 y 15 dígitos, y puede incluir un signo +";
+      "El número de teléfono debe tener entre 5 y 15 dígitos, y puede incluir un signo +";
   }
 
   // Validar el DNI
   if (!form.dni) {
     errors.dni = "El DNI es requerido";
   } else if (!regexDni.test(form.dni)) {
-    errors.dni = "El DNI debe tener entre 8 y 12 caracteres alfanuméricos.";
+    errors.dni = "El DNI debe tener entre 5 y 15 caracteres alfanuméricos.";
   }
 
   return errors;
 };
-

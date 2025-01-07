@@ -92,12 +92,17 @@ const Page = () => {
                         {children}
                       </div>
                     )}
-                    renderThumb={({ props }) => (
-                      <div
-                        {...props}
-                        className="w-4 h-4 bg-mostaza rounded-full shadow-md"
-                      />
-                    )}
+
+                    renderThumb={({ props }) => {
+                      let { key, ...restProps } = props;
+                      return (
+                        <div
+                          key={key}
+                          {...restProps}
+                          className="w-4 h-4 bg-mostaza rounded-full shadow-md"
+                        />
+                      );
+                    }}
                   />
                   <div className="flex justify-between mt-2 text-sm text-gray-600">
                     <span>${priceRange[0]}</span>
@@ -166,7 +171,7 @@ const Page = () => {
           </select>
         </div>
       </div>
-
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-10 pl-10">
         {sortedRooms.length > 0 ? (
           sortedRooms.map((room, i) => <RoomCard key={i} {...room} />)

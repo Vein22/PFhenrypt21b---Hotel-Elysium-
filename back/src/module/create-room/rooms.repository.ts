@@ -39,7 +39,7 @@ export class RoomsRepository {
 
           where: { isDeleted: false },
 
-          take: limit,
+          take: limit > 0 ? limit : 10, // Ajusta el valor predeterminado si es necesario
           skip: (page - 1) * limit,
         });
       }

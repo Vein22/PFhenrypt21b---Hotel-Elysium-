@@ -6,11 +6,16 @@ import { ValidationPipe } from '@nestjs/common';
 import { RolesRepository } from './module/roles/roles.repository';
 import { AuthService } from './module/auth/auth.service';
 import { RoomsRepository } from './module/create-room/rooms.repository';
+import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
+
+
 
 dotenv.config();
 
 async function bootstrap() {
+
   const app = await NestFactory.create(AppModule, { cors: true });
+  app.use(new LoggerMiddleware().use)
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 
@@ -53,7 +58,7 @@ async function bootstrap() {
     console.error('Error ejecutando el seed de Rooms:', error);
   }
 
-  const port = process.env.PORT ?? 3000;
+  const port = process.env.PORT ?? 4000; // Asegúrate de que el servidor esté escuchando en el puerto correcto
   await app.listen(port);
   console.log(`Aplicación corriendo en el puerto ${port}`);
 }

@@ -9,6 +9,7 @@ import {
 import { Role } from './role.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Reservation } from './Reservation.entity';
+import { Testimonial } from './Testimonial.entity'; 
 
 @Entity({ name: 'users' })
 export class User {
@@ -96,6 +97,13 @@ export class User {
   @Column({ default: false })
   isAdmin: boolean;
 
+
+//////LOGIN GOOGLE 
+@Column({ nullable: true })
+authProvider: string;
+
+
+
   /**
    * Relación con el rol del usuario.
    */
@@ -106,4 +114,10 @@ export class User {
   @ManyToOne(() => Role, (role) => role.users, { eager: true, nullable: false })
   @JoinColumn({ name: 'role_id' })
   role: Role;
+
+  /**
+   * Relación con los testimonios de este usuario (un usuario puede tener varios testimonios).
+   */
+  @OneToMany(() => Testimonial, (testimonial) => testimonial.user)  // Relación OneToMany
+  testimonials: Testimonial[];
 }
