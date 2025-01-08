@@ -128,7 +128,7 @@ const CardUser = () => {
             )}
             <li>
               <Link
-                href="/profile"
+                href="/myBookings"
                 className="flex items-center gap-3.5 px-6 py-7.5 text-sm font-medium text-white hover:text-mostaza lg:text-base"
               >
                 <svg
