@@ -1,26 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getRooms } from "@/api/getRooms";
+
 
 type Room = {
-  id: number;
-  number: string;
-  type: string;
+  id: string;
+  title: string;
+  size: string;
+  beds: number;
+  rating: number;
+  image?: string;
   price: number;
+  description: string;
+  roomType: string;
+  roomNumber: number;
+  isDeleted: boolean;
   available: boolean;
 };
 
-const mockRooms: Room[] = [
-  { id: 1, number: "101", type: "Individual", price: 100, available: true },
-  { id: 2, number: "102", type: "Doble", price: 150, available: true },
-  { id: 3, number: "103", type: "Suite", price: 250, available: true },
-];
 
 export default function RoomList() {
-  const [rooms, setRooms] = useState<Room[]>(mockRooms);
-  const [editingRoom, setEditingRoom] = useState<number | null>(null);
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [editingRoom, setEditingRoom] = useState<string | null>(null);
 
-  const handleToggleAvailability = (id: number) => {
+  useEffect(() => {
+     const fetchRooms = async () => {
+       const fetchedRooms = await getRooms();
+        setRooms(fetchedRooms); }; fetchRooms(); 
+      }, []);
+
+  const handleToggleAvailability = (id: string) => {
     setRooms(
       rooms.map((room) =>
         room.id === id ? { ...room, available: !room.available } : room
@@ -28,11 +38,11 @@ export default function RoomList() {
     );
   };
 
-  const handleEditRoom = (id: number) => {
+  const handleEditRoom = (id: string) => {
     setEditingRoom(id)
   }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSaveRoom = (id: number, updatedRoom: any) => {
+  const handleSaveRoom = (id: string, updatedRoom: any) => {
 
     setRooms(rooms.map(room => 
       room.id === id ? { ...room, ...updatedRoom } : room
@@ -71,22 +81,22 @@ export default function RoomList() {
                   {editingRoom === room.id ? (
                     <input
                       type="text"
-                      defaultValue={room.number}
+                      defaultValue={room.roomNumber}
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                   ) : (
-                    room.number
+                    room.roomNumber
                   )}
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
                     <input
                       type="text"
-                      defaultValue={room.type}
+                      defaultValue={room.roomType}
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                   ) : (
-                    room.type
+                    room.roomType
                   )}
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
