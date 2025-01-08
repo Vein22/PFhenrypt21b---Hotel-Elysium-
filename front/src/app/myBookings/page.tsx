@@ -64,10 +64,12 @@ const ReservationsPage = () => {
       text: "No podrás revertir esta acción.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, eliminar",
+      confirmButtonText: "Sí, Cancelar Reserva",
       cancelButtonText: "Cancelar",
+      customClass: {
+        confirmButton: 'bg-mostaza text-white hover:bg-beige',
+        cancelButton: 'bg-red-500 text-white hover:bg-red-600'
+      }
     });
 
     if (!confirmed.isConfirmed) return;
@@ -86,7 +88,7 @@ const ReservationsPage = () => {
       setReservations((prev) => prev.filter((res) => res.id !== reservationId));
       Swal.fire({
         icon: "success",
-        title: "Eliminado",
+        title: "Cancelar Reservación",
         text: "La reservación ha sido eliminada exitosamente.",
       });
     } catch (error) {
@@ -180,7 +182,7 @@ const ReservationsPage = () => {
                         className="px-4 py-2 text-white font-semibold rounded-md bg-mostaza hover:bg-grisclaro transition-colors"
                         onClick={() => handleDelete(reservation.id)}
                       >
-                        Eliminar
+                        Cancelar
                       </button>
                     </>
                   )}
