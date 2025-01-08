@@ -1,6 +1,7 @@
 import { Reservation, Room } from "@/interfaces";
 import { getRooms } from "@/api/getRooms";
 
+
 export const getRoomById = async (id: string): Promise<Room | null> => {
   try {
     const rooms = await getRooms();
@@ -51,3 +52,31 @@ export const getReservations = async (userId: string, token: string): Promise<(R
     return [];
   }
 };
+
+
+export const deleteReservation = async (id: string, token: string | undefined): Promise<void> => {
+  if (!token) {
+    throw new Error("Token no proporcionado.");
+  }
+
+  const APIURL = process.env.NEXT_PUBLIC_API_URL;
+
+  try {
+    const res = await fetch(`${APIURL}/reservations/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Error eliminando reservación: ${res.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error en la solicitud DELETE:", error);
+    throw error;
+  }
+};
+
+

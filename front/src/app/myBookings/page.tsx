@@ -1,10 +1,11 @@
 "use client";
 
-import { getReservations } from "@/api/getReservations";
+import { deleteReservation, getReservations } from "@/api/getReservations";
 import { Reservation, Room } from "@/interfaces";
 import { useState, useEffect } from "react";
 import { useLoggin } from "@/context/logginContext";
 import { PaymentButton } from "@/components/PaymentButton/PaymentButton";
+import Swal from "sweetalert2";
 
 const ReservationsPage = () => {
   const { userData } = useLoggin();
@@ -53,22 +54,50 @@ const ReservationsPage = () => {
     return days * price;
   };
 
-  // const handleButtonAction = (reservation: Reservation) => {
-  //   const today = new Date();
-  //   const checkInDate = new Date(reservation.checkInDate);
-
-  //   if (checkInDate < today) {
-  //     alert(`Rating your stay for reservation ${reservation.id}`);
-  //   } else if (reservation.paymentStatus === "Reserva no pagada") {
-  //     alert(`Paying for reservation ${reservation.id}`);
-  //   } else {
-  //     alert(`Cancelling reservation ${reservation.id}`);
-  //   }
-  // };
-
   if (loading) {
     return <p>Loading reservations...</p>;
   }
+
+  const handleDelete = async (reservationId: string) => {
+    const confirmed = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertir esta acción.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (!confirmed.isConfirmed) return;
+
+    if (!token) {
+      Swal.fire({
+        icon: "error",
+        title: "Token no disponible",
+        text: "No se puede completar la acción.",
+      });
+      return;
+    }
+
+    try {
+      await deleteReservation(reservationId, token);
+      setReservations((prev) => prev.filter((res) => res.id !== reservationId));
+      Swal.fire({
+        icon: "success",
+        title: "Eliminado",
+        text: "La reservación ha sido eliminada exitosamente.",
+      });
+    } catch (error) {
+      console.error("Error eliminando la reservación:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Ocurrió un error al eliminar la reservación.",
+      });
+    }
+  };
 
   return (
     <div className="px-10 py-8">
@@ -133,23 +162,30 @@ const ReservationsPage = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-col items-end ml-4">
-                  <p className="text-m font-medium mb-2">
+                <div className="flex flex-col items-end ml-4 space-y-3">
+                  <p className="text-lg font-medium text-gray-800">
                     <strong>Total:</strong> ${total.toFixed(2)}
                   </p>
-                  <div className="mt-2">
-                    <PaymentButton
-                      amount={Number(total.toFixed(2))}
-                      currency="usd"
-                      description={reservation.room?.title}
-                      id={reservation.id}
-                    />
-                  </div>
-                  {/* <button
-    onClick={() => handleButtonAction(reservation)}
-  >
-    {buttonLabel}
-  </button> */}
+
+                  {reservation.status === "Reserva no Pagada" && (
+                    <>
+                      <PaymentButton
+                        amount={Number(total.toFixed(2))}
+                        currency="usd"
+                        description={reservation.room?.title}
+                        id={reservation.id}
+                      />
+
+                      <button
+                        className="px-4 py-2 text-white font-semibold rounded-md bg-mostaza hover:bg-grisclaro transition-colors"
+                        onClick={() => handleDelete(reservation.id)}
+                      >
+                        Eliminar
+                      </button>
+                    </>
+                  )}
+
+                  
                 </div>
               </div>
             );
