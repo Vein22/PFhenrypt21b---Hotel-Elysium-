@@ -8,20 +8,21 @@ import { useLoggin } from "@/context/logginContext";
 const ReservationsPage = () => {
   const { userData } = useLoggin();
   const userId = userData?.userData.id;
+  const token = userData?.token;
 
   const [reservations, setReservations] = useState<(Reservation & { room: Room | null })[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!userId) {
-      console.error("No userId available in context.");
+    if (!userId || !token) {
+      console.error("No userId or token available in context.");
       setLoading(false);
       return;
     }
 
     const fetchReservations = async () => {
       try {
-        const fetchedReservations = await getReservations(userId);
+        const fetchedReservations = await getReservations(userId, token);
         setReservations(fetchedReservations);
       } catch (error) {
         console.error("Error fetching reservations:", error);
@@ -58,107 +59,72 @@ const ReservationsPage = () => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>My Reservations</h1>
+    <div className="px-10 py-8">
+      <h1 className="text-2xl font-bold text-center mb-8">My Reservations</h1>
       {reservations.length === 0 ? (
-        <p>No reservations found.</p>
+        <p className="text-center">No reservations found.</p>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          {reservations.map((reservation) => {
+        <div className="space-y-6">
+          {reservations.map((reservation: any) => {
             const total = reservation.room
               ? calculateTotal(reservation.checkInDate, reservation.checkOutDate, reservation.room.price)
               : 0;
-
+  
             const today = new Date();
             const checkInDate = new Date(reservation.checkInDate);
             const buttonLabel =
               checkInDate < today
                 ? "Califica tu estadía"
-                : reservation.paymentStatus === "Reserva no pagada"
+                : reservation.paymentStatus === "Reserva no Pagada"
                 ? "Pagar"
                 : "Cancelar";
-
+  
             return (
               <div
                 key={reservation.id}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  border: "1px solid #ccc",
-                  borderRadius: "8px",
-                  padding: "15px",
-                  width: "100%",
-                  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "scale(1.02)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0px 6px 10px rgba(0, 0, 0, 0.15)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
-                }}
+                className="flex flex-col md:flex-row items-center bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
               >
-                {/* Imagen en el lado izquierdo */}
+
                 {reservation.room?.image ? (
                   <img
                     src={reservation.room.image}
                     alt={reservation.room.title}
-                    style={{
-                      width: "150px",
-                      height: "150px",
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                      marginRight: "15px",
-                    }}
+                    className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-lg mr-4"
                   />
                 ) : (
-                  <div
-                    style={{
-                      width: "150px",
-                      height: "150px",
-                      borderRadius: "8px",
-                      backgroundColor: "#f0f0f0",
-                      marginRight: "15px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      fontSize: "12px",
-                      color: "#888",
-                    }}
-                  >
-                    No Image
+                  <div className="w-24 h-24 md:w-32 md:h-32 bg-gray-200 flex justify-center items-center rounded-lg mr-4">
+                    <span className="text-gray-500 text-sm">No Image</span>
                   </div>
                 )}
-                {/* Información en el lado derecho */}
-                <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-                  <h3 style={{ margin: "0 0 10px" }}>{reservation.room?.title || "Room not available"}</h3>
-                  <p style={{ margin: "0 0 5px" }}>
+  
+
+                <div className="flex-1">
+                  <h3 className="text-base font-semibold mb-1">
+                    {reservation.room?.title || "Room not available"}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-1">
+                    <strong>Precio por noche:</strong> ${reservation.room?.price?.toFixed(2) || "N/A"}
+                  </p>
+                  <p className="text-sm text-gray-600 mb-1">
                     <strong>Check-in:</strong> {new Date(reservation.checkInDate).toLocaleDateString()}
                   </p>
-                  <p style={{ margin: "0 0 5px" }}>
+                  <p className="text-sm text-gray-600">
                     <strong>Check-out:</strong> {new Date(reservation.checkOutDate).toLocaleDateString()}
                   </p>
-                  <p style={{ margin: "0 0 5px" }}>
-                    <strong>Total:</strong> ${total.toFixed(2)}
-                  </p>
-                  <p style={{ margin: "0 0 10px" }}>
+                  <p className="text-sm text-gray-600">
                     <strong>Status:</strong> {reservation.paymentStatus}
+                  </p>
+
+                </div>
+  
+
+                <div className="flex flex-col items-end ml-4">
+                  <p className="text-m font-medium mb-2">
+                    <strong>Total:</strong> ${total.toFixed(2)}
                   </p>
                   <button
                     onClick={() => handleButtonAction(reservation)}
-                    style={{
-                      backgroundColor: "#007BFF",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: "5px",
-                      padding: "8px 12px",
-                      cursor: "pointer",
-                      fontSize: "14px",
-                      alignSelf: "flex-start",
-                    }}
+                    
                   >
                     {buttonLabel}
                   </button>
@@ -170,7 +136,6 @@ const ReservationsPage = () => {
       )}
     </div>
   );
-};
+}
 
 export default ReservationsPage;
-

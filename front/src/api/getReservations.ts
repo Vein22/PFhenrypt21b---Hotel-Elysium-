@@ -11,7 +11,7 @@ export const getRoomById = async (id: string): Promise<Room | null> => {
   }
 };
 
-export const getReservations = async (userId: string): Promise<(Reservation & { room: Room | null })[]> => {
+export const getReservations = async (userId: string, token: string): Promise<(Reservation & { room: Room | null })[]> => {
   const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
   if (!userId) {
@@ -25,6 +25,7 @@ export const getReservations = async (userId: string): Promise<(Reservation & { 
       headers: {
         "Cache-Control": "no-store",
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
       cache: "no-store",
     });
