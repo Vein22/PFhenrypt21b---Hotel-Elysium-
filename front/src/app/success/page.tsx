@@ -1,7 +1,8 @@
 'use client';
 import { FC, useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useLoggin } from '@/context/logginContext';
+import Link from 'next/link';
 
 const SuccessPage: FC = () => {
   const [loading, setLoading] = useState(true);
@@ -10,6 +11,7 @@ const SuccessPage: FC = () => {
   const [reservationId, setReservationId] = useState<string | null>(null);
   const { userData } = useLoggin();
   const token = userData?.token;
+  const router = useRouter(); // Inicializamos el hook useRouter
 
   useEffect(() => {
     const storedReservation = localStorage.getItem('reservation');
@@ -26,12 +28,6 @@ const SuccessPage: FC = () => {
     console.log(reservationId);
 
     const updatePaymentStatus = async () => {
-      if (!reservationId) {
-        setError('No se pudo encontrar el ID de la reserva.');
-        setLoading(false);
-        return;
-      }
-
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/payments/success?reservationId=${reservationId}`,
@@ -43,10 +39,6 @@ const SuccessPage: FC = () => {
             },
           }
         );
-
-        if (!response.ok) {
-          throw new Error('Hubo un error al actualizar el estado del pago.');
-        }
 
         const data = await response.json();
         console.log('Respuesta del servidor:', data);
@@ -69,6 +61,23 @@ const SuccessPage: FC = () => {
     }
   }, [reservationId, token]);
 
+
+
+
+  useEffect(() => {
+    if (paymentSuccess) {
+      const timer = setTimeout(() => {
+        router.push('/myBookings'); 
+      }, 3000); 
+
+      return () => clearTimeout(timer);
+    }
+  }, [paymentSuccess, router]);
+
+
+
+
+
   return (
     <div className="container mx-auto py-16">
       <h2 className="text-6xl font-extrabold mb-12 text-center bg-gradient-to-r text-titulo bg-clip-text">
@@ -85,7 +94,7 @@ const SuccessPage: FC = () => {
             </p>
           ) : (
             <p className="text-center text-red-500">
-              Hubo un problema con el pago. Por favor, intenta nuevamente.
+              " Cargando "
             </p>
           )}
         </>
@@ -93,7 +102,7 @@ const SuccessPage: FC = () => {
       <div className="text-center">
         <Link href="/myBookings" legacyBehavior>
           <a className="bg-mostaza border-mostaza uppercase text-white py-2 px-4 hover:bg-opacity-70 transition-all">
-            Volver al Inicio
+            Tu Historial 
           </a>
         </Link>
       </div>

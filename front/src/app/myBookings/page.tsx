@@ -169,8 +169,10 @@ const ReservationsPage = () => {
                     <strong>Total:</strong> ${total.toFixed(2)}
                   </p>
 
-                  {reservation.status === "Reserva no Pagada" && (
+                  {reservation.paymentStatus === "Reserva no Pagada" && (
                     <>
+                
+                    
                       <PaymentButton
                         amount={Number(total.toFixed(2))}
                         currency="usd"
