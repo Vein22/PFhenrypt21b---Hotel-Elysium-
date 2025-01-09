@@ -1,14 +1,14 @@
 import { Controller, Post, Delete, Get, Body, Param, Query, HttpCode, HttpStatus, UploadedFile, UseInterceptors, BadRequestException, UseGuards } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { RoomsService } from 'src/module/create-room/rooms.service';
-import { CreateRoomDto } from 'src/module/create-room/dto/create-room.dto';
-import { Room } from 'src/entities/Room.entity';
+import { RoomsService } from './rooms.service';
+import { CreateRoomDto } from './dto/create-room.dto';
+import { Room } from '../../entities/Room.entity';
 import { ApiBody, ApiConsumes, ApiTags, ApiResponse } from '@nestjs/swagger';
 
-import { ImageValidatorPipe } from 'src/pipes/imageValidatorPipe';
-import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
-import { RolesGuard } from 'src/guards/roles/roles.guard';
-import { Roles } from 'src/decorators/roles/roles.decorator';
+import { ImageValidatorPipe } from '../../pipes/imageValidatorPipe';
+import { JwtAuthGuard } from '../../guards/jwt-auth/jwt-auth.guard';
+import { RolesGuard } from '../../guards/roles/roles.guard';
+import { Roles } from '../../decorators/roles/roles.decorator';
 
 
 

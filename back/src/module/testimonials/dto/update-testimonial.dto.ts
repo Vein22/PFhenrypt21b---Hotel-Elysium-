@@ -1,4 +1,4 @@
 import { PartialType } from '@nestjs/swagger';
-import { CreateTestimonialDto } from 'src/module/testimonials/dto/create-testimonial.dto';
+import { CreateTestimonialDto } from './create-testimonial.dto';
 
 export class UpdateTestimonialDto extends PartialType(CreateTestimonialDto) {}

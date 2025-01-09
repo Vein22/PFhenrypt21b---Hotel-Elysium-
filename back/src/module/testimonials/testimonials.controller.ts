@@ -14,10 +14,10 @@ import {
   Req,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { TestimonialsService } from 'src/module/testimonials/testimonials.service';
-import { CreateTestimonialDto } from 'src/module/testimonials/dto/create-testimonial.dto';
-import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
-import { TestimonialStatus } from 'src/enums/testimonial-status.enum';
+import { TestimonialsService } from './testimonials.service';
+import { CreateTestimonialDto } from './dto/create-testimonial.dto';
+import { JwtAuthGuard } from '../../guards/jwt-auth/jwt-auth.guard';
+import { TestimonialStatus } from '../../enums/testimonial-status.enum';
 
 @ApiTags('Testimonials')
 @Controller('testimonials')

@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateEmployeeDto } from 'src/module/employee/dto/create-employee.dto';
-import { UpdateEmployeeDto } from 'src/module/employee/dto/update-employee.dto';
+import { CreateEmployeeDto } from './dto/create-employee.dto';
+import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Employee } from 'src/entities/employee.entity';
-import { Role } from 'src/entities/role.entity';
+import { Employee } from '../../entities/employee.entity';
+import { Role } from '../../entities/role.entity';
 
 @Injectable()
 export class EmployeeService {

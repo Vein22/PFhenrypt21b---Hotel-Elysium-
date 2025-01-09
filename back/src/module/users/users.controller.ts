@@ -11,13 +11,13 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { UsersService } from 'src/module/users/users.service';
+import { UsersService } from './users.service';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { SearchUserDto } from 'src/module/users/dto/search-user.dto';
-import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
-import { Roles } from 'src/decorators/roles/roles.decorator';
-import { RolesGuard } from 'src/guards/roles/roles.guard';
-import { User } from 'src/entities/User.entity';
+import { SearchUserDto } from './dto/search-user.dto';
+import { JwtAuthGuard } from '../../guards/jwt-auth/jwt-auth.guard';
+import { Roles } from '../../decorators/roles/roles.decorator';
+import { RolesGuard } from '../../guards/roles/roles.guard';
+import { User } from '../../entities/User.entity';
 
 @ApiTags('Users')
 @Controller('users')

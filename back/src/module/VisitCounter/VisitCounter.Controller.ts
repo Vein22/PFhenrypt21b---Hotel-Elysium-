@@ -1,5 +1,5 @@
 import { Controller, Post, Get, Body } from '@nestjs/common';
-import { VisitCounterService } from 'src/module/VisitCounter/VisitCounter.Service'; 
+import { VisitCounterService } from './VisitCounter.Service'; 
 
 @Controller('visits')
 export class VisitCounterController {

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { VisitCounterRepository } from 'src/module/VisitCounter/VisitCounterRepository';
+import { VisitCounterRepository } from './VisitCounterRepository';
 
 @Injectable()
 export class VisitCounterService {

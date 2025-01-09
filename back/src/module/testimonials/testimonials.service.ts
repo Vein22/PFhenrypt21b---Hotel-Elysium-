@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Testimonial } from 'src/entities/Testimonial.entity';
-import { CreateTestimonialDto } from 'src/module/testimonials/dto/create-testimonial.dto';
-import { User } from 'src/entities/User.entity';
-import { TestimonialStatus } from 'src/enums/testimonial-status.enum';
+import { Testimonial } from '../../entities/Testimonial.entity';
+import { CreateTestimonialDto } from './dto/create-testimonial.dto';
+import { User } from '../../entities/User.entity';
+import { TestimonialStatus } from '../../enums/testimonial-status.enum';
 
 @Injectable()
 export class TestimonialsService {

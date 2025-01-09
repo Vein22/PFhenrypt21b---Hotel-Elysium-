@@ -10,11 +10,11 @@ import {
 } from '@nestjs/common';
 
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AuthService } from 'src/module/auth/auth.service';
-import { LoginUserDto } from 'src/module/auth/dto/login-auth.dto';
-import { CreateUserDto } from 'src/module/auth/dto/CreateUserDto';
-import { UsersService } from 'src/module/users/users.service';
-import { User } from 'src/entities/User.entity';
+import { AuthService } from './auth.service';
+import { LoginUserDto } from './dto/login-auth.dto';
+import { CreateUserDto } from './dto/CreateUserDto';
+import { UsersService } from '../users/users.service';
+import { User } from '../../entities/User.entity';
 
 @Controller('auth')
 export class AuthController {

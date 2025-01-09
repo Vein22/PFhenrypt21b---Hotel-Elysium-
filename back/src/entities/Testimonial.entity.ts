@@ -6,8 +6,8 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from 'src/entities/User.entity';
-import { TestimonialStatus } from 'src/enums/testimonial-status.enum';
+import { User } from './User.entity';
+import { TestimonialStatus } from '../enums/testimonial-status.enum';
 
 @Entity({ name: 'testimonials' })
 export class Testimonial {

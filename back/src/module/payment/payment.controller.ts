@@ -1,10 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
-import { PaymentService } from 'src/module/payment/payment.service';
-import { CreatePaymentDto } from 'src/module/payment/dto/create-payment.dto';
+import { PaymentService } from './payment.service';
+import { CreatePaymentDto } from './dto/create-payment.dto';
 import {Stripe} from 'stripe';
 import { ApiTags } from '@nestjs/swagger';
-import { ReservationRepository } from 'src/module/reservations/reservations.repository';
-import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
+import { ReservationRepository } from '../reservations/reservations.repository';
+import { JwtAuthGuard } from '../../guards/jwt-auth/jwt-auth.guard';
 
 @ApiTags('Payments')
 @Controller('payments')
