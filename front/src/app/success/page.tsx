@@ -11,7 +11,7 @@ const SuccessPage: FC = () => {
   const [reservationId, setReservationId] = useState<string | null>(null);
   const { userData } = useLoggin();
   const token = userData?.token;
-  const router = useRouter(); // Inicializamos el hook useRouter
+  const router = useRouter(); 
 
   useEffect(() => {
     const storedReservation = localStorage.getItem('reservation');
