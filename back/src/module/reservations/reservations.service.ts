@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Reservation } from '../../entities/Reservation.entity';
 import { CreateReservationDto } from './dto/create-reservations.dto';
 import { ReservationRepository } from './reservations.repository';
-import { AuthService } from './../auth/auth.service';
+import { AuthService } from '../auth/auth.service';
 import { RoomsRepository } from '../create-room/rooms.repository';
 
 @Injectable()

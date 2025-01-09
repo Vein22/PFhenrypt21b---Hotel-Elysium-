@@ -9,7 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/CreateUserDto';
 import { NotificationsService } from '../notifications/notifications.service';
-import { RolesService } from '../../module/roles/roles.service';
+import { RolesService } from '../roles/roles.service';
 import { adminMock } from './admin-mock';
 import { Role } from '../../entities/role.entity';
 

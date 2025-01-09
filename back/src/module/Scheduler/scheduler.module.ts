@@ -4,9 +4,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Reservation } from '../../entities/Reservation.entity';
 import { Room } from '../../entities/Room.entity';
 import { User } from '../../entities/User.entity';
-import { NotificationsService } from "../notifications/notifications.service";
-import { SchedulerService } from "./scheduler.services";
-
+import { NotificationsService } from '../notifications/notifications.service';
+import { SchedulerService } from './scheduler.services';
 
 
 @Module({

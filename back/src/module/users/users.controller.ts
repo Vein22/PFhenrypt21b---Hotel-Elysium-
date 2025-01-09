@@ -11,7 +11,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
+import { UsersService } from './users.service';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { SearchUserDto } from '../users/dto/search-user.dto';
 import { JwtAuthGuard } from '../../guards/jwt-auth/jwt-auth.guard';
