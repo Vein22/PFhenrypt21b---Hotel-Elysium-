@@ -15,7 +15,7 @@ const config = {
   database: process.env.DB_DATABASE,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/../migrations/*{.ts,.js}'],
-  synchronize: true,
+  synchronize: false,
   logging: false,
   // dropSchema: true,
   ssl: sslConfig,
