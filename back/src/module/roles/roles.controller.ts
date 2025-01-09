@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Delete, Body, Param, HttpCode, HttpStatus, UseGuards } from '@nestjs/common';
-import { RolesService } from './roles.service';
-import { CreateRoleDto } from './dto/create-role.dto';
+import { RolesService } from 'src/module/roles/roles.service';
+import { CreateRoleDto } from 'src/module/roles/dto/create-role.dto';
 import { Role } from 'src/entities/Role.entity';
 import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';

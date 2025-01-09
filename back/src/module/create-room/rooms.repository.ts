@@ -2,9 +2,9 @@ import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/co
 import { InjectRepository } from "@nestjs/typeorm";
 import { Room } from "src/entities/Room.entity";
 import { Repository } from "typeorm";
-import { FilesService } from "../files/files.service";
-import { CreateRoomDto } from "./dto/create-room.dto";
-import { roomsMock } from "./rooms-mock";
+import { FilesService } from "src/module/files/files.service";
+import { CreateRoomDto } from "src/module/create-room/dto/create-room.dto";
+import { roomsMock } from "src/module/create-room/rooms-mock";
 
 
 @Injectable()

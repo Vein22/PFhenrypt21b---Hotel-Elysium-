@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { CloudinaryConfig } from 'src/config/cloudinary';
 import { ImageValidatorPipe } from 'src/pipes/imageValidatorPipe';
-import { FilesController } from './files.controller';
-import { FilesService } from './files.service';
+import { FilesController } from 'src/module/files/files.controller';
+import { FilesService } from 'src/module/files/files.service';
 
 
 @Module({

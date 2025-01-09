@@ -3,8 +3,8 @@ import { Post, UseInterceptors, Get, Put, UseGuards, } from '@nestjs/common/deco
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { ImageValidatorPipe } from 'src/pipes/imageValidatorPipe';
-import { FilesService } from './files.service';
-import { postImagesSchema, replaceImageSchema, updateMetadataSchema } from './files.swagger.schemas';
+import { FilesService } from 'src/module/files/files.service';
+import { postImagesSchema, replaceImageSchema, updateMetadataSchema } from 'src/module/files/files.swagger.schemas';
 import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
 import { RolesGuard } from 'src/guards/roles/roles.guard';
 import { Roles } from 'src/decorators/roles/roles.decorator';

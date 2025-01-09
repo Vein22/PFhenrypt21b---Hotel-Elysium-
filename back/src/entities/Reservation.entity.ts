@@ -7,8 +7,8 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { PaymentStatus } from 'src/enums/enums';
-import { Room } from './Room.entity';
-import { User } from './User.entity';
+import { Room } from 'src/entities/Room.entity';
+import { User } from 'src/entities/User.entity';
 
 @Entity({ name: 'reservations' })
 export class Reservation {

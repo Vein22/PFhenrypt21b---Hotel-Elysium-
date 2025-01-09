@@ -4,7 +4,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { Reservation } from 'src/entities/Reservation.entity';
 import { User } from 'src/entities/User.entity';
 import { Room } from 'src/entities/Room.entity';
-import { NotificationsService } from '../notifications/notifications.service';
+import { NotificationsService } from 'src/module/notifications/notifications.service';
 import { Repository } from 'typeorm';
 import { PaymentStatus } from 'src/enums/enums';
 

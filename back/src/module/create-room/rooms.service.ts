@@ -1,8 +1,8 @@
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 
 import { Room } from 'src/entities/Room.entity';
-import { CreateRoomDto } from './dto/create-room.dto';
-import { RoomsRepository } from './rooms.repository';
+import { CreateRoomDto } from 'src/module/create-room/dto/create-room.dto';
+import { RoomsRepository } from 'src/module/create-room/rooms.repository';
 
 @Injectable()
 export class RoomsService {

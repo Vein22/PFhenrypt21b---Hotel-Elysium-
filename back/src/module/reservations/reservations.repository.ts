@@ -4,8 +4,8 @@ import { Reservation } from 'src/entities/Reservation.entity';
 import { Room } from 'src/entities/Room.entity';
 import { User } from 'src/entities/User.entity';
 import { Repository, Between } from 'typeorm';
-import { NotificationsService } from '../notifications/notifications.service';
-import { CreateReservationDto } from './dto/create-reservations.dto';
+import { NotificationsService } from 'src/module/notifications/notifications.service';
+import { CreateReservationDto } from 'src/module/reservations/dto/create-reservations.dto';
 
 @Injectable()
 export class ReservationRepository {

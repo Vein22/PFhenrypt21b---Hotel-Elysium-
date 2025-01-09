@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete, Query, ParseUUIDPipe, UseGuards } from '@nestjs/common';
-import { CreateReservationDto } from './dto/create-reservations.dto';
+import { CreateReservationDto } from 'src/module/reservations/dto/create-reservations.dto';
 import { ApiTags } from "@nestjs/swagger";
-import { ReservationService } from './reservations.service';
+import { ReservationService } from 'src/module/reservations/reservations.service';
 import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
 import { Roles } from 'src/decorators/roles/roles.decorator';
 

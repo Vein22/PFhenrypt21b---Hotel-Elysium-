@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany  } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from './User.entity';
-import { Employee } from './employee.entity';
+import { User } from 'src/entities/User.entity';
+import { Employee } from 'src/entities/employee.entity';
 
 //@Entity('role')
 @Entity({ name: 'roles' })

@@ -1,7 +1,7 @@
 import { Controller, Post, Delete, Get, Body, Param, Query, HttpCode, HttpStatus, UploadedFile, UseInterceptors, BadRequestException, UseGuards } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { RoomsService } from './rooms.service';
-import { CreateRoomDto } from './dto/create-room.dto';
+import { RoomsService } from 'src/module/create-room/rooms.service';
+import { CreateRoomDto } from 'src/module/create-room/dto/create-room.dto';
 import { Room } from 'src/entities/Room.entity';
 import { ApiBody, ApiConsumes, ApiTags, ApiResponse } from '@nestjs/swagger';
 

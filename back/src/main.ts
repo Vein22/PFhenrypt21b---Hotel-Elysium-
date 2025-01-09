@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import { AppModule } from 'src/app.module';
 import * as dotenv from 'dotenv';
 import { ValidationPipe } from '@nestjs/common';
-import { RolesRepository } from './module/roles/roles.repository';
-import { AuthService } from './module/auth/auth.service';
-import { RoomsRepository } from './module/create-room/rooms.repository';
-import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
+import { RolesRepository } from 'src/module/roles/roles.repository';
+import { AuthService } from 'src/module/auth/auth.service';
+import { RoomsRepository } from 'src/module/create-room/rooms.repository';
+import { LoggerMiddleware } from 'src/middlewares/logger/logger.middleware';
 
 
 

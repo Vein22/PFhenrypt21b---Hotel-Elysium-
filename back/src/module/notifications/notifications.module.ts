@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { NotificationsService } from './notifications.service';
+import { NotificationsService } from 'src/module/notifications/notifications.service';
 import * as nodemailer from 'nodemailer'
-import { PaymentModule } from '../payment/payment.module';
+import { PaymentModule } from 'src/module/payment/payment.module';
 
 @Module({
   imports: [PaymentModule],

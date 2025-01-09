@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { LoginUserDto } from './dto/login-auth.dto';
+import { LoginUserDto } from 'src/module/auth/dto/login-auth.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entities/User.entity';
 import { Repository } from 'typeorm';
@@ -7,10 +7,10 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 
 import { ConflictException } from '@nestjs/common';
-import { CreateUserDto } from './dto/CreateUserDto';
-import { NotificationsService } from '../notifications/notifications.service';
-import { RolesService } from '../../module/roles/roles.service';
-import { adminMock } from './admin-mock';
+import { CreateUserDto } from 'src/module/auth/dto/CreateUserDto';
+import { NotificationsService } from 'src/module/notifications/notifications.service';
+import { RolesService } from 'src/module/roles/roles.service';
+import { adminMock } from 'src/module/auth/admin-mock';
 import { Role } from 'src/entities/role.entity';
 
 @Injectable()
