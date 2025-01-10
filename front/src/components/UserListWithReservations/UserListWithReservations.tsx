@@ -2,7 +2,7 @@
 
 import { clientDetailsAll, Client } from "@/api/clientDetails";
 import React, { useState, useEffect } from "react";
-import ProtectedAdmin from "../ProtectedAdmin/page";
+
 
 const Clients: React.FC = () => {
   const [clients, setClients] = useState<Client[]>([]);
@@ -53,7 +53,7 @@ const Clients: React.FC = () => {
   }
 
   return (
-    <ProtectedAdmin>
+
       <div className="shadow-md rounded-lg overflow-hidden mt-4">
         <h2 className="text-[2.5rem] font-semibold px-6 py-4 text-center">
           Historial de Clientes
@@ -123,7 +123,7 @@ const Clients: React.FC = () => {
           </div>
         ))}
       </div>
-    </ProtectedAdmin>
+
   );
 };
 
