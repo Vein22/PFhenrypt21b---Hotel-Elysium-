@@ -37,11 +37,11 @@ const RoomDetail = ({
         id,
         checkInDate,
         checkOutDate,
-        userData.token // Pasa el token a la función
+        userData.token 
       );
       console.log("Reserva realizada:", result);
       Swal.fire("Reserva realizada con éxito!", "Gracias por elegirnos", "success");
-      router.push("/"); // Esto en el futuro lo tenemos que redireccionar al dashboard
+      router.push("/myBookings");
     } catch (error) {
       console.error("Error al reservar:", error);
       Swal.fire("Error", "Hubo un error al realizar la reserva. Intenta nuevamente.", "error");
@@ -130,12 +130,7 @@ const RoomDetail = ({
             <FaCalendarAlt className="mr-2" />
             Reservá ahora
           </button>
-          <PaymentButton
-            amount={price}
-            currency="usd"
-            description={description}
-            id={id}
-          />
+          
         </div>
       </div>
     </div>
