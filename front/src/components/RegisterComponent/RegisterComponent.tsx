@@ -33,7 +33,7 @@ const RegisterComponent = () => {
     <form onSubmit={handleSubmit} className={`${Style.container} bg-beige `}>
       {/*Imagen estática para el componente Register*/}
       <div className={Style.imgContainer}>
-        <Image src={registerImg} alt="Usuario" width={525} height={525} />
+        <Image src={registerImg} alt="Usuario" width={525} height={525} loading="lazy"/>
       </div>
       {/*Formulario de registro*/}
       <div className={Style.formContainer}>
@@ -43,7 +43,7 @@ const RegisterComponent = () => {
         )}
         {/*Nombre*/}
         <div className={Style.inputLabelGroup}>
-          <Image src={usuario} width={25} height={25} alt="usuario" className={Style.iconos}/>
+          <Image src={usuario} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
           <input
             type="text"
             name="name"
@@ -64,7 +64,7 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.email}</p>
         )}
         <div className={Style.inputLabelGroup}>
-        <Image src={email} width={25} height={25} alt="usuario" className={Style.iconos}/>
+        <Image src={email} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
           <input
             type="text"
             name="email"
@@ -84,7 +84,7 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.password}</p>
         )}
         <div className={Style.inputLabelGroup}>
-        <Image src={password} width={25} height={25} alt="usuario" className={Style.iconos}/>
+        <Image src={password} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
           <input
             type="password"
             name="password"
@@ -104,7 +104,7 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.confirm_password}</p>
         )}
         <div className={Style.inputLabelGroup}>
-        <Image src={confirmPassword} width={25} height={25} alt="usuario" className={Style.iconos}/>
+        <Image src={confirmPassword} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
           <input
             type="password"
             name="confirm_password"
@@ -124,7 +124,7 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.phone}</p>
         )}
         <div className={Style.inputLabelGroup}>
-        <Image src={phone} width={25} height={25} alt="usuario" className={Style.iconos}/>
+        <Image src={phone} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
           <input
             type="text"
             name="phone"
@@ -142,7 +142,7 @@ const RegisterComponent = () => {
         {/*Dni*/}
         {errors.dni && <p className="text-red-500 text-xs m-2">{errors.dni}</p>}
         <div className={Style.inputLabelGroup}>
-        <Image src={DNI} width={25} height={25} alt="usuario" className={Style.iconos}/>
+        <Image src={DNI} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
           <input
             type="text"
             name="dni"
