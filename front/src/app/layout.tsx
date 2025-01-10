@@ -5,9 +5,9 @@ import Footer from "@/components/Footer/Footer";
 import Chatbot from "@/components/chatbot/chatbot";
 import { LogginProvider } from "@/context/logginContext";
 import Providers from "./providers";
-import ProvidersAuth from "@/contextauth/providersAuth";
 import Sidebar from "@/components/SideBar";
 import ShowComponent from "@/components/ShowComponent/ShowComponent";
+import ProvidersAuth from "@/context/providersAuth";
 
 export default function RootLayout({
   children,
@@ -20,17 +20,17 @@ export default function RootLayout({
             <LogginProvider>
               <Header />
 
-              <div className="">
-                  <ShowComponent>
-                    <Sidebar />
-                  </ShowComponent>
-               
-                <main className="">
+              {/* <div className="flex flex-1"> */}
+              <div>
+                <ShowComponent>
+                  <Sidebar />
+                </ShowComponent>
+
+                {/* <main className="flex-1 p-4 overflow-y-auto ml-5"> */}
+                <main>
                   {children}
                 </main>
-
               </div>
-
 
               <Chatbot />
               <Footer />

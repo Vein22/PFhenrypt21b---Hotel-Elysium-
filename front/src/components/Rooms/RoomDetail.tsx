@@ -10,6 +10,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { postBooking } from "@/api/bookReserve";
 import { PaymentButton } from "../PaymentButton/PaymentButton";
+import Swal from "sweetalert2";
 
 const RoomDetail = ({
   id,
@@ -35,14 +36,15 @@ const RoomDetail = ({
         userData.userData.id,
         id,
         checkInDate,
-        checkOutDate
+        checkOutDate,
+        userData.token 
       );
       console.log("Reserva realizada:", result);
-      alert("Reserva realizada con éxito!");
-      router.push("/"); // Esto en el futuro lo tenemos que redireccionar al dashboard
+      Swal.fire("Reserva realizada con éxito!", "Gracias por elegirnos", "success");
+      router.push("/myBookings");
     } catch (error) {
       console.error("Error al reservar:", error);
-      alert("Hubo un error al realizar la reserva. Intenta nuevamente.");
+      Swal.fire("Error", "Hubo un error al realizar la reserva. Intenta nuevamente.", "error");
     }
   };
 
@@ -128,12 +130,7 @@ const RoomDetail = ({
             <FaCalendarAlt className="mr-2" />
             Reservá ahora
           </button>
-          <PaymentButton
-            amount={price}
-            currency="usd"
-            description={description}
-            id={id}
-          />
+          
         </div>
       </div>
     </div>

@@ -8,9 +8,7 @@ import SweetAlert from "sweetalert2";
 import TestimonialCard from "./TestimonialCard";
 import TestimonialModal from "./TestimonialModal";
 
-
 const APIURL = process.env.NEXT_PUBLIC_API_URL;
-
 const TestimonialsPage = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [filteredTestimonials, setFilteredTestimonials] = useState<Testimonial[]>([]);

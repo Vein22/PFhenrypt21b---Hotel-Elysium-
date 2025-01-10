@@ -1,18 +1,15 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, Query, ParseUUIDPipe, UseGuards } from '@nestjs/common';
-import { IsUUID } from "class-validator";
+import { Controller, Get, Post, Body, Param, Delete, Query, ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import { CreateReservationDto } from './dto/create-reservations.dto';
 import { ApiTags } from "@nestjs/swagger";
 import { ReservationService } from './reservations.service';
 import { JwtAuthGuard } from 'src/guards/jwt-auth/jwt-auth.guard';
 import { Roles } from 'src/decorators/roles/roles.decorator';
 
-
 @Controller('reservations')
 @UseGuards(JwtAuthGuard) 
 export class ReservationController {
   constructor(private readonly reservationService: ReservationService) {}
   @ApiTags('Reservations')
-
 
   @Roles('admin', 'cliente')
   @Post()
@@ -28,9 +25,8 @@ export class ReservationController {
 
   @Get(':id')
   async getReservationByuserId(@Param('id', new ParseUUIDPipe()) userId: string) {
-     if(!IsUUID(4, {each: true})) throw new Error('Invalid UUID');
      return await this.reservationService.getReservationByuserId(userId);
-      }
+  }
 
   @Delete(':id')
   async deleteReservationById(@Param('id') id: string) {

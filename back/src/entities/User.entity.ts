@@ -97,6 +97,13 @@ export class User {
   @Column({ default: false })
   isAdmin: boolean;
 
+
+//////LOGIN GOOGLE 
+@Column({ nullable: true })
+authProvider: string;
+
+
+
   /**
    * Relación con el rol del usuario.
    */

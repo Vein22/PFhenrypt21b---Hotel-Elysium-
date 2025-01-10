@@ -1,20 +1,19 @@
 "use client";
-
+import styles from "./Button.module.css";
 import { useFormRegister } from "@/hooks/useFormRegister";
 import { velidateFormRegister } from "@/helpers/validateRegister";
 import { fetchRegister } from "@/api/register";
 import Image from "next/image";
-import usuario from '../../../public/Form Íconos/user.svg';
-import email from '../../../public/Form Íconos/emai_1.svg';
-import password from '../../../public/Form Íconos/password.svg';
-import confirmPassword from '../../../public/Form Íconos/repetir.svg';
-import phone from '../../../public/Form Íconos/phone.svg';
-import DNI from '../../../public/Form Íconos/DNI_1.svg';
-
-
+import usuario from "../../../public/Form Íconos/user.svg";
+import email from "../../../public/Form Íconos/emai_1.svg";
+import password from "../../../public/Form Íconos/password.svg";
+import confirmPassword from "../../../public/Form Íconos/repetir.svg";
+import phone from "../../../public/Form Íconos/phone.svg";
+import DNI from "../../../public/Form Íconos/DNI_1.svg";
 import registerImg from "../../../public/register_prueba.png";
 import Style from "./register.module.css";
 import Loading from "../Loading/Loading";
+import { signIn } from "next-auth/react";
 
 const initialForm = {
   name: "",
@@ -43,7 +42,13 @@ const RegisterComponent = () => {
         )}
         {/*Nombre*/}
         <div className={Style.inputLabelGroup}>
-          <Image src={usuario} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
+          <Image
+            src={usuario}
+            width={25}
+            height={25}
+            alt="usuario"
+            className={Style.iconos}
+          />
           <input
             type="text"
             name="name"
@@ -64,7 +69,13 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.email}</p>
         )}
         <div className={Style.inputLabelGroup}>
-        <Image src={email} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
+          <Image
+            src={email}
+            width={25}
+            height={25}
+            alt="usuario"
+            className={Style.iconos}
+          />
           <input
             type="text"
             name="email"
@@ -84,7 +95,13 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.password}</p>
         )}
         <div className={Style.inputLabelGroup}>
-        <Image src={password} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
+          <Image
+            src={password}
+            width={25}
+            height={25}
+            alt="usuario"
+            className={Style.iconos}
+          />
           <input
             type="password"
             name="password"
@@ -104,7 +121,13 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.confirm_password}</p>
         )}
         <div className={Style.inputLabelGroup}>
-        <Image src={confirmPassword} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
+          <Image
+            src={confirmPassword}
+            width={25}
+            height={25}
+            alt="usuario"
+            className={Style.iconos}
+          />
           <input
             type="password"
             name="confirm_password"
@@ -124,7 +147,14 @@ const RegisterComponent = () => {
           <p className="text-red-500 text-xs m-2">{errors.phone}</p>
         )}
         <div className={Style.inputLabelGroup}>
-        <Image src={phone} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
+
+          <Image
+            src={phone}
+            width={25}
+            height={25}
+            alt="usuario"
+            className={Style.iconos}
+          />
           <input
             type="text"
             name="phone"
@@ -142,7 +172,13 @@ const RegisterComponent = () => {
         {/*Dni*/}
         {errors.dni && <p className="text-red-500 text-xs m-2">{errors.dni}</p>}
         <div className={Style.inputLabelGroup}>
-        <Image src={DNI} width={25} height={25} alt="usuario" className={Style.iconos} loading="lazy"/>
+          <Image
+            src={DNI}
+            width={25}
+            height={25}
+            alt="usuario"
+            className={Style.iconos}
+          />
           <input
             type="text"
             name="dni"
@@ -161,7 +197,24 @@ const RegisterComponent = () => {
         <p className={Style.tienesCuenta}>
           ¿Ya tienes una cuenta? <a href="/login">INICIA SESIÓN</a>
         </p>
-
+        <div className="flex flex-col justify-center items-center mt-5 gap-3">
+          <button
+            type="button"
+            onClick={() =>
+              signIn("google", { callbackUrl: "/custom-redirect-url" })
+            }
+            className={`${styles.googleButton} flex items-center justify-center`}
+          >
+            <Image
+              src="/google-logo.png"
+              alt="Google Logo"
+              width={30}
+              height={30}
+              className="mr-2"
+            />
+            Iniciar Sesión con Google
+          </button>
+        </div>
         <button
           type="submit"
           className={`${

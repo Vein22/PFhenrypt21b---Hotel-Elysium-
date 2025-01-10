@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import ClickOutside from "../ClickOutside";
 import { useLoggin } from "@/context/logginContext";
 import { useRouter } from "next/navigation";
-
+import { signOut } from "next-auth/react";
+import Image from "next/image";
+import ClickOutside from "../ClickOutside";
 const CardUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { userData, setUserData } = useLoggin();
@@ -128,7 +128,7 @@ const CardUser = () => {
             )}
             <li>
               <Link
-                href="/profile"
+                href="/myBookings"
                 className="flex items-center gap-3.5 px-6 py-7.5 text-sm font-medium text-white hover:text-mostaza lg:text-base"
               >
                 <svg
@@ -181,6 +181,7 @@ const CardUser = () => {
             onClick={() => {
               localStorage.removeItem("sessionStart");
               setUserData(null);
+              signOut();
               router.push("/");
             }}
           >

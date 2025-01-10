@@ -34,6 +34,17 @@ export default function ContadorVisitas() {
       }
     };
 
+    const hasVisitedRecently = async (ip: string) => {
+      try {
+        const response = await fetch(`${APIURL}/visits/recent?ip=${ip}`);
+        const data = await response.json();
+        return data.recent;
+      } catch (error) {
+        console.error("Error al verificar si el cliente ha visitado recientemente:", error);
+        return false;
+      }
+    };
+
     const registerVisit = async (ip: string) => {
       try {
         const response = await fetch(`${APIURL}/visits`, {
@@ -54,7 +65,13 @@ export default function ContadorVisitas() {
 
     getClientIp().then((ip) => {
       if (ip) {
-        registerVisit(ip).then(fetchTotalVisits);
+        hasVisitedRecently(ip).then((recent) => {
+          if (!recent) {
+            registerVisit(ip).then(fetchTotalVisits);
+          } else {
+            fetchTotalVisits();
+          }
+        });
       } else {
         console.error("No se pudo obtener la IP del cliente");
       }

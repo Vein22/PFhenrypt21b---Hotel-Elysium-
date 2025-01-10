@@ -1,5 +1,7 @@
-'use client'
+'use client';
 import { FC, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useLoggin } from '@/context/logginContext';
 import Link from 'next/link';
 
 const SuccessPage: FC = () => {
@@ -7,52 +9,74 @@ const SuccessPage: FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [reservationId, setReservationId] = useState<string | null>(null);
+  const { userData } = useLoggin();
+  const token = userData?.token;
+  const router = useRouter(); 
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const id = new URLSearchParams(window.location.search).get('reservationId');
-      setReservationId(id);
+    const storedReservation = localStorage.getItem('reservation');
+    if (storedReservation) {
+      const parsedReservation = JSON.parse(storedReservation);
+      setReservationId(parsedReservation.id);
+    } else {
+      setError('No se pudo encontrar el ID de la reserva en el almacenamiento local.');
+      setLoading(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
+    console.log(reservationId);
+
     const updatePaymentStatus = async () => {
-      if (!reservationId) {
-        setError('No se pudo encontrar el ID de la reserva.');
-        setLoading(false);
-        return;
-      }
-
       try {
-        const response = await fetch(`/api/payments/success?reservationId=${reservationId}`, {
-          method: 'GET',
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/payments/success?reservationId=${reservationId}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
-        if (!response.ok) {
-          throw new Error('Hubo un error al actualizar el estado del pago.');
-        }
-
+        const data = await response.json();
+        console.log('Respuesta del servidor:', data);
 
         setPaymentSuccess(true);
-        setLoading(false);
+
+        localStorage.removeItem('reservation');
       } catch (err) {
         setError('Hubo un error al procesar tu pago. Intenta nuevamente.');
-        setLoading(false);
         console.error(err);
+
+        localStorage.removeItem('reservation');
+      } finally {
+        setLoading(false);
       }
     };
 
-    updatePaymentStatus();
-  }, [reservationId]);
+    if (reservationId && token) {
+      updatePaymentStatus();
+    }
+  }, [reservationId, token]);
 
-  if (loading) {
-    return (
-      <div className="text-center">
-        <p>Cargando...</p>
 
-      </div>
-    );
-  }
+
+
+  useEffect(() => {
+    if (paymentSuccess) {
+      const timer = setTimeout(() => {
+        router.push('/myBookings'); 
+      }, 3000); 
+
+      return () => clearTimeout(timer);
+    }
+  }, [paymentSuccess, router]);
+
+
+
+
 
   return (
     <div className="container mx-auto py-16">
@@ -69,14 +93,16 @@ const SuccessPage: FC = () => {
               Tu transacción se ha completado con éxito. Pronto recibirás un correo electrónico con los detalles de tu compra.
             </p>
           ) : (
-            <p className="text-center text-red-500">Hubo un problema con el pago. Por favor, intenta nuevamente.</p>
+            <p className="text-center text-red-500">
+              " Cargando "
+            </p>
           )}
         </>
       )}
       <div className="text-center">
-        <Link href="/" legacyBehavior>
+        <Link href="/myBookings" legacyBehavior>
           <a className="bg-mostaza border-mostaza uppercase text-white py-2 px-4 hover:bg-opacity-70 transition-all">
-            Volver al Inicio
+            Tu Historial 
           </a>
         </Link>
       </div>
