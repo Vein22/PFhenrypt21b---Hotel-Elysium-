@@ -5,9 +5,12 @@ const employeePage = () => {
   
   return (
 
+
+    // <ProtectedAdmin>
       <div>
         <EmployeeForm />
       </div>
+    // </ProtectedAdmin>
 
   );
 };
