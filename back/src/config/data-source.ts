@@ -15,11 +15,11 @@ const config = {
   database: process.env.DB_DATABASE,
   entities: ["dist/**/*.entity{.ts,.js}"],
   migrations: [__dirname + '/../migrations/*{.ts,.js}'],
-  synchronize: false,
+  synchronize: true,
   logging: false,
   // dropSchema: true,
   ssl: sslConfig,
-
+ 
 };
 
 export default registerAs('typeorm', () => config);

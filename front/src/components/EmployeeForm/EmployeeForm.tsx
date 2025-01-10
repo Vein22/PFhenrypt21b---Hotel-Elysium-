@@ -214,7 +214,7 @@ export default function EmployeeForm() {
           )}
         </form>
       </div>
-      {/* <EmployeeList onSelectEmployee={handleSelectEmployee} /> */}
+      <EmployeeList onSelectEmployee={handleSelectEmployee} />
     </>
   );
 }

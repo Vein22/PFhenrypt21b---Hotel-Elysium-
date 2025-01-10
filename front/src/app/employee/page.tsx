@@ -4,11 +4,11 @@ import ProtectedAdmin from "@/components/ProtectedAdmin/page";
 const employeePage = () => {
   
   return (
-    <ProtectedAdmin>
+    // <ProtectedAdmin>
       <div>
         <EmployeeForm />
       </div>
-    </ProtectedAdmin>
+    // </ProtectedAdmin>
   );
 };
 
