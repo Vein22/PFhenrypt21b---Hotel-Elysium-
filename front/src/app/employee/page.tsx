@@ -3,15 +3,19 @@ import ProtectedAdmin from "@/components/ProtectedAdmin/page";
 import AppEmploye from "@/components/EmployeeForm/EmployeePage";
 
 
+
 const employeePage = () => {
   
   return (
-    // <ProtectedAdmin>
+
+
+    <ProtectedAdmin>
       <div>
         {/* <EmployeeForm /> */}
         <AppEmploye/>
       </div>
-    // </ProtectedAdmin>
+    </ProtectedAdmin>
+
   );
 };
 
