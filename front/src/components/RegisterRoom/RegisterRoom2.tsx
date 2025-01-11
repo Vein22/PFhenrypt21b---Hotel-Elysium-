@@ -16,10 +16,12 @@ import { useRouter } from "next/navigation";
 import FileUploader from "./FileUploader";
 import GuestsInput from "./GuestsInput";
 import RoomList from "./RoomList";
+import { useLoggin } from "@/context/logginContext";
 
 const RegisterForm = () => {
   const APIURL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
+  const { userData } = useLoggin();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -115,7 +117,9 @@ const RegisterForm = () => {
       console.log("Datos a enviar:", datosParaEnviar);
       const response = await fetch(`${APIURL}/rooms/registerRoom`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+        "Authorization": `Bearer ${userData?.token}`},
         body: JSON.stringify(datosParaEnviar),
       });
 
@@ -180,20 +184,31 @@ const RegisterForm = () => {
       </p>
     </div>
     <div>
-      <label className="block text-gray-600 text-lg font-medium">Capacidad</label>
-      <GuestsInput
-        maxGuests={8}
-        initialGuests={parseInt(formData.beds, 10) || 0}
-        onGuestsChange={(value) =>
-          setFormData((prev) => ({ ...prev, beds: value.toString() }))
-        }
-      />
-      <p
-        className={`text-red-500 text-xs mt-1 ${errors.beds ? "" : "invisible"}`}
-      >
-        {errors.beds}
-      </p>
-    </div>
+          <label className="block text-lg font-medium">Capacidad</label>
+          <select
+            name="beds"
+            value={formData.beds || ""}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, beds: e.target.value }))
+            }
+            onBlur={handleBlur}
+            className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2"
+          >
+            <option value="">Selecciona una opción</option>
+            {Array.from({ length: 8 }, (_, i) => i + 1).map((num) => (
+              <option key={num} value={num}>
+                {num}
+              </option>
+            ))}
+          </select>
+          <p
+            className={`text-red-500 text-xs mt-1 ${
+              errors.beds ? "" : "invisible"
+            }`}
+          >
+            {errors.beds}
+          </p>
+        </div>
   </div>
 
 
@@ -219,13 +234,14 @@ const RegisterForm = () => {
 
     <div>
       <label className="block text-gray-600 text-lg font-medium">Categoría</label>
-      <select name="roomType" id="" className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2">
-        <option value="">seleccionar una categoría</option>
-        <option value="luxury">Habitación de lujo</option>
-        <option value="standard">Habitación estándar</option>
-        <option value="suite">Suite</option>
-        <option value="family">Habitación familiar deluxe</option>
-      </select>
+      <input
+        name="roomType"
+        placeholder="Tipo de habitación"
+        value={formData.roomType}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2"
+      />
       <p
         className={`text-red-500 text-xs mt-1 ${
           errors.roomType ? "" : "invisible"
@@ -244,8 +260,9 @@ const RegisterForm = () => {
           value={formData.size}
           onChange={handleChange}
           onBlur={handleBlur}
-          className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2"
+          className="w-3/4 border border-gray-400 rounded px-3 py-2 focus:outline-none focus:ring-2"
         />
+        <span className="text-gray-600">m2</span>
       </div>
       <p
         className={`text-red-500 text-xs mt-1 ${errors.size ? "" : "invisible"}`}
@@ -279,7 +296,7 @@ const RegisterForm = () => {
       <label className="block text-gray-600 text-lg font-medium">Precio por noche</label>
       <input
         name="price"
-        placeholder="Precio por noche Usd."
+        placeholder="Precio por noche"
         value={formData.price}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -309,3 +326,4 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
+
