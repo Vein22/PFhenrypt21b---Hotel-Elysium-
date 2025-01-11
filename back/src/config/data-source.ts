@@ -4,7 +4,7 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: '.env' });
 
-const sslConfig = process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined;
+const sslConfig = process.env.DB_SSL === 'true' ? { ssl: { rejectUnauthorized: false } } : {};
 
 const config = {
   type: 'postgres',
@@ -18,7 +18,7 @@ const config = {
   synchronize: true,
   logging: false,
   //dropSchema: true,
-  ssl: sslConfig,
+  ...sslConfig,
  
 };
 
