@@ -1,11 +1,11 @@
 export interface IEmployeeProps {
-  id?: string;
+  id: string;
   name: string;
   dni: number;
   birthdate: Date;
   phone: number;
   role: string;
-  active?: boolean;
+  active: boolean;
 }
 
 export interface IEmployeeError {

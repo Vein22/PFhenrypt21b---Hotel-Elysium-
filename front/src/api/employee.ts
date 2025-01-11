@@ -84,8 +84,21 @@ async function disableEmployeeById(employeeId: string, disableEmployee: IEmploye
   }
 }
 
+// ENDPOINT 
+const APIURL = process.env.NEXT_PUBLIC_API_URL;
+ const getEmployee = async () => {
+  const response = await fetch(`${APIURL}/employee`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  return data;
+};
+
 
 export {
   createEmployee,
-  updateEmployeeById,
+  updateEmployeeById, getEmployee
 };

@@ -1,34 +1,23 @@
 'use client'
 // ACTUAL
 import { useState, useEffect } from 'react'
+import { IEmployeeProps } from "@/interfaces/TypeEmployee";
 
-interface IEmployee {
-  id: string;
-  name: string;
-  dni: number;
-  birthdate: Date;
-  phone: number;
-  role: string;
-  active: boolean;
-}
+// interface IEmployee {
+//   id: string;
+//   name: string;
+//   dni: number;
+//   birthdate: Date;
+//   phone: number;
+//   role: string;
+//   active: boolean;
+// }
 
+// Define las props para el componente EmployeeList
 interface EmployeeListProps {
-  onSelectEmployee: (employee: IEmployee) => void; // Define la prop aquí
+  employeprop: IEmployeeProps[]; // Recibe la lista de empleados
+  onSelectEmployee: (employee: IEmployeeProps) => void; // Define la prop aquí
 }
-
-
-// ENDPOINT 
-const APIURL = process.env.NEXT_PUBLIC_API_URL;
- const getEmployee = async () => {
-  const response = await fetch(`${APIURL}/employee`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
-  return data;
-};
 
 
 // const mockEmployees: IEmployee[] = [
@@ -40,21 +29,22 @@ const APIURL = process.env.NEXT_PUBLIC_API_URL;
 // ]
 const positions = ['Todos', 'Recepcionista', 'Mantenimiento', 'Limpieza', 'Administrador']
 
-export default function EmployeeList({ onSelectEmployee }: EmployeeListProps) {
+// export default function EmployeeList({ onSelectEmployee }: EmployeeListProps) {
+  export default function EmployeeList({ employeprop, onSelectEmployee }: EmployeeListProps) {
   const [nameFilter, setNameFilter] = useState('')
   const [positionFilter, setPositionFilter] = useState('Todos')
   // const [employees, setEmployees] = useState(getEmployee)
-  const [employees, setEmployees] = useState<IEmployee[]>([]); // Inicializa como un array vacío
+  const [employees, setEmployees] = useState<IEmployeeProps[]>([]); // Inicializa como un array vacío
 
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      const data = await getEmployee();
-      setEmployees(data);
-    };
+  // useEffect(() => {
+  //   const fetchEmployees = async () => {
+  //     const data = await getEmployee();
+  //     setEmployees(data);
+  //   };
 
-    fetchEmployees();
+  //   fetchEmployees();
 
-  }, []); // El array vacío asegura que esto solo se ejecute una vez al montar el componente
+  // }, []); // El array vacío asegura que esto solo se ejecute una vez al montar el componente
   console.log ("hola ramon", employees)
 
   const filteredEmployees = employees.filter(employee =>
@@ -63,14 +53,14 @@ export default function EmployeeList({ onSelectEmployee }: EmployeeListProps) {
      employee.role.toLowerCase().includes(nameFilter.toLowerCase()))
   )
 
-  const handleDeactivate = (id: number) => {
+  // const handleDeactivate = (id: number) => {
 
-    // AQUI EL ENDPOINT PARA DESACTIVARLO Y ACTIVARLOS
+  //   // AQUI EL ENDPOINT PARA DESACTIVARLO Y ACTIVARLOS
 
-    setEmployees(employees.map(emp => 
-      emp.id === id ? { ...emp, active: !emp.active } : emp
-    ))
-   }
+  //   setEmployees(employees.map(emp => 
+  //     emp.id === id ? { ...emp, active: !emp.active } : emp
+  //   ))
+  //  }
 
   return (
     <div className="bg-white shadow rounded-lg p-6">
