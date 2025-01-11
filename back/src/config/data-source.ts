@@ -4,7 +4,7 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: '.env' });
 
-const sslConfig = process.env.DB_SSL === 'true' ? { ssl: { rejectUnauthorized: false } } : {};
+const sslConfig = process.env.DB_SSL ? JSON.parse(process.env.DB_SSL) : null;
 
 const config = {
   type: 'postgres',
@@ -17,8 +17,8 @@ const config = {
   migrations: [__dirname + '/../migrations/*{.ts,.js}'],
   synchronize: true,
   logging: false,
-  //dropSchema: true,
-  ...sslConfig,
+  // dropSchema: true,
+  ssl: sslConfig,
  
 };
 
