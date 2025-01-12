@@ -222,37 +222,58 @@
 
 "use client";
 // ACTUAL
-import { useState } from "react";
-// import { createEmployee,updateEmployeeById } from "@/api/employee";
+import { useState, useEffect } from "react";
+import { createEmployee,updateEmployeeById} from "@/api/employee";
 
 import { validateEmployee } from "@/helpers/validateEmployee";
 import EmployeeList from "./EmployeeList";
-import { IEmployeeProps } from "@/interfaces/TypeEmployee";
+import { IEmployeeProps, IEmployee } from "@/interfaces/TypeEmployee";
 import { IEmployeeError } from "@/interfaces/TypeEmployee";
 import Swal from "sweetalert2";
 
-// Define las props para el componente EmployeeForm
 interface EmployeeFormProps {
-  addEmployee: (newEmployee: IEmployeeProps) => void;
+  addEmployee: (employee: IEmployeeProps) => void;
+  // selectedEmployee: IEmployeeProps | null;
+  // setSelectedEmployee: (employee: IEmployeeProps | null) => void;
+  // updateEmployee: (employee: IEmployeeProps) => void;
 }
-
 // export default function EmployeeForm() {
   export default function EmployeeForm({ addEmployee }: EmployeeFormProps) {
+    // export default function EmployeeForm({ addEmployee, selectedEmployee, setSelectedEmployee, updateEmployee }: EmployeeFormProps) {
   const [fullName, setFullName] = useState("");
   const [dni, setDni] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
+  const [idEmployee, setIdEmployee] = useState("");
   const [errors, setErrors] = useState<IEmployeeError>({});
 
   // Agregar estado para manejar el empleado seleccionado y el modo de actualización
   const [modoActualizar, setModoActualizar] = useState(false);
-  const [empleadoSeleccionado, setEmpleadoSeleccionado] = useState<IEmployeeProps | null>(null);
+  // const [empleadoSeleccionado, setEmpleadoSeleccionado] = useState<IEmployeeProps | null>(null);
 
+  // useEffect(() => {
+  //   if (selectedEmployee) {
+  //     setIdEmployee(selectedEmployee.id);
+  //     setFullName(selectedEmployee.name);
+  //     setDni(String(selectedEmployee.dni));
+  //     // setBirthDate(selectedEmployee.birthdate.toISOString().split('T')[0]);
+  //     setPhone(String(selectedEmployee.phone));
+  //     setRole(selectedEmployee.role.name);
+  //     setModoActualizar(true);
+  //   } else {
+  //     setFullName("");
+  //     setDni("");
+  //     setBirthDate("");
+  //     setPhone("");
+  //     setRole("");
+  //     setModoActualizar(false);
+  //   }
+  // }, [selectedEmployee]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newEmployee: IEmployeeProps = {
+    const newEmployee: IEmployee = {
       name: fullName,
       dni: Number(dni),
       birthdate: new Date(birthDate),
@@ -269,10 +290,11 @@ interface EmployeeFormProps {
               //   let response;
               //   if (modoActualizar) {
 
-              //     // NECESITO ESTE ENDPOINT
-              //      response = await updateEmployeeById(newEmployee);
+              //     // NECESITO ESTE ENDPOINT  
+              //      response = await updateEmployeeById(idEmployee);
               //   } else {
                 const response = await createEmployee(newEmployee);
+                addEmployee(response.data);
               // }
 
         if (response.success) {
@@ -304,22 +326,21 @@ interface EmployeeFormProps {
   };
 
   // Función para manejar la selección de un empleado
-  const handleSelectEmployee = (employee: IEmployeeProps) => {
+  // const handleSelectEmployeeone = (employee: IEmployeeProps) => {
 
-    setFullName("");
-    setDni("");
-    // setBirthDate("");
-    setPhone("");
-    setRole("");
-    
-    setFullName(employee.name);
-    setDni(String(employee.dni));
-    // setBirthDate(employee.birthdate.toISOString().split('T')[0]); // Formato YYYY-MM-DD
-    setPhone(String(employee.phone));
-    setRole(employee.role);
-    setModoActualizar(true);
-    setEmpleadoSeleccionado(employee);
-  };
+  //   setFullName("");
+  //   setDni("");
+  //   // setBirthDate("");
+  //   setPhone("");
+  //   setRole("");
+  //   setFullName(employee.name);
+  //   setDni(String(employee.dni));
+  //   // setBirthDate(employee.birthdate.toISOString().split('T')[0]); // Formato YYYY-MM-DD
+  //   setPhone(String(employee.phone));
+  //   setRole(employee.role.name);
+  //   setModoActualizar(true);
+  //   // setEmpleadoSeleccionado(employee);
+  // };
 
 
   return (

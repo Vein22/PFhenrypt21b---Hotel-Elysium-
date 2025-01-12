@@ -1,12 +1,12 @@
-import { IEmployeeProps } from "@/interfaces/TypeEmployee";
+import { IEmployee } from "@/interfaces/TypeEmployee";
 
-async function createEmployee(newEmployee: IEmployeeProps) {
+async function createEmployee(newEmployee: IEmployee) {
   const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
   try {
     const response = await fetch(`${APIURL}/employee`, {
       method: "POST",
-      headers: {
+    headers: {    
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newEmployee),
@@ -28,7 +28,7 @@ async function createEmployee(newEmployee: IEmployeeProps) {
   }
 }
 
-async function updateEmployeeById(employeeId: string, updatedEmployee: IEmployeeProps) {
+async function updateEmployeeById(employeeId: string) {
   const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
   try {
@@ -37,7 +37,7 @@ async function updateEmployeeById(employeeId: string, updatedEmployee: IEmployee
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedEmployee),
+      body: JSON.stringify(employeeId),
     });
 
     if (response.ok) {
