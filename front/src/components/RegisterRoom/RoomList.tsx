@@ -1,8 +1,5 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { getRooms } from "@/api/getRooms";
-
 
 type Room = {
   id: string;
@@ -19,16 +16,43 @@ type Room = {
   available: boolean;
 };
 
+const EditableCell = ({
+  value,
+  onChange,
+  type = "text",
+}: {
+  value: string | number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
+}) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Si el campo es vacío, asignamos un valor por defecto (como 0 para números)
+    const newValue = e.target.value === '' ? (type === 'number' ? 0 : '') : e.target.value;
+    onChange({ target: { value: newValue } } as React.ChangeEvent<HTMLInputElement>);
+  };
+
+  return (
+    <input
+      type={type}
+      value={value === undefined || value === null ? '' : value}  // Asegura que el valor no sea NaN
+      onChange={handleChange}
+      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    />
+  );
+};
 
 export default function RoomList() {
   const [rooms, setRooms] = useState<Room[]>([]);
   const [editingRoom, setEditingRoom] = useState<string | null>(null);
+  const [editedRoom, setEditedRoom] = useState<Partial<Room>>({});
 
   useEffect(() => {
-     const fetchRooms = async () => {
-       const fetchedRooms = await getRooms();
-        setRooms(fetchedRooms); }; fetchRooms(); 
-      }, []);
+    const fetchRooms = async () => {
+      const fetchedRooms = (await getRooms()) as Room[];
+      setRooms(fetchedRooms);
+    };
+    fetchRooms();
+  }, []);
 
   const handleToggleAvailability = (id: string) => {
     setRooms(
@@ -39,16 +63,24 @@ export default function RoomList() {
   };
 
   const handleEditRoom = (id: string) => {
-    setEditingRoom(id)
-  }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSaveRoom = (id: string, updatedRoom: any) => {
+    const roomToEdit = rooms.find((room) => room.id === id);
+    if (roomToEdit) {
+      setEditedRoom({ ...roomToEdit });
+      setEditingRoom(id);
+    }
+  };
 
-    setRooms(rooms.map(room => 
-      room.id === id ? { ...room, ...updatedRoom } : room
-    ))
-    setEditingRoom(null)
-  }
+  const handleSaveRoom = (id: string) => {
+    setRooms(
+      rooms.map((room) =>
+        room.id === id
+          ? { ...room, ...editedRoom }
+          : room
+      )
+    );
+    setEditingRoom(null);
+    setEditedRoom({});
+  };
 
   return (
     <div className="bg-white shadow rounded-lg p-6">
@@ -79,10 +111,15 @@ export default function RoomList() {
               <tr key={room.id}>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
-                    <input
-                      type="text"
-                      defaultValue={room.roomNumber}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    <EditableCell
+                      value={editedRoom.roomNumber ?? room.roomNumber}
+                      onChange={(e) =>
+                        setEditedRoom((prev) => ({
+                          ...prev,
+                          roomNumber: parseInt(e.target.value, 10),
+                        }))
+                      }
+                      type="number"
                     />
                   ) : (
                     room.roomNumber
@@ -90,10 +127,14 @@ export default function RoomList() {
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
-                    <input
-                      type="text"
-                      defaultValue={room.roomType}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    <EditableCell
+                      value={editedRoom.roomType ?? room.roomType}
+                      onChange={(e) =>
+                        setEditedRoom((prev) => ({
+                          ...prev,
+                          roomType: e.target.value,
+                        }))
+                      }
                     />
                   ) : (
                     room.roomType
@@ -101,10 +142,15 @@ export default function RoomList() {
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
-                    <input
+                    <EditableCell
+                      value={editedRoom.price ?? room.price}
+                      onChange={(e) =>
+                        setEditedRoom((prev) => ({
+                          ...prev,
+                          price: parseFloat(e.target.value),
+                        }))
+                      }
                       type="number"
-                      defaultValue={room.price}
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                   ) : (
                     `$${room.price}`
@@ -130,17 +176,7 @@ export default function RoomList() {
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   {editingRoom === room.id ? (
                     <button
-                      onClick={() =>
-                        handleSaveRoom(room.id, {
-                          number: "nuevo número",
-                          type: "nuevo tipo",
-                          price: 100,
-                          beds: 2,
-                          rating: 4,
-                          image: "nueva imagen",
-                          description: "nueva descripción",
-                        })
-                      }
+                      onClick={() => handleSaveRoom(room.id)}
                       className="px-3 py-1 rounded text-white text-xs bg-green-500 hover:bg-green-600 mr-2"
                     >
                       Guardar
