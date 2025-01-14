@@ -8,7 +8,7 @@ import { PaymentButton } from "@/components/PaymentButton/PaymentButton";
 import Swal from "sweetalert2";
 import Image from "next/image";
 
-const ReservationsPage = () => {
+const Page = () => {
   const { userData } = useLoggin();
   const userId = userData?.userData.id;
   const token = userData?.token;
@@ -127,7 +127,7 @@ const ReservationsPage = () => {
             return (
               <div
                 key={reservation.id}
-                className="flex flex-col md:flex-row items-center bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
+                className="flex flex-col md:flex-row items-center border-gray-500 shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
               >
                 {reservation.room?.image ? (
                   <Image
@@ -196,4 +196,4 @@ const ReservationsPage = () => {
   );
 };
 
-export default ReservationsPage;
+export default Page;
