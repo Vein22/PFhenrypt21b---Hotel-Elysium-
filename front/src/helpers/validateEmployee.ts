@@ -1,6 +1,6 @@
-import { IEmployeeError, IEmployeeProps } from "@/interfaces/TypeEmployee";
+import { IEmployeeError, IEmployee } from "@/interfaces/TypeEmployee";
 
-export const validateEmployee = (values: IEmployeeProps) => {
+export const validateEmployee = (values: IEmployee) => {
   const errors: IEmployeeError = {};
 
   // validar el nombre completo
@@ -20,9 +20,9 @@ export const validateEmployee = (values: IEmployeeProps) => {
 
   // validar el telefono
   // if (!values.phone || !Number.isInteger(values.phone)) {
-    if (!values.phone) {
-    errors.phone = "El teléfono es requerido";
-  }
+  //   // if (!values.phone) {
+  //   errors.phone = "El teléfono es requerido";
+  // }
 
   // validar el rol
   if (!values.role) {
