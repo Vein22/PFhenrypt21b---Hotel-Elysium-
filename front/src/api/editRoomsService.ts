@@ -35,7 +35,7 @@ type Room = {
         throw new Error(textResponse || "Error al actualizar la habitación");
       }
   
-      return textResponse;  // No intentamos parsear como JSON, solo devolvemos el texto
+      return textResponse;
   
     } catch (error) {
       console.log("Error al realizar la solicitud de actualización:", error);
