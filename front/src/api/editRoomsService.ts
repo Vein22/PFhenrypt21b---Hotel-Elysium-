@@ -25,24 +25,17 @@ type Room = {
         body: JSON.stringify(roomData),
       });
   
+
       const textResponse = await response.text();
-      console.log('Cuerpo de la respuesta:', textResponse);
+  
+
+      console.log("Respuesta del servidor:", textResponse);
   
       if (!response.ok) {
-        throw new Error(textResponse || 'Error al actualizar la habitación');
-      }
-
-      if (textResponse === 'Room changed successfully') {
-        return 'Habitación actualizada exitosamente.';
+        throw new Error(textResponse || "Error al actualizar la habitación");
       }
   
-      try {
-        const data = JSON.parse(textResponse);
-        return data;
-      } catch (err) {
-        console.log('No se pudo parsear la respuesta como JSON', err);
-        throw new Error('La respuesta no es un JSON válido');
-      }
+      return textResponse;
   
     } catch (error) {
       console.log("Error al realizar la solicitud de actualización:", error);

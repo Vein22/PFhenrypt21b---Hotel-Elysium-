@@ -66,20 +66,33 @@ export default function RoomList() {
     fetchRooms();
   }, []);
 
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+
   const handleToggleAvailability = async (id: string) => {
     try {
-      setRooms(
-        rooms.map((room) =>
-          room.id === id ? { ...room, available: !room.available } : room
-        )
+      const roomToUpdate = rooms.find((room) => room.id === id);
+      if (!roomToUpdate) return;
+  
+      const updatedRoom = { ...roomToUpdate, available: !roomToUpdate.available };
+  
+      // Actualizar el estado local
+      setRooms((prevRooms) =>
+        prevRooms.map((room) => (room.id === id ? updatedRoom : room))
       );
   
-      const updatedRoom = await editRoomsService(id, { available: !rooms.find((room) => room.id === id)?.available });
-      console.log("Estado de la habitación actualizado en el servidor:", updatedRoom);
+      const serverResponse = await editRoomsService(id, { available: updatedRoom.available });
+      console.log("Estado de la habitación actualizado en el servidor:", serverResponse);
+  
     } catch (error) {
       console.log("Error al intentar deshabilitar o habilitar la habitación:", error);
     }
   };
+  useEffect(() => {
+    console.log("Habitaciones actualizadas:", rooms);
+  }, [rooms]);
+  
+  // En tu JSX, muestra el mensaje de estado
+  {statusMessage && <div>{statusMessage}</div>}
 
   const handleEditRoom = (id: string) => {
     const roomToEdit = rooms.find((room) => room.id === id);
