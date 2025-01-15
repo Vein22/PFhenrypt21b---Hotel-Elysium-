@@ -87,6 +87,7 @@ import ContadorVisitas from "../visits/visits";
 const Header = () => {
   const { userData } = useLoggin();
 
+console.log(userData);
 
   
   console.log(userData)
