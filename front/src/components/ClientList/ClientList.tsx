@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { getClientList } from "@/api/clientList";
 import Link from "next/link";
-import ProtectedAdmin from "../ProtectedAdmin/page";
 import { useLoggin } from "@/context/logginContext";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -22,7 +21,7 @@ const ClientList: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const { userData } = useLoggin();
   const router = useRouter();
-const token = userData?.token;
+  const token = userData?.token;
   useEffect(() => {
     if (!userData) {
       router.push("/login");
@@ -31,7 +30,7 @@ const token = userData?.token;
     const fetchClients = async () => {
       try {
         const data = await getClientList(userData.token);
-        
+
         if (Array.isArray(data)) {
           setClients(data);
         } else {
@@ -75,36 +74,34 @@ const token = userData?.token;
   }
 
   return (
-    <ProtectedAdmin>
-      <div className="shadow rounded-lg p-6">
-        <h3 className="text-[2.5rem] mb-4">Clientes Registrados</h3>
-        <input
-          type="text"
-          placeholder="Buscar clientes..."
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
-        />
-        <ul className="divide-y divide-gray-200">
-          {filteredClients.map((client) => (
-            <li key={client.id} className="py-4">
-              <div className="flex items-center justify-between">
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-[1.1rem] font-semibold">{client.name}</h4>
-                  <p className="text-gray-500 truncate">{client.email}</p>
-                </div>
-                <Link
-                  href={`/dashboard/clients/${client.id}`}
-                  className="ml-4 bg-mostaza hover:bg-opacity-70 text-white py-2 px-4 hover:scale-105 transition-transform duration-300"
-                >
-                  Ver Detalles
-                </Link>
+    <div className="shadow rounded-lg p-6">
+      <h3 className="text-[2.5rem] mb-4">Clientes Registrados</h3>
+      <input
+        type="text"
+        placeholder="Buscar clientes..."
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+      />
+      <ul className="divide-y divide-gray-200">
+        {filteredClients.map((client) => (
+          <li key={client.id} className="py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex-1 min-w-0">
+                <h4 className="text-[1.1rem] font-semibold">{client.name}</h4>
+                <p className="text-gray-500 truncate">{client.email}</p>
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </ProtectedAdmin>
+              <Link
+                href={`/dashboard/clients/${client.id}`}
+                className="ml-4 bg-mostaza hover:bg-opacity-70 text-white py-2 px-4 hover:scale-105 transition-transform duration-300"
+              >
+                Ver Detalles
+              </Link>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
