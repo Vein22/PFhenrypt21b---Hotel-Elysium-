@@ -28,8 +28,6 @@ const token = userData?.token;
       router.push("/login");
       return;
     }
-    console.log(`Token Actual Administrador.->>> ${token}`);
-
     const fetchClients = async () => {
       try {
         const data = await getClientList(userData.token);
