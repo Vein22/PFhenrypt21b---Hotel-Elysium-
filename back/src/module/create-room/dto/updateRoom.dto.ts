@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsNotEmpty, IsPositive, Min, Max, IsUrl, IsOptional } from 'class-validator';
+import { IsString, IsNumber, IsNotEmpty, IsPositive, Min, Max, IsUrl, IsOptional, IsBoolean } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -12,6 +12,7 @@ export class updateRoom {
   @IsOptional()
   title?: string;
 
+  
   /**
    * Campo para actualizar el tamaño de la habitación.
 
@@ -21,6 +22,7 @@ export class updateRoom {
   @IsString()
   @IsOptional()
   size?: string;
+
 
   /**
    * Campo para actualizar el número de camas(capacidad) en la habitación.
@@ -35,6 +37,7 @@ export class updateRoom {
   @Transform(({ value }) => parseInt(value, 10))
   beds?: number;
 
+
   /**
    * Campo para actualizar la calificación promedio de la habitación.
    * @example 4.5
@@ -47,6 +50,7 @@ export class updateRoom {
   @Transform(({ value }) => parseFloat(value))
   rating?: number;
 
+
   /**
    * Campo para actualizar el URL de la imagen representativa de la habitación.
    * @example "https://example.com/room.jpg"
@@ -56,6 +60,7 @@ export class updateRoom {
   @IsOptional()
   @IsUrl({}, { message: 'La imagen debe ser una URL válida.' })
   image?: string;
+
 
   /**
    * Campo para actualizar el precio de la habitación por noche.
@@ -68,6 +73,7 @@ export class updateRoom {
   @Transform(({ value }) => parseFloat(value))
   price?: number;
 
+
   /**
    * Campo para actualizar el tipo de habitación asociada.
    * @example "d230c7d9-b983-4e78-b846-944dbe62d7b1"
@@ -77,6 +83,7 @@ export class updateRoom {
   @IsOptional()
   roomType?: string;
 
+
   /**
    * Campo para actualizar la descripción detallada de la habitación.
    * @example "Habitación espaciosa con vistas al mar y todas las comodidades modernas."
@@ -85,4 +92,19 @@ export class updateRoom {
   @IsString()
   @IsOptional()
   description?: string;
+
+
+   /**
+   * Camapa para actualizar si la habitación está disponible.
+   * @example true
+   */
+   @ApiProperty({
+    example: true,
+
+    description: 'Indica si la habitación está disponible.',
+
+  })
+  @IsOptional()
+  @IsBoolean()
+  available?: boolean;
 }
