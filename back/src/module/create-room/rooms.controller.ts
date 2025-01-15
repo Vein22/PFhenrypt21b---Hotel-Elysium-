@@ -1,14 +1,12 @@
-import { Controller, Post, Delete, Get, Body, Param, Query, HttpCode, HttpStatus, UploadedFile, UseInterceptors, BadRequestException, UseGuards } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { Controller, Post, Delete, Get, Patch, Body, Param, Query, HttpCode, HttpStatus, UploadedFile, UseInterceptors, BadRequestException, UseGuards } from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { Room } from '../../entities/Room.entity';
 import { ApiBody, ApiConsumes, ApiTags, ApiResponse } from '@nestjs/swagger';
-
-import { ImageValidatorPipe } from '../../pipes/imageValidatorPipe';
 import { JwtAuthGuard } from '../../guards/jwt-auth/jwt-auth.guard';
 import { RolesGuard } from '../../guards/roles/roles.guard';
 import { Roles } from '../../decorators/roles/roles.decorator';
+import { updateRoom } from './dto/updateRoom.dto';
 
 
 
@@ -57,7 +55,10 @@ export class RoomsController {
   }
   
 
-
+    @Patch('updateRoom/:id')
+    async updateRoom(@Param('id') id: string, @Body() updateRoom:updateRoom){
+      return this.roomsService.updateRoom(id, updateRoom);
+    }
 }
 
 
