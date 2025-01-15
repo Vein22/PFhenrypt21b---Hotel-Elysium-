@@ -25,17 +25,16 @@ type Room = {
         body: JSON.stringify(roomData),
       });
   
-      // Reemplazamos la parte de parsear JSON por simplemente leer la respuesta como texto
+
       const textResponse = await response.text();
   
-      // Log para verificar qué está devolviendo el servidor
+
       console.log("Respuesta del servidor:", textResponse);
   
       if (!response.ok) {
         throw new Error(textResponse || "Error al actualizar la habitación");
       }
   
-      // Si el servidor devuelve un mensaje de éxito, retornamos ese mensaje
       return textResponse;  // No intentamos parsear como JSON, solo devolvemos el texto
   
     } catch (error) {
