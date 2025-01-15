@@ -5,7 +5,6 @@ import { useLoggin } from '@/context/logginContext';
 import Link from 'next/link';
 
 const SuccessPage: FC = () => {
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [reservationId, setReservationId] = useState<string | null>(null);
@@ -20,7 +19,6 @@ const SuccessPage: FC = () => {
       setReservationId(parsedReservation.id);
     } else {
       setError('No se pudo encontrar el ID de la reserva en el almacenamiento local.');
-      setLoading(false);
     }
   }, []);
 
@@ -51,8 +49,6 @@ const SuccessPage: FC = () => {
         console.error(err);
 
         localStorage.removeItem('reservation');
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -60,9 +56,6 @@ const SuccessPage: FC = () => {
       updatePaymentStatus();
     }
   }, [reservationId, token]);
-
-
-
 
   useEffect(() => {
     if (paymentSuccess) {
@@ -73,10 +66,6 @@ const SuccessPage: FC = () => {
       return () => clearTimeout(timer);
     }
   }, [paymentSuccess, router]);
-
-
-
-
 
   return (
     <div className="container mx-auto py-16">
@@ -94,7 +83,7 @@ const SuccessPage: FC = () => {
             </p>
           ) : (
             <p className="text-center text-red-500">
-              " Cargando "
+              &quot;Cargando&quot;
             </p>
           )}
         </>

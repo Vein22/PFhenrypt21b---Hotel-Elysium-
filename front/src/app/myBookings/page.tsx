@@ -5,12 +5,10 @@ import { Reservation, Room } from "@/interfaces";
 import { useState, useEffect } from "react";
 import { useLoggin } from "@/context/logginContext";
 import { PaymentButton } from "@/components/PaymentButton/PaymentButton";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
+import Image from "next/image";
 
-
-
-
-const ReservationsPage = () => {
+const Page = () => {
   const { userData } = useLoggin();
   const userId = userData?.userData.id;
   const token = userData?.token;
@@ -39,7 +37,7 @@ const ReservationsPage = () => {
     };
 
     fetchReservations();
-  }, [userId]);
+  }, [userId, token]);
 
   const calculateTotal = (
     checkInDate: string | Date,
@@ -111,7 +109,7 @@ const ReservationsPage = () => {
         <p className="text-center">No reservations found.</p>
       ) : (
         <div className="space-y-6">
-          {reservations.map((reservation: any) => {
+          {reservations.map((reservation: Reservation & { room: Room | null }) => {
             const total = reservation.room
               ? calculateTotal(
                   reservation.checkInDate,
@@ -122,22 +120,21 @@ const ReservationsPage = () => {
 
             const today = new Date();
             const checkInDate = new Date(reservation.checkInDate);
-            const buttonLabel =
-              checkInDate < today
-                ? "Califica tu estadía"
-                : reservation.paymentStatus === "Reserva no Pagada"
-                ? "Pagar"
-                : "Cancelar";
+            
+            console.log(today);
+            console.log(checkInDate);
 
             return (
               <div
                 key={reservation.id}
-                className="flex flex-col md:flex-row items-center bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
+                className="flex flex-col md:flex-row items-center border-gray-500 shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
               >
                 {reservation.room?.image ? (
-                  <img
+                  <Image
                     src={reservation.room.image}
                     alt={reservation.room.title}
+                    width={128}
+                    height={128}
                     className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-lg mr-4"
                   />
                 ) : (
@@ -174,12 +171,10 @@ const ReservationsPage = () => {
 
                   {reservation.paymentStatus === "Reserva no Pagada" && (
                     <>
-                
-                    
                       <PaymentButton
                         amount={Number(total.toFixed(2))}
                         currency="usd"
-                        description={reservation.room?.title}
+                        description={reservation.room?.title || "No title"}
                         id={reservation.id}
                       />
 
@@ -191,8 +186,6 @@ const ReservationsPage = () => {
                       </button>
                     </>
                   )}
-
-                  
                 </div>
               </div>
             );
@@ -203,4 +196,4 @@ const ReservationsPage = () => {
   );
 };
 
-export default ReservationsPage;
+export default Page;

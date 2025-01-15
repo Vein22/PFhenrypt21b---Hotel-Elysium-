@@ -1,14 +1,9 @@
 "use client";
 
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { useLoggin } from "@/context/logginContext";
-
-
-
-
 
 export interface IloginPropsGoogle {
   emailgoogle: string;
@@ -49,8 +44,7 @@ export async function logingoogle(userData: IloginPropsGoogle) {
 
 const LoginGoogle: React.FC<IloginPropsGoogle> = ({ emailgoogle, password }) => {
   const router = useRouter();
-const { setUserData } = useLoggin();
-
+  const { setUserData } = useLoggin();
 
   const [dataUser, setDataUser] = useState({ emailgoogle: "", password: "" });
   const [isFormReady, setIsFormReady] = useState(false);
@@ -62,7 +56,7 @@ const { setUserData } = useLoggin();
     }
   }, [emailgoogle, password]);
 
-  const handleSubmitGoogle = async () => {
+  const handleSubmitGoogle = useCallback(async () => {
     console.log("Email:", dataUser.emailgoogle);
     console.log("Password:", dataUser.password);
 
@@ -70,16 +64,14 @@ const { setUserData } = useLoggin();
       const response = await logingoogle(dataUser);
 
       if (response.success) {
-        const { token, user} = response.data;
+        const { token, user } = response.data;
 
         setUserData({
           token,
           userData: user,
         });
-        
-              
+
         router.push("/");
-      
       } else {
         console.log("Login failed:", response.errorData);
         Swal.fire({
@@ -97,15 +89,14 @@ const { setUserData } = useLoggin();
         text: "Error al iniciar sesión.",
       });
     }
-  };
+  }, [dataUser, setUserData, router]);
 
   useEffect(() => {
     if (isFormReady) {
       handleSubmitGoogle();
     }
-  }, [isFormReady]);
+  }, [handleSubmitGoogle, isFormReady]);
 
-  
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-5xl font-bold text-center text-gray-800 drop-shadow-lg">
@@ -115,10 +106,10 @@ const { setUserData } = useLoggin();
         Bienvenido
       </p>
       <p className="text-xl text-center text-gray-600 drop-shadow-md mt-2">
-        HOTEL Y RESORT DE LUJO ELYSIUM 
+        HOTEL Y RESORT DE LUJO ELYSIUM
       </p>
     </div>
   );
-}
+};
 
 export default LoginGoogle;
