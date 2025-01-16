@@ -103,23 +103,23 @@ export default function RoomList() {
   };
 
   return (
-    <div className="bg-white shadow rounded-lg p-6">
-      <h4 className="text-xl font-semibold mb-4">Lista de Habitaciones</h4>
-      <div className="overflow-x-auto">
+    <div className="shadow rounded-lg p-6">
+      <div className="overflow-x-auto border-gray-200 rounded shadow-lg w-[95%] mx-auto">
+      <h4 className="text-xl font-semibold mb-4 p-4">Lista de Habitaciones</h4>
         <table className="min-w-full leading-normal">
           <thead>
             <tr>
-              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Número</th>
-              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tipo</th>
-              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Precio</th>
-              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Estado</th>
-              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Acciones</th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-crema text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Número</th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-crema text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tipo</th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-crema text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Precio</th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-crema text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Estado</th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-crema text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Acciones</th>
             </tr>
           </thead>
           <tbody>
             {rooms.map((room) => (
               <tr key={room.id}>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td className="px-5 py-5 border-b border-gray-200  text-sm">
                   {editingRoom === room.id ? (
                     <EditableCell
                       value={editedRoom.roomNumber ?? room.roomNumber}
@@ -132,7 +132,7 @@ export default function RoomList() {
                     room.roomNumber
                   )}
                 </td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td className="px-5 py-5 border-b border-gray-200  text-sm">
                   {editingRoom === room.id ? (
                     <EditableCell
                       value={editedRoom.roomType ?? room.roomType}
@@ -144,7 +144,7 @@ export default function RoomList() {
                     room.roomType
                   )}
                 </td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td className="px-5 py-5 border-b border-gray-200  text-sm">
                   {editingRoom === room.id ? (
                     <EditableCell
                       value={editedRoom.price ?? room.price}
@@ -157,7 +157,7 @@ export default function RoomList() {
                     `$${room.price}`
                   )}
                 </td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td className="px-5 py-5 border-b border-gray-200  text-sm">
                   <span
                     className={`relative inline-block px-3 py-1 font-semibold ${room.available ? "text-green-900" : "text-red-900"} leading-tight`}
                   >
@@ -170,7 +170,7 @@ export default function RoomList() {
                     </span>
                   </span>
                 </td>
-                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <td className="px-5 py-5 border-b border-gray-200  text-sm">
                   {editingRoom === room.id ? (
                     <button
                       onClick={() => HandleEditRooms(room.id)}
