@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { useLoggin } from "@/context/logginContext"; 
+import { useLoggin } from "@/context/logginContext";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
@@ -39,7 +39,7 @@ const Header = () => {
               <Link href="/employee" className="hover:text-mostaza">
                 Crear Empleados
               </Link>
-              <Link href="/testimonials" className="hover:text-mostaza">
+              <Link href="/testimonialsadmin" className="hover:text-mostaza">
                 Aprobar Testimonios
               </Link>
             </>
