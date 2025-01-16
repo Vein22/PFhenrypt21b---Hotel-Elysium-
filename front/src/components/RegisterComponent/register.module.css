@@ -44,6 +44,8 @@
     outline: none;
     background: none;
     font-family: var(--font-secondary);
+    background-color: #f8f6f3;
+    color: #161616;
 }
 
 .labelForm {
@@ -131,6 +133,9 @@
     
 }
 
+#validaciones {
+    color: rgb(239, 68, 68);
+}
 
 
 
