@@ -103,7 +103,7 @@ const Page = () => {
   };
 
   return (
-    <div className="px-10 py-8">
+    <div className="px-10 py-8 min-h-screen">
       <h1 className="text-2xl font-bold text-center mb-8">Mis Reservaciones</h1>
       {reservations.length === 0 ? (
         <p className="text-center">No reservations found.</p>
